@@ -63,7 +63,8 @@
 |
 */
 
-$autoload['packages'] = array();
+# BASEPATH is the codeignitor system path
+$autoload['packages'] = array(BASEPATH . '../../api-common');
 
 
 /*
