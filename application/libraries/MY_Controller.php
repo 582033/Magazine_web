@@ -1,7 +1,7 @@
 <?php
 
 class MY_Controller extends CI_Controller {
-	var pseudo_input = array();
+	var $pseudo_input = array();
 
 	function MY_Controller() { //{{{
 		parent::__construct();
