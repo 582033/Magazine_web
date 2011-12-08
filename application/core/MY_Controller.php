@@ -46,4 +46,9 @@ class MY_Controller extends CI_Controller {
 		$content_type = $format_content_type[$output_format];
 		$this->output->set_header("Content-type: $content_type;charset=utf-8");
 	} //}}}
+
+	function _json_output($data) {
+		$this->_set_content_type('json');
+		$this->output->set_output(json_encode($data));
+	}
 }
