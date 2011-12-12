@@ -196,6 +196,9 @@ if (defined('ENVIRONMENT'))
 		exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
 	}
 
+	$top_path = realpath("$system_path../../");
+	$top_path = rtrim($top_path, '/').'/';
+
 /*
  * -------------------------------------------------------------------
  *  Now that we know the path, set the main path constants
@@ -216,6 +219,9 @@ if (defined('ENVIRONMENT'))
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+
+	// Path to the topmost dir which contains all projects including CodeIgniter
+	define('TOPPATH', str_replace("\\", "/", $top_path));
 
 
 	// The path to the "application" folder
