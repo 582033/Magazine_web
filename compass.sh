@@ -1,3 +1,3 @@
 #!/bin/bash
 
-compass watch application &
+compass watch . &
