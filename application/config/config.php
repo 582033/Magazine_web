@@ -393,6 +393,12 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+// custom config
+
+$config['mq_host'] = 'mqhost';
+$config['mq_port'] = '5672';
+$config['mq_user'] = 'guest';
+$config['mq_pass'] = 'guest';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
