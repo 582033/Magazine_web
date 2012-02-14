@@ -27,6 +27,24 @@ class MY_Controller extends CI_Controller {
 
 		return $value;
 	} //}}}
+	function _check_required($keys) { //{{{
+		/**
+		 * check required params
+		 * @param keys: str or array
+		 */
+		if (is_string($keys)) {
+			$keys = array($keys);
+		}
+		$missing_keys = array();
+		foreach ($keys as $k) {
+			$v = $this->input->get($k);
+			if ($v === FALSE || $v == '') $missing_keys[] = $k;
+		}
+
+		if ($missing_keys) {
+			show_error("Param missing: " . implode(', ', $missing_keys));
+		}
+	} //}}}
 
 	function _config_non_empty($name) { //{{{
 		$value = $this->config->item($name);
