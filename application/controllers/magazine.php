@@ -104,4 +104,11 @@ class Magazine extends MY_Controller {
 		$mag_info = api("http://api.1001s.cn/magazine/detail?id=".$id);
 		$this->_json_output($mag_info['data']);
 	}//}}}
+	
+	function category(){		//杂志分类{{{
+		$cat_info = api("http://api.1001s.cn/magazine/category");
+		$this->_json_output($cat_info['data']);
+	}//}}}
+	
+	
 }
