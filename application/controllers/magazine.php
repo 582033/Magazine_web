@@ -71,7 +71,7 @@ class Magazine extends MY_Controller {
 	
 	
 	function loved_num(){		//喜欢数量{{{
-		$loved_num = api("http://mtong.api.1001s.cn/magazine/get_loved_nums");
+		$loved_num = api("http://api.1001s.cn/magazine/get_loved_nums");
 		$this->_json_output($loved_num['data']);
 	}//}}}
 	
@@ -79,7 +79,7 @@ class Magazine extends MY_Controller {
 		$keys = array('start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$type = $this->input->get('type');
-		$loved_data = api("http://mtong.api.1001s.cn/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
+		$loved_data = api("http://mapi.1001s.cn/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
 		$this->_json_output($loved_data['data']);
 	}//}}}
 	
@@ -87,7 +87,7 @@ class Magazine extends MY_Controller {
 		$keys = array('start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$magazine_id = $this->input->get('magazine_id');
-		$user_comment = api("http://mtong.api.1001s.cn/magazine/get_user_comment?limit=".$gets['limit']."&start=".$gets['start']."&magazine_id=".$magazine_id);
+		$user_comment = api("http://api.1001s.cn/magazine/get_user_comment?limit=".$gets['limit']."&start=".$gets['start']."&magazine_id=".$magazine_id);
 		$this->_json_output($user_comment['data']);
 	}//}}}
 	
