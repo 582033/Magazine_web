@@ -400,5 +400,8 @@ $config['mq_port'] = '5672';
 $config['mq_user'] = 'guest';
 $config['mq_pass'] = 'guest';
 
+
+$config['api_host'] = 'http://api.1001s.cn';
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
