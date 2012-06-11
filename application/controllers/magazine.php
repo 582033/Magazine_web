@@ -79,7 +79,7 @@ class Magazine extends MY_Controller {
 		$keys = array('start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$type = $this->input->get('type');
-		$loved_data = api("http://mapi.1001s.cn/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
+		$loved_data = api("http://api.1001s.cn/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
 		$this->_json_output($loved_data['data']);
 	}//}}}
 	
@@ -110,5 +110,18 @@ class Magazine extends MY_Controller {
 		$this->_json_output($cat_info['data']);
 	}//}}}
 	
-	
+	function ads(){		//广告{{{
+		$keys = array('limit', 'start');
+		$position = $this->input->get('position');
+		$gets = $this->_get_more_non_empty($keys);
+		$ads = api("http://api.1001s.cn/magazine/ads?limit=".$gets['limit']."&start=".$gets['start']."&position=".$position);
+		$this->_json_output($ads);
+	}//}}}
+/*	
+	function _get_download_url(){		//获取杂志下载地址{{{
+		$id = $this->_get_non_empty('id');
+		$url = api("http://api.1001s.cn/magazine/download?id=".$id);
+		$this->_json_output($url);
+	}//}}}
+*/
 }
