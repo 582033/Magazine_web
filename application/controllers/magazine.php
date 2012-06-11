@@ -12,6 +12,7 @@ class Magazine extends MY_Controller {
 		$this->load->model('love_model');
 		$this->load->model('ads_model');
 		$this->load->model('mag_element_model');
+		$this->load->model('reg_model');
 	}
 	
 	function _get_more ($keys, $input){	//{{{		
@@ -31,7 +32,12 @@ class Magazine extends MY_Controller {
 	}	//}}}
 
 	function reg (){	//{{{
-		$username = $this_non_empty();
+		$username = $this->_get_non_empty('username');
+		$passwd = $this->_get_non_empty('passwd');
+		$api_data = api($this->api_host."/magazine/reg?username=$username&passwd=$passwd");
+		$return = $this->reg_model->reg($api_data);
+		echo "<pre>";print_r($api_data);
+		echo "<pre>";print_r($return);
 	}	//}}}
 
 	function login (){	//{{{
