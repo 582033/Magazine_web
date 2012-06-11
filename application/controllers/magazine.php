@@ -56,10 +56,6 @@ class Magazine extends MY_Controller {
 		//$this->smarty->view('index.tpl');
 	}	//}}}
 	
-		$mag_list = api("http://api.1001s.cn/magazine/mag_list?start=".$gets['start']."&limit=".$gets['limit']);
-		$this->_json_output($mag_list['data']);
-	}	//}}}
-	
 	
 	
 	
@@ -71,7 +67,7 @@ class Magazine extends MY_Controller {
 	
 	
 	function loved_num(){		//喜欢数量{{{
-		$loved_num = api("http://api.1001s.cn/magazine/get_loved_nums");
+		$loved_num = api($this->api_host."/magazine/get_loved_nums");
 		$this->_json_output($loved_num['data']);
 	}//}}}
 	
@@ -79,7 +75,7 @@ class Magazine extends MY_Controller {
 		$keys = array('start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$type = $this->input->get('type');
-		$loved_data = api("http://api.1001s.cn/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
+		$loved_data = api($this->api_host."/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
 		$this->_json_output($loved_data['data']);
 	}//}}}
 	
@@ -87,7 +83,7 @@ class Magazine extends MY_Controller {
 		$keys = array('start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$magazine_id = $this->input->get('magazine_id');
-		$user_comment = api("http://api.1001s.cn/magazine/get_user_comment?limit=".$gets['limit']."&start=".$gets['start']."&magazine_id=".$magazine_id);
+		$user_comment = api($this->api_host."/magazine/get_user_comment?limit=".$gets['limit']."&start=".$gets['start']."&magazine_id=".$magazine_id);
 		$this->_json_output($user_comment['data']);
 	}//}}}
 	
@@ -95,18 +91,12 @@ class Magazine extends MY_Controller {
 		$keys = array('for', 'start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$type = $this->input->get('type');
-		$mag_element = api("http://api.1001s.cn/magazine/get_mag_element?for=".$gets['for']."&limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
+		$mag_element = api($this->api_host."/magazine/get_mag_element?for=".$gets['for']."&limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
 		$this->_json_output($mag_element['data']);
 	}//}}}
 	
-	function detail(){		//杂志详情{{{
-		$id = $this->_get_non_empty('id');
-		$mag_info = api("http://api.1001s.cn/magazine/detail?id=".$id);
-		$this->_json_output($mag_info['data']);
-	}//}}}
-	
 	function category(){		//杂志分类{{{
-		$cat_info = api("http://api.1001s.cn/magazine/category");
+		$cat_info = api($this->api_host."/magazine/category");
 		$this->_json_output($cat_info['data']);
 	}//}}}
 	
@@ -114,13 +104,13 @@ class Magazine extends MY_Controller {
 		$keys = array('limit', 'start');
 		$position = $this->input->get('position');
 		$gets = $this->_get_more_non_empty($keys);
-		$ads = api("http://api.1001s.cn/magazine/ads?limit=".$gets['limit']."&start=".$gets['start']."&position=".$position);
+		$ads = api($this->api_host."/magazine/ads?limit=".$gets['limit']."&start=".$gets['start']."&position=".$position);
 		$this->_json_output($ads);
 	}//}}}
 /*	
 	function _get_download_url(){		//获取杂志下载地址{{{
 		$id = $this->_get_non_empty('id');
-		$url = api("http://api.1001s.cn/magazine/download?id=".$id);
+		$url = api($this->api_host."/magazine/download?id=".$id);
 		$this->_json_output($url);
 	}//}}}
 */
