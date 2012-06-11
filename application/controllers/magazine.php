@@ -26,6 +26,10 @@ class Magazine extends MY_Controller {
 		return $return;
 	}	//}}}
 
+	function reg (){	//{{{
+		$username = $this_non_empty();
+	}	//}}}
+
 	function login (){	//{{{
 	//	$username = $this->input->post('username');
 	//	$passwd = $this->input->post('passwd');
