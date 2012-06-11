@@ -14,6 +14,7 @@ class Magazine extends MY_Controller {
 		$this->load->model('mag_element_model');
 		$this->load->model('reg_model');
 		$this->load->library('session');
+		$this->load->model('reg_model');
 	}
 	
 	function _get_more ($keys, $input){	//{{{		
