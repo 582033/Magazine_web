@@ -5,7 +5,11 @@ class Mag_Model extends CI_Model {
 		$this->api_host = $this->config->item('api_host');
 		$this->load->helper('api');
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 567a370... aa
 	function get_mag_list_for_index(){		//杂志首页列表
 		$mag_ad_list = array();
 		$mag_list = array();
@@ -39,12 +43,20 @@ class Mag_Model extends CI_Model {
 		}
 		return $data;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 567a370... aa
 	function _get_category(){		//杂志分类
 		$cat_info = api($this->api_host."/magazine/category");
 		return $cat_info;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 567a370... aa
 	function _get_mag_list($gets, $type){
 		$mag_list = api($this->api_host . "/magazine/mag_list?start=".$gets['start']."&limit=".$gets['limit']."&type=".$type);
 		return $mag_list['data'];

@@ -3,29 +3,29 @@ function show_reply(){
 }
 
 
-$(document).ready(function() { 
+$(document).ready(function() {
 	$("#reply").find("button").click(function(){
-		$('#myForm').ajaxForm(function() { 
-			alert("Thank you for your comment!"); 
-		}); 
+		$('#myForm').ajaxForm(function() {
+			alert("Thank you for your comment!");
+		});
 	});
-}); 
+});
 
 function comment (api_host, sid) {
-	/*
-	$.ajax({
+	alert('http://'+api_host+'/magazine/add_comment?session_id='+sid);
+/*	$.ajax({
 		type: 'post',
-		url: 'http://api.1001s.cn/magazine.comment?session_id='+sid,
+		url: 'http://'+api_host+'/magazine.comment?session_id='+sid,
 		data: "{magazine_id:'" + $("#magazine_id") +"',comment:'"+ $("#comment") +"',parents_id:'"+ $("#parents_id") +"'}",
 		success: function (msg) {
 			alert("post ok");
 			$("#reply").slideUp();
 		}
-	});	
-	*/
-        // wait for the DOM to be loaded 
+	});
+        // wait for the DOM to be loaded
 	$.post(api_host+"/magazine.comment?session_id="+sid, function(data) {
 			alert("post ok");
 			$("#reply").slideUp();
 	});
+*/
 }

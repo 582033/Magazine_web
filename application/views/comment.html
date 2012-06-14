@@ -1,0 +1,16 @@
+<script src="/sta/js/thickbox.js"></script>
+<script src="/sta/js/jquery-1.7.2.min.js"></script>
+<script src="/sta/js/jquery.form.js"></script>
+<script src="/sta/js/comment.js"></script>
+
+<button onclick="show_reply()">回复</button>
+<div id="reply" style="display:none;width:200px;height:200px;border:1px solid #ddd;">
+<form id="myForm" action="{$api_host}/magazine/comment?session_id={$sid}" method="post">
+	type:<select name="type"><option>magazine</option><option>element</option></select><br />
+	object_id:<input type="text" id="object_id" name="object_id"><br />
+	comment:<input type="text" id="comment" name="comment"><br />
+	parents_id:<input type="text" id="parents_id" name="parents_id"><br />
+	<input type="submit" value="form发布">
+	<button onclick="comment({$api_host},{$sid});">ajax发布</button>
+</form>
+</div>
