@@ -402,6 +402,9 @@ $config['mq_pass'] = 'guest';
 
 
 $config['api_host'] = 'http://api.1001s.cn';
+if (file_exists(APPPATH. 'config/local.config.php')){
+	include(APPPATH. 'config/local.config.php');
+}
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

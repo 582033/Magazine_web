@@ -7,7 +7,11 @@ class Magazine extends MY_Controller {
 		parent::__construct();
 		$this->load->helper('api');
 		$this->api_host = $this->config->item('api_host');
-		$this->load->model('Login_Model');	
+		$this->load->model('Login_Model');
+		$this->load->model('mag_model');
+		$this->load->model('love_model');
+		$this->load->model('ads_model');
+		$this->load->model('mag_element_model');
 	}
 	
 	function _get_more ($keys, $input){	//{{{		
@@ -44,12 +48,13 @@ class Magazine extends MY_Controller {
 	function mag_list (){	//杂志列表{{{
 		$keys = array('start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
-		$mag_list = api($this->api_host."/magazine/mag_list?start=".$gets['start']."&limit=".$gets['limit']);
-		echo "<pre>";print_r($mag_list);
+		$type = $this->input->get('type');
+		$mag_list = $this->mag_model->_get_mag_list($gets, $type);
+		$this->_json_output($mag_list);
 		//$this->smarty->view('index.tpl');
 	}	//}}}
 
-	function detail (){	//详情页`{{{
+	function detail (){	//详情页{{{
 		$id = $this->_get_non_empty('id');		
 		$detail = api($this->api_host."/magazine/detail?id=".$id);
 		echo "<pre>";print_r($detail);
@@ -65,38 +70,30 @@ class Magazine extends MY_Controller {
 	
 	
 	
-	
 	function loved_num(){		//喜欢数量{{{
-		$loved_num = api($this->api_host."/magazine/get_loved_nums");
-		$this->_json_output($loved_num['data']);
+		$loved_num = $this->love_model->_get_loved_nums();
+		$this->_json_output($loved_num);
 	}//}}}
 	
 	function loved_data(){		//喜欢数据{{{
 		$keys = array('start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$type = $this->input->get('type');
-		$loved_data = api($this->api_host."/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
-		$this->_json_output($loved_data['data']);
+		$loved_data = $this->love_model->_get_loved_data($gets, $type);
+		$this->_json_output($loved_data);
 	}//}}}
-	
-	function user_comment(){		//获得评论{{{
-		$keys = array('start', 'limit');
-		$gets = $this->_get_more_non_empty($keys);
-		$magazine_id = $this->input->get('magazine_id');
-		$user_comment = api($this->api_host."/magazine/get_user_comment?limit=".$gets['limit']."&start=".$gets['start']."&magazine_id=".$magazine_id);
-		$this->_json_output($user_comment['data']);
-	}//}}}
+
 	
 	function mag_element(){			//杂志元素{{{
 		$keys = array('for', 'start', 'limit');
 		$gets = $this->_get_more_non_empty($keys);
 		$type = $this->input->get('type');
-		$mag_element = api($this->api_host."/magazine/get_mag_element?for=".$gets['for']."&limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
-		$this->_json_output($mag_element['data']);
+		$mag_element = $this->mag_element_model->_get_mag_element($gets, $type);
+		$this->_json_output($mag_element);
 	}//}}}
 	
 	function category(){		//杂志分类{{{
-		$cat_info = api($this->api_host."/magazine/category");
+		$cat_info = $this->mag_model->_get_category();
 		$this->_json_output($cat_info['data']);
 	}//}}}
 	
@@ -104,14 +101,31 @@ class Magazine extends MY_Controller {
 		$keys = array('limit', 'start');
 		$position = $this->input->get('position');
 		$gets = $this->_get_more_non_empty($keys);
-		$ads = api($this->api_host."/magazine/ads?limit=".$gets['limit']."&start=".$gets['start']."&position=".$position);
+		$ads = $this->ads_model->_get_list($gets, $position);
 		$this->_json_output($ads);
 	}//}}}
-/*	
-	function _get_download_url(){		//获取杂志下载地址{{{
-		$id = $this->_get_non_empty('id');
-		$url = api($this->api_host."/magazine/download?id=".$id);
-		$this->_json_output($url);
+
+	function nums_of_loved(){		//获取对象(杂志，元素，作者)被喜欢的次数{{{
+		$keys = array('loved_id', 'loved_type');
+		$gets = $this->_get_more_non_empty($keys);
+		$nums = $this->love_model->_get_nums_of_loved($gets);
+		$this->_json_output($nums);
 	}//}}}
-*/
+	
+	function index(){		//首页展示{{{
+		$data = $this->mag_model->get_mag_list_for_index();
+		$this->smarty->view('index.html',$data);
+	}//}}}
+	
+	function comment (){ //评论{{{
+		$magazine_id = $this->_get_non_empty('magazine_id');
+		$start = $this->_get('start');
+		$limit = $this->_get('limit');
+		$this->session->userdata;
+		$sid = $this->session->userdata('sid');
+		$data = $this->comment_model->comment_list($magazine_id);
+		$data = $data['data'];
+		print_r($data);
+	}
+
 }
