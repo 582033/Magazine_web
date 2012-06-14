@@ -13,6 +13,7 @@ class Magazine extends MY_Controller {
 		$this->load->model('ads_model');
 		$this->load->model('mag_element_model');
 		$this->load->model('reg_model');
+		$this->load->library('session');
 	}
 	
 	function _get_more ($keys, $input){	//{{{		
@@ -41,14 +42,15 @@ class Magazine extends MY_Controller {
 	}	//}}}
 
 	function login (){	//{{{
-	//	$username = $this->input->post('username');
-	//	$passwd = $this->input->post('passwd');
-		$username = $this->input->get('username');
-		$passwd = $this->input->get('passwd');
-		$getkey = api($this->api_host."/magazine/getkey");	
-		echo "<pre>";print_r($getkey);
-		$return = $this->Login_Model->login($getkey, $username, $passwd);
-		echo "<pre>";print_r($return);
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$username = $this->input->post('username');
+			$passwd = $this->input->post('passwd');
+			$getkey = api($this->api_host."/magazine/getkey");	
+			$return = $this->Login_Model->login($getkey, $username, $passwd);
+			print_r($return);
+			$this->session->set_userdata('sid', $return['session_id']);
+		}
+		$this->smarty->view('login.tpl');
 	}	//}}}
 
 	function mag_list (){	//杂志列表{{{
@@ -66,6 +68,16 @@ class Magazine extends MY_Controller {
 		echo "<pre>";print_r($detail);
 		//$this->smarty->view('index.tpl');
 	}	//}}}
+
+function comment (){
+	print_r($this->session->userdata);
+	$sid = $this->session->userdata('sid');
+	$data = array(
+			'sid' => $sid,
+			'api_host' => $this->api_host,
+			);
+	$this->smarty->view('comment.html', $data);
+}
 	
 	
 	

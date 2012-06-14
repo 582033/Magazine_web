@@ -258,7 +258,7 @@ $config['cache_path'] = '';
 | http://codeigniter.com/user_guide/libraries/sessions.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'key';
 
 /*
 |--------------------------------------------------------------------------
@@ -404,6 +404,10 @@ $config['mq_pass'] = 'guest';
 $config['api_host'] = 'http://api.1001s.cn';
 if (file_exists(APPPATH. 'config/local.config.php')){
 	include(APPPATH. 'config/local.config.php');
+}
+
+if(file_exists(APPPATH . 'config/local.config.php')){
+	include(APPPATH . 'config/local.config.php');
 }
 
 /* End of file config.php */
