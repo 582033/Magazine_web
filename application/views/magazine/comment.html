@@ -3,6 +3,7 @@
 <script src="/sta/js/jquery.form.js"></script>
 <script src="/sta/js/comment.js"></script>
 
+<<<<<<< HEAD
 <div id="reply" style="width:600px;height:150px;border:1px solid black;">
 <form id="myForm" action="/magazine/refresh_comment" method="post">
 	type:<select id="type" name="type"><option value="magazine">magazine</option><option value="element">element</option></select><br />
@@ -22,3 +23,14 @@
 </div>
 {/foreach}
 </div>
+=======
+<button onclick="show_reply()">回复</button>
+<div id="reply" style="display:none;width:200px;height:200px;border:1px solid #ddd;">
+<form id="myForm" action="{$api_host}/magazine/comment?session_id={$sid}" method="post"> 
+	mag_id:<input type="text" id="magazine_id"><br />
+	comment:<input type="text" id="comment"><br />
+	parents_id:<input type="text" id="parents_id"><br />
+	<button>xx</button>
+</form>
+</div>
+>>>>>>> f809225... 临时@3

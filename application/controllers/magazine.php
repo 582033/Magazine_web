@@ -56,7 +56,7 @@ class Magazine extends MY_Controller {
 	}	//}}}
 
 	function mag_list (){	//杂志列表{{{
-		$keys = array('start', 'limit');
+		$keys = array('start', 'limit', 'status');
 		$gets = $this->_get_more_non_empty($keys);
 		$type = $this->input->get('type');
 		$mag_list = $this->mag_model->_get_mag_list($gets, $type);
@@ -81,7 +81,6 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function comment (){
-		$this->session->userdata;
 		$sid = $this->session->userdata('sid');
 		$type = $this->_get_non_empty('type');
 		$object_id = $this->_get_non_empty('object_id');
@@ -109,9 +108,33 @@ class Magazine extends MY_Controller {
 		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment);
 		echo json_encode($data);
 	}
-
+	
+	function get_same_author_mag(){		//获取该作者的其他杂志{{{
+		$keys = array('mag_id', 'limit', 'start');
+		$status = $this->input->get('status');
+		$gets = $this->_get_more_non_empty($keys);
+		$gets['status'] = $status;
+		$mag_list = $this->mag_model->_get_same_author_mag($gets);
+		$this->_json_output($mag_list);
+	}//}}}
+	
+	function get_same_category_mag(){		//获取同类型杂志{{{
+		$keys = array('mag_id', 'limit', 'start');
+		$status = $this->input->get('status');
+		$gets = $this->_get_more_non_empty($keys);
+		$gets['status'] = $status;
+		$mag_list = $this->mag_model->_get_same_category_mag($gets);
+		$this->_json_output($mag_list);
+	}//}}}
+	
+	
+	
+	
+	
+	
+	
 	function loved_num(){		//喜欢数量{{{
-		$loved_num = $this->love_model->_get_loved_nums();
+		$loved_num = $this->love_model->_get_user_loved_nums();
 		$this->_json_output($loved_num);
 	}//}}}
 
@@ -161,13 +184,23 @@ class Magazine extends MY_Controller {
 
 	function index(){		//首页展示{{{
 		$data = $this->mag_model->get_mag_list_for_index();
-		$this->smarty->view('index.html',$data);
+		$this->_json_output($data);
+	//	$this->smarty->view('index.html',$data);
 	}//}}}
 
 	function _get_download_url(){		//获取杂志下载地址{{{
 		$id = $this->_get_non_empty('id');
 		$url = api($this->api_host."/magazine/download?id=".$id);
 		$this->_json_output($url);
-	}//}}}
-
+	}	//}}}
+	
+	function get_mag_for_list(){
+		$keys = array('mag_category', 'limit', 'start', 'status');
+		$gets = $this->_get_more_non_empty($keys);
+		$tag = $this->input->get('tag');
+		$gets['tag'] = $tag;
+		$mag_list = $this->mag_model->_get_mag_for_list($gets);
+		$this->_json_output($mag_list);
+	}
+	
 }

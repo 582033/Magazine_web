@@ -17,8 +17,9 @@ class Love_Model extends CI_Model{
 		return $loved_data['data'];
 	}
 	
-	function _get_loved_nums(){
-		$loved_num = api($this->api_host."/magazine/get_loved_nums");
+	function _get_user_loved_nums(){
+		$sid = $this->session->userdata('sid');
+		$loved_num = api($this->api_host."/magazine/get_loved_nums?session_id=$sid");
 		return $loved_num['data'];
 	}
 }
