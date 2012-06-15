@@ -50,7 +50,7 @@ class Magazine extends MY_Controller {
 			print_r($return);
 			$this->session->set_userdata('sid', $return['session_id']);
 		}
-		$this->smarty->view('login.tpl');
+		$this->smarty->view('user/login.tpl');
 	}	//}}}
 
 	function mag_list (){	//杂志列表{{{
@@ -76,7 +76,7 @@ function comment (){
 			'sid' => $sid,
 			'api_host' => $this->api_host,
 			);
-	$this->smarty->view('comment.html', $data);
+	$this->smarty->view('magazine/comment.html', $data);
 }
 	
 	
