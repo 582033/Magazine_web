@@ -135,15 +135,4 @@ function comment (){
 		$this->smarty->view('index.html',$data);
 	}//}}}
 	
-	function comment (){ //评论{{{
-		$magazine_id = $this->_get_non_empty('magazine_id');
-		$start = $this->_get('start');
-		$limit = $this->_get('limit');
-		$this->session->userdata;
-		$sid = $this->session->userdata('sid');
-		$data = $this->comment_model->comment_list($magazine_id);
-		$data = $data['data'];
-		print_r($data);
-	}
-
 }
