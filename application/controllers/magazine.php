@@ -13,8 +13,8 @@ class Magazine extends MY_Controller {
 		$this->load->model('ads_model');
 		$this->load->model('mag_element_model');
 		$this->load->model('reg_model');
+		$this->load->model('comment_model');
 		$this->load->library('session');
-		$this->load->model('reg_model');
 		$this->load->library('session');
 	}
 
@@ -66,29 +66,50 @@ class Magazine extends MY_Controller {
 
 	function detail (){	//详情页`{{{
 		$id = $this->_get_non_empty('id');
+		$this->session->userdata;
+		$sid = $this->session->userdata('session_id');
 		$detail = api($this->api_host."/magazine/detail?id=".$id);
-		echo "<pre>";print_r($detail);
-		//$this->smarty->view('index.tpl');
-	}	//}}}
-
-function comment (){
-	print_r($this->session->userdata);
-	$sid = $this->session->userdata('sid');
-	$data = array(
+		$comment_data = $this->comment_model->comment_list('magazine', $id, 0, 5);
+		$comment = $comment_data['data'];
+		$data = array(
 			'sid' => $sid,
 			'api_host' => $this->api_host,
-			);
-	$this->smarty->view('magazine/comment.html', $data);
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+			'detail' => $detail,
+			'comment' => $comment,
+		);
+		$this->smarty->view('magazine/comment.html', $data);
+	}//}}}
+
+	function comment (){
+		$this->session->userdata;
+		$sid = $this->session->userdata('sid');
+		$type = $this->_get_non_empty('type');
+		$object_id = $this->_get_non_empty('object_id');
+		$start = (int)$this->_get('start');
+		$limit = (int)$this->_get('limit');
+		if($start || $limit) {
+			$comment = $this->comment_model->comment_list($type, $object_id, $start, $limit);
+		}else{
+			$comment = $this->comment_model->comment_list($type, $object_id);
+		}
+		$data = array(
+				'sid' => $sid,
+				'api_host' => $this->api_host,
+				'comment' => $comment['data'],
+				);
+		print_r($data);exit;
+		$this->smarty->view('magazine/comment.html', $data);
+	}
+
+	function refresh_comment(){
+		$type = $this->input->post('type');
+		$object_id = $this->input->post('object_id');
+		$comment = $this->input->post('comment');
+		$parent_id = $this->input->post('parent_id');
+		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment);
+		echo json_encode($data);
+	}
+
 	function loved_num(){		//喜欢数量{{{
 		$loved_num = $this->love_model->_get_loved_nums();
 		$this->_json_output($loved_num);
@@ -137,15 +158,16 @@ function comment (){
 		$nums = $this->love_model->_get_nums_of_loved($gets);
 		$this->_json_output($nums);
 	}//}}}
-	
+
 	function index(){		//首页展示{{{
 		$data = $this->mag_model->get_mag_list_for_index();
 		$this->smarty->view('index.html',$data);
+	}//}}}
 
 	function _get_download_url(){		//获取杂志下载地址{{{
 		$id = $this->_get_non_empty('id');
 		$url = api($this->api_host."/magazine/download?id=".$id);
 		$this->_json_output($url);
 	}//}}}
-	
+
 }

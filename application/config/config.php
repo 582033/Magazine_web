@@ -5,9 +5,9 @@
  * An open source application development framework for PHP 5.1.6 or newer
  *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Academic Free License version 3.0
- * 
+ *
  * This source file is subject to the Academic Free License (AFL 3.0) that is
  * bundled with this package in the files license_afl.txt / license_afl.rst.
  * It is also available through the world wide web at this URL:
@@ -204,7 +204,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 |	4 = All Messages
 |
 | You can also pass in a array with threshold levels to show individual error types
-| 
+|
 | 	array(2) = Debug Messages, without Error Messages
 |
 | For a live site you'll usually only enable Errors (1) to be logged otherwise
@@ -253,7 +253,7 @@ $config['cache_path'] = '';
 |
 | If you use the Encryption class or the Session class you
 | MUST set an encryption key.  See the user guide for info.
-|  
+|
 | http://codeigniter.com/user_guide/libraries/encryption.html
 | http://codeigniter.com/user_guide/libraries/sessions.html
 |
@@ -402,16 +402,9 @@ $config['mq_pass'] = 'guest';
 
 
 $config['api_host'] = 'http://api.1001s.cn';
+$config['web_host'] = 'http://www.1001s.cn';
 if (file_exists(APPPATH. 'config/local.config.php')){
 	include(APPPATH. 'config/local.config.php');
-}
-
-if(file_exists(APPPATH . 'config/local.config.php')){
-	include(APPPATH . 'config/local.config.php');
-}
-
-if(file_exists(APPPATH . 'config/local.config.php')){
-	include(APPPATH . 'config/local.config.php');
 }
 
 /* End of file config.php */

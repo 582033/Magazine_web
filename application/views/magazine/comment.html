@@ -3,12 +3,22 @@
 <script src="/sta/js/jquery.form.js"></script>
 <script src="/sta/js/comment.js"></script>
 
-<button onclick="show_reply()">回复</button>
-<div id="reply" style="display:none;width:200px;height:200px;border:1px solid #ddd;">
-<form id="myForm" action="{$api_host}/magazine/comment?session_id={$sid}" method="post"> 
-	mag_id:<input type="text" id="magazine_id"><br />
-	comment:<input type="text" id="comment"><br />
-	parents_id:<input type="text" id="parents_id"><br />
-	<button>xx</button>
+<div id="reply" style="width:600px;height:150px;border:1px solid black;">
+<form id="myForm" action="/magazine/refresh_comment" method="post">
+	type:<select id="type" name="type"><option value="magazine">magazine</option><option value="element">element</option></select><br />
+	object_id:<input type="text" id="object_id" name="object_id"><br />
+	comment:<input type="text" id="comment" name="comment"><br />
+	parent_id:<input type="text" id="parent_id" name="parent_id"><br />
+	<input type="button" id="add" value="发布"/>
 </form>
+</div>
+<div id="list">
+{foreach from=$comment item=item}
+<div style="width:600px;height:80px;border:1px solid black;">
+	<div>user_id:{$item.user_id}</div>
+	<div>user_name:{$item.nickname}</div>
+	<div>parent_id:{$item.parent_id}</div>
+	<div>comment:{$item.comment}</div>
+</div>
+{/foreach}
 </div>
