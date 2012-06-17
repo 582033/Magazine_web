@@ -3,12 +3,12 @@ include 'magazine.php';
 
 class User extends Magazine {
 
-	function User () {
+	function User () {	//{{{
 		parent::__construct();
 		$this->load->model('user_loved_model');
-	}
+	}	//}}}
 
-	function magazine (){
+	function magazine (){	//喜欢的杂志列表{{{
 		$key = array('start', 'limit', 'session_id');
 		$url_data = $this->_get_more_non_empty($key);
 		$mag_category = $this->input->get('mag_category');
@@ -20,9 +20,9 @@ class User extends Magazine {
 		*/
 		print_r($loved_magazine);
 		//$this->smarty->view('user/magazine.tpl');
-	}
+	}	//}}}
 
-	function element (){
+	function element (){	//喜欢的元素列表{{{
 		$key = array('start', 'limit', 'session_id');
 		$url_data = $this->_get_more_non_empty($key);
 		$element_type = $this->input->get('element_type');
@@ -34,7 +34,23 @@ class User extends Magazine {
 		*/
 		print_r($loved_element);
 		//$this->smarty->view('user/element.tpl');
-	}
+	}	//}}}
+
+	function user_info () {	//设置个人信息{{{
+		$session_id = $this->session->userdata('sid');
+		$user_info = api($this->api_host."/magazine/user_info?session_id=$session_id");
+		print_r($user_info);
+		$this->smarty->view('user/user_info.tpl');
+	}	//}}}
+
+	function set_user_info () {	//{{{
+		$session_id = $this->session->userdata('sid');
+		$user_info = json_encode($this->input->post());
+		$post = array('user_info' => $user_info);
+		$url_with_get = $this->api_host."/magazine/user_info?session_id=$session_id";
+		exit;
+		opt($url_with_get, $post);
+	}	//}}}
 
 }
 
