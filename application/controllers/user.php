@@ -2,11 +2,19 @@
 include 'magazine.php';
 
 class User extends Magazine {
-
+	
 	function User () {	//{{{
 		parent::__construct();
 		$this->load->model('user_loved_model');
 	}	//}}}
+
+	function _get_json_values ($keys) {
+		$return = array();
+		foreach ($keys as $item) {
+			$return[$item] = $this->input->post($item);
+		}
+		return json_encode($return, true);	
+	}
 
 	function magazine (){	//喜欢的杂志列表{{{
 		$key = array('start', 'limit', 'session_id');
@@ -45,12 +53,11 @@ class User extends Magazine {
 
 	function set_user_info () {	//{{{
 		$session_id = $this->session->userdata('sid');
-		$user_info = json_encode($this->input->post());
+		$keys =	array('nickname', 'birthday', 'sex'); 
+		$user_info = $this->_get_json_values($keys);
 		$post = array('user_info' => $user_info);
-		$url_with_get = $this->api_host."/magazine/user_info?session_id=$session_id";
-		exit;
+		$url_with_get = $this->api_host."/magazine/set_user_info?session_id=$session_id";
 		opt($url_with_get, $post);
 	}	//}}}
-
 }
 
