@@ -37,13 +37,15 @@ class User extends Magazine {
 			$return = $this->Login_Model->login($getkey, $username, $passwd);
 			echo "<pre>";
 			print_r($return);
+			/*
 			if (isset($return['errcode'])){
 				echo $return['msg'];
 			}
 			else {
 				echo	"登录成功!"; 
+				$this->session->set_userdata('sid', $return['session_id']);
 			}
-			$this->session->set_userdata('sid', $return['session_id']);
+			*/
 		}
 		else {
 			$this->smarty->view('user/signin.tpl');
