@@ -65,11 +65,7 @@ class Magazine extends MY_Controller {
 		$object_id = $this->_get_non_empty('object_id');
 		$start = $this->_get_non_empty('start');
 		$limit = $this->_get_non_empty('limit');
-		if($start || $limit) {
-			$comment = $this->comment_model->comment_list($type, $object_id, $start, $limit);
-		}else{
-			$comment = $this->comment_model->comment_list($type, $object_id);
-		}
+		$comment = $this->comment_model->comment_list($type, $object_id, $start, $limit);
 		$data = array(
 				'sid' => $sid,
 				'api_host' => $this->api_host,
@@ -105,11 +101,6 @@ class Magazine extends MY_Controller {
 		$mag_list = $this->mag_model->_get_same_category_mag($gets);
 		$this->_json_output($mag_list);
 	}//}}}
-
-
-
-
-
 
 	function loved_num(){		//喜欢数量{{{
 		$loved_num = $this->love_model->_get_user_loved_nums();
@@ -180,5 +171,11 @@ class Magazine extends MY_Controller {
 		$mag_list = $this->mag_model->_get_mag_for_list($gets);
 		$this->_json_output($mag_list);
 	}	//}}}
-	
+
+	function bookstore(){	//{{{
+		$user_id = $this->_get_non_empty('user_id');
+		$data = api($this->api_host.'/magazine/bookstore?user_id='.$user_id);
+		print_r($data);
+	}	//}}}
+
 }

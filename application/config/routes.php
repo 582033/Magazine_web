@@ -67,6 +67,7 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 
+$route['v1/user/(:num)']='user/user/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
