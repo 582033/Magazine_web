@@ -34,27 +34,6 @@ class Magazine extends MY_Controller {
 		return $return;
 	}	//}}}
 
-	function reg (){	//{{{
-		$username = $this->_get_non_empty('username');
-		$passwd = $this->_get_non_empty('passwd');
-		$api_data = api($this->api_host."/magazine/reg?username=$username&passwd=$passwd");
-		$return = $this->reg_model->reg($api_data);
-		echo "<pre>";print_r($api_data);
-		echo "<pre>";print_r($return);
-	}	//}}}
-
-	function login (){	//{{{
-		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$username = $this->input->post('username');
-			$passwd = $this->input->post('passwd');
-			$getkey = api($this->api_host."/magazine/getkey");
-			$return = $this->Login_Model->login($getkey, $username, $passwd);
-			print_r($return);
-			$this->session->set_userdata('sid', $return['session_id']);
-		}
-		$this->smarty->view('user/login.tpl');
-	}	//}}}
-
 	function mag_list (){	//杂志列表{{{
 		$keys = array('start', 'limit', 'status');
 		$gets = $this->_get_more_non_empty($keys);

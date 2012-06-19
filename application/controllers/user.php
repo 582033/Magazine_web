@@ -8,13 +8,47 @@ class User extends Magazine {
 		$this->load->model('user_loved_model');
 	}	//}}}
 
-	function _get_json_values ($keys) {
+	function _get_json_values ($keys) {	//{{{
 		$return = array();
 		foreach ($keys as $item) {
 			$return[$item] = $this->input->post($item);
 		}
 		return json_encode($return, true);	
-	}
+	}	//}}}
+
+	function signup (){	//{{{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$username = $this->input->post('username');
+			$passwd = $this->input->post('passwd');
+			$return = $this->reg_model->reg($username, $passwd);
+			echo "<pre>";
+			echo $return;
+		}
+		else {
+			$this->smarty->view('user/signup.tpl');
+		}
+	}	//}}}
+
+	function signin (){	//{{{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$username = $this->input->post('username');
+			$passwd = $this->input->post('passwd');
+			$getkey = api($this->api_host."/magazine/getkey");
+			$return = $this->Login_Model->login($getkey, $username, $passwd);
+			echo "<pre>";
+			print_r($return);
+			if (isset($return['errcode'])){
+				echo $return['msg'];
+			}
+			else {
+				echo	"登录成功!"; 
+			}
+			$this->session->set_userdata('sid', $return['session_id']);
+		}
+		else {
+			$this->smarty->view('user/signin.tpl');
+		}
+	}	//}}}
 
 	function magazine (){	//喜欢的杂志列表{{{
 		$key = array('start', 'limit', 'session_id');
