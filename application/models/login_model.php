@@ -10,6 +10,7 @@ class Login_Model extends CI_Model {
 
 	function login($username, $passwd){	//{{{
 		$url = $this->api_host."/auth/getkey";
+		echo $url;
 		$getkey = request($url);
 		if ($getkey['httpcode'] == '200'){
 			$getkey_data = $getkey['data']['key'];

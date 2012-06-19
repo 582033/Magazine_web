@@ -13,25 +13,17 @@ class Mag_Model extends CI_Model {
 		$elem_list = array();
 		$result_mag = api($this->api_host . "/magazine/get_index_mag_list");
 		$mag = $result_mag['data'];
-		for ($k = 0; $k<count($mag); $k++){
-			$rows_mag = api($this->api_host . "/magazine/nums_of_loved?loved_type=magazine&loved_id=".$mag[$k]['magazine_id']);
-			$mag[$k]['loved_nums'] = $rows_mag['data'];
-		}
 		for ($i = 0; $i<count($mag); $i++){
-			if ($i < 5){
+			if ($i < 4){
 				array_push($mag_ad_list, $mag[$i]);
 			}else{
 				array_push($mag_list, $mag[$i]);
 			}
 		}
-		$result_elem = api($this->api_host . "/magazine/get_mag_element?for=index&limit=13&start=0");
+		$result_elem = api($this->api_host . "/magazine/get_mag_element?for=index&limit=12&start=0");
 		$element = $result_elem['data'];
-		for ($l = 0; $l<count($element); $l++){
-			$rows_elem = api($this->api_host . "/magazine/nums_of_loved?loved_type=element&loved_id=".$element[$l]['mag_element_id']);
-			$element[$l]['loved_nums'] = $rows_elem['data'];
-		}
 		for ($j = 0; $j<count($element); $j++){
-			if ($j < 5){
+			if ($j < 4){
 				array_push($elem_ad_list, $element[$j]);
 			}else{
 				array_push($elem_list, $element[$j]);
@@ -56,25 +48,67 @@ class Mag_Model extends CI_Model {
 		return $mag_list['data'];
 	}
 
-	function _get_same_author_mag($gets){
+	function _get_same_author_mag($gets){		//获取该作者的其他杂志{{{
 		if($gets['status'] == ''){
 			$list = api($this->api_host . "/magazine/get_same_author_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']);
 		}else{
 			$list = api($this->api_host . "/magazine/get_same_author_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']."&status=".$gets['status']);
 		}
 		return $list['data'];
-	}
+	}//}}}
 	
-	function _get_same_category_mag($gets){
+	function _get_same_category_mag($gets){		//获取同类型杂志{{{
 		if($gets['status'] == ''){
 			$list = api($this->api_host . "/magazine/get_same_category_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']);
 		}else{
 			$list = api($this->api_host . "/magazine/get_same_category_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']."&status=".$gets['status']);
 		}		return $list['data'];
-	}
+	}//}}}
 	
-	function _get_mag_for_list($gets){
+	function _get_mag_for_list($gets){		//获取杂志列表页 杂志列表{{{
 			$list = api($this->api_host . "/magazine/get_mag_for_list?mag_category=".$gets['mag_category']."&status=".$gets['status']."&limit=".$gets['limit']."&start=".$gets['start']."&tag=".$gets['tag']);
 			return $list['data'];
-	}
+	}//}}}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	function _get_index_info(){		//首页杂志信息{{{
+		$mag_result = request($this->api_host . "/v1/magazines?limit=13&start=0");
+		$mag_item = $mag_result['data']['items'];
+		$mag_gallery = $mag_list = array();
+		for ($i = 0; $i < count($mag_item); $i++){
+			if ($i < 4){
+				array_push($mag_gallery, $mag_item[$i]);
+			}else{
+				array_push($mag_list, $mag_item[$i]);
+			}
+		}
+		$elem_gallery = $elem_list = array();
+		$elem_result = request($this->api_host . "/v1/elements?limit=12&start=0");
+		$elem_item = $elem_result['data']['items'];
+		for ($j = 0; $j < count($elem_item); $j++){
+			if ($j < 4){
+				array_push($elem_gallery, $elem_item[$j]);
+			}else{
+				array_push($elem_list, $elem_item[$j]);
+			}
+		}
+		$index_info = array(
+							'mag_gallery' => $mag_gallery,
+							'mag_list' => $mag_list,
+							'elem_gallery' => $elem_gallery,
+							'elem_list' => $elem_list,
+							);
+		return $index_info;
+	}//}}}
 }

@@ -8,12 +8,14 @@ class Love_Model extends CI_Model{
 	}
 	
 	function _get_nums_of_loved($keys){
-		$nums = api($this->api_host."/magazine/nums_of_loved?loved_id=".$keys['loved_id']."&loved_type=".$keys['loved_type']);
+		$sid = $this->session->userdata('sid');
+		$nums = api($this->api_host."/magazine/nums_of_loved?session_id=$sid&loved_id=".$keys['loved_id']."&loved_type=".$keys['loved_type']);
 		return $nums;
 	}
 	
 	function _get_loved_data($gets, $type){
-		$loved_data = api($this->api_host."/magazine/get_loved_data?limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
+		$sid = $this->session->userdata('sid');
+		$loved_data = api($this->api_host."/magazine/get_loved_data?session_id=$sid&limit=".$gets['limit']."&start=".$gets['start']."&type=".$type);
 		return $loved_data['data'];
 	}
 	

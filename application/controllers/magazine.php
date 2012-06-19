@@ -33,6 +33,11 @@ class Magazine extends MY_Controller {
 		return $return;
 	}	//}}}
 
+	function index(){		//首页显示{{{
+		$index_info = $this->mag_model->_get_index_info();
+		$this->smarty->view('magazine/index.tpl', $index_info);
+	}//}}}
+
 	function mag_list (){	//杂志列表{{{
 		$keys = array('start', 'limit', 'status');
 		$gets = $this->_get_more_non_empty($keys);
@@ -150,19 +155,13 @@ class Magazine extends MY_Controller {
 		$this->_json_output($nums);
 	}//}}}
 
-	function index(){		//首页展示{{{
-		//$data = $this->mag_model->get_mag_list_for_index();
-		print_r($data);
-		$this->smarty->view('magazine/index.tpl',$data);
-	}//}}}
-
 	function _get_download_url(){		//获取杂志下载地址{{{
 		$id = $this->_get_non_empty('id');
 		$url = api($this->api_host."/magazine/download?id=".$id);
 		$this->_json_output($url);
 	}	//}}}
 	
-	function get_mag_for_list(){	//{{{
+	function get_mag_for_list(){	//获取列表页杂志列表{{{
 		$keys = array('mag_category', 'limit', 'start', 'status');
 		$gets = $this->_get_more_non_empty($keys);
 		$tag = $this->input->get('tag');
@@ -177,4 +176,14 @@ class Magazine extends MY_Controller {
 		print_r($data);
 	}	//}}}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -22,3 +22,13 @@
 </div>
 {/foreach}
 </div>
+
+<button onclick="show_reply()">回复</button>
+<div id="reply" style="display:none;width:200px;height:200px;border:1px solid #ddd;">
+<form id="myForm" action="{$api_host}/magazine/comment?session_id={$sid}" method="post"> 
+	mag_id:<input type="text" id="magazine_id"><br />
+	comment:<input type="text" id="comment"><br />
+	parents_id:<input type="text" id="parents_id"><br />
+	<button>xx</button>
+</form>
+</div>
