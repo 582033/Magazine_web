@@ -8,7 +8,12 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
 <title>{$title}</title>
 <script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
-
+<!--[if IE 6]>
+	<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
+	<script type="text/javascript">
+		DD_belatedPNG.fix('.read,.more a,.userinfo p a,.edit');
+	</script>
+<![endif]-->
 <div class="header">
  	<div class="container clearfix">
  		<a href="#" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>
