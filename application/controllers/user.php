@@ -6,6 +6,7 @@ class User extends Magazine {
 	function User () {	//{{{
 		parent::__construct();
 		$this->load->model('user_loved_model');
+		$this->load->helper('api');
 	}	//}}}
 
 	function _get_json_values ($keys) {	//{{{
@@ -33,19 +34,17 @@ class User extends Magazine {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
-			$getkey = api($this->api_host."/magazine/getkey");
-			$return = $this->Login_Model->login($getkey, $username, $passwd);
-			echo "<pre>";
-			print_r($return);
-			/*
-			if (isset($return['errcode'])){
-				echo $return['msg'];
+			$url = $this->api_host."/auth/getkey";
+			$getkey = request($url);
+			if ($getkey['httpcode'] == '200'){
+				$getkey_data = $getkey['data']['key'];
+				$return = $this->Login_Model->login($getkey_data, $username, $passwd);
+				echo "<pre>";
+				print_r($return);
 			}
 			else {
-				echo	"登录成功!"; 
-				$this->session->set_userdata('sid', $return['session_id']);
+				print_r($getkey);
 			}
-			*/
 		}
 		else {
 			$this->smarty->view('user/signin.tpl');

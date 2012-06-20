@@ -8,8 +8,8 @@ class Login_Model extends CI_Model {
 	}	
 
 	function login($getkey, $username, $passwd){
-		$passwd = md5(md5($passwd).$getkey['key']);
-		$api_data = api($this->api_host."/magazine/login?username=$username&passwd=$passwd");
+		$passwd = md5(md5($passwd).$getkey);
+		$api_data = request($this->api_host."/auth/signin?username=$username&passwd=$passwd");
 		return $api_data;
 	}
 }
