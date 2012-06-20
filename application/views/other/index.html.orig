@@ -1,0 +1,49 @@
+<html>
+	<head>
+		{literal}
+		<meta http-equiv="Content-Type" content="text/html;charset=utf8" />
+		<script src='/sta/js/jquery-1.6.1.min.js'></script>
+<!--		<script src='/sta/js/index.js'></script>-->
+		<script type='text/javascript'>
+			$(function(){
+				$(".base").hover(function(){
+						$(this).css("opacity",'0.4');
+						$(this).find("div").css({'display':'block','opacity':'0.8','backgroundColor':'black'});
+					},function(){
+						$(this).find("div").css('display','none');
+						$(this).css("opacity",'1');
+					}
+				);
+				$(".love").click(function(){
+					alert($(this).attr('name'));
+				});
+			})
+		</script>
+		{/literal}
+	</head>
+	<body>
+		<table border='1' cellpadding='0' cellspacing='0' align='center' width='500'>
+			{foreach from=$mag_ad_list item=key}
+			<tr height='150'>
+				<td>
+					<div class="base" style="background-color:red;;position:relative;top:0px;left:0px;border:1px solid green;width:100%;height:150px;">{$key.magazine_id}
+						<div class="test" style="color:white;border:1px solid blue;display:none;position:absolute;top:0px;left:0px;width:100%;height:150px;">
+							<span style="margin-left:30px;float:left;font-weight:700;">杂志：</span><div class="mag_name">{$key.name}</div>
+							<div style="clear:both;"></div>
+							<span style="margin-left:30px;float:left;font-weight:700;">作者：</span><div class="mag_author">{$key.nickname}</div>
+							<div style="clear:both;"></div>
+							<span style="margin-left:30px;float:left;font-weight:700;">发布：</span><div class="publish">{$key.publish_time}</div>
+							<div style="clear:both;"></div>
+							<span style="margin-left:30px;float:left;font-weight:700;">分类：</span><div class="category">{$key.mag_category}</div>
+							<div style="clear:both;"></div>
+							<input type="button" value="喜欢" class="love" id="{$key.magazine_id}" name="{$key.loved_nums}" />
+						</div>
+					</div>
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		<div id="test_2" style="width:100px;height:100px;border:1px solid red;">123</div>
+		<div id="test_3" style="width:100px;height:100px;border:1px solid red;">abc</div>
+	</body>
+</html>

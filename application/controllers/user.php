@@ -76,7 +76,11 @@ class User extends Magazine {
 		   get_loved($url_data, $type) $type[element/author/magazine]
 		*/
 		print_r($loved_element);
-		//$this->smarty->view('user/element.tpl');
+		$data = array(
+				'loved_author' => $loved_author,
+				'loved_element' => $loved_element,
+				);
+		$this->smarty->view('user/element.tpl', $data);
 	}	//}}}
 
 	function user_info () {	//设置个人信息{{{

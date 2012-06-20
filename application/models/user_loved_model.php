@@ -16,7 +16,7 @@ class user_loved_model extends CI_Model {
 		if (isset($url_data['element_type']) && $url_data['element_type'] != '') {
 			$element_type = $url_data['element_type'];
 		}
-		@$loved = api($this->api_host ."/magazine/get_loved_data?limit=". $url_data['limit'] ."&start=". $url_data['start']  ."&type=". $type ."&session_id=". $url_data['session_id'] ."&mag_category=$mag_category&element_type=$element_type");
+		@$loved = request($this->api_host ."/magazine/get_loved_data?limit=". $url_data['limit'] ."&start=". $url_data['start']  ."&type=". $type ."&session_id=". $url_data['session_id'] ."&mag_category=$mag_category&element_type=$element_type");
 		return $loved['data'];
 	}	//}}}
 
