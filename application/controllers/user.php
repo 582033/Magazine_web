@@ -63,21 +63,21 @@ class User extends Magazine {
 		$key = array('start', 'limit');
 		$url_data = $this->_get_more_non_empty($key);
 		$element_type = $this->input->get('element_type');
-		$user_id = $this->session->userdata('user_id');
-		if (!$user_id) exit("haven't user_id, signin please"); 
+		$user_id = $this->session->userdata('id');
+		if (!$user_id) exit("haven't userId, signin please"); 
+		$user_info = $this->session->userdata;
+		print_r($user_info);
 		if ($element_type) $url_data['element_type'] = $element_type;
-		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
-		$tags = $this->user_info_model->get_user_tags($user_id);
 		$loved_element = $this->user_loved_model->get_loved($url_data, 'element');
+		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
 		/*
 		   get_loved($url_data, $type) $type[element/author/magazine]
 		*/
 		$data = array(
-				'tags' => $tags,
+				'user_info' => $user_info,
 				'loved_author' => $loved_author,
 				'loved_element' => $loved_element,
 				);
-		print_r($tags);
 		$this->smarty->view('user/element.tpl', $data);
 	}	//}}}
 
