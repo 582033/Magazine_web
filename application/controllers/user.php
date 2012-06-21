@@ -6,7 +6,9 @@ class User extends Magazine {
 	function User () {	//{{{
 		parent::__construct();
 		$this->load->model('user_loved_model');
+		$this->load->model('user_info_model');
 		$this->load->helper('api');
+		$this->load->library('session');
 	}	//}}}
 
 	function _get_json_values ($keys) {	//{{{
@@ -34,17 +36,9 @@ class User extends Magazine {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
-			$url = $this->api_host."/auth/getkey";
-			$getkey = request($url);
-			if ($getkey['httpcode'] == '200'){
-				$getkey_data = $getkey['data']['key'];
-				$return = $this->Login_Model->login($getkey_data, $username, $passwd);
-				echo "<pre>";
-				print_r($return);
-			}
-			else {
-				print_r($getkey);
-			}
+			$return = $this->Login_Model->login($username, $passwd);
+			echo "<pre>";
+			print_r($return);
 		}
 		else {
 			$this->smarty->view('user/signin.tpl');
@@ -66,20 +60,24 @@ class User extends Magazine {
 	}	//}}}
 
 	function element (){	//喜欢的元素列表{{{
-		$key = array('start', 'limit', 'session_id');
+		$key = array('start', 'limit');
 		$url_data = $this->_get_more_non_empty($key);
 		$element_type = $this->input->get('element_type');
+		$user_id = $this->session->userdata('user_id');
+		if (!$user_id) exit("haven't user_id, signin please"); 
 		if ($element_type) $url_data['element_type'] = $element_type;
 		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
+		$tags = $this->user_info_model->get_user_tags($user_id);
 		$loved_element = $this->user_loved_model->get_loved($url_data, 'element');
 		/*
 		   get_loved($url_data, $type) $type[element/author/magazine]
 		*/
-		print_r($loved_element);
 		$data = array(
+				'tags' => $tags,
 				'loved_author' => $loved_author,
 				'loved_element' => $loved_element,
 				);
+		print_r($tags);
 		$this->smarty->view('user/element.tpl', $data);
 	}	//}}}
 

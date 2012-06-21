@@ -6,8 +6,11 @@
 <meta name="msapplication-window" content="width=1550;height=768" />
 <link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
+<link rel="stylesheet" type="text/css" href="/sta/styles/thickbox.css"/>
 <title>{$title}</title>
 <script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/sta/js/magazine.js"></script>
+<script type="text/javascript" src="/sta/js/thickbox.js"></script>
 <!--[if IE 6]>
 	<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
 	<script type="text/javascript">

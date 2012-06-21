@@ -15,7 +15,6 @@ class Magazine extends MY_Controller {
 		$this->load->model('reg_model');
 		$this->load->model('comment_model');
 		$this->load->library('session');
-		$this->load->library('session');
 	}
 
 	function _get_more ($keys, $input){	//{{{
@@ -152,9 +151,9 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function index(){		//首页展示{{{
-		$data = $this->mag_model->get_mag_list_for_index();
-		$this->_json_output($data);
-	//	$this->smarty->view('index.html',$data);
+		//$data = $this->mag_model->get_mag_list_for_index();
+		print_r($data);
+		$this->smarty->view('magazine/index.tpl',$data);
 	}//}}}
 
 	function _get_download_url(){		//获取杂志下载地址{{{

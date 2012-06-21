@@ -21,12 +21,14 @@
  		<dl class="tag">
  			<dt>我的标签  <a href="#" class="edit">修改</a></dt>
  			<dd>
- 				<a href="#" class="tag01">手绘师</a>
- 				<a href="#" class="tag02">手d绘师</a>
- 				<a href="#" class="tag01">手a绘师</a>
- 				<a href="#" class="tag02">手绘assad师</a>
- 				<a href="#" class="tag01">手绘师</a>
- 				<a href="#" class="tag02">手das绘师</a>
+				{if $tags}
+					{$i=1}
+					{foreach from=$tags item=item}
+						<a href="#" class="{if $i++%2=='0'}tag01{else}tag02{/if}">{$item.nickname}</a>
+					{/foreach}
+				{else}
+					&nbsp;&nbsp;您还没有设置标签
+				{/if}
  			</dd>
  		</dl>
  		
@@ -35,17 +37,9 @@
  			<dd>
  			
  				<div class="clearfix">
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名1</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名2</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名3</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名4</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名5</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名6</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名7</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名8</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名9</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名10</span></a>
- 					<a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /><span>用户名11</span></a>
+					{foreach from=$loved_author item=item}
+						<a href="#"><img src="{$item.image}" alt="{$item.nickname}" /><span>{$item.nickname}</span></a>
+					{/foreach}
  					<span class="gray"></span>
  				</div>
  			
