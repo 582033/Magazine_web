@@ -83,7 +83,7 @@ class Mag_Model extends CI_Model {
 	
 	
 	function _get_index_info(){		//首页杂志信息{{{
-		$mag_result = request($this->api_host . "/v1/magazines?limit=13&start=0");
+		$mag_result = request($this->api_host . "/magazines?limit=13&start=0");
 		$mag_item = $mag_result['data']['items'];
 		$mag_gallery = $mag_list = array();
 		for ($i = 0; $i < count($mag_item); $i++){
@@ -94,7 +94,7 @@ class Mag_Model extends CI_Model {
 			}
 		}
 		$elem_gallery = $elem_list = array();
-		$elem_result = request($this->api_host . "/v1/elements?limit=12&start=0");
+		$elem_result = request($this->api_host . "/elements?limit=12&start=0");
 		$elem_item = $elem_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 			if ($j < 4){
