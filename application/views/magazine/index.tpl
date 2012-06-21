@@ -22,18 +22,18 @@
 				<a href="#" class="readmore">阅读+</a>
 			</p>
 		</dd>
-		{foreach from=$mag_list item=key}
+		{foreach from=$mag_list item=item key=key}
 		<dd>
 			<div class="cover">
-				<a href="#"><img src="{$key.cover}" width='180px' height='276px' alt="宠爱日记" /></a>
+				<a href="#"><img src="{$item.cover}" width='180px' height='276px' alt="宠爱日记" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
 						<div class="info">
-							<ul style="margin-left:10px;">
-								<li><span>杂志：</span><span>{$key.name}</span></li>
-								<li><span>作者：</span><span>{$key.author.nickname}</span></li>
-								<li><span>发布：</span><span>{$key.publishedAt}</span></li>							
+							<ul style="margin-left:2px;">
+								<li><span>杂志：</span><span>{$item.name}</span></li>
+								<li><span>作者：</span><span>{$item.author.nickname}</span></li>
+								<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
 							</ul>
 						</div>
 						<a href="#" class="read">阅读</a>
@@ -41,7 +41,7 @@
 						<div class="more">
 								<a href="#" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
+								<a href="#" class="like">{$item.likes}</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
@@ -58,8 +58,8 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">{$key.name}</a></h3>
-			<p>{$key.intro}</p>
+			<h3><a href="#">{$item.name}</a></h3>
+			<p>{$item.intro}</p>
 		</dd>
 		{/foreach}
 	</dl>
@@ -83,9 +83,11 @@
 			</div>
 			<h2><a href="#">那些年 让我们一见倾心的鞋子</a></h2>
 		</dd>
+		{foreach from=$elem_list item=item key=key}
+		{if $key != 4}
 		<dd onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
 			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/180x180.jpg" alt="宠爱日记" /></a>
+				<a href="#"><img src="{$item.image.128}" width='180px' height='180px' alt="宠爱日记" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
@@ -99,57 +101,10 @@
 			</div>
 			<h3><a href="#">宠爱日记</a></h3>
 		</dd>
-		<dd onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
-			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/180x180.jpg" alt="宠爱日记" /></a>
-				<div class="mouseover">
-					<div class="bg"></div>
-					<div class="content">
-						<a href="#" class="read">阅读</a>
-						<div class="more">
-								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<h3><a href="#">宠爱日记</a></h3>
-		</dd>
-		<dd onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
-			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/180x180.jpg" alt="宠爱日记" /></a>
-				<div class="mouseover">
-					<div class="bg"></div>
-					<div class="content">
-						<a href="#" class="read">阅读</a>
-						<div class="more">
-								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<h3><a href="#">宠爱日记</a></h3>
-		</dd>
-		<dd onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
-			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/180x180.jpg" alt="宠爱日记" /></a>
-				<div class="mouseover">
-					<div class="bg"></div>
-					<div class="content">
-						<a href="#" class="read">阅读</a>
-						<div class="more">
-								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<h3><a href="#">宠爱日记</a></h3>
-		</dd>
+		{else}
 		<dd class="col2" onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
 			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/380x180.jpg" alt="宠爱日记" /></a>
+				<a href="#"><img src="{$item.image.128}" width='380px' height='180px' alt="宠爱日记" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
@@ -163,54 +118,8 @@
 			</div>
 			<h3><a href="#">鼠标滑过测试鼠标滑过测试鼠标滑过测试鼠标滑过测试鼠标滑过测试</a></h3>
 		</dd>
-		<dd onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
-			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/180x180.jpg" alt="宠爱日记" /></a>
-				<div class="mouseover">
-					<div class="bg"></div>
-					<div class="content">
-						<a href="#" class="read">阅读</a>
-						<div class="more">
-								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<h3><a href="#">宠爱日记</a></h3>
-		</dd>
-		<dd onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
-			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/180x180.jpg" alt="宠爱日记" /></a>
-				<div class="mouseover">
-					<div class="bg"></div>
-					<div class="content">
-						<a href="#" class="read">阅读</a>
-						<div class="more">
-								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<h3><a href="#">宠爱日记</a></h3>
-		</dd>
-		<dd onmouseover="javascript:this.getElementsByTagName('div')[1].style.display='block'" onmouseout="javascript:this.getElementsByTagName('div')[1].style.display='none'">
-			<div class="cover">
-				<a href="#"><img src="/sta/images/temp/180x180.jpg" alt="宠爱日记" /></a>
-				<div class="mouseover">
-					<div class="bg"></div>
-					<div class="content"> 
-						<a href="#" class="read">阅读</a>
-						<div class="more">
-								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<h3><a href="#">宠爱日记</a></h3>
-		</dd>
+		{/if}
+		{/foreach}
 	</dl>
 
 </div>
