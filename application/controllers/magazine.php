@@ -33,10 +33,21 @@ class Magazine extends MY_Controller {
 		return $return;
 	}	//}}}
 
+
+
+
 	function index(){		//首页显示{{{
 		$index_info = $this->mag_model->_get_index_info();
 		$this->smarty->view('magazine/index.tpl', $index_info);
 	}//}}}
+	
+	function magazine_list(){		//杂志列表页面{{{
+		$mag_list = $this->mag_model->_get_magazines_by_tag();
+		$this->smarty->view('magazine/magazine_list.tpl', $mag_list);
+	}//}}}
+	
+	
+	
 
 	function mag_list (){	//杂志列表{{{
 		$keys = array('start', 'limit', 'status');

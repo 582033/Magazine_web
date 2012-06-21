@@ -111,4 +111,16 @@ class Mag_Model extends CI_Model {
 							);
 		return $index_info;
 	}//}}}
+	
+	function _get_magazines_by_tag(){		//杂志列表页数据{{{
+		$tour_reader = request($this->api_host . "/magazines?limit=25&start=0&tag=旅游攻略");
+		$foreign = request($this->api_host . "/magazines?limit=25&start=0&tag=出境游");
+		$local = request($this->api_host . "/magazines?limit=25&start=0&tag=国内游");
+		$mag_list = array(
+						'tour_reader' => $tour_reader['data']['items'],
+						'foreign' => $foreign['data']['items'],
+						'local' => $local['data']['items'],
+						);
+		return $mag_list;
+	}//}}}
 }

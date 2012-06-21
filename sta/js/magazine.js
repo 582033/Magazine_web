@@ -48,3 +48,32 @@ $("document").ready(function(){
         $(this).css("z-index","0");
     });
 })
+
+$(function(){
+	$("#tour_reader").click(function(){
+		$(".foreign").css("display","none");
+		$(".local").css("display","none");
+		$(".tour_reader").css("display","block");
+		$("#foreign").removeClass("sel");
+		$("#local").removeClass("sel");
+		$("#tour_reader").addClass("sel");
+	})
+	
+	$("#foreign").click(function(){
+		$(".tour_reader").css("display","none");
+		$(".local").css("display","none");
+		$(".foreign").css("display","block");
+		$("#tour_reader").removeClass("sel");
+		$("#local").removeClass("sel");
+		$("#foreign").addClass("sel");
+	})
+	
+	$("#local").click(function(){
+		$(".tour_reader").css("display","none");
+		$(".foreign").css("display","none");
+		$(".local").css("display","block");
+		$("#tour_reader").removeClass("sel");
+		$("#foreign").removeClass("sel");
+		$("#local").addClass("sel");
+	})	
+})
