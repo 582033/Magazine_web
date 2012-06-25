@@ -126,6 +126,6 @@ class Mag_Model extends CI_Model {
 	
 	function _get_mag_element_list($limit, $start){		//杂志元素列表数据获取{{{
 		$mag_element = request($this->api_host . "/elements?limit=$limit&start=$start");
-		return $mag_element['items'];
+		return $mag_element['data']['items'];
 	}//}}}
 }

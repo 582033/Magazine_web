@@ -1,4 +1,4 @@
-
+{include file="header.tpl"}
 <div class="main">
 
 	<dl class="element_list e_index clearfix">
@@ -190,3 +190,4 @@
 </form>
 
 </div>
+{include file="footer.tpl"}
