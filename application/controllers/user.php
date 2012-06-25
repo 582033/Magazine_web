@@ -49,18 +49,28 @@ class User extends Magazine {
 		}
 	}	//}}}
 
-	function magazine (){	//喜欢的杂志列表{{{
-		$key = array('start', 'limit', 'session_id');
-		$url_data = $this->_get_more_non_empty($key);
+	function magazine ($page = '1'){	//喜欢的杂志列表{{{
+		$url_data = array(
+				'start' => ($page-1)*($this->limit),
+				'limit' => $this->limit,
+				);
 		$mag_category = $this->input->get('mag_category');
+		$user_id = $this->session->userdata('id');
+		if (!$user_id) exit("haven't userId, signin please"); 
+		$user_info = $this->session->userdata;
 		if ($mag_category) $url_data['mag_category'] = $mag_category;
 		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
-		$loved_magazine = $this->user_loved_model->get_loved_magazine($url_data);
+		$loved_magazine = $this->user_loved_model->get_loved($url_data, 'magazine');
 		/*
 		   get_loved($url_data, $type) $type[element/author/magazine]
 		*/
-		print_r($loved_magazine);
-		//$this->smarty->view('user/magazine.tpl');
+		$data = array(
+				'page_list' => $this->page_model->page_list("/user/magazine", $this->limit, 100, $page),
+				'user_info' => $user_info,
+				'loved_author' => $loved_author,
+				'loved_magazine' => $loved_magazine,
+				);
+		$this->smarty->view('user/element.tpl');
 	}	//}}}
 
 	function element ($page = '1'){	//喜欢的元素列表{{{
@@ -78,12 +88,9 @@ class User extends Magazine {
 		/*
 		   get_loved($url_data, $type) $type[element/author/magazine]
 		*/
-		//print_r($url_data);
-		//print_r($user_info);
-		//print_r($loved_element);
 		$data = array(
 				//'page_list' => $this->page_list("/user/element", 100, $page),
-				'page_list' => $this->page_model->page_list("/user/element", $this->limit, $loved_element['totalResults'], $page),
+				'page_list' => $this->page_model->page_list("/user/element", $this->limit, 100, $page),
 				'user_info' => $user_info,
 				'loved_author' => $loved_author,
 				'loved_element' => $loved_element,

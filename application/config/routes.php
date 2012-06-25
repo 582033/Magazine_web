@@ -67,6 +67,9 @@
 $route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
+
+$route['magazine/main_magazine_list']='magazine';
+
 $route['v1/user/(:num)']='user/user/$1';
 
 $route['user/element/(:num)']='user/element/$1';

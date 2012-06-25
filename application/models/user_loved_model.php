@@ -16,32 +16,19 @@ class user_loved_model extends CI_Model {
 		if (isset($url_data['element_type']) && $url_data['element_type'] != '') {
 			$element_type = $url_data['element_type'];
 		}
+		$user_id = $this->session->userdata('id');
 		switch ($type) {
 			case 'author':
 				$loved = request($this->api_host . "/user/me/followers?start=" . $url_data['start'] . "&limit=" . $url_data['limit']);	
 				break;
 			case 'element':
-				$user_id = $this->session->userdata('id');
 				$loved = request($this->api_host . "/user/$user_id/elements/like?start=" . $url_data['start'] . "&limit=" . $url_data['limit']);
-				//echo $this->api_host . "/user/$user_id/elements/like?start=" . $url_data['start'] . "&limit=" . $url_data['limit'];
+				break;
+			case 'magazine':
+				$loved = request($this->api_host . "/user/$user_id/magazines/like?start=" . $url_data['start'] . "&limit=" . $url_data['limit']);
 				break;
 		}
 		return $loved['data'];
 	}	//}}}
-
-	function get_loved_magazine ($url_data){	//{{{
-		$loved_magazine = $this->get_loved($url_data, 'magazine');
-		foreach ($loved_magazine as &$item){
-			if (isset($item['user_id']) && $item['user_id'] != '') {
-				$nickname = api($this->api_host ."/magazine/get_nickname?user_id=". $item['user_id']);
-				$item['nickname'] = $nickname['nickname'];
-			}
-			else {
-				$item['nickname'] = null;
-			}
-		}
-		return $loved_magazine;
-	}	//}}}
-	
 
 }

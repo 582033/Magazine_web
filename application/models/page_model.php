@@ -4,6 +4,7 @@
 		$total_page = $total % $limit == '0' ? floor($total / $limit) : floor($total / $limit) +1 ;
 		$min = $this->get_min($page, $total_page);
 		$max = $this->get_max($page, $total_page);
+		//echo $min."|".$max."|".$total_page;
 		$page_list =  "
 			<div class='pagearea'>
 				<ul class='pagenav clearfix'>";
@@ -27,8 +28,8 @@
 	function get_min($page, $total_page) {	//取最小页{{{
 		if ($total_page > 10) {
 			$min = $page - 4;
-			if ($total_page - $min > 10) {
-				$min = $total_page - 10;
+			if ($min < 0) {
+				$min = 1;
 			}
 		}
 		else{
