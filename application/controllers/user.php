@@ -3,12 +3,16 @@ include 'magazine.php';
 
 class User extends Magazine {
 	
+	var $limit;
+
 	function User () {	//{{{
 		parent::__construct();
 		$this->load->model('user_loved_model');
 		$this->load->model('user_info_model');
+		$this->load->model('page_model');
 		$this->load->helper('api');
 		$this->load->library('session');
+		$this->limit = '3';
 	}	//}}}
 
 	function _get_json_values ($keys) {	//{{{
@@ -59,21 +63,27 @@ class User extends Magazine {
 		//$this->smarty->view('user/magazine.tpl');
 	}	//}}}
 
-	function element (){	//喜欢的元素列表{{{
-		$key = array('start', 'limit');
-		$url_data = $this->_get_more_non_empty($key);
+	function element ($page = '1'){	//喜欢的元素列表{{{
+		$url_data = array(
+				'start' => ($page-1)*($this->limit),
+				'limit' => $this->limit,
+				);
 		$element_type = $this->input->get('element_type');
 		$user_id = $this->session->userdata('id');
 		if (!$user_id) exit("haven't userId, signin please"); 
 		$user_info = $this->session->userdata;
-		print_r($user_info);
 		if ($element_type) $url_data['element_type'] = $element_type;
 		$loved_element = $this->user_loved_model->get_loved($url_data, 'element');
 		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
 		/*
 		   get_loved($url_data, $type) $type[element/author/magazine]
 		*/
+		//print_r($url_data);
+		//print_r($user_info);
+		//print_r($loved_element);
 		$data = array(
+				//'page_list' => $this->page_list("/user/element", 100, $page),
+				'page_list' => $this->page_model->page_list("/user/element", $this->limit, $loved_element['totalResults'], $page),
 				'user_info' => $user_info,
 				'loved_author' => $loved_author,
 				'loved_element' => $loved_element,
@@ -96,5 +106,7 @@ class User extends Magazine {
 		$url_with_get = $this->api_host."/magazine/set_user_info?session_id=$session_id";
 		opt($url_with_get, $post);
 	}	//}}}
+
+
 }
 

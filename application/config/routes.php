@@ -64,10 +64,13 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
 $route['v1/user/(:num)']='user/user/$1';
+
+$route['user/element/(:num)']='user/element/$1';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

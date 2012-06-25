@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/thickbox.css"/>
 <title>{$title}</title>
 <script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="/sta/js/magazine.js"></script>
 <script type="text/javascript" src="/sta/js/thickbox.js"></script>
 <!--[if IE 6]>
@@ -21,10 +22,10 @@
  	<div class="container clearfix">
  		<a href="#" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>
  		<ul class="menu">
- 			<li class="home"><a href="#" class="sel">首页</a></li>
- 			<li class="mag"><a href="#">杂志</a></li>
- 			<li class="find"><a href="#">发现</a></li>
- 			<li class="soft"><a href="#">软件</a></li>
+ 			<li class="home"><a href="/" class="sel">首页</a></li>
+ 			<li class="mag"><a href="/magazine">杂志</a></li>
+ 			<li class="find"><a href="/find">发现</a></li>
+ 			<li class="soft"><a href="/soft">软件</a></li>
  		</ul>
  		
  		<div class="rightcon">
