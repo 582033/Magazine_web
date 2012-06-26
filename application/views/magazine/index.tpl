@@ -25,7 +25,7 @@
 		{foreach from=$mag_list item=item key=key}
 		<dd>
 			<div class="cover">
-				<a href="#"><img src="{$item.cover}" width='180px' height='276px' alt="宠爱日记" /></a>
+				<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width='180px' height='276px' alt="宠爱日记" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
@@ -36,7 +36,7 @@
 								<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
 							</ul>
 						</div>
-						<a href="#" class="read">阅读</a>
+						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more">
 								<a href="#" class="comment">评论</a>

@@ -128,4 +128,24 @@ class Mag_Model extends CI_Model {
 		$mag_element = request($this->api_host . "/elements?limit=$limit&start=$start");
 		return $mag_element['data']['items'];
 	}//}}}
+	
+	function _get_magazine_by_id($id){		//获取杂志详情页信息{{{
+		$magazine = request($this->api_host . "/magazine/$id");
+		return $magazine['data'];
+	}//}}}
+	
+	function _get_recommendation_mag(){		//获得推荐杂志列表{{{
+		$recommendation = request($this->api_host . "/recommendation/maylike?limit=6&start=0");
+		return $recommendation['data']['items'];
+	}//}}}
+	
+	function _get_maylike_mag(){		//获得猜你喜欢的杂志列表{{{
+		$maylike = request($this->api_host . "/recommendation/maylike?limit=6&start=6");
+		return $maylike['data']['items'];
+	}//}}}
+	
+	function _get_detail_comment_data($type, $object_id){		//获得详情页面评论信息{{{
+		$comment = request($this->api_host . "/magazine/223/comments?type=magazine&object_id=$object_id&limit=5&start=0");
+		return $comment;
+	}//}}}
 }

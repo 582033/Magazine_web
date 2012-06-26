@@ -1,7 +1,5 @@
 {include file='header.tpl'}
-
 <div class="main">
-
 	<dl class="mag_list m_index clearfix">
 		<dd class="menu">
 			<ul>

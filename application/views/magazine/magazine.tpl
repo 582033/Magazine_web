@@ -1,4 +1,5 @@
 {include file='header.tpl'}
+
 <div class="main">
 	<dl class="mag_list m_topic clearfix">
 		<dt><strong><span><a href="#">看杂志</a></span></strong></dt>
@@ -93,6 +94,7 @@
 				<li><a id="local">国内游</a></li>
 			</ul>
 		</dd>
+		<dt><a href="/magazine/magazine_list" class="more">More</a></dt>
 		{foreach from=$tour_reader item=item key=key}
 		<dd class="tour_reader">
 			<div class="cover">

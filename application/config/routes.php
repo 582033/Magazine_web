@@ -67,9 +67,9 @@
 $route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
-$route['find']='magazine/mag_element_list';
-$route['mag']='magazine/main_magazine_list';
-$route['home']='magazine/index';
+$route['find'] = 'magazine/mag_element_list';
+$route['mag'] = 'magazine/main_magazine_list';
+$route['home'] = 'magazine/index';
 
 
 $route['v1/user/(:num)']='user/user/$1';

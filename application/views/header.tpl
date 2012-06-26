@@ -12,6 +12,7 @@
 <script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="/sta/js/magazine.js"></script>
 <script type="text/javascript" src="/sta/js/thickbox.js"></script>
+<script type="text/javascript" src="/sta/js/jquery.jscrollpane.min.js"></script>
 <!--[if IE 6]>
 	<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
 	<script type="text/javascript">
