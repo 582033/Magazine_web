@@ -42,7 +42,7 @@ class Sns extends MY_Controller {
 		if($op==2 && !$sessionid) {
 			return  show_error('参数错误',500);
 		}
-		$params = array('snsid'=>$snsid,'apptype'=>$apptype,'op'=>$op);
+		$params = array('snsid'=>$snsid,'apptype'=>$apptype,'op'=>$op,'refer'=>$this->input->server('HTTP_REFERER'));
 		if($sessionid && $op==2) {
 			$params['session_id'] = $sessionid;
 		}
@@ -69,7 +69,7 @@ class Sns extends MY_Controller {
 	 */
 	public function callback() {
 		$query = $_SERVER['QUERY_STRING'];
-		$state = @json_decode(base64_decode((string)$this->input->get('state')),true);
+		$state = @json_decode(base64_decode(urldecode((string)$this->input->get('state'))),true);
 		if(!$state || !$query) {
 			return  show_error('参数错误',500);
 		}
@@ -83,6 +83,7 @@ class Sns extends MY_Controller {
 		}
 		$result = request($this->apiHost.'/sns/callback',$params);
 		if($result['httpcode'] != 200) {
+			
 			return  show_error('参数错误',500);
 		}
 		$data = $result['data'];
