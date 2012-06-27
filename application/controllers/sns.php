@@ -13,6 +13,7 @@ class Sns extends MY_Controller {
 		$this->load->model('sns_model');
 		$this->load->helper('url');
 		$this->load->helper('api');
+		$this->load->library('session');
 		$this->apiHost = $this->config->item('api_hosts');
 	}
 	/**
@@ -133,29 +134,28 @@ class Sns extends MY_Controller {
 				$username = $this->input->post('username');
 				$passwd = $this->input->post('passwd');
 				$confirmPasswd = $this->input->post('confirm_passwd');
-				if(!$username || !$passwd || !$confirmPasswd || $passwd!=$confirmPasswd) {
-					$renderData = array(
-							'snsid'=>$snsid,
-							'apptype'=>$apptype,
-							'status'=>$status,
-							'username'=>$username,
-							'errormessage'=>'提交数据错误'
+				$renderData = array(
+						'snsid'=>$snsid,
+						'apptype'=>$apptype,
+						'status'=>$status,
+						'username'=>$username
 					);
+				if(!$username || !$passwd || !$confirmPasswd || $passwd!=$confirmPasswd) {
+					$renderData['errormessage']='提交数据错误';
 					return $this->smarty->view('sns/register.tpl',$renderData);
 				}
 				$params = array(
 						'username'=>$username,
 						'passwd'=>$passwd
 						);
-				$result = request($this->apiHost.'/passport/reg',$params,'POST');
-				if($result['httpcode']!=200) {
-					$renderData = array(
-							'snsid'=>$snsid,
-							'apptype'=>$apptype,
-							'status'=>$status,
-							'username'=>$username,
-							'errormessage'=>'注册失败'
-					);
+				$result = request($this->apiHost.'/auth/signup',$params,'POST');
+				//@TODO 获取第三方账号信息更新user info
+				if($result['httpcode']==200 && $result['data']['status']=='USER_EXISTS') {
+					$renderData['errormessage']='用户名已存在';
+					return $this->smarty->view('sns/register.tpl',$renderData);
+				}
+				elseif($result['httpcode']!=200 || $result['data']['status']!='OK') {
+					$renderData['errormessage']='注册失败';
 					return $this->smarty->view('sns/register.tpl',$renderData);
 				}
 				$sessionid = $result['data']['session_id'];
@@ -166,10 +166,11 @@ class Sns extends MY_Controller {
 						);
 				$result = request($this->apiHost.'/sns/bind',$bindParams,'GET');
 				if($result['httpcode']!=200) {
-					return  show_error('注册失败',500);
+					return  show_error('绑定失败',500);
 				}
 				else {
-					return  show_error('注册并绑定成功 session_id:'.$sessionid,200,'恭喜');
+					//return  show_error('注册并绑定成功 session_id:'.$sessionid,200,'恭喜');
+					$this->__finish($apptype, $status, $sessionid);
 				}
 			}
 			else {
@@ -185,29 +186,31 @@ class Sns extends MY_Controller {
 			if($method == 'POST') {
 				$username = $this->input->post('username');
 				$passwd = $this->input->post('passwd');
+				$renderData = array(
+						'snsid'=>$snsid,
+						'apptype'=>$apptype,
+						'status'=>$this->input->get_post('status'),
+						'username'=>$username
+						);
 				if(!$username || !$passwd) {
-					$renderData = array(
-							'snsid'=>$snsid,
-							'apptype'=>$apptype,
-							'status'=>$this->input->get_post('status'),
-							'username'=>$username,
-							'errormessage'=>'请输入正确用户名和密码'
-					);
+					$renderData['errormessage']='请输入正确用户名和密码';
 					$this->smarty->view('sns/login.tpl',$renderData);
 				}
+				
+				$getkey = request($this->apiHost."/auth/getkey");
+				if ($getkey['httpcode'] != '200'){
+					$renderData['errormessage']='登陆失败';
+					$this->smarty->view('sns/login.tpl',$renderData);
+				}
+				$getkey_data = $getkey['data']['key'];
+				$passwd1 = md5(md5($passwd).$getkey_data);
 				$params = array(
 						'username'=>$username,
-						'passwd'=>$passwd
+						'passwd'=>$passwd1
 				);
-				$result = request($this->apiHost.'/passport/login',$params,'POST');//登陆
-				if($result['httpcode']!=200) {
-					$renderData = array(
-							'snsid'=>$snsid,
-							'apptype'=>$apptype,
-							'status'=>$status,
-							'username'=>$username,
-							'errormessage'=>'登陆失败'
-					);
+				$result = request($this->apiHost.'/auth/signin',$params);//登陆
+				if($result['httpcode']!=200 || $result['data']['status']!='OK') {
+					$renderData['errormessage']='登陆失败';
 					return $this->smarty->view('sns/login.tpl',$renderData);
 				}
 				$sessionid = $result['data']['session_id'];
@@ -221,7 +224,8 @@ class Sns extends MY_Controller {
 					return  show_error('绑定失败',500);
 				}
 				else {
-					return  show_error('登陆并绑定成功 session_id:'.$sessionid,200,'恭喜');
+					//return  show_error('登陆并绑定成功 session_id:'.$sessionid,200,'恭喜');
+					$this->__finish($apptype, $status, $sessionid);
 				}
 			}
 			else {
@@ -232,6 +236,30 @@ class Sns extends MY_Controller {
 				);
 				return $this->smarty->view('sns/login.tpl',$renderData);
 			}
+		}
+	}
+	
+	private function __finish($apptype,$status,$sessionid) {
+		switch ($apptype) {
+			case 'web':
+				$status = Sns_Model::decodeAuthString($status);
+				$status = json_decode(base64_decode($status),true);
+				if(isset($status['state'])) {
+					$status['state'] = @json_decode(base64_decode($status['state']),true);
+				}
+				$this->session->set_userdata('session_id',$sessionid);
+				$u = '/index.php';
+				if(isset($status['state']['refer']) && isset($status['state']['refer'])) {
+					$u = $status['state']['refer'];
+				}
+				redirect($u);
+				break;
+			case 'android':
+				break;
+			case 'ios':
+				break;
+			default:
+				exit(0);
 		}
 	}
 }

@@ -4,9 +4,9 @@
 		<div class="title">创建绑定帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
 <form name="form" action="/index.php/sns/bind" method="POST">
-<p class="p"><label>用户邮箱:</label><input type="text" name="username"><span class="perror"></span><br><span class="description">请输入常用邮箱</span></p>
-<p class="p"><label>密码:</label><input type="password" name="passwd"><span class="perror"></span><br><span class="description">密码长度6-16位</span></p>
-<p class="p"><label>确认密码:</label><input type="password" name="confirm_passwd"><span class="perror"></span></p>
+<p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span><br><span class="description">请输入常用邮箱</span></p>
+<p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span><br><span class="description">密码长度6-16位</span></p>
+<p class="p"><label>确认密码:</label><input class="cpasswd" type="password" name="confirm_passwd"><span class="perror"></span></p>
 <input type="hidden" name="new" value="1">
 <input type="hidden" name="snsid" value="{$snsid}">
 <input type="hidden" name="apptype" value="{$apptype}">
@@ -18,9 +18,9 @@
 {literal}
 <script>
 $(function(){
-	var $user = $('input[name="username"]');
-	var $pwd = $('input[name="passwd"]');
-	var $cpwd = $('input[name="confirm_passwd"]');
+	var $user = $('input.busername');
+	var $pwd = $('input.bpasswd');
+	var $cpwd = $('input.cpasswd');
 	$user.focusout(function(){checkUser()});
 	$pwd.focusout(function(){checkPwd()});
 	$cpwd.focusout(function(){checkPwd()});

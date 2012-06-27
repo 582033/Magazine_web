@@ -4,8 +4,8 @@
 		<div class="title">绑定已有帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
 <form name="form" action="/index.php/sns/bind" method="POST">
-<p class="p"><label>用户邮箱:</label><input type="text" name="username"><span class="perror"></span></p>
-<p class="p"><label>密码:</label><input type="password" name="passwd"><span class="perror"></span></p>
+<p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span></p>
+<p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span></p>
 <input type="hidden" name="new" value="0">
 <input type="hidden" name="snsid" value="{$snsid}">
 <input type="hidden" name="apptype" value="{$apptype}">
@@ -17,12 +17,10 @@
 {literal}
 <script>
 $(function(){
-	var $user = $('input[name="username"]');
-	var $pwd = $('input[name="passwd"]');
-	var $cpwd = $('input[name="confirm_passwd"]');
+	var $user = $('input.busername');
+	var $pwd = $('input.bpasswd');
 	$user.focusout(function(){checkUser()});
 	$pwd.focusout(function(){checkPwd()});
-	$cpwd.focusout(function(){checkPwd()});
 	checkUser = function() {
 		if (isEmpty($user.val())) {
 			$user.next().text(window.errMessage['userempty']);
