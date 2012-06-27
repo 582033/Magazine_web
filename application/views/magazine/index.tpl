@@ -2,7 +2,7 @@
 <div class="main">
 
 	<dl class="mag_list clearfix">
-		<dt><strong>看杂志</strong> <a href="#" class="more">More</a></dt>
+		<dt><strong>看杂志</strong> <a href="/mag" class="more">More</a></dt>
 		<dd class="topic">
 			<div class="slide_pic">
 				<a href="#"><img src="/sta/images/temp/580x576.jpg" alt="描述" /></a>
@@ -66,7 +66,7 @@
 	
 	
 	<dl class="element_list clearfix">
-		<dt><strong>爱发现</strong> <a href="#" class="more">More</a></dt>
+		<dt><strong>爱发现</strong> <a href="/find" class="more">More</a></dt>
 		<dd class="topic">
 			<div class="slide_pic">
 				<a href="#"><img src="/sta/images/temp/580x380.jpg" alt="描述" /></a>

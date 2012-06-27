@@ -1,24 +1,30 @@
- 	<div class="right_main">
- 		<dl class="element_list e_index clearfix">
+<div class="right_main">
+ 	
+ 	
+ 		<dl class="mag_list clearfix">
  			<dd class="menu">
  				<ul>
  					<li><a href="#">消息中心</a></li>
- 					<li><a href="#" class="sel">喜欢的发现</a></li>
- 					<li><a href="#">喜欢的书</a></li>
+ 					<li><a href="#">关注的作者</a></li>
+ 					<li><a href="#">喜欢的发现</a></li>
+ 					<li><a href="#" class="sel">喜欢的书</a></li>
  					<li><a href="#">我的作品</a></li>
  				</ul>
  			</dd>
- 			<dt><a href="#" class="sel">全部发现<span>(12)</span></a>　|　<a href="#">发现的美图<span>(12)</span></a>　|　<a href="#">发现的视频<span>(12)</span></a></dt>
-			{foreach from=$loved_element['items'] item=item}
+ 			<dt> </dt>
  			<dd>
  				<div class="cover">
- 					<a href="#"><img src="{$item.image.url}" alt="宠爱日记" /></a>
+ 					<a href="#"><img src="images/temp/180x276.jpg" alt="宠爱日记" /></a>
  					<div class="mouseover">
  						<div class="bg"></div>
  						<div class="content">
+ 							<div class="info">
+ 								简介文字
+ 							</div>
  							<a href="#" class="read">阅读</a>
  							<a href="#" class="del_mag">删除</a>
  							<div class="more">
+ 									<a href="#" class="comment">评论</a>
  									<a href="javascript:void(0);" class="share">分享</a>
  									<a href="#" class="like">喜欢</a>
  							</div>
@@ -37,8 +43,28 @@
  						</div>
  					</div>
  				</div>
+ 				<h3><a href="#">宠爱日记</a></h3>
  			</dd>
-			{/foreach}	
-		</dl>
-	{$page_list}
+ 
+ 			
+ 		</dl>
+ 		<div class="pagearea">
+ 			<ul class="pagenav clearfix">
+ 				<li><a href="#" class="sel">1</a></li>
+ 				<li><a href="#">2</a></li>
+ 				<li><a href="#">3</a></li>
+ 				<li><a href="#">4</a></li>
+ 				<li><a href="#">5</a></li>
+ 				<li><a href="#">6</a></li>
+ 				<li><a href="#">7</a></li>
+ 				<li><a href="#">8</a></li>
+ 				<li><a href="#">9</a></li>
+ 				<li><a href="#">10</a></li>
+ 			</ul>
+ 			<form>
+ 				<p class="page_no">
+ 					<input type="text" value="1" /> | 590页 <button type="submit" style="display:none">跳转</button>
+ 				</p>
+ 			</form>
+ 		</div>
  	</div>

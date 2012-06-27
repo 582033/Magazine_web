@@ -35,13 +35,32 @@
  				<input type="text" value="搜索" />
  				<button type="submit">搜索</button>
  			</form>
- 			
- 			<div class="log_reg" style="display:none;">
- 				<a href="#" class="reg">注册</a>
- 				<a href="#" class="login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
+	{if isset($userdata['nickname']) && isset($userdata['id']) && isset($userdata['image'])}	
+ 			<div class="self_info">
+ 				<div class="user_info">
+ 					<span>
+ 					<a href="#">{$userdata.nickname}<img class="userhead_small" src="{$userdata.image}" width="24px" height="24px" /></a>
+ 					</span>
+ 					<div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
+ 				</div>
+ 				<div class="clearfix"></div>
+ 				<a href="#" class="msg_tip"><span>00</span></a>
+ 				<ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
+ 					<li><a href="/user/set">账号设置</a></li>
+ 					<li><a href="/user/">我的收藏</a></li>
+ 					<li><a href="/user/set">我喜欢的</a></li>
+ 					<li><a href="/user/msg">站内消息</a></li>
+ 					<li><a href="/user/logout">退出账号</a></li>
+ 				</ul>
+ 			</div>
+ 		</div>
+	{else}
+ 			<div class="log_reg">
+ 				<a href="/user/signon" class="reg">注册</a>
+ 				<a href="/user/signin" class="login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
  				<form id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">
- 					<p><input type="text" value="Email地址" /></p>
- 					<p><input type="password" value="密码" /></p>
+ 					<p><input type="text" name="username" value="Email地址" /></p>
+ 					<p><input type="password" name="passwd" value="密码" /></p>
  					<p><a href="#" class="findpass">忘记密码？</a>
  					<input type="checkbox" id="rem_me" class="clear" /><label for="rem_me">下次自动登录</label></p>
  					<p><button type="submit">立即登录</button></p>
@@ -49,25 +68,6 @@
  					<p><span><a href="#">新浪微博账号登录</a> | <a href="#">QQ账号登录</a></span></p>
  				</form>
  			</div>
- 
- 			<div class="self_info">
- 				<div class="user_info">
- 					<span>
- 					<a href="#">用户名用 <img class="userhead_small" src="/sta/images/userhead/001.gif" /></a>
- 					</span>
- 					<div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
- 				</div>
- 				<div class="clearfix"></div>
- 				<a href="#" class="msg_tip"><span>00</span></a>
- 				<ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
- 					<li><a href="#">账号设置</a></li>
- 					<li><a href="#">我的收藏</a></li>
- 					<li><a href="#">我喜欢的</a></li>
- 					<li><a href="#">站内消息</a></li>
- 					<li><a href="#">退出账号</a></li>
- 				</ul>
- 			</div>
- 		</div>
- 	
+	{/if}
      </div>
  </div>

@@ -15,6 +15,11 @@ class Magazine extends MY_Controller {
 		$this->load->model('reg_model');
 		$this->load->model('comment_model');
 		$this->load->library('session');
+/*
+ *		验证登录状态
+ */
+		$this->load->model('auth');
+		$this->auth->auth_user();		
 	}
 
 	function _get_more ($keys, $input){	//{{{

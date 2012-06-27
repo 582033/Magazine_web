@@ -10,6 +10,13 @@ class User extends Magazine {
 		$this->load->model('user_loved_model');
 		$this->load->model('user_info_model');
 		$this->load->model('page_model');
+
+/*
+ *		验证登录状态
+ */
+		$this->load->model('auth');
+		$this->auth->auth_user();		
+
 		$this->load->helper('api');
 		$this->load->library('session');
 		$this->limit = '3';
@@ -43,10 +50,14 @@ class User extends Magazine {
 			$return = $this->Login_Model->login($username, $passwd);
 			echo "<pre>";
 			print_r($return);
+			$this->smarty->assign('commend_author', $return);
 		}
-		else {
-			$this->smarty->view('user/signin.tpl');
-		}
+		$this->smarty->view('user/signin.tpl');
+	}	//}}}
+
+	function logout () {	//{{{
+		$this->session->sess_destroy();	
+		echo "已退出登录";
 	}	//}}}
 
 	function magazine ($page = '1'){	//喜欢的杂志列表{{{
@@ -70,7 +81,7 @@ class User extends Magazine {
 				'loved_author' => $loved_author,
 				'loved_magazine' => $loved_magazine,
 				);
-		$this->smarty->view('user/element.tpl');
+		$this->smarty->view('user/user_center_main.tpl');
 	}	//}}}
 
 	function element ($page = '1'){	//喜欢的元素列表{{{
@@ -90,12 +101,12 @@ class User extends Magazine {
 		*/
 		$data = array(
 				//'page_list' => $this->page_list("/user/element", 100, $page),
-				'page_list' => $this->page_model->page_list("/user/element", $this->limit, 100, $page),
+				'page_list' => $this->page_model->page_list("/user/element", $this->limit, $loved_element['totalResults'], $page),
 				'user_info' => $user_info,
 				'loved_author' => $loved_author,
 				'loved_element' => $loved_element,
 				);
-		$this->smarty->view('user/element.tpl', $data);
+		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
 	function user_info () {	//设置个人信息{{{
@@ -114,6 +125,4 @@ class User extends Magazine {
 		opt($url_with_get, $post);
 	}	//}}}
 
-
 }
-
