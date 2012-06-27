@@ -36,11 +36,11 @@
  				<input type="text" value="搜索" />
  				<button type="submit">搜索</button>
  			</form>
-	{if isset($userdata['nickname']) && isset($userdata['id']) && isset($userdata['image'])}	
+	{if isset($user_info.id)}	
  			<div class="self_info">
  				<div class="user_info">
  					<span>
- 					<a href="#">{$userdata.nickname}<img class="userhead_small" src="{$userdata.image}" width="24px" height="24px" /></a>
+ 					<a href="#">{$user_info.nickname}<img class="userhead_small" src="{$user_info.image}" width="24px" height="24px" /></a>
  					</span>
  					<div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
  				</div>
@@ -48,8 +48,8 @@
  				<a href="#" class="msg_tip"><span>00</span></a>
  				<ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
  					<li><a href="/user/set">账号设置</a></li>
- 					<li><a href="/user/">我的收藏</a></li>
- 					<li><a href="/user/set">我喜欢的</a></li>
+ 					<li><a href="/user/magazine">喜欢的书</a></li>
+ 					<li><a href="/user/element">喜欢的发现</a></li>
  					<li><a href="/user/msg">站内消息</a></li>
  					<li><a href="/user/logout">退出账号</a></li>
  				</ul>

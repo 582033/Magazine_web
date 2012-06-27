@@ -1,6 +1,6 @@
 <div class="sidebar_left">
  		<div class="userinfo">
- 			<p><a href="#">用户名</a> <a href="#" class="edit">修改</a> <!--a href="#" class="auther">认证作者</a--></p>
+ 			<p><a href="#">{$user_info['nickname']}</a> <a href="#" class="edit">修改</a> <!--a href="#" class="auther">认证作者</a--></p>
  			<div class="user_info">
  				<a href="#">
  					<img src="{if $user_info['image']}{$user_info['image']}{else}/sta/images/userhead/big.jpg{/if}" width="180px" height="180px" class="userhead" alt="用户名" />
