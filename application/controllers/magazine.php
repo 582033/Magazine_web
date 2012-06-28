@@ -52,45 +52,6 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/index.tpl', $index_info);
 	}//}}}
 
-	function magazine_list(){		//杂志列表页面{{{
-		$limit = 15;
-		$start = 0;
-		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
-		$this->smarty->view('magazine/magazine_list.tpl', $mag_list);
-	}//}}}
-
-	function main_magazine_list(){		//杂志二级列表页面{{{
-		$limit = 15;
-		$start = 0;
-		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
-		$data = array('mag_list' => $mag_list);
-		$this->smarty->view('magazine/magazine.tpl', $data);
-	}//}}}
-
-	function mag_element_list(){		//杂志元素列表页面{{{
-		$limit = $this->_get('limit', 10);
-		$start = $this->_get('start', 0);
-		$mag_element = $this->mag_model->_get_mag_element_list($limit, $start);
-		$this->smarty->view('magazine/element.tpl', $mag_element);
-	}//}}}
-
-	function magazine_detail(){		//杂志详情页面{{{
-		$magazine_id = $this->_get_non_empty('id');
-		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
-		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
-		$recommendation = $this->mag_model->_get_recommendation_mag();
-		$maylike = $this->mag_model->_get_maylike_mag();
-		$type = 'magazine';
-		$object_id = '232';
-//		$comment = $this->comment_model->refresh_comment();
-		$data = array(
-					'magazine' => $magazine,
-					'recommendation' => $recommendation,
-					'maylike' => $maylike,
-					);
-		$this->smarty->view('magazine/magazine_detail.tpl', $data);
-	}//}}}
-	
 	function find_elements($page = '1'){		//元素列表页面{{{
 		$start = ($page-1)*30;
 		$limit = 30;
@@ -111,6 +72,41 @@ class Magazine extends MY_Controller {
 					);
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
+
+	function magazine_list($page = '1'){		//杂志列表页面{{{
+		$limit = 25;
+		$start = ($page-1)*$limit;
+		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
+		echo "<pre>";
+		print_r($mag_list);
+	//	$this->smarty->view('magazine/magazine_list.tpl', $mag_list);
+	}//}}}
+
+	function main_magazine_list(){		//杂志二级列表页面{{{
+		$limit = 15;
+		$start = 0;
+		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
+		$data = array('mag_list' => $mag_list);
+		$this->smarty->view('magazine/magazine.tpl', $data);
+	}//}}}
+
+	function magazine_detail(){		//杂志详情页面{{{
+		$magazine_id = $this->_get_non_empty('id');
+		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
+		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
+		$recommendation = $this->mag_model->_get_recommendation_mag();
+		$maylike = $this->mag_model->_get_maylike_mag();
+		$type = 'magazine';
+		$object_id = '232';
+//		$comment = $this->comment_model->refresh_comment();
+		$data = array(
+					'magazine' => $magazine,
+					'recommendation' => $recommendation,
+					'maylike' => $maylike,
+					);
+		$this->smarty->view('magazine/magazine_detail.tpl', $data);
+	}//}}}
+	
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

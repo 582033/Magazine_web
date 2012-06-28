@@ -126,25 +126,7 @@
 		</dd>
 		{/foreach}
 	</dl>
-
-	<ul class="pagenav clearfix">
-		<li><a href="#" class="sel">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">6</a></li>
-		<li><a href="#">7</a></li>
-		<li><a href="#">8</a></li>
-		<li><a href="#">9</a></li>
-		<li><a href="#">10</a></li>
-	</ul>
-	<form>
-	<p class="page_no">
-		<input type="text" value="1" /> | 590页 <button type="submit" style="display:none">跳转</button>
-	</p>
-	</form>
-
+{$page_list}
 </div>
 {include file='footer.tpl'}
 
