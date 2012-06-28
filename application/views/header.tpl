@@ -7,6 +7,11 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/thickbox.css"/>
+<style type="text/css">
+.item{
+	float:left;
+}
+</style>
 <title>{$title}</title>
 <script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
@@ -20,6 +25,17 @@
 		DD_belatedPNG.fix('.read,.more a,.userinfo p a,.edit');
 	</script>
 <![endif]-->
+<script type="text/javascript">
+		$(function(){
+			var $container = $('#container');
+			//$container.imagesLoaded( function(){
+			  $container.masonry({
+				itemSelector : '.item',
+				columnWidth:200
+			  });
+			//});
+		});
+</script>
 <div class="header">
  	<div class="container clearfix">
  		<a href="#" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>

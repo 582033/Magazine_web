@@ -34,6 +34,14 @@ $("document").ready(function(){
     $(".mag_list dd").mouseleave(function(){
 		$(this).find(".mouseover").css("display","none");
 	});
+	$(".element_list dd").mouseenter(function(){
+		$(this).find(".mouseover").css("display","block");
+		$(this).find(".cover").css("z-index","99");
+	});
+    $(".element_list dd").mouseleave(function(){
+		$(this).find(".mouseover").css("display","none");
+		$(this).find(".cover").css("z-index","1");
+	});
 
     $(".mouseover .share").mouseenter(function(){
 		$(this).parent().parent().children(".shareto").css("display","block");

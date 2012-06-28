@@ -84,7 +84,20 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
 	
-	
+	function find_elements(){		//元素列表页面{{{
+		$limit = $this->_get('limit', 30);
+		$start = $this->_get('start', 0);
+		$element_list = $this->mag_model->_get_element_list($limit, $start);
+		$mode = '/[0-9]{3}x[0-9]{3}/';
+		for ($i = 0; $i < count($element_list); $i++){
+			preg_match($mode, $element_list[$i]['image']['180'], $matches);
+			$size[$i] = $matches[0];
+			$element_list[$i]['width'] = substr($size[$i], 0, 3);
+			$element_list[$i]['height'] = substr($size[$i], 4, 3);
+		}
+		$data = array('element_list' => $element_list);
+		$this->smarty->view('magazine/element.tpl', $data);
+	}//}}}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	function mag_list (){	//杂志列表{{{
