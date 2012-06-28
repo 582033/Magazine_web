@@ -1,15 +1,7 @@
 <div class="right_main">
-
-
 	<dl class="mag_list clearfix">
 		<dd class="menu">
-			<ul>
-				<li><a href="#">消息中心</a></li>
-				<li><a href="#">关注的作者</a></li>
-				<li><a href="#">喜欢的发现</a></li>
-				<li><a href="#">喜欢的书</a></li>
-				<li><a href="#" class="sel">我的作品</a></li>
-			</ul>
+		{include file='user/user_nav.tpl'}
 		</dd>
 		<dt><a href="#" class="sel">已发布的杂志<span>(12)</span></a>　|　<a href="#">未发布的杂志<span>(12)</span></a></dt>
 		{foreach from=$bookstore.items item=item}
