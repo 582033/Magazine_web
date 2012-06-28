@@ -172,7 +172,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .mag_list.m_index { margin-top:55px;}
 .mag_list.m_index dd.menu{ position:relative; padding:0; border:none; background:#e8e8e8; height:1px; float:none; clear:both; width:100%;}
 .mag_list.m_index dd.menu ul{ position:absolute; top:-39px; left:0; width:100%;}
-.mag_list.m_index dd.menu ul li{ float:left; display:block; width:100px; padding-right:4px; text-align:center;}
+.mag_list.m_index dd.menu ul li{ float:left; display:block; width:100px; padding-right:4px; text-align:center; cursor:pointer;}
 .mag_list.m_index dd.menu ul li a{ display:block; font-size:16px; padding:10px 15px; height:18px; overflow:hidden; font-weight:bold; background:#000; border:1px solid #000; border-bottom:none; color:#FFF;}
 .mag_list.m_index dd.menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8e8e8; border-bottom:1px solid #FFF;}
 .mag_list.m_index dt { height:30px; border-top:none;}

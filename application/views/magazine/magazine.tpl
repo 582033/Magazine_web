@@ -95,7 +95,7 @@
 			</ul>
 		</dd>
 		<dt><a href="/magazine/magazine_list" class="more">More</a></dt>
-		{foreach from=$tour_reader item=item key=key}
+		{foreach from=$mag_list.tour_reader item=item key=key}
 		<dd class="tour_reader">
 			<div class="cover">
 				<a href="#"><img src="{$item.cover}" width='180px' height='276px' title="{$item.magazine_id}" alt="宠爱日记" /></a>
@@ -134,7 +134,7 @@
 			<h3><a href="#">{$item.name}</a></h3>
 		</dd>
 		{/foreach}
-		{foreach from=$foreign item=item key=key}
+		{foreach from=$mag_list.foreign item=item key=key}
 		<dd style="display:none;" class="foreign">
 			<div class="cover">
 				<a href="#"><img src="{$item.cover}" width='180px' height='276px' title="{$item.magazine_id}" alt="宠爱日记" /></a>
@@ -173,7 +173,7 @@
 			<h3><a href="#">{$item.name}</a></h3>
 		</dd>
 		{/foreach}
-		{foreach from=$local item=item key=key}
+		{foreach from=$mag_list.local item=item key=key}
 		<dd style="display:none;" class="local">
 			<div class="cover">
 				<a href="#"><img src="{$item.cover}" width='180px' height='276px' title="{$item.magazine_id}" alt="宠爱日记" /></a>

@@ -63,7 +63,8 @@ class Magazine extends MY_Controller {
 		$limit = 15;
 		$start = 0;
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
-		$this->smarty->view('magazine/magazine.tpl', $mag_list);
+		$data = array('mag_list' => $mag_list);
+		$this->smarty->view('magazine/magazine.tpl', $data);
 	}//}}}
 	
 	function mag_element_list(){		//杂志元素列表页面{{{
@@ -104,6 +105,7 @@ class Magazine extends MY_Controller {
 		$data = array('element_list' => $element_list);
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
+	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	function mag_list (){	//杂志列表{{{
