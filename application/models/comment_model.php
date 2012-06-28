@@ -9,8 +9,8 @@ class Comment_model extends CI_Model {
 
 	function comment_list ($type, $object_id, $start=0, $limit=20) {
 		$url = $this->api_host."/magazine/get_user_comment?session_id=1&type=$type&object_id=$object_id&start=$start&limit=$limit";
-		$url_1 = request($url);
-		return $url_1['data'];
+		$data = request($url);
+		return $data['data'];
 	}
 
 	function refresh_comment ($type, $object_id, $parent_id, $comment) {

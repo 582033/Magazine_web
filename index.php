@@ -5,9 +5,9 @@
  * An open source application development framework for PHP 5.1.6 or newer
  *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Open Software License version 3.0
- * 
+ *
  * This source file is subject to the Open Software License (OSL 3.0) that is
  * bundled with this package in the files license.txt / license.rst.  It is
  * also available through the world wide web at this URL:
@@ -71,7 +71,7 @@ if (defined('ENVIRONMENT'))
 			ini_set('display_errors', 'on');
 			error_reporting(-1);
 		break;
-	
+
 		case 'testing':
 		case 'production':
 			error_reporting(0);
@@ -109,22 +109,22 @@ if (defined('ENVIRONMENT'))
  *
  */
 	$application_folder = 'application';
-		
+
 /*
  *---------------------------------------------------------------
  * VIEW FOLDER NAME
  *---------------------------------------------------------------
- * 
- * If you want to move the view folder out of the application 
+ *
+ * If you want to move the view folder out of the application
  * folder set the path to the folder here. The folder can be renamed
- * and relocated anywhere on your server. If blank, it will default 
- * to the standard location inside your application folder.  If you 
- * do move this, use the full server path to this folder 
+ * and relocated anywhere on your server. If blank, it will default
+ * to the standard location inside your application folder.  If you
+ * do move this, use the full server path to this folder
  *
  * NO TRAILING SLASH!
  *
  */
-	$view_folder = '';	
+	$view_folder = '';
 
 
 /*
@@ -249,22 +249,22 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
-	
+
 	// The path to the "views" folder
-	if (is_dir($view_folder)) 
+	if (is_dir($view_folder))
 	{
 		define ('VIEWPATH', $view_folder .'/');
 	}
-	else 
+	else
 	{
 		if ( ! is_dir(APPPATH.'views/'))
 		{
 			exit("Your view folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
 		}
-				
-		define ('VIEWPATH', APPPATH.'views/' );	
+
+		define ('VIEWPATH', APPPATH.'views/' );
 	}
-	
+
 
 /*
  * --------------------------------------------------------------------

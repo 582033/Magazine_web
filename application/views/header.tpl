@@ -7,11 +7,6 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/thickbox.css"/>
-<style type="text/css">
-.item{
-	float:left;
-}
-</style>
 <title>{$title}</title>
 <script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
@@ -76,6 +71,7 @@
  					<li><a href="/user/logout">退出账号</a></li>
  				</ul>
  			</div>
+ 		</div>
 	{else}
 			<div class="self_info">
 				<div class="log_reg">
@@ -93,6 +89,5 @@
 				</div>
 			</div>
 	{/if}
-		</div>
      </div>
  </div>

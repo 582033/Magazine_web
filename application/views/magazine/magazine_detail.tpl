@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 <div class="current"><a href="#">杂志</a> &gt;<a href="#" class="current">{$magazine.cate}</a> &gt; <a href="#" class="cur">{$magazine.name}</a></div>
+
 <div class="main mag_preview clearfix">
 	<div class="left_main">
 		<div class="cover">

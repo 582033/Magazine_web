@@ -403,7 +403,6 @@ $config['mq_pass'] = 'guest';
 
 $config['api_host'] = 'http://api.1001s.cn/vi';
 $config['web_host'] = 'http://www.1001s.cn';
-$config['thumb_host'] = 'http://ping.service.wowpad.cn/thumb?size=104x160&fit=c&src=';
 if (file_exists(APPPATH. 'config/local.config.php')){
 	include(APPPATH. 'config/local.config.php');
 }

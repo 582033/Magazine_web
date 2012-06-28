@@ -9,6 +9,9 @@
         {if $loved_magazine}
             {include file='user/magazine.tpl'}
         {/if}
+        {if $bookstore}
+            {include file='user/my_bookstore.tpl'}
+        {/if}
 
     </div>
 {include file='footer.tpl'}

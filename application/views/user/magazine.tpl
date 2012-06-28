@@ -1,6 +1,6 @@
 <div class="right_main">
- 	
- 	
+
+
  		<dl class="mag_list clearfix">
  			<dd class="menu">
  				<ul>
@@ -12,14 +12,15 @@
  				</ul>
  			</dd>
  			<dt> </dt>
+ 			{foreach from=$loved_magazine.items item=item}
  			<dd>
  				<div class="cover">
- 					<a href="#"><img src="images/temp/180x276.jpg" alt="宠爱日记" /></a>
+ 					<a href="#"><img src="{$item.cover}" alt="{$item.name}" /></a>
  					<div class="mouseover">
  						<div class="bg"></div>
  						<div class="content">
  							<div class="info">
- 								简介文字
+ 								{$item.intro}
  							</div>
  							<a href="#" class="read">阅读</a>
  							<a href="#" class="del_mag">删除</a>
@@ -43,28 +44,9 @@
  						</div>
  					</div>
  				</div>
- 				<h3><a href="#">宠爱日记</a></h3>
+ 				<h3><a href="#">{$item.name}</a></h3>
  			</dd>
- 
- 			
+ 			{/foreach}
  		</dl>
- 		<div class="pagearea">
- 			<ul class="pagenav clearfix">
- 				<li><a href="#" class="sel">1</a></li>
- 				<li><a href="#">2</a></li>
- 				<li><a href="#">3</a></li>
- 				<li><a href="#">4</a></li>
- 				<li><a href="#">5</a></li>
- 				<li><a href="#">6</a></li>
- 				<li><a href="#">7</a></li>
- 				<li><a href="#">8</a></li>
- 				<li><a href="#">9</a></li>
- 				<li><a href="#">10</a></li>
- 			</ul>
- 			<form>
- 				<p class="page_no">
- 					<input type="text" value="1" /> | 590页 <button type="submit" style="display:none">跳转</button>
- 				</p>
- 			</form>
- 		</div>
+		{$page_list}
  	</div>

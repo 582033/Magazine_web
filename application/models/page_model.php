@@ -28,7 +28,7 @@
 	function get_min($page, $total_page) {	//取最小页{{{
 		if ($total_page > 10) {
 			$min = $page - 4;
-			if ($min < 0) {
+			if ($min <= 0) {
 				$min = 1;
 			}
 		}

@@ -5,9 +5,9 @@
  * An open source application development framework for PHP 5.1.6 or newer
  *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Academic Free License version 3.0
- * 
+ *
  * This source file is subject to the Academic Free License (AFL 3.0) that is
  * bundled with this package in the files license_afl.txt / license_afl.rst.
  * It is also available through the world wide web at this URL:
@@ -67,7 +67,7 @@
 $route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
-$route['find'] = 'magazine/find_elements';
+$route['find'] = 'magazine/mag_element_list';
 $route['mag'] = 'magazine/main_magazine_list';
 $route['home'] = 'magazine/index';
 
@@ -75,6 +75,7 @@ $route['home'] = 'magazine/index';
 $route['v1/user/(:num)']='user/user/$1';
 
 $route['user/element/(:num)']='user/element/$1';
+$route['user/bookstore/(:num)']='user/bookstore/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

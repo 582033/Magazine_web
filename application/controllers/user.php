@@ -2,7 +2,7 @@
 include 'magazine.php';
 
 class User extends Magazine {
-	
+
 	var $limit;
 
 	function User () {	//{{{
@@ -15,7 +15,7 @@ class User extends Magazine {
  *		验证登录状态
  */
 		$this->load->model('auth');
-		$this->auth->auth_user();		
+		$this->auth->auth_user();
 
 		$this->load->helper('api');
 		$this->load->library('session');
@@ -27,7 +27,7 @@ class User extends Magazine {
 		foreach ($keys as $item) {
 			$return[$item] = $this->input->post($item);
 		}
-		return json_encode($return, true);	
+		return json_encode($return, true);
 	}	//}}}
 
 	function signup (){	//{{{
@@ -65,7 +65,7 @@ class User extends Magazine {
 	}	//}}}
 
 	function magazine ($page = '1'){	//喜欢的杂志列表{{{
-		$this->auth->check();		
+		$this->auth->check();
 		$url_data = array(
 				'start' => ($page-1)*($this->limit),
 				'limit' => $this->limit,
@@ -78,15 +78,15 @@ class User extends Magazine {
 		   get_loved($url_data, $type) $type[element/author/magazine]
 		*/
 		$data = array(
-				'page_list' => $this->page_model->page_list("/user/magazine", $this->limit, 100, $page),
+				'page_list' => $this->page_model->page_list("/user/magazine", $this->limit, $loved_magazine['totalResults'], $page),
 				'loved_author' => $loved_author,
 				'loved_magazine' => $loved_magazine,
 				);
-		$this->smarty->view('user/user_center_main.tpl');
+		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
 	function element ($page = '1'){	//喜欢的元素列表{{{
-		$this->auth->check();		
+		$this->auth->check();
 		$url_data = array(
 				'start' => ($page-1)*($this->limit),
 				'limit' => $this->limit,
@@ -107,6 +107,23 @@ class User extends Magazine {
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
+	function bookstore($page = '1'){	//{{{
+		$this->auth->check();
+		$url_data = array(
+				'start' => ($page-1)*($this->limit),
+				'limit' => $this->limit,
+				);
+		$user_id = 2;//$this->session->userdata('id');
+		$request = request($this->api_host.'/user/'.$user_id.'/magazines/published?start=' . $url_data['start'] . '&limit=' . $url_data['limit']);
+		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
+		$data = array(
+				'page_list' => $this->page_model->page_list("/user/bookstore", $this->limit, $request['data']['totalResults'], $page),
+				'loved_author' => $loved_author,
+				'bookstore' => $request['data'],
+				);
+		$this->smarty->view('user/user_center_main.tpl', $data);
+	}	//}}}
+
 	function user_info () {	//设置个人信息{{{
 		$session_id = $this->session->userdata('sid');
 		$user_info = api($this->api_host."/magazine/user_info?session_id=$session_id");
@@ -116,7 +133,7 @@ class User extends Magazine {
 
 	function set_user_info () {	//{{{
 		$session_id = $this->session->userdata('sid');
-		$keys =	array('nickname', 'birthday', 'sex'); 
+		$keys =	array('nickname', 'birthday', 'sex');
 		$user_info = $this->_get_json_values($keys);
 		$post = array('user_info' => $user_info);
 		$url_with_get = $this->api_host."/magazine/set_user_info?session_id=$session_id";

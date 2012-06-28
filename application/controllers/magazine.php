@@ -44,21 +44,18 @@ class Magazine extends MY_Controller {
 		return $return;
 	}	//}}}
 
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 	function index(){		//首页显示{{{
 		$index_info = $this->mag_model->_get_index_info();
 		$this->smarty->view('magazine/index.tpl', $index_info);
 	}//}}}
-	
+
 	function magazine_list(){		//杂志列表页面{{{
 		$limit = 15;
 		$start = 0;
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
 		$this->smarty->view('magazine/magazine_list.tpl', $mag_list);
 	}//}}}
-	
+
 	function main_magazine_list(){		//杂志二级列表页面{{{
 		$limit = 15;
 		$start = 0;
@@ -66,14 +63,14 @@ class Magazine extends MY_Controller {
 		$data = array('mag_list' => $mag_list);
 		$this->smarty->view('magazine/magazine.tpl', $data);
 	}//}}}
-	
+
 	function mag_element_list(){		//杂志元素列表页面{{{
 		$limit = $this->_get('limit', 10);
 		$start = $this->_get('start', 0);
 		$mag_element = $this->mag_model->_get_mag_element_list($limit, $start);
 		$this->smarty->view('magazine/element.tpl', $mag_element);
 	}//}}}
-	
+
 	function magazine_detail(){		//杂志详情页面{{{
 		$magazine_id = $this->_get_non_empty('id');
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
@@ -156,7 +153,7 @@ class Magazine extends MY_Controller {
 		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment);
 		echo json_encode($data);
 	}	//}}}
-	
+
 	function get_same_author_mag(){		//获取该作者的其他杂志{{{
 		$keys = array('mag_id', 'limit', 'start');
 		$status = $this->input->get('status');
@@ -165,7 +162,7 @@ class Magazine extends MY_Controller {
 		$mag_list = $this->mag_model->_get_same_author_mag($gets);
 		$this->_json_output($mag_list);
 	}//}}}
-	
+
 	function get_same_category_mag(){		//获取同类型杂志{{{
 		$keys = array('mag_id', 'limit', 'start');
 		$status = $this->input->get('status');
@@ -229,7 +226,7 @@ class Magazine extends MY_Controller {
 		$url = api($this->api_host."/magazine/download?id=".$id);
 		$this->_json_output($url);
 	}	//}}}
-	
+
 	function get_mag_for_list(){	//获取列表页杂志列表{{{
 		$keys = array('mag_category', 'limit', 'start', 'status');
 		$gets = $this->_get_more_non_empty($keys);
@@ -239,20 +236,4 @@ class Magazine extends MY_Controller {
 		$this->_json_output($mag_list);
 	}	//}}}
 
-	function bookstore(){	//{{{
-		$user_id = $this->_get_non_empty('user_id');
-		$data = api($this->api_host.'/magazine/bookstore?user_id='.$user_id);
-		print_r($data);
-	}	//}}}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

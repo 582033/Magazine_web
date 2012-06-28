@@ -12,7 +12,7 @@
 					<a href="javascript:void(0);">3</a>
 					<a href="javascript:void(0);">4</a></div>
 				<div class="slide_nav">
-					<a href="javascript:void(0);" class="prev">上一个</a>
+					<a href="javascript:void(0);" class="prev">aaaaaaa上一个</a>
 					<a href="javascript:void(0);" class="next">下一个</a>
 				</div>
 			</div>
@@ -33,7 +33,7 @@
 							<ul style="margin-left:2px;">
 								<li><span>杂志：</span><span>{$item.name}</span></li>
 								<li><span>作者：</span><span>{$item.author.nickname}</span></li>
-								<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
+								<li><span>发布：</span><span>{$item.publishedAt}</span></li>
 							</ul>
 						</div>
 						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
@@ -63,8 +63,8 @@
 		</dd>
 		{/foreach}
 	</dl>
-	
-	
+
+
 	<dl class="element_list clearfix">
 		<dt><strong>爱发现</strong> <a href="/find" class="more">More</a></dt>
 		<dd class="topic">
@@ -124,4 +124,4 @@
 
 </div>
  {include file='footer_big.tpl'}
- 
+
