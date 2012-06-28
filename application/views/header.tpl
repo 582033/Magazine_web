@@ -71,7 +71,6 @@
  					<li><a href="/user/logout">退出账号</a></li>
  				</ul>
  			</div>
- 		</div>
 	{else}
 			<div class="self_info">
 				<div class="log_reg">
@@ -89,5 +88,6 @@
 				</div>
 			</div>
 	{/if}
+		</div>
      </div>
  </div>
