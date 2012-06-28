@@ -70,7 +70,6 @@
  					<li><a href="/user/logout">退出账号</a></li>
  				</ul>
  			</div>
- 		</div>
 	{else}
  			<div class="log_reg">
  				<a href="/user/signon" class="reg">注册</a>
@@ -86,5 +85,6 @@
  				</form>
  			</div>
 	{/if}
+		</div>
      </div>
  </div>
