@@ -48,16 +48,20 @@ class User extends Magazine {
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
 			$return = $this->Login_Model->login($username, $passwd);
+			/*
 			echo "<pre>";
 			print_r($return);
 			$this->smarty->assign('commend_author', $return);
+			*/
+			//redirect($this->current_url);
+			redirect("/");
 		}
 		$this->smarty->view('user/signin.tpl');
 	}	//}}}
 
 	function logout () {	//{{{
 		$this->session->sess_destroy();	
-		echo "已退出登录";
+		redirect("/");
 	}	//}}}
 
 	function magazine ($page = '1'){	//喜欢的杂志列表{{{

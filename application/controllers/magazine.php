@@ -2,6 +2,7 @@
 class Magazine extends MY_Controller {
 
 	var $api_host;
+	var $current_url;
 
 	function Magazine (){
 		parent::__construct();
@@ -20,6 +21,11 @@ class Magazine extends MY_Controller {
  */
 		$this->load->model('auth');
 		$this->auth->auth_user();		
+/*
+ *		传递当前浏览页,使其登录后可以跳转到登录前的页面
+ */
+		$this->load->helper('url');
+		//$this->current_url = current_url();
 	}
 
 	function _get_more ($keys, $input){	//{{{

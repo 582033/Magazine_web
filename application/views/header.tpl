@@ -26,15 +26,21 @@
 	</script>
 <![endif]-->
 <script type="text/javascript">
-		$(function(){
-			var $container = $('#container');
-			//$container.imagesLoaded( function(){
-			  $container.masonry({
-				itemSelector : '.item',
-				columnWidth:200
-			  });
-			//});
+	$(document).ready(function(){
+		$("input[name=username]").mousedown(function(){
+			$("input[name=username]").val('');
 		});
+	});
+
+	$(function(){
+		var $container = $('#container');
+		//$container.imagesLoaded( function(){
+		  $container.masonry({
+			itemSelector : '.item',
+			columnWidth:200
+		  });
+		//});
+	});
 </script>
 <div class="header">
  	<div class="container clearfix">
@@ -75,9 +81,9 @@
 				<div class="log_reg">
 					<a href="/user/signon" class="reg">注册</a>
 					<a href="/user/signin" class="login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
-					<form id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">
+					<form id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'" action="/user/signin" method="post" enctype="multipart/form-data">
 						<p><input type="text" name="username" value="Email地址" /></p>
-						<p><input type="password" name="passwd" value="密码" /></p>
+						<p><input type="password" name="passwd" value="" /></p>
 						<p><a href="#" class="findpass">忘记密码？</a>
 						<input type="checkbox" id="rem_me" class="clear" /><label for="rem_me">下次自动登录</label></p>
 						<p><button type="submit">立即登录</button></p>
