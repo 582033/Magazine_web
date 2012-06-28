@@ -3,13 +3,11 @@ include 'magazine.php';
 
 class User extends Magazine {
 
-	var $limit;
 
 	function User () {	//{{{
 		parent::__construct();
 		$this->load->model('user_loved_model');
 		$this->load->model('user_info_model');
-		$this->load->model('page_model');
 
 /*
  *		验证登录状态
@@ -19,7 +17,6 @@ class User extends Magazine {
 
 		$this->load->helper('api');
 		$this->load->library('session');
-		$this->limit = '3';
 	}	//}}}
 
 	function _get_json_values ($keys) {	//{{{

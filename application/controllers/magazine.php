@@ -3,6 +3,7 @@ class Magazine extends MY_Controller {
 
 	var $api_host;
 	var $current_url;
+	var $limit;
 
 	function Magazine (){
 		parent::__construct();
@@ -15,7 +16,9 @@ class Magazine extends MY_Controller {
 		$this->load->model('mag_element_model');
 		$this->load->model('reg_model');
 		$this->load->model('comment_model');
+		$this->load->model('page_model');
 		$this->load->library('session');
+		$this->limit = '3';
 /*
  *		验证登录状态
  */
@@ -88,10 +91,13 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
 	
-	function find_elements(){		//元素列表页面{{{
-		$limit = $this->_get('limit', 30);
-		$start = $this->_get('start', 0);
-		$element_list = $this->mag_model->_get_element_list($limit, $start);
+	function find_elements($page = '1'){		//元素列表页面{{{
+		$start = ($page-1)*30;
+		$limit = 30;
+		//$this->page_model->page_list("/find", "每页显示的数量", "数据总数", $page)
+		$element = $this->mag_model->_get_element_list($limit, $start);
+		$page_list = $this->page_model->page_list("/find", $limit, $element['data']['totalResults'], $page);
+		$element_list = $element['data']['items'];
 		$mode = '/[0-9]{3}x[0-9]{3}/';
 		for ($i = 0; $i < count($element_list); $i++){
 			preg_match($mode, $element_list[$i]['image']['180'], $matches);
@@ -99,7 +105,10 @@ class Magazine extends MY_Controller {
 			$element_list[$i]['width'] = substr($size[$i], 0, 3);
 			$element_list[$i]['height'] = substr($size[$i], 4, 3);
 		}
-		$data = array('element_list' => $element_list);
+		$data = array(
+					'element_list' => $element_list,
+					'page_list' => $page_list,
+					);
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
 	

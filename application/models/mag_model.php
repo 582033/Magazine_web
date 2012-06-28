@@ -148,4 +148,9 @@ class Mag_Model extends CI_Model {
 		$comment = request($this->api_host . "/magazine/223/comments?type=magazine&object_id=$object_id&limit=5&start=0");
 		return $comment;
 	}//}}}
+	
+	function _get_element_list($limit, $start){		//获取元素列表{{{
+		$element = request($this->api_host . "/elements?limit=$limit&start=$start");
+		return $element;
+	}//}}}
 }

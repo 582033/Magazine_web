@@ -114,13 +114,13 @@
 		<dl class="mag_topic">
 			<dt>推荐的杂志</dt>
 			{foreach from=$recommendation item=item}
-			<dd><a href="#" title="{$item.name}"><img src="{$item.cover}" alt="{$item.name}" /></a></dd>
+			<dd><a href="/magazine/magazine_detail?id={$item.id}" title="{$item.name}"><img src="{$item.cover}" alt="{$item.name}" /></a></dd>
 			{/foreach}
 		</dl>
 		<dl class="mag_topic">
 			<dt>推荐的杂志</dt>
 			{foreach from=$maylike item=item}
-			<dd><a href="#" title="{$item.name}"><img src="{$item.cover}" alt="{$item.name}" /></a></dd>
+			<dd><a href="/magazine/magazine_detail?id={$item.id}" title="{$item.name}"><img src="{$item.cover}" alt="{$item.name}" /></a></dd>
 			{/foreach}
 		</dl>
 	</div>
