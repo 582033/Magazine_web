@@ -76,9 +76,14 @@ class Magazine extends MY_Controller {
 	function magazine_list($page = '1'){		//杂志列表页面{{{
 		$limit = 25;
 		$start = ($page-1)*$limit;
+		$page_list = $this->page_model->page_list("/magazine/magazine_list", $limit, $a, $page);
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
-		echo "<pre>";
-		print_r($mag_list);
+		$data = array(
+					'tour_reader' => $mag_list['tour_reader']['data']['items'],
+					'foreign' => $mag_list['foreign']['data']['items'],
+					'local' => $mag_list['local']['data']['items'],
+					'page_list' => $page_list,
+					);
 	//	$this->smarty->view('magazine/magazine_list.tpl', $mag_list);
 	}//}}}
 
@@ -86,7 +91,11 @@ class Magazine extends MY_Controller {
 		$limit = 15;
 		$start = 0;
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
-		$data = array('mag_list' => $mag_list);
+		$data = array(
+					'tour_reader' => $mag_list['tour_reader']['data']['items'],
+					'foreign' => $mag_list['foreign']['data']['items'],
+					'local' => $mag_list['local']['data']['items'],					
+					);
 		$this->smarty->view('magazine/magazine.tpl', $data);
 	}//}}}
 

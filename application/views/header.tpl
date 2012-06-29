@@ -7,6 +7,11 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/thickbox.css"/>
+<style type="text/css">
+.item{
+	float:left;
+	}
+</style>
 <title>{$title}</title>
 <script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
