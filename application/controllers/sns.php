@@ -48,9 +48,7 @@ class Sns extends MY_Controller {
 			$params['session_id'] = $sessionid;
 		}
 		$state = base64_encode(json_encode($params));
-		$result = request($this->apiHost.'/sns/oauthzieurl',array('snsid'=>$snsid,'state'=>$state),'GET',false);
-		echo $this->apiHost.'/sns/oauthzieurl';
-		print_r($result);die;
+		$result = request($this->apiHost.'/sns/oauthzieurl',array('snsid'=>$snsid,'state'=>$state));
 		if($result['httpcode']==200) {
 			redirect($result['data'][$snsid],'Location',302);
 		}
