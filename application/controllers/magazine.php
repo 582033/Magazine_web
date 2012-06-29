@@ -103,6 +103,11 @@ class Magazine extends MY_Controller {
 		$magazine_id = $this->_get_non_empty('id');
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
 		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
+		if (strlen($magazine['id']) <= 3){
+			$magazine['read_mag_id'] = $magazine['id'];
+		}else{
+			$magazine['read_mag_id'] = substr($magazine['id'], 0, 3);
+		}
 		$recommendation = $this->mag_model->_get_recommendation_mag();
 		$maylike = $this->mag_model->_get_maylike_mag();
 		$type = 'magazine';
