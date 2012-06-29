@@ -14,7 +14,7 @@ class Sns extends MY_Controller {
 		$this->load->helper('url');
 		$this->load->helper('api');
 		$this->load->library('session');
-		$this->apiHost = $this->config->item('api_hosts');
+		$this->apiHost = $this->config->item('api_host');
 	}
 	/**
 	 * 接口说明：第三方登陆与绑定第三方账号的跳转接口,跳转到相关授权页,临时存储A[snsid,apptype,opt和session_id至session],客户端在实现时用类似webview打开并提供回调方法接收相关返回值
