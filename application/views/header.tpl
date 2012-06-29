@@ -26,12 +26,6 @@
 	</script>
 <![endif]-->
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("input[name=username]").mousedown(function(){
-			$("input[name=username]").val('');
-		});
-	});
-
 	$(function(){
 		var $container = $('#container');
 		//$container.imagesLoaded( function(){
@@ -55,7 +49,7 @@
  		
  		<div class="rightcon">
  			<form class="search">
- 				<input type="text" value="搜索" />
+ 				<input type="text" value="搜索" onfocus="if(this.value=='搜索')this.value='';" onblur="if(this.value=='')this.value='搜索'"/>
  				<button type="submit">搜索</button>
  			</form>
 	{if isset($user_info.id)}	
@@ -77,16 +71,16 @@
 	{else}
 			<div class="self_info">
 				<div class="log_reg">
-					<a href="/user/signup?height=200&width=400&modal=true" class="reg">注册</a>
-					<a href="/user/signin?height=404&width=736&modal=true" class="thickbox" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
+					<a href="/user/signup?height=200&width=400&modal=true" class="thickbox reg">注册</a>
+					<a href="/user/signin?height=404&width=736&modal=true" class="thickbox login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
 					<form id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'" action="/user/signin" method="post" enctype="multipart/form-data">
-						<p><input type="text" name="username" value="Email地址" /></p>
+						<p><input type="text" name="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
 						<p><input type="password" name="passwd" value="" /></p>
 						<p><a href="#" class="findpass">忘记密码？</a>
 						<input type="checkbox" id="rem_me" class="clear" /><label for="rem_me">下次自动登录</label></p>
 						<p><button type="submit">立即登录</button></p>
 						<p>其他帐号登录：</p>
-						<p><span><a href="#">新浪微博账号登录</a> | <a href="#">QQ账号登录</a></span></p>
+						<p><span><a href="/sns/redirect?snsid=sina&apptype=web&op=1">新浪微博账号登录</a> | <a href="/sns/redirect?snsid=qq&apptype=web&op=1">QQ账号登录</a></span></p>
 					</form>
 				</div>
 			</div>
