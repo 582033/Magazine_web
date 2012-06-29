@@ -29,5 +29,5 @@ password:<input type="text" name="passwd"><br />
 		<dd></dd>
 	</dl>
 </div>
-<a href="javascript:void(0);" class="close">关闭</a>
+<a href="javascript:parent.tb_remove();" class="close">关闭</a>
 </div>

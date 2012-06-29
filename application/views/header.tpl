@@ -62,9 +62,7 @@
  			<div class="self_info">
  				<div class="user_info">
  					<span>
- 					<a href="#">{$user_info.nickname}<img class="userhead_small" src="{$user_info.image}" width="24px" height="24px" /></a>
- 					</span>
- 					<div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
+ 					<a href="#">{$user_info.nickname}<img class="userhead_small" src="{$user_info.image}" width="24px" height="24px" /></a> </span> <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
  				</div>
  				<div class="clearfix"></div>
  				<a href="#" class="msg_tip"><span>00</span></a>
@@ -79,8 +77,8 @@
 	{else}
 			<div class="self_info">
 				<div class="log_reg">
-					<a href="/user/signon" class="reg">注册</a>
-					<a href="/user/signin" class="login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
+					<a href="/user/signup?height=200&width=400&modal=true" class="reg">注册</a>
+					<a href="/user/signin?height=404&width=736&modal=true" class="thickbox" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
 					<form id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'" action="/user/signin" method="post" enctype="multipart/form-data">
 						<p><input type="text" name="username" value="Email地址" /></p>
 						<p><input type="password" name="passwd" value="" /></p>

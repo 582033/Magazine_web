@@ -44,7 +44,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .header .log_reg{ float:left; width:130px; padding-left:56px; position:relative; z-index:9}
 .header .log_reg a{ font-size:14px; color:#FFF;}
 .header .log_reg .reg{ display:block; float:left; padding-top:5px;}
-.header .log_reg .login{ display:block; float:right; width:70px; height:25px; padding:6px 0 0 11px; background:url(../images/bg_top_login.gif) no-repeat left top; position:relative;}
+.header .log_reg .thickbox{ display:block; float:right; width:70px; height:25px; padding:6px 0 0 11px; background:url(../images/bg_top_login.gif) no-repeat left top; position:relative;}
 .header .log_reg form{ position:absolute; display:none; width:220px; padding:5px 19px; border:1px solid #DC7B09; background:#FFF; top:28px; right:0; font-size:12px;}
 .header .log_reg form a{ color:#0590B3; font-size:12px;}
 .header .log_reg form a:hover{ text-decoration:underline;}
