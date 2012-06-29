@@ -7,11 +7,10 @@
 				<li><a href="#" id="foreign">出境游</a></li>
 				<li><a href="#" id="local">国内游</a></li>
 			</ul>
-		</dd>
 		{foreach from=$tour_reader item=item key=key}
 		<dd class="tour_reader">
 			<div class="cover">
-				<a href="#"><img src="{$item.cover}" width='180px' height='276px' title="{$item.magazine_id}" alt="宠爱日记" /></a>
+				<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width='180px' height='276px' alt="{$item.name}" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
@@ -19,7 +18,7 @@
 							<ul style="margin-left:2px;">
 								<li><span>杂志：</span><span>{$item.name}</span></li>
 								<li><span>作者：</span><span>{$item.author.nickname}</span></li>
-								<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
+								<li><span>发布：</span><span>{$item.publishedAt}</span></li>
 							</ul>
 						</div>
 						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
