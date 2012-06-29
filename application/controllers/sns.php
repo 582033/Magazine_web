@@ -100,7 +100,7 @@ class Sns extends MY_Controller {
 		}
 		else { //登陆
 			if(is_array($data) && isset($data['session_id']) && $data['session_id']) {
-				return  show_error('登陆成功 session_id:'.$data['session_id'],200,'恭喜');
+				$this->__finish($apptype, Sns_Model::encodeAuthString($data['oauthstring']), $data['session_id']);
 			}
 			elseif (isset($data['unbind']) && $data['unbind']) {
 				//＠todo 输入账号页面
