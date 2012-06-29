@@ -43,18 +43,28 @@ $("document").ready(function(){
 		$(this).find(".cover").css("z-index","1");
 	});
 
-    $(".mouseover .share").mouseenter(function(){
-		$(this).parent().parent().children(".shareto").css("display","block");
-	});
-    $(".mouseover .share").mouseleave(function(){
-		$(this).parent().parent().children(".shareto").css("display","none");
-	});
-    $(".mouseover .shareto").mouseenter(function(){
-		$(this).css("display","block");
-	});
-    $(".mouseover .shareto").mouseleave(function(){
-		$(this).css("display","none");
-	});
+	$('.mouseover .share').hover(
+		function(){
+			$bdshare = $('#bdshare');
+			$share = $(this).parent().parent().find('.shareto');
+			$bdshare.appendTo($share);
+			$share.show();
+		},
+		function(){
+			$share = $(this).parent().parent().find('.shareto');
+			window.console.log(0);
+			$share.hide();
+		}
+	);
+	$('.mouseover .shareto').hover(
+		function(){
+			window.console.log(1);
+			$(this).show();
+		},
+		function(){
+			$(this).hide();
+		}
+	);
 
     $(".follows a").mouseenter(function(){
         $(".follows .gray").css("display","block");
