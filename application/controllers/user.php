@@ -136,5 +136,44 @@ class User extends Magazine {
 		$url_with_get = $this->api_host."/magazine/set_user_info?session_id=$session_id";
 		opt($url_with_get, $post);
 	}	//}}}
+	
+	public function bind() {
+		$data = array();
+		$sessionid = $this->session->userdata('session_id');
+		$this->load->model('Sns_Model');
+		$unbind = Sns_Model::getAllSns();
+		if(!$sessionid) return;
 
+		$result = request($this->api_host.'/sns/bindinfo',array('session_id'=>$sessionid),'GET');
+		if($result['httpcode']!=200) return;
+		foreach ($result['data'] AS $v) {
+			$data['bindinfo'][$v['snsid']] = $v;
+			unset($unbind[$v['snsid']]);
+		}
+		$data['unbind'] = $unbind;
+		$this->smarty->view('user/bind.tpl',$data);
+		
+	}
+	public function unbind() {
+		$data = array(
+			'error'=>null,
+			'status'=>0,
+			'data'=>null
+		);
+		$sessionid = $this->session->userdata('session_id');
+		$snsid = $this->input->get('snsid');
+		$this->load->model('Sns_Model');
+		$unbind = Sns_Model::getAllSns();
+		if($sessionid && in_array($snsid,Sns_Model::getAllSns()) && $this->input->is_ajax_request()) {
+			$snsid = $this->input->get('snsid');
+			$result = request($this->api_host.'/sns/unbind',array('session_id'=>$sessionid,'snsid'=>$snsid),'GET');
+			if($result['httpcode']!=200) {
+				$data['error'] = '';
+			}
+			elseif($result['data'] === true) {
+				$data['status'] = 'OK';
+			}
+		}
+		$this->_json_output($data);
+	}
 }

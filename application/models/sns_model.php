@@ -2,7 +2,18 @@
 
 class Sns_Model extends CI_Model{
 	static protected $apptypes = array('web','android','ios');
+	static protected $allSns = array(
+			'sina'=>'sina',
+			'qq'=>'qq',
+			//'163'=>'163',
+			//'bouban'=>'douban',
+			//'qzone'=>'qzone',
+			//'renren'=>'renren'
+			);
 	
+	static public function getAllSns() {
+		return self::$allSns;
+	}
 	static public function getAppTypes() {
 		return self::$apptypes;
 	}
