@@ -84,7 +84,6 @@ class Sns extends MY_Controller {
 		}
 		$result = request($this->apiHost.'/sns/callback',$params);
 		if($result['httpcode'] != 200) {
-			
 			return  show_error('参数错误',500);
 		}
 		$data = $result['data'];
@@ -98,7 +97,7 @@ class Sns extends MY_Controller {
 		}
 		else { //登陆
 			if(is_array($data) && isset($data['session_id']) && $data['session_id']) {
-				$this->__finish($apptype, Sns_Model::encodeAuthString($data['oauthstring']), $data['session_id']);
+				$this->__finish($apptype, Sns_Model::encodeAuthString($data['oauthstring']), $data);
 			}
 			elseif (isset($data['unbind']) && $data['unbind']) {
 				//＠todo 输入账号页面
@@ -158,9 +157,9 @@ class Sns extends MY_Controller {
 					$renderData['errormessage']='注册失败';
 					return $this->smarty->view('sns/register.tpl',$renderData);
 				}
-				$sessionid = $result['data']['session_id'];
+				$sessionData = $result['data'];
 				$bindParams = array(
-						'session_id'=>$sessionid,
+						'session_id'=>$sessionData['session_id'],
 						'snsid'=>$snsid,
 						'authstring'=>Sns_Model::decodeAuthString($status)
 						);
@@ -170,7 +169,7 @@ class Sns extends MY_Controller {
 				}
 				else {
 					//return  show_error('注册并绑定成功 session_id:'.$sessionid,200,'恭喜');
-					$this->__finish($apptype, $status, $sessionid);
+					$this->__finish($apptype, $status, $sessionData);
 				}
 			}
 			else {
@@ -213,9 +212,9 @@ class Sns extends MY_Controller {
 					$renderData['errormessage']='登陆失败';
 					return $this->smarty->view('sns/login.tpl',$renderData);
 				}
-				$sessionid = $result['data']['session_id'];
+				$sessionData = $result['data'];
 				$bindParams = array(
-						'session_id'=>$sessionid,
+						'session_id'=>$sessionData['session_id'],
 						'snsid'=>$snsid,
 						'authstring'=>Sns_Model::decodeAuthString($status)
 				);
@@ -225,7 +224,7 @@ class Sns extends MY_Controller {
 				}
 				else {
 					//return  show_error('登陆并绑定成功 session_id:'.$sessionid,200,'恭喜');
-					$this->__finish($apptype, $status, $sessionid);
+					$this->__finish($apptype, $status, $sessionData);
 				}
 			}
 			else {
@@ -239,7 +238,7 @@ class Sns extends MY_Controller {
 		}
 	}
 	
-	private function __finish($apptype,$status,$sessionid) {
+	private function __finish($apptype,$status,array &$data) {
 		switch ($apptype) {
 			case 'web':
 				$status = Sns_Model::decodeAuthString($status);
@@ -247,8 +246,12 @@ class Sns extends MY_Controller {
 				if(isset($status['state'])) {
 					$status['state'] = @json_decode(base64_decode($status['state']),true);
 				}
-				$this->session->set_userdata('session_id',$sessionid);
-				$u = '/index.php';
+				$sessionData = array(
+						'id'=>$data['id'],
+						'session_id'=>$data['session_id']
+						);
+				$this->session->set_userdata($sessionData);
+				$u = '/';
 				if(isset($status['state']['refer']) && isset($status['state']['refer'])) {
 					$u = $status['state']['refer'];
 				}
