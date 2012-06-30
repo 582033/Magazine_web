@@ -12,6 +12,7 @@
 	function auth_user () {
 		if ($this->user_id) {
 			$user_info = request($this->config->item('api_host') . "/user/" . $this->user_id);
+			$user_info['data']['image'] =  $user_info['data']['image'] ? $user_info['data']['image'] : "/sta/images/userhead/50.jpg";
 			$data = array('user_info' => $user_info['data']);
 			$this->smarty->assign($data);
 		}
