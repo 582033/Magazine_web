@@ -8,38 +8,19 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
 <link rel="stylesheet" type="text/css" href="/sta/styles/thickbox.css"/>
 <style type="text/css">
-.item{
-	float:left;
-	}
 </style>
 <title>{$title}</title>
 <script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="/sta/js/magazine.js"></script>
 <script type="text/javascript" src="/sta/js/thickbox.js"></script>
-<script type="text/javascript" src="/sta/js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="/sta/js/check.js"></script>
-<script type="text/javascript" src="/sta/js/jquery.infinitescroll.min.js"></script>
 <!--[if IE 6]>
 	<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
 	<script type="text/javascript">
 		DD_belatedPNG.fix('.read,.more a,.userinfo p a,.edit');
 	</script>
 <![endif]-->
-<script type="text/javascript">
-	$(function(){
-		var $container = $('#container');
-		//$container.imagesLoaded( function(){
-		  $container.masonry({
-			itemSelector : '.item',
-			columnWidth:200
-		  });
-		//});
-		var $item = $('<div class="item">111</div><div class="item">222</div><div class="item">333</div>');
-		$('#container').append( $item ).masonry( 'appended', $item );
-	});
-	
-</script>
+</head>
 <div class="header">
  	<div class="container clearfix">
  		<a href="#" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>

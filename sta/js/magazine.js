@@ -45,20 +45,19 @@ $("document").ready(function(){
 
 	$('.mouseover .share').hover(
 		function(){
-			$bdshare = $('#bdshare');
+			$bdshare = $('#bdshare').show();
 			$share = $(this).parent().parent().find('.shareto');
 			$bdshare.appendTo($share);
 			$share.show();
 		},
 		function(){
 			$share = $(this).parent().parent().find('.shareto');
-			window.console.log(0);
 			$share.hide();
 		}
 	);
 	$('.mouseover .shareto').hover(
 		function(){
-			window.console.log(1);
+			$('#bdshare').show();
 			$(this).show();
 		},
 		function(){
@@ -81,4 +80,5 @@ $("document").ready(function(){
         $(this).css("z-index","0");
     });
 })
+
 

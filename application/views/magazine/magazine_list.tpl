@@ -30,7 +30,7 @@
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
-							<ul>
+	<!--						<ul>
 								<li><a href="#" class="s_qq">分享到QQ空间</a></li>
 								<li><a href="#" class="s_sina">分享到新浪微博</a></li>
 								<li><a href="#" class="s_renren">分享到人人网</a></li>
@@ -38,7 +38,7 @@
 								<li><a href="#" class="s_douban">分享到豆瓣</a></li>
 								<li><a href="#" class="s_baidu">分享到百度空间</a></li>
 								<li><a href="#" class="s_kaixin01">分享到开心网</a></li>
-							</ul>
+							</ul>-->
 						</div>
 					</div>
 				</div>
@@ -50,4 +50,4 @@
 {$page_list}
 </div>
 {include file='footer.tpl'}
-
+{include file='share.tpl'}

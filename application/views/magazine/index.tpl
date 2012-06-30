@@ -1,26 +1,110 @@
 {include file='header.tpl'}
+<script type="text/javascript" src="/sta/js/jquery.cycle.all.js"></script>
+<script>
+$(document).ready(function(){
+	$('#magazine_gallery_container').cycle({
+		fx:     'scrollHorz',
+		speed:  500,
+		timeout: 0,
+		next:   '#next1',
+		prev:   '#prev1',
+		pager: $('.mag_list .point'),
+		pagerAnchorBuilder : function(i, slide) {
+			return $('.mag_list .point').children().eq(i);
+		},
+		activePagerClass:'sel',
+		after:function(c,n,o) {
+			if (o.speed == 0) {
+			  return setTimeout(function() {
+				toggleM(o);
+			  }, 100);
+			} else {
+			  toggleM(o);
+			}
+		}
+	});
+	function toggleM(o) {
+		$('.mag_list .topic h2').each(function(i){
+					if(i==o.currSlide) {
+						$(this).show();
+					}
+					else {
+						$(this).hide();
+					}
+				});
+		$('.mag_list .topic p').each(function(i){
+					if(i==o.currSlide) {
+						$(this).show();
+					}
+					else {
+						$(this).hide();
+					}
+				});
+	}
+	
+	$('#element_gallery_container').cycle({
+		fx:     'scrollHorz',
+		speed:  500,
+		timeout: 0,
+		next:   '#next2',
+		prev:   '#prev2',
+		pager: $('.element_list .point'),
+		pagerAnchorBuilder : function(i, slide) {
+			return $('.element_list .point').children().eq(i);
+		},
+		activePagerClass:'sel',
+		after:function(c,n,o) {
+			if (o.speed == 0) {
+			  return setTimeout(function() {
+				toggleE(o);
+			  }, 100);
+			} else {
+			  toggleE(o);
+			}
+		}
+	});
+	function toggleE(o) {
+		$('.element_list .topic h2').each(function(i){
+					if(i==o.currSlide) {
+						$(this).show();
+					}
+					else {
+						$(this).hide();
+					}
+				});
+	}
+});
+</script>
 <div class="main">
-
 	<dl class="mag_list clearfix">
 		<dt><strong>看杂志</strong> <a href="/mag" class="more">More</a></dt>
 		<dd class="topic">
 			<div class="slide_pic">
-				<a href="#"><img src="/sta/images/temp/580x576.jpg" alt="描述" /></a>
+				<div id="magazine_gallery_container">
+					{foreach from=$mag_gallery item=item key=key}
+						<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width="580" height="576" alt="描述" /></a>
+					{/foreach}
+				</div>
 				<div class="tab">
-					<a href="javascript:void(0);" class="sel">1</a>
-					<a href="javascript:void(0);">2</a>
-					<a href="javascript:void(0);">3</a>
-					<a href="javascript:void(0);">4</a></div>
+					<div class="point">
+						<a href="#" class="sel"></a>
+						<a href="#"></a>
+						<a href="#"></a>
+						<a href="#"></a>
+					</div>
+				</div>
 				<div class="slide_nav">
-					<a href="javascript:void(0);" class="prev">aaaaaaa上一个</a>
-					<a href="javascript:void(0);" class="next">下一个</a>
+					<a href="javascript:void(0);" class="prev" id="prev1">上一个</a>
+					<a href="javascript:void(0);" class="next" id="next1">下一个</a>
 				</div>
 			</div>
-			<h2><a href="#">那些年 让我们一见倾心的鞋子</a></h2>
-			<p>
-				<a href="#">描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</a>
-				<a href="#" class="readmore">阅读+</a>
-			</p>
+			{foreach from=$mag_gallery item=item key=key}
+				<h2><a href="#">{$item.name}</a></h2>
+				<p>
+					<a href="#">{$item.intro|truncate:50}</a>
+					<a href="#" class="readmore">阅读+</a>
+				</p>
+			{/foreach}
 		</dd>
 		{foreach from=$mag_list item=item key=key}
 		<dd>
@@ -59,7 +143,7 @@
 				</div>
 			</div>
 			<h3><a href="#">{$item.name}</a></h3>
-			<p>{$item.intro}</p>
+			<p>{$item.intro|truncate:30}</p>
 		</dd>
 		{/foreach}
 	</dl>
@@ -69,19 +153,27 @@
 		<dt><strong>爱发现</strong> <a href="/find" class="more">More</a></dt>
 		<dd class="topic">
 			<div class="slide_pic">
-				<a href="#"><img src="/sta/images/temp/580x380.jpg" alt="描述" /></a>
+				<div id="element_gallery_container">
+					{foreach from=$elem_gallery item=item key=key}
+						<a href="#"><img src="{$item.image.url}" width="580" height="380" alt="描述" /></a>
+					{/foreach}
+				</div>
 				<div class="tab">
-					<a href="javascript:void(0);" class="sel">1</a>
-					<a href="javascript:void(0);">2</a>
-					<a href="javascript:void(0);">3</a>
-					<a href="javascript:void(0);">4</a>
+					<div class="point">
+						<a href="#" class="sel"></a>
+						<a href="#"></a>
+						<a href="#"></a>
+						<a href="#"></a>
+					</div>
 				</div>
 				<div class="slide_nav">
-					<a href="javascript:void(0);" class="prev">上一个</a>
-					<a href="javascript:void(0);" class="next">下一个</a>
+					<a href="javascript:void(0);" class="prev" id="prev2">上一个</a>
+					<a href="javascript:void(0);" class="next" id="next2">下一个</a>
 				</div>
 			</div>
-			<h2><a href="#">那些年 让我们一见倾心的鞋子</a></h2>
+			{foreach from=$elem_gallery item=item key=key}
+				<h2><a href="#">1那些年 让我们一见倾心的鞋子</a></h2>
+			{/foreach}
 		</dd>
 		{foreach from=$elem_list item=item key=key}
 		{if $key != 4}
@@ -130,4 +222,3 @@
 </div>
 {include file='share.tpl'}
 {include file='footer_big.tpl'}
-

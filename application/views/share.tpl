@@ -1,5 +1,5 @@
 <!-- Baidu Button BEGIN -->
-    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="display:none;">
         <a class="bds_tsina"></a>
         <a class="bds_renren"></a>
         <a class="bds_tqq"></a>

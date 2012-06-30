@@ -7,7 +7,7 @@
 		<div id="container">
 			{foreach from=$element_list item=item key=key}
 			<dd class="item">
-				<div class="cover" style="width:{$item.width}px;height:{$item.height}px;overflow:hidden;">
+				<div class="cover" style="width:{$item.width}px;height:{$item.height}px;">
 					<a href="#"><img src="{$item.image.180}" alt="宠爱日记" /></a>
 					<div class="mouseover">
 						<div class="bg"></div>
@@ -16,6 +16,9 @@
 							<div class="more">
 									<a href="#" class="share">分享</a>
 									<a href="#" class="like">喜欢</a>
+							</div>
+							<div class="shareto">
+								<div class="bg"></div>
 							</div>
 						</div>
 					</div>
@@ -26,4 +29,8 @@
 	</dl>
 {$page_list}
 </div>
+<script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="/sta/js/element.js"></script>
+<script type="text/javascript" src="/sta/js/jquery.infinitescroll.min.js"></script>
 {include file="footer.tpl"}
+{include file='share.tpl'}

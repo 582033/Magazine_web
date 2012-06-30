@@ -91,7 +91,7 @@
 			<ul>
 				<li><a class="sel" id="tour_reader">旅游攻略</a></li>
 				<li><a id="foreign">出境游</a></li>
-				<li><a id="local">国内游</a></li>
+				<li><a id="domestic">国内游</a></li>
 			</ul>
 		</dd>
 		<dt><a href="/mag_list/tour_reader/1" class="more">More</a></dt>
@@ -118,7 +118,7 @@
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
-							<ul>
+	<!--						<ul>
 								<li><a href="#" class="s_qq">分享到QQ空间</a></li>
 								<li><a href="#" class="s_sina">分享到新浪微博</a></li>
 								<li><a href="#" class="s_renren">分享到人人网</a></li>
@@ -126,7 +126,7 @@
 								<li><a href="#" class="s_douban">分享到豆瓣</a></li>
 								<li><a href="#" class="s_baidu">分享到百度空间</a></li>
 								<li><a href="#" class="s_kaixin01">分享到开心网</a></li>
-							</ul>
+							</ul>-->
 						</div>
 					</div>
 				</div>
@@ -157,7 +157,7 @@
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
-							<ul>
+		<!--					<ul>
 								<li><a href="#" class="s_qq">分享到QQ空间</a></li>
 								<li><a href="#" class="s_sina">分享到新浪微博</a></li>
 								<li><a href="#" class="s_renren">分享到人人网</a></li>
@@ -165,7 +165,7 @@
 								<li><a href="#" class="s_douban">分享到豆瓣</a></li>
 								<li><a href="#" class="s_baidu">分享到百度空间</a></li>
 								<li><a href="#" class="s_kaixin01">分享到开心网</a></li>
-							</ul>
+							</ul>-->
 						</div>
 					</div>
 				</div>
@@ -173,8 +173,8 @@
 			<h3><a href="#">{$item.name}</a></h3>
 		</dd>
 		{/foreach}
-		{foreach from=$local item=item key=key}
-		<dd style="display:none;" class="local">
+		{foreach from=$domestic item=item key=key}
+		<dd style="display:none;" class="domestic">
 			<div class="cover">
 				<a href="#"><img src="{$item.cover}" width='180px' height='276px' title="{$item.magazine_id}" alt="宠爱日记" /></a>
 				<div class="mouseover">
@@ -196,7 +196,7 @@
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
-							<ul>
+				<!--			<ul>
 								<li><a href="#" class="s_qq">分享到QQ空间</a></li>
 								<li><a href="#" class="s_sina">分享到新浪微博</a></li>
 								<li><a href="#" class="s_renren">分享到人人网</a></li>
@@ -204,7 +204,7 @@
 								<li><a href="#" class="s_douban">分享到豆瓣</a></li>
 								<li><a href="#" class="s_baidu">分享到百度空间</a></li>
 								<li><a href="#" class="s_kaixin01">分享到开心网</a></li>
-							</ul>
+							</ul>-->
 						</div>
 					</div>
 				</div>
@@ -216,4 +216,6 @@
 
 	
 </div>
+<script type="text/javascript" src="/sta/js/magazine_main.js"></script>
 {include file="footer.tpl"}
+{include file='share.tpl'}

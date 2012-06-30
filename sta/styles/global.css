@@ -97,7 +97,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .element_list .slide_pic { position:relative; width:580px; height:380px;}
 .mag_list .slide_pic .tab,.element_list .slide_pic .tab{ position:absolute; left:0; bottom:10px; width:580px; text-align:center; z-index:99;}
 .mag_list .slide_pic .tab a,.element_list .slide_pic .tab a{ display:inline-block; width:20px; height:20px; background:url(../images/slide_cur.png) no-repeat left bottom; text-indent:-90px; +text-indent:0; +font-size:1px; overflow:hidden;}
-.mag_list .slide_pic .tab a.sel,.element_list .slide_pic .tab a.sel{ background-position:left top;}
+.mag_list .slide_pic .tab .point a.sel,.element_list .slide_pic .tab .point a.sel{ background-position:left top;}
 .mag_list .slide_pic .slide_nav,.element_list .slide_pic .slide_nav{ position:absolute; right:0; bottom:-53px; width:100px; z-index:99;}
 .mag_list .slide_pic .slide_nav a,.element_list .slide_pic .slide_nav a{ float:left; display:block; width:43px; height:43px; text-indent:-100px; overflow:hidden; background:url(../images/slide_nav.gif) no-repeat left top;}
 .mag_list .slide_pic .slide_nav a.next,.element_list .slide_pic .slide_nav a.next{ float:right; background-position:right top;}
@@ -179,6 +179,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .mag_list.m_index dd.menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8e8e8; border-bottom:1px solid #FFF;}
 .mag_list.m_index dt { height:30px; border-top:none;}
 .mag_list.m_index dt .more{ height:30px;}
+.item{float:left;}
 
 .mag_list.m_topic dt strong{ width:980px;}
 .mag_list.m_topic dt strong span{ float:left; display:block; width:100px; height:36px;}
