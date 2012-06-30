@@ -15,6 +15,22 @@ window.onload= function(){
 	detail_resize();
 }
 
+function signin(){
+	var options = { 
+		dataType : 'json', 
+		success:    function(result) { 
+			if (result.httpcode == '200') {
+				self.parent.tb_remove();	
+				window.location="/";
+			}
+			else {
+				$(".err_msg").html("<font color='red'>"+result+"</font>");
+			}
+		} 
+	}; 
+	$('[name="form"]').ajaxForm(options);
+}
+
 function detail_resize(){
 	page_height = $(".main").height();
 	if ($(".left_main").height()<page_height){

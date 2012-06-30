@@ -44,14 +44,17 @@ class User extends Magazine {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
-			$return = $this->Login_Model->login($username, $passwd);
+			$need_remember = $this->input->post('need_remember');
+			$return = $this->Login_Model->login($username, $passwd, $need_remember);
 			/*
 			echo "<pre>";
 			print_r($return);
 			$this->smarty->assign('commend_author', $return);
 			*/
 			//redirect($this->current_url);
-			redirect("/");
+			//redirect("/");
+			echo json_encode($return);
+			exit;
 		}
 		$this->smarty->view('user/signin.tpl');
 	}	//}}}
