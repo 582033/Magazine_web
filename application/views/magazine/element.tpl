@@ -7,7 +7,7 @@
 		<div id="container">
 			{foreach from=$element_list item=item key=key}
 			<dd class="item">
-				<div class="cover" style="width:{$item.width}px;{if $item.thumbSize == '1x2'}height:{$item.height}px;{else}height:{$item.height-10}px;{/if}overflow:hidden;">
+				<div class="cover" style="width:{$item.width}px;height:{$item.height}px;overflow:hidden;">
 					<a href="#"><img src="{$item.image.180}" alt="宠爱日记" /></a>
 					<div class="mouseover">
 						<div class="bg"></div>

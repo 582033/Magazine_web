@@ -63,9 +63,16 @@ class Magazine extends MY_Controller {
 		for ($i = 0; $i < count($element_list); $i++){
 			preg_match($mode, $element_list[$i]['image']['180'], $matches);
 			$size[$i] = $matches[0];
-			$element_list[$i]['width'] = substr($size[$i], 0, 3);
-			$element_list[$i]['height'] = substr($size[$i], 4, 3);
+			if ($element_list[$i]['thumbSize'] == '1x2'){
+				$element_list[$i]['width'] = substr($size[$i], 0, 3);
+				$element_list[$i]['height'] = substr($size[$i], 4, 3);
+			}else{
+				$element_list[$i]['width'] = substr($size[$i], 0, 3);
+				$element_list[$i]['height'] = substr($size[$i], 4, 3) - 10;
+			}
 		}
+//		echo "<pre>";
+//		print_r($element_list);
 		$data = array(
 					'element_list' => $element_list,
 					'page_list' => $page_list,
@@ -73,18 +80,29 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
 
-	function magazine_list($page = '1'){		//杂志列表页面{{{
-		$limit = 25;
+	function magazine_list($tag = 'tour_reader', $page = '1'){		//杂志列表页面{{{
+		$page = $page ? $page : 1;
+		$limit = 5;
 		$start = ($page-1)*$limit;
-	//	$page_list = $this->page_model->page_list("/magazine/magazine_list", $limit, $a, $page);
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
+		$totalResults = $mag_list[$tag]['data']['totalResults'];
+		$page_list = $this->page_model->page_list("/mag_list/$tag", $limit, $totalResults, $page);
 		$data = array(
+				'items' => $mag_list[$tag]['data']['items'],
+				'page_list' => $page_list,
+				'tag' => $tag,
+				);
+		$this->smarty->view('magazine/magazine_list.tpl', $data);
+
+	//	$page_list = $this->page_model->page_list("/mag_list/$tag/$page", $limit, $totalResults, $page);
+/*		$data = array(
 					'tour_reader' => $mag_list['tour_reader']['data']['items'],
 					'foreign' => $mag_list['foreign']['data']['items'],
 					'local' => $mag_list['local']['data']['items'],
-		//			'page_list' => $page_list,
+					'page_list' => $page_list,
 					);
 		$this->smarty->view('magazine/magazine_list.tpl', $data);
+*/
 	}//}}}
 
 	function main_magazine_list(){		//杂志二级列表页面{{{
@@ -94,7 +112,7 @@ class Magazine extends MY_Controller {
 		$data = array(
 					'tour_reader' => $mag_list['tour_reader']['data']['items'],
 					'foreign' => $mag_list['foreign']['data']['items'],
-					'local' => $mag_list['local']['data']['items'],					
+					'domestic' => $mag_list['domestic']['data']['items'],					
 					);
 		$this->smarty->view('magazine/magazine.tpl', $data);
 	}//}}}

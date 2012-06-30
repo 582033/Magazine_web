@@ -94,7 +94,7 @@
 				<li><a id="local">国内游</a></li>
 			</ul>
 		</dd>
-		<dt><a href="/magazine/magazine_list" class="more">More</a></dt>
+		<dt><a href="/mag_list/tour_reader/1" class="more">More</a></dt>
 		{foreach from=$tour_reader item=item key=key}
 		<dd class="tour_reader">
 			<div class="cover">

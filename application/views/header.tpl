@@ -19,6 +19,7 @@
 <script type="text/javascript" src="/sta/js/thickbox.js"></script>
 <script type="text/javascript" src="/sta/js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="/sta/js/check.js"></script>
+<script type="text/javascript" src="/sta/js/jquery.infinitescroll.min.js"></script>
 <!--[if IE 6]>
 	<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
 	<script type="text/javascript">
@@ -34,7 +35,10 @@
 			columnWidth:200
 		  });
 		//});
+		var $item = $('<div class="item">111</div><div class="item">222</div><div class="item">333</div>');
+		$('#container').append( $item ).masonry( 'appended', $item );
 	});
+	
 </script>
 <div class="header">
  	<div class="container clearfix">

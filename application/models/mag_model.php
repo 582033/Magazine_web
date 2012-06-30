@@ -115,11 +115,11 @@ class Mag_Model extends CI_Model {
 	function _get_magazines_by_tag($limit, $start){		//杂志列表页数据{{{
 		$tour_reader = request($this->api_host . "/magazines?limit=$limit&start=$start&tag=旅游攻略");
 		$foreign = request($this->api_host . "/magazines?limit=$limit&start=$start&tag=出境游");
-		$local = request($this->api_host . "/magazines?limit=$limit&start=$start&tag=国内游");
+		$domestic = request($this->api_host . "/magazines?limit=$limit&start=$start&tag=国内游");
 		$mag_list = array(
 						'tour_reader' => $tour_reader,
 						'foreign' => $foreign,
-						'local' => $local,
+						'domestic' => $domestic,
 						);
 		return $mag_list;
 	}//}}}

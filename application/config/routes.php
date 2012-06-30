@@ -67,6 +67,8 @@
 $route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
+
+$route['mag_list/(tour_reader|foreign|domestic)(/(:num))?'] = 'magazine/magazine_list/$1/$3';
 $route['find'] = 'magazine/find_elements';
 $route['find/(:num)'] = 'magazine/find_elements/$1';
 
