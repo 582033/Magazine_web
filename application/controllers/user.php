@@ -151,6 +151,7 @@ class User extends Magazine {
 			unset($unbind[$v['snsid']]);
 		}
 		$data['unbind'] = $unbind;
+		$data['session_id'] = $sessionid;
 		$this->smarty->view('user/bind.tpl',$data);
 		
 	}

@@ -14,7 +14,7 @@
 			<dl class="clearfix">
 				<dt>未绑定帐号：</dt>
 				{foreach from=$unbind item=item key=key}
-				<dd><a href="/sns/redirect?snsid={$item}&apptype=web&op=2"><img src="/sta/images/share/{$item}.gif" alt="新浪微博" /></a></dd>				
+				<dd><a href="/sns/redirect?snsid={$item}&apptype=web&op=2&session_id={$session_id}"><img src="/sta/images/share/{$item}.gif" alt="新浪微博" /></a></dd>				
 				{/foreach}
 			</dl>
 	</div>

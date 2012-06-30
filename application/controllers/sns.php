@@ -89,7 +89,9 @@ class Sns extends MY_Controller {
 		$data = $result['data'];
 		if($state['op']==2) { //绑定
 			if($data) {
-				return  show_error('绑定成功',200,'恭喜');
+				$u = isset($state['refer']) && $state['refer'] ? $state['refer']:'/user/bind';
+				redirect($u);
+				//return  show_error('绑定成功',200,'恭喜');
 			}
 			else {
 				return  show_error('绑定失败',500);
