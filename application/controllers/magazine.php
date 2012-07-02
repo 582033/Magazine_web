@@ -179,13 +179,6 @@ class Magazine extends MY_Controller {
 					);
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
-
-	function comment_list($id, $page){		//杂志评论页面{{{
-	//	$this->auth->check();
-		$limit = 10;
-		$start = ($page-1)*$limit;
-		$page = $page ? $page : 1;
-	
 	function comment_list($id){		//杂志评论页面{{{
 		$this->auth->check();
 		$magazine = $this->mag_model->_get_magazine_by_id($id);

@@ -51,7 +51,7 @@
 						<div class="more" border:1px solid blue;>
 								<a href="/comment/magazine/{$item.id}" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
-								<a href="#" class="like">{$item.likes}</a>
+								<a href="javascript:void(0);" class="like">{$item.likes}</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
@@ -112,7 +112,7 @@
 						<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
-								<a href="" class="like">喜欢</a>
+								<a href="javascript:void(0);" class="like">喜欢</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
@@ -132,7 +132,7 @@
 						<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
+								<a href="javascript:void(0);" class="like">喜欢</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
