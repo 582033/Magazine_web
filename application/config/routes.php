@@ -81,5 +81,9 @@ $route['v1/user/(:num)']='user/user/$1';
 $route['user/element/(:num)']='user/element/$1';
 $route['user/bookstore/(:num)']='user/bookstore/$1';
 
+$route['comment/magazine/(:num)'] = '/magazine/comment_list/$1';
+
+$route['like/(magazine|element)/(:num)'] = '/magazine/magazine_like/$1/$2';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

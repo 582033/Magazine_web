@@ -1,40 +1,6 @@
 {include file='header.tpl'}
 <script type="text/javascript" src="/sta/js/jquery.cycle.all.js"></script>
-<script>
-$(document).ready(function(){
-	$('#magazine_gallery_container').cycle({
-		fx:     'scrollHorz',
-		speed:  500,
-		timeout: 0,
-		next:   '#next1',
-		prev:   '#prev1',
-		pager: $('.mag_list .point'),
-		pagerAnchorBuilder : function(i, slide) {
-			return $('.mag_list .point').children().eq(i);
-		},
-		activePagerClass:'sel',
-		after:function(c,n,o) {
-			if (o.speed == 0) {
-			  return setTimeout(function() {
-				toggleM(o);
-			  }, 100);
-			} else {
-			  toggleM(o);
-			}
-		}
-	});
-	function toggleM(o) {
-		$('.mag_list .topic h2').each(function(i){
-					if(i==o.currSlide) {
-						$(this).show();
-					}
-					else {
-						$(this).hide();
-					}
-				});
-	}
-})
-</script>
+<script type="text/javascript" src="/sta/js/gallery.js"></script>
 <div class="main">
 	<dl class="mag_list m_topic clearfix">
 		<dt><strong><span><a href="#">看杂志</a></span></strong></dt>

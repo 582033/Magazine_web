@@ -148,4 +148,9 @@ class Mag_Model extends CI_Model {
 		$element = request($this->api_host . "/elements?limit=$limit&start=$start");
 		return $element;
 	}//}}}
+	
+	function _like_magazine(){		//获取用户喜欢{{{
+		request($this->api_host . "/");
+	}//}}}
+//	request(url, array(),'POST')
 }

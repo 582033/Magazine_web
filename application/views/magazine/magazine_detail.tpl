@@ -119,7 +119,7 @@
 			{/foreach}
 		</dl>
 		<dl class="mag_topic">
-			<dt>推荐的杂志</dt>
+			<dt>猜你喜欢</dt>
 			{foreach from=$maylike item=item}
 			<dd><a href="/magazine/magazine_detail?id={$item.id}" title="{$item.name}"><img src="{$item.cover}" alt="{$item.name}" /></a></dd>
 			{/foreach}

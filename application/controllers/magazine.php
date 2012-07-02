@@ -180,7 +180,21 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
 	
+	function comment_list($id){		//杂志评论页面{{{
+	//	$this->auth->check();
+		$magazine = $this->mag_model->_get_magazine_by_id($id);
+		$data = array(
+					'magazine' => $magazine,
+					);
+		$this->smarty->view('magazine/comment_list.tpl', $data);
+	}//}}}
 	
+	function like($type, $type_id){		//喜欢杂志{{{
+		//$this->auth->check();
+		echo $type . "--" . $type_id;
+		echo $this->session->userdata('id');
+	//	$this->auth->check();
+	}//}}}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	function mag_list (){	//杂志列表{{{
