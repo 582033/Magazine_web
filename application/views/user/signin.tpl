@@ -1,3 +1,45 @@
+{literal}
+<script>
+$(function(){
+	var $user = $('[name="username"]');
+	var $pwd = $('[name="passwd"]');
+	$user.focusout(function(){checkUser()});
+	$pwd.focusout(function(){checkPwd()});
+	checkUser = function() {
+		if (isEmpty($user.val())) {
+			$(".err_msg").text(window.errMessage['userempty']);
+			return false;
+		}
+		if (!checkEmail($user.val())) {
+			$user.next().text(window.errMessage['erremail']);
+			return false;
+		}
+		$user.next().text('');
+		return true;
+	};
+	checkPwd = function() {
+		if (isEmpty($pwd.val())) {
+			$pwd.next().text(window.errMessage['pwdempty']);
+			return false;
+		}
+		if($pwd.val().length<6 || $pwd.val().length>16) {
+			$pwd.next().text(window.errMessage['pwdlength']);
+			return false;
+		}
+		if($pwd.val() != $cpwd.val()) {
+			$pwd.next().text(window.errMessage['confirmpwd']);
+			return false;
+		}
+		$pwd.next().text('');
+		return true;
+	}
+	$('form').submit(function(){
+		if(!checkUser()) return false;
+		if(!checkPwd()) return false;
+	});
+})
+</script>
+{/literal}
 {if !$commend_author}
 <div class="dialog login">
  	<div class="bg"></div>

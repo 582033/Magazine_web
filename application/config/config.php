@@ -401,8 +401,11 @@ $config['mq_user'] = 'guest';
 $config['mq_pass'] = 'guest';
 
 
-$config['api_host'] = 'http://api.1001s.cn/vi';
+$config['api_host'] = 'http://api.1001s.cn/v1';
 $config['web_host'] = 'http://www.1001s.cn';
+
+$config['cookie_expire'] = '1209600';//cookie缓存时间,14天
+
 if (file_exists(APPPATH. 'config/local.config.php')){
 	include(APPPATH. 'config/local.config.php');
 }
