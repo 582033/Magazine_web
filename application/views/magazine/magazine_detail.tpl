@@ -1,5 +1,4 @@
 {include file="header.tpl"}
-<script type="text/javascript" src="/sta/js/jquery.jscrollpane.min.js"></script>
 <div class="current"><a href="#">杂志</a> &gt;<a href="#" class="current">{$magazine.cate}</a> &gt; <a href="#" class="cur">{$magazine.name}</a></div>
 
 <div class="main mag_preview clearfix">
