@@ -401,7 +401,7 @@ $config['mq_user'] = 'guest';
 $config['mq_pass'] = 'guest';
 
 
-$config['api_host'] = 'http://api.in1001.com';
+$config['api_host'] = 'http://api.in1001.com/v1';
 $config['web_host'] = 'http://www.in1001.com';
 
 $config['cookie_expire'] = '1209600';//cookie缓存时间,14天
