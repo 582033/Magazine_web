@@ -34,7 +34,7 @@
 				<!--span class="liked"><a href="javascript:void(0)" title="已经喜欢">已经喜欢</a>2121</span-->
 			</p>
 		</div>
-		
+
 		<dl class="preview">
 			<dt>精彩内容预览</dt>
 			<dd class="scrollbar">
@@ -45,73 +45,41 @@
 					</ul>
 			</dd>
 		</dl>
-			
-		
-		
-		
+
+
+
 		<div class="comment_preview">
 			<h3>留言板</h3>
-			<form class="comment_sub">
+			<form id="comment" class="comment_sub" action="/magazine/refresh_comment?object_id={$magazine.id}&start=0&limit=5" method="post">
 				<img src="/sta/images/userhear_def.gif" alt="用户头像" />
-				<textarea></textarea>
-				<button type="submit">发表评论</button>
+				<textarea class="text" name="content"></textarea>
+				<input type="button" id="add" value="发布"/>
 			</form>
-			
-			<dl class="clearfix">
-				<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
+
+			<dl id="list" class="clearfix">
+				{foreach from=$comment item=item}
+				<dt><a href="javascript:void(0)"><img src="{$item.author.image}" alt="用户头像" /></a></dt>
 				<dd>
-					<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-					<p>回复内容是这样的，我就是回复内容</p>
+					<p class="info"><a href="javascript:void(0)" class="author">{$item.author.nickname}</a><span></span></p>
+					<p>{$item.content}</p>
 				</dd>
-				<dd class="edit_reply"><a href="#">回复</a></dd>
+				<dd class="edit_reply"><a href="javascript:void(0)" class="reply">回复</a></dd>
+				{/foreach}
 			</dl>
-			<dl class="clearfix">
-				<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-				<dd>
-					<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-					<p>回复内容是这样的，我就是回复内容</p>
-				</dd>
-				<dd class="edit_reply"><a href="#">回复</a></dd>
-			</dl>
-			<dl class="clearfix">
-				<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-				<dd>
-					<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-					<p>回复内容是这样的，我就是回复内容</p>
-				</dd>
-				<dd class="edit_reply"><a href="#">回复</a></dd>
-			</dl>
-			<dl class="clearfix">
-				<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-				<dd>
-					<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-					<p>回复内容是这样的，我就是回复内容</p>
-				</dd>
-				<dd class="edit_reply"><a href="#">回复</a></dd>
-			</dl>
-			<dl class="clearfix">
-				<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-				<dd>
-					<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-					<p>回复内容是这样的，我就是回复内容</p>
-				</dd>
-				<dd class="edit_reply"><a href="#">回复</a></dd>
-			</dl>
-			
-			
+
 				<p class="more_comment">
-					<a href="#">查看全部123条留言</a>
+					<a href="/comment/magazine/{$magazine.id}">查看全部留言</a>
 				</p>
-			
+
 		</div>
-		
+
 	</div>
 
 	<div class="sidebar_right">
 		<div class="topic">
 		<a href="#"><img src="/sta/images/temp/230x180.jpg" alt="预览" /></a>
 		</div>
-		
+
 		<dl class="mag_topic">
 			<dt>推荐的杂志</dt>
 			{foreach from=$recommendation item=item}

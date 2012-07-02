@@ -33,7 +33,7 @@
  			<li class="find"><a href="/find">发现</a></li>
  			<li class="soft"><a href="/soft">软件</a></li>
  		</ul>
- 		
+
  		<div class="rightcon">
  			<form class="search">
  				<input type="text" value="搜索" onfocus="if(this.value=='搜索')this.value='';" onblur="if(this.value=='')this.value='搜索'"/>

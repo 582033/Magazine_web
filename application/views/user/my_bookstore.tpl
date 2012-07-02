@@ -3,7 +3,7 @@
 		<dd class="menu">
 		{include file='user/user_nav.tpl'}
 		</dd>
-		<dt><a href="#" class="sel">已发布的杂志<span>(12)</span></a>　|　<a href="#">未发布的杂志<span>(12)</span></a></dt>
+		<dt style="display:none;"><a href="#" class="sel">已发布的杂志<span>(12)</span></a>　|　<a href="#">未发布的杂志<span>(12)</span></a></dt>
 		{foreach from=$bookstore.items item=item}
 		<dd>
 			<div class="cover">

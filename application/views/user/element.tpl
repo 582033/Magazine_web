@@ -3,11 +3,11 @@
 		<dd class="menu">
 		{include file='user/user_nav.tpl'}
 		</dd>
-		<dt><a href="#" class="sel">全部发现<span>(12)</span></a>　|　<a href="#">发现的美图<span>(12)</span></a>　|　<a href="#">发现的视频<span>(12)</span></a></dt>
+		<dt style="display:none;"><a href="#" class="sel">全部发现<span>(12)</span></a>　|　<a href="#">发现的美图<span>(12)</span></a>　|　<a href="#">发现的视频<span>(12)</span></a></dt>
 		{foreach from=$loved_element['items'] item=item}
 		<dd>
 			<div class="cover">
-				<a href="#"><img src="{$item.image.url}" alt="宠爱日记" /></a>
+				<a href="#"><img src="{$item.image.180}" alt="宠爱日记" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">

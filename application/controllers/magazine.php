@@ -23,7 +23,7 @@ class Magazine extends MY_Controller {
  *		验证登录状态
  */
 		$this->load->model('auth');
-		$this->auth->auth_user();		
+		$this->auth->auth_user();
 /*
  *		传递当前浏览页,使其登录后可以跳转到登录前的页面
  */
@@ -149,7 +149,7 @@ class Magazine extends MY_Controller {
 					'mag_gallery' => $mag_recommend,
 					'tour_reader' => $mag_list['tour_reader']['data']['items'],
 					'foreign' => $mag_list['foreign']['data']['items'],
-					'domestic' => $mag_list['domestic']['data']['items'],					
+					'domestic' => $mag_list['domestic']['data']['items'],
 					);
 		$this->smarty->view('magazine/magazine.tpl', $data);
 	}//}}}
@@ -169,32 +169,35 @@ class Magazine extends MY_Controller {
 		$start_maylike = 6;
 		$recommendation = $this->mag_model->_get_recommendation_mag($limit_recom, $start_recom);
 		$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike);
-		$type = 'magazine';
-		$object_id = '232';
-//		$comment = $this->comment_model->refresh_comment();
+		$comment = $this->comment_model->comment_list('magazine', $magazine_id, $start=0, $limit=5);
 		$data = array(
+					'api_host' => $this->config->item('api_host'),
 					'magazine' => $magazine,
 					'recommendation' => $recommendation,
 					'maylike' => $maylike,
+					'comment' => $comment,
 					);
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
-	
+
 	function comment_list($id){		//杂志评论页面{{{
 	//	$this->auth->check();
 		$magazine = $this->mag_model->_get_magazine_by_id($id);
+		$comment = $this->comment_model->comment_list('magazine', $id, $start=0, $limit=10);
 		$data = array(
 					'magazine' => $magazine,
+					'comment' => $comment,
 					);
 		$this->smarty->view('magazine/comment_list.tpl', $data);
 	}//}}}
-	
+
 	function like($type, $type_id){		//喜欢杂志{{{
 		//$this->auth->check();
 		echo $type . "--" . $type_id;
 		echo $this->session->userdata('id');
 	//	$this->auth->check();
 	}//}}}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	function mag_list (){	//杂志列表{{{
@@ -206,22 +209,6 @@ class Magazine extends MY_Controller {
 		//$this->smarty->view('index.tpl');
 	}	//}}}
 
-	function detail (){	//详情页`{{{
-		$id = $this->_get_non_empty('id');
-		$this->session->userdata;
-		$sid = $this->session->userdata('session_id');
-		$detail = request($this->api_host."/magazine/detail?id=".$id);
-		$comment_data = $this->comment_model->comment_list('magazine', $id, 0, 5);
-		$comment = $comment_data['data'];
-		$data = array(
-			'sid' => $sid,
-			'api_host' => $this->api_host,
-			'detail' => $detail,
-			'comment' => $comment,
-		);
-		$this->smarty->view('magazine/comment.html', $data);
-	}//}}}
-
 	function comment (){	//评论{{{
 		$sid = $this->session->userdata('sid');
 		$type = $this->_get_non_empty('type');
@@ -232,17 +219,19 @@ class Magazine extends MY_Controller {
 		$data = array(
 				'sid' => $sid,
 				'api_host' => $this->api_host,
-				'comment' => $comment['data'],
+				'comment' => $comment,
 				);
-		$this->smarty->view('magazine/comment.html', $data);
+//		$this->smarty->view('magazine/comment.html', $data);
 	}	//}}}
 
 	function refresh_comment(){	//{{{
 		$type = $this->input->post('type');
-		$object_id = $this->input->post('object_id');
+		$object_id = $this->input->get('object_id');
 		$comment = $this->input->post('comment');
 		$parent_id = $this->input->post('parent_id');
-		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment);
+		$start = $this->input->get('start');
+		$limit = $this->input->get('limit');
+		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment, $start, $limit);
 		echo json_encode($data);
 	}	//}}}
 
@@ -253,7 +242,7 @@ class Magazine extends MY_Controller {
 		$gets['status'] = $status;
 		$mag_list = $this->mag_model->_get_same_author_mag($gets);
 		$this->_json_output($mag_list);
-	}//}}}
+	}	//}}}
 
 	function get_same_category_mag(){		//获取同类型杂志{{{
 		$keys = array('mag_id', 'limit', 'start');
@@ -262,12 +251,12 @@ class Magazine extends MY_Controller {
 		$gets['status'] = $status;
 		$mag_list = $this->mag_model->_get_same_category_mag($gets);
 		$this->_json_output($mag_list);
-	}//}}}
+	}	//}}}
 
 	function loved_num(){		//喜欢数量{{{
 		$loved_num = $this->love_model->_get_user_loved_nums();
 		$this->_json_output($loved_num);
-	}//}}}
+	}	//}}}
 
 	function loved_data(){		//喜欢数据{{{
 		$keys = array('start', 'limit');
@@ -275,7 +264,7 @@ class Magazine extends MY_Controller {
 		$type = $this->input->get('type');
 		$loved_data = $this->love_model->_get_loved_data($gets, $type);
 		$this->_json_output($loved_data);
-	}//}}}
+	}	//}}}
 
 	function user_comment(){		//获得评论{{{
 		$keys = array('start', 'limit');
@@ -283,7 +272,7 @@ class Magazine extends MY_Controller {
 		$magazine_id = $this->input->get('magazine_id');
 		$user_comment = api($this->api_host."/magazine/get_user_comment?limit=".$gets['limit']."&start=".$gets['start']."&magazine_id=".$magazine_id);
 		$this->_json_output($user_comment['data']);
-	}//}}}
+	}	//}}}
 
 	function mag_element(){			//杂志元素{{{
 		$keys = array('for', 'start', 'limit');
@@ -291,12 +280,12 @@ class Magazine extends MY_Controller {
 		$type = $this->input->get('type');
 		$mag_element = $this->mag_element_model->_get_mag_element($gets, $type);
 		$this->_json_output($mag_element);
-	}//}}}
+	}	//}}}
 
 	function category(){		//杂志分类{{{
 		$cat_info = $this->mag_model->_get_category();
 		$this->_json_output($cat_info['data']);
-	}//}}}
+	}	//}}}
 
 	function ads(){		//广告{{{
 		$keys = array('limit', 'start');
@@ -304,14 +293,14 @@ class Magazine extends MY_Controller {
 		$gets = $this->_get_more_non_empty($keys);
 		$ads = $this->ads_model->_get_list($gets, $position);
 		$this->_json_output($ads);
-	}//}}}
+	}	//}}}
 
 	function nums_of_loved(){		//获取对象(杂志，元素，作者)被喜欢的次数{{{
 		$keys = array('loved_id', 'loved_type');
 		$gets = $this->_get_more_non_empty($keys);
 		$nums = $this->love_model->_get_nums_of_loved($gets);
 		$this->_json_output($nums);
-	}//}}}
+	}	//}}}
 
 	function _get_download_url(){		//获取杂志下载地址{{{
 		$id = $this->_get_non_empty('id');

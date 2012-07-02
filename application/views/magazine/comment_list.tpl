@@ -7,57 +7,26 @@
 		<h2><a href="#">{$magazine.name}</a></h2>
 		<p>作者:<a href="#">{$magazine.author.nickname}</a></p>
 	</div>
-	
+
 	<div class="right_main">
 		<h2>留言板</h2>
-		<form class="comment_sub">
+		<form id="comment" class="comment_sub" action="/magazine/refresh_comment?object_id={$magazine.id}&start=0&limit=10" method="post">
 			<img src="/sta/images/userhear_def.gif" alt="用户头像" />
-			<textarea></textarea>
-			<button type="submit">发表评论</button>
+			<textarea class="text" name="content"></textarea>
+			<input type="button" id="add" value="发布"/>
 		</form>
-		
-		<dl class="clearfix">
-			<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
+		<dl id="list" class="clearfix">
+			{foreach from=$comment item=item}
+			<dt><a href="javascript:void(0)"><img src="{$item.author.image}" alt="用户头像" /></a></dt>
 			<dd>
-				<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-				<p>回复内容是这样的，我就是回复内容</p>
+				<p class="info"><a href="javascript:void(0)" class="author">{$item.author.nickname}</a><span></span></p>
+				<p>{$item.content}</p>
 			</dd>
-			<dd class="edit_reply"><a href="#">回复</a></dd>
+			<dd class="edit_reply"><a href="javascript:void(0)" class="reply">回复</a></dd>
+			{/foreach}
 		</dl>
-		<dl class="clearfix">
-			<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-			<dd>
-				<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-				<p>回复内容是这样的，我就是回复内容</p>
-			</dd>
-			<dd class="edit_reply"><a href="#">回复</a></dd>
-		</dl>
-		<dl class="clearfix">
-			<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-			<dd>
-				<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-				<p>回复内容是这样的，我就是回复内容</p>
-			</dd>
-			<dd class="edit_reply"><a href="#">回复</a></dd>
-		</dl>
-		<dl class="clearfix">
-			<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-			<dd>
-				<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-				<p>回复内容是这样的，我就是回复内容</p>
-			</dd>
-			<dd class="edit_reply"><a href="#">回复</a></dd>
-		</dl>
-		<dl class="clearfix">
-			<dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户头像" /></a></dt>
-			<dd>
-				<p class="info"><a href="#">戴斯</a> 回复 <a href="#">肉丝</a>　<span>(2012-06-01 15:12:07)</span></p>
-				<p>回复内容是这样的，我就是回复内容</p>
-			</dd>
-			<dd class="edit_reply"><a href="#">回复</a></dd>
-		</dl>
-		
-		
+
+
 			<p class="pagenav msg_pagenav">
 				<a href="#" class="prav">上一页</a>
 				<a href="#" class="sel">1</a>
@@ -71,7 +40,7 @@
 				<a href="#">...</a>
 				<a href="#" class="next">下一页</a>
 			</p>
-		
+
 	</div>
 </div>
 

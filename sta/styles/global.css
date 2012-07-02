@@ -6,7 +6,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .btn_blue span{ display:block; position:relative; height:24px; padding:0 0 0 4px; margin:0; line-height:24px; background:url(../images/btn_blue.gif) no-repeat left top; font-size:12px; word-break:keep-all; }
 .btn_set{ width:auto; height:31px; padding:0 5px 0 0; margin:0; background:url(../images/btn_set.gif) no-repeat right -32px; border:none; overflow:visible; cursor:pointer; font-size:14px; color:#FFF;}
 .btn_set span{ display:block; position:relative; height:31px; padding:0 0 0 5px; margin:0; line-height:28px; background:url(../images/btn_set.gif) no-repeat left top; font-size:14px; word-break:keep-all; font-weight:bold;}
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   .btn_set {
 	  background-position:right -31px;
   }
@@ -108,7 +108,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 
 .mag_list dd .cover,.element_list dd .cover{ position:relative;}
 .mag_list dd .cover .mouseover,
-.element_list dd .cover .mouseover{ position:absolute; left:0; top:0; width:100%; height:276px; display:none;}
+.element_list dd .cover .mouseover{ position:absolute; left:0; top:0; width:100%; height:100%; display:none;}
 .element_list dd .cover .mouseover{ height:100%; }
 .mag_list dd .cover .mouseover .bg,
 .element_list dd .cover .mouseover .bg{ width:100%; height:100%; background:#000; -moz-opacity:0.5; filter:alpha(opacity=50);opacity:0.5;}
@@ -120,7 +120,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .element_list dd .cover .mouseover .read{ width:100%; height:100%; background: url(../images/ico_go.png) no-repeat center center;}
 
 .mag_list dd .cover .mouseover .more,
-.element_list dd .cover .mouseover .more{ position:absolute; z-index:2; width:100%; left:0; top:226px;}
+.element_list dd .cover .mouseover .more{ position:absolute; z-index:2; width:100%; left:0; bottom:0px;}
 .element_list dd .cover .mouseover .more{ width:120px; left:auto; right:0; top:auto; bottom:0;}
 .mag_list dd .cover .mouseover .more a,
 .element_list dd .cover .mouseover .more a{ float:right; display:block; width:60px; height:20px; padding-top:30px; color:#FFF; text-align:center; background:url(../images/mouseover_ico.png) no-repeat left bottom;}
@@ -141,7 +141,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .element_list dd .cover .mouseover .del_mag{ position:absolute; display:block; z-index:2; color:#FFF; right:10px; top:10px; width:11px; height:11px; text-indent:-100px; overflow:hidden; background:url(../images/ico_del.gif) no-repeat left top;}
 
 /*share to*/
-.cover .mouseover .shareto{ padding-top:7px; position:absolute; width:180px; height:26px; left:0; top:276px; background:url(../images/share_ico.gif) no-repeat center -30px; overflow:hidden; display:none; }
+.cover .mouseover .shareto{ padding-top:7px; position:absolute; width:180px; height:26px; left:0; bottom:0px; background:url(../images/share_ico.gif) no-repeat center -30px; overflow:hidden; display:none; }
 .cover .mouseover .shareto ul{ position:absolute; z-index:2; width:182px; left:-1px;}
 .cover .mouseover .shareto ul li{ float:left; width:26px;}
 .cover .mouseover .shareto ul a{ display:block; width:26px; height:26px; background:url(../images/share_ico.gif) no-repeat left 5px; text-indent:-400px; overflow:hidden;}
@@ -199,7 +199,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .mag_list.m_topic dd.info ul li.text_list{ width:560px; padding-right:20px;}
 .mag_list.m_topic dd.info .text_list dt,
 .mag_list.m_topic dd.info .text_list dd{ position:static; padding:0; margin:0; border:none; background:none; float:none; width:auto; height:auto;}
-.mag_list.m_topic dd.info .text_list dl{ height:84px; padding:10px; padding-left:60px; border-bottom:1px dotted #787878; overflow:hidden;  background:url(../images/ico_mag_index.gif) no-repeat left -50px; } 
+.mag_list.m_topic dd.info .text_list dl{ height:84px; padding:10px; padding-left:60px; border-bottom:1px dotted #787878; overflow:hidden;  background:url(../images/ico_mag_index.gif) no-repeat left -50px; }
 .mag_list.m_topic dd.info .text_list dl.last{ border:none;}
 .mag_list.m_topic dd.info .text_list dt{ padding-left:10px; height:25px; background:url(../images/ico_mag_index.gif) no-repeat left 10px;font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; font-size:18px;}
 .mag_list.m_topic dd.info .text_list dd { color:#4e4e4e; height:54px; text-indent:26px; line-height:18px; overflow:hidden;}

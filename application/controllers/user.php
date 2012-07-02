@@ -60,7 +60,7 @@ class User extends Magazine {
 	}	//}}}
 
 	function logout () {	//{{{
-		$this->session->sess_destroy();	
+		$this->session->sess_destroy();
 		redirect("/");
 	}	//}}}
 
@@ -104,6 +104,7 @@ class User extends Magazine {
 				'loved_author' => $loved_author,
 				'loved_element' => $loved_element,
 				);
+		print_r($data);
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
@@ -127,8 +128,7 @@ class User extends Magazine {
 	function user_info () {	//设置个人信息{{{
 		$session_id = $this->session->userdata('sid');
 		$user_info = api($this->api_host."/magazine/user_info?session_id=$session_id");
-		print_r($user_info);
-		$this->smarty->view('user/user_info.tpl');
+		$this->smarty->view('user/user_info.tpl', $user_info);
 	}	//}}}
 
 	function set_user_info () {	//{{{

@@ -16,18 +16,18 @@ window.onload= function(){
 }
 
 function signin(){
-	var options = { 
-		dataType : 'json', 
-		success:    function(result) { 
+	var options = {
+		dataType : 'json',
+		success:    function(result) {
 			if (result.httpcode == '200') {
-				self.parent.tb_remove();	
+				self.parent.tb_remove();
 				window.location="/";
 			}
 			else {
 				$(".err_msg").html("<font color='red'>"+result+"</font>");
 			}
-		} 
-	}; 
+		}
+	};
 	$('[name="form"]').ajaxForm(options);
 }
 
@@ -56,7 +56,7 @@ $("document").ready(function(){
 	});
     $(".element_list dd").mouseleave(function(){
 		$(this).find(".mouseover").css("display","none");
-		$(this).find(".cover").css("z-index","1");
+		$(this).find(".cover").css("z-index","0");
 	});
 
 	$('.mouseover .share').hover(
@@ -95,7 +95,61 @@ $("document").ready(function(){
         $(this).find("span").css("display","none");
         $(this).css("z-index","0");
     });
-    
+
 })
 
+$(function(){
+	$("#tour_reader").click(function(){
+		$(".foreign").css("display","none");
+		$(".local").css("display","none");
+		$(".tour_reader").css("display","block");
+		$("#foreign").removeClass("sel");
+		$("#local").removeClass("sel");
+		$("#tour_reader").addClass("sel");
+	})
 
+	$("#foreign").click(function(){
+		$(".tour_reader").css("display","none");
+		$(".local").css("display","none");
+		$(".foreign").css("display","block");
+		$("#tour_reader").removeClass("sel");
+		$("#local").removeClass("sel");
+		$("#foreign").addClass("sel");
+	})
+
+	$("#local").click(function(){
+		$(".tour_reader").css("display","none");
+		$(".foreign").css("display","none");
+		$(".local").css("display","block");
+		$("#tour_reader").removeClass("sel");
+		$("#foreign").removeClass("sel");
+		$("#local").addClass("sel");
+	})
+
+	$("#add").click(function (){
+		var options = {
+			dataType: 'json',
+			success: function (result) {
+				ref(result);
+			},
+		};
+		$("#comment").ajaxSubmit(options);
+	})
+
+	$(".reply").click(function (){
+		var author = $(this).parent().prev().find(".author").text();
+		$(".text").val('');
+		$(".text").focus();
+		$(".text").val("回复 "+author+"：");
+	})
+})
+
+function ref (result) {
+	$("#list").html("");
+	var div = "";
+	for(i=0; i<result.length; i++){
+		div += "<dt><a href='javascript:void(0)'><img src='"+result[i].author.image+"' alt='用户头像' /></a></dt><dd><p class='info'><a href='javascript:void(0)' class='author'>"+result[i].author.nickname+"</a><span></span></p><p>"+result[i].content+"</p></dd><dd class='edit_reply'><a href='javascript:void(0)' class='reply'>回复</a></dd>";
+	}
+	$("#list").html(div);
+	$(".text").val('');
+}

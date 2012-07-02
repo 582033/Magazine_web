@@ -7,14 +7,14 @@
 		{foreach from=$loved_magazine.items item=item}
 		<dd>
 			<div class="cover">
-				<a href="#"><img src="{$item.cover}" alt="{$item.name}" /></a>
+				<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" alt="{$item.name}" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
 						<div class="info">
 							{$item.intro}
 						</div>
-						<a href="#" class="read">阅读</a>
+						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more">
 								<a href="#" class="comment">评论</a>

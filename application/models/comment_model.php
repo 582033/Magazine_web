@@ -8,14 +8,20 @@ class Comment_model extends CI_Model {
 	}
 
 	function comment_list ($type, $object_id, $start=0, $limit=20) {
-		$url = $this->api_host."/magazine/get_user_comment?session_id=1&type=$type&object_id=$object_id&start=$start&limit=$limit";
+		$url = $this->api_host."/magazine/$object_id/comments?start=$start&limit=$limit";
 		$data = request($url);
 		return $data['data'];
 	}
 
-	function refresh_comment ($type, $object_id, $parent_id, $comment) {
-		request($this->api_host."/magazine/comment?type=$type&object_id=$object_id&parent_id=$parent_id&comment=$comment");
-		$data = request($this->api_host."/magazine/get_user_comment?type=$type&object_id=$object_id&start=0&limit=5");
+	function refresh_comment ($type, $object_id, $parent_id, $comment, $start=0, $limit=10) {
+		$params = array(
+			'comment' => $this->input->post('content'),
+			'parent_id' => '1',
+		);
+		request($this->api_host."/magazine/$object_id/comments", $params, "POST");
+		$this->api_host."/magazine/$object_id/comments";
+		$data = request($this->api_host."/magazine/$object_id/comments?start=$start&limit=$limit");
+		$this->api_host."/magazine/$object_id/comments?start=0&limit=5";
 		return $data['data'];
 	}
 }
