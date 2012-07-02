@@ -68,7 +68,7 @@
 			</dl>
 
 				<p class="more_comment">
-					<a href="/comment/magazine/{$magazine.id}">查看全部留言</a>
+					<a href="/magazine/{$magazine.id}/comment/p/1">查看全部留言</a>
 				</p>
 
 		</div>

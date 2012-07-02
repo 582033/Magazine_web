@@ -25,22 +25,7 @@
 			<dd class="edit_reply"><a href="javascript:void(0)" class="reply">回复</a></dd>
 			{/foreach}
 		</dl>
-
-
-			<p class="pagenav msg_pagenav">
-				<a href="#" class="prav">上一页</a>
-				<a href="#" class="sel">1</a>
-				<a href="#">2</a>
-				<a href="#">3</a>
-				<a href="#">4</a>
-				<a href="#">5</a>
-				<a href="#">6</a>
-				<a href="#">7</a>
-				<a href="#">8</a>
-				<a href="#">...</a>
-				<a href="#" class="next">下一页</a>
-			</p>
-
+{$page_list}
 	</div>
 </div>
 
