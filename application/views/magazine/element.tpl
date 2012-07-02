@@ -8,11 +8,11 @@
 			{foreach from=$element_list item=item key=key}
 			<dd class="item">
 				<div class="cover" style="width:{$item.width}px;height:{$item.height}px;">
-					<a href="#"><img src="{$item.image.180}" alt="宠爱日记" /></a>
+					<a href="#"><img src="{$item.image.180}" alt="{$item.magId}" /></a>
 					<div class="mouseover">
 						<div class="bg"></div>
 						<div class="content">
-							<a href="#" class="read">阅读</a>
+							<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 							<div class="more">
 									<a href="#" class="share">分享</a>
 									<a href="#" class="like">喜欢</a>

@@ -49,6 +49,30 @@ class Magazine extends MY_Controller {
 
 	function index(){		//首页显示{{{
 		$index_info = $this->mag_model->_get_index_info();
+		for ($i = 0; $i < count($index_info['elem_gallery']); $i++){
+			if ($index_info['elem_gallery'][$i]['page'] == 'cover'){
+				$index_info['elem_gallery'][$i]['page'] = 'p1';
+			}else{
+				$index_info['elem_gallery'][$i]['page'] = substr($index_info['elem_gallery'][$i]['page'], 0, 1) .  (substr($index_info['elem_gallery'][$i]['page'], 1)+2);
+			}
+			if (strlen($index_info['elem_gallery'][$i]['magId']) <= 3){
+				$index_info['elem_gallery'][$i]['read_mag_id'] = $index_info['elem_gallery'][$i]['magId'];
+			}else{
+				$index_info['elem_gallery'][$i]['read_mag_id'] = substr($index_info['elem_gallery'][$i]['magId'], 0, 3);
+			}
+		}
+		for ($j = 0; $j <count($index_info['elem_list']); $j++){
+			if ($index_info['elem_list'][$j]['page'] == 'cover'){
+				$index_info['elem_list'][$j]['page'] = 'p1';
+			}else{
+				$index_info['elem_list'][$j]['page'] = substr($index_info['elem_list'][$j]['page'], 0, 1) .  (substr($index_info['elem_list'][$j]['page'], 1)+2);
+			}
+			if (strlen($index_info['elem_list'][$j]['magId']) <= 3){
+				$index_info['elem_list'][$j]['read_mag_id'] = $index_info['elem_list'][$j]['magId'];
+			}else{
+				$index_info['elem_list'][$j]['read_mag_id'] = substr($index_info['elem_list'][$j]['magId'], 0, 3);
+			}
+		}
 		$this->smarty->view('magazine/index.tpl', $index_info);
 	}//}}}
 
@@ -70,9 +94,18 @@ class Magazine extends MY_Controller {
 				$element_list[$i]['width'] = substr($size[$i], 0, 3);
 				$element_list[$i]['height'] = substr($size[$i], 4, 3) - 10;
 			}
+			if ($element_list[$i]['page'] == 'cover'){
+				$element_list[$i]['page'] = 'p1';
+			}else{
+				$element_list[$i]['page'] = substr($element_list[$i]['page'], 0, 1) .  (substr($element_list[$i]['page'], 1)+2);
+			}
+			if (strlen($element_list[$i]['magId']) <= 3){
+				$element_list[$i]['read_mag_id'] = $element_list[$i]['magId'];
+			}else{
+				$element_list[$i]['read_mag_id'] = substr($element_list[$i]['magId'], 0, 3);
+			}
+
 		}
-//		echo "<pre>";
-//		print_r($element_list);
 		$data = array(
 					'element_list' => $element_list,
 					'page_list' => $page_list,
