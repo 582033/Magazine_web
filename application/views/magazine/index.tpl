@@ -8,7 +8,7 @@
 			<div class="slide_pic">
 				<div id="magazine_gallery_container">
 					{foreach from=$mag_gallery item=item key=key}
-						<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width="580" height="576" alt="描述" /></a>
+						<a href="/magazine/detail/{$item.id}"><img src="{$item.cover}" width="580" height="576" alt="描述" /></a>
 					{/foreach}
 				</div>
 				<div class="tab">
@@ -28,14 +28,14 @@
 				<h2><a href="#">{$item.name}</a></h2>
 				<p>
 					<a href="#">{$item.intro|truncate:50}</a>
-					<a href="#" class="readmore">阅读+</a>
+					<a href="/magazine/detail/{$item.id}" class="readmore">阅读+</a>
 				</p>
 			{/foreach}
 		</dd>
 		{foreach from=$mag_list item=item key=key}
 		<dd>
 			<div class="cover">
-				<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width='180px' height='276px' alt="宠爱日记" /></a>
+				<a href="/magazine/detail/{$item.id}"><img src="{$item.cover}" width='180px' height='276px' alt="宠爱日记" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
@@ -46,9 +46,9 @@
 								<li><span>发布：</span><span>{$item.publishedAt}</span></li>
 							</ul>
 						</div>
-						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
+						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
-						<div class="more">
+						<div class="more" border:1px solid blue;>
 								<a href="/comment/magazine/{$item.id}" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
 								<a href="#" class="like">{$item.likes}</a>
@@ -112,7 +112,7 @@
 						<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
-								<a href="#" class="like">喜欢</a>
+								<a href="" class="like">喜欢</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>

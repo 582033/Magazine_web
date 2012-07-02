@@ -154,8 +154,8 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/magazine.tpl', $data);
 	}//}}}
 
-	function magazine_detail(){		//杂志详情页面{{{
-		$magazine_id = $this->_get_non_empty('id');
+	function magazine_detail($id){		//杂志详情页面{{{
+		$magazine_id = $id;
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
 		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
 		if (strlen($magazine['id']) <= 3){
@@ -185,6 +185,9 @@ class Magazine extends MY_Controller {
 		$limit = 10;
 		$start = ($page-1)*$limit;
 		$page = $page ? $page : 1;
+	
+	function comment_list($id){		//杂志评论页面{{{
+		$this->auth->check();
 		$magazine = $this->mag_model->_get_magazine_by_id($id);
 		$comment = $this->comment_model->comment_list('magazine', $id, $start, $limit);
 		$totalResults = $comment['totalResults'];

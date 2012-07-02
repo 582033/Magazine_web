@@ -75,6 +75,8 @@ $route['find/(:num)'] = 'magazine/find_elements/$1';
 $route['mag'] = 'magazine/main_magazine_list';
 $route['home'] = 'magazine/index';
 
+$route['magazine/detail/(:num)'] = 'magazine/magazine_detail/$1';
+
 
 $route['v1/user/(:num)']='user/user/$1';
 

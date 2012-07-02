@@ -58,7 +58,11 @@ $("document").ready(function(){
 		$(this).find(".mouseover").css("display","none");
 		$(this).find(".cover").css("z-index","0");
 	});
-
+	
+	$("a.like").click(function(){
+		$(this).css("background","url('/sta/images/heart.png') no-repeat");
+		$(this).css("background-position","17px 4px");
+	});
 	$('.mouseover .share').hover(
 		function(){
 			$bdshare = $('#bdshare').show();

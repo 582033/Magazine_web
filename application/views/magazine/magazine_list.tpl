@@ -10,7 +10,7 @@
 		{foreach from=$items item=item key=key}
 		<dd class="tour_reader">
 			<div class="cover">
-				<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width='180px' height='276px' alt="{$item.name}" /></a>
+				<a href="/magazine/detail/{$item.id}"><img src="{$item.cover}" width='180px' height='276px' alt="{$item.name}" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
@@ -21,7 +21,7 @@
 								<li><span>发布：</span><span>{$item.publishedAt}</span></li>
 							</ul>
 						</div>
-						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
+						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more">
 								<a href="#" class="comment">评论</a>
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">{$item.name}</a></h3>
+			<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
 		</dd>
 		{/foreach}
 	</dl>

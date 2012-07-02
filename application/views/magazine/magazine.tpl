@@ -8,7 +8,7 @@
 			<div class="slide_pic">
 				<div id="magazine_gallery_container">
 				{foreach from=$mag_gallery item=item key=key}
-					<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width="980" height="280" alt="{$item.id}" /></a>
+					<a href="/magazine/detail/{$item.id}"><img src="{$item.cover}" width="980" height="280" alt="{$item.id}" /></a>
 				{/foreach}
 				</div>
 				<div class="tab">
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			{foreach from=$mag_gallery item=item key=key}
-			<h2 style="display:block;"><a href="/magazine/magazine_detail?id={$item.id}">{$item.intro}</a></h2>
+			<h2 style="display:block;"><a href="/magazine/detail/{$item.id}">{$item.intro}</a></h2>
 			{/foreach}
 		</dd>
 		<dd class="info clearfix">
@@ -75,7 +75,7 @@
 												<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
 											</ul>
 										</div>
-										<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
+										<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 										<a href="#" class="del_mag">删除</a>
 										<div class="more">
 												<a href="#" class="comment">评论</a>
@@ -97,7 +97,7 @@
 									</div>
 								</div>
 							</div>
-							<h3><a href="#">{$item.name}</a></h3>
+							<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
 						</dd>
 					</dl>
 				</li>
@@ -129,7 +129,7 @@
 								<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
 							</ul>
 						</div>
-						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
+						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more">
 								<a href="#" class="comment">评论</a>
@@ -151,7 +151,7 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">{$item.name}</a></h3>
+			<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
 		</dd>
 		{/foreach}
 		{foreach from=$foreign item=item key=key}
@@ -168,7 +168,7 @@
 								<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
 							</ul>
 						</div>
-						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
+						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more">
 								<a href="#" class="comment">评论</a>
@@ -190,7 +190,7 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">{$item.name}</a></h3>
+			<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
 		</dd>
 		{/foreach}
 		{foreach from=$domestic item=item key=key}
@@ -207,7 +207,7 @@
 								<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
 							</ul>
 						</div>
-						<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
+						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more">
 								<a href="#" class="comment">评论</a>
@@ -229,7 +229,7 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">{$item.name}</a></h3>
+			<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
 		</dd>
 		{/foreach}
 </dl>
