@@ -129,8 +129,8 @@ class Mag_Model extends CI_Model {
 		return $magazine['data'];
 	}//}}}
 	
-	function _get_recommendation_mag(){		//获得推荐杂志列表{{{
-		$recommendation = request($this->api_host . "/recommendation/maylike?limit=6&start=0");
+	function _get_recommendation_mag($limit, $start){		//获得推荐杂志列表{{{
+		$recommendation = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start");
 		return $recommendation['data']['items'];
 	}//}}}
 	

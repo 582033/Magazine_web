@@ -106,10 +106,14 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function main_magazine_list(){		//杂志二级列表页面{{{
-		$limit = 15;
-		$start = 0;
-		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
+		$limit_gallery = 4;
+		$start_gallery = 0;
+		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery);
+		$limit_list = 15;
+		$start_list = 0;
+		$mag_list = $this->mag_model->_get_magazines_by_tag($limit_list, $start_list);
 		$data = array(
+					'mag_gallery' => $mag_recommend,
 					'tour_reader' => $mag_list['tour_reader']['data']['items'],
 					'foreign' => $mag_list['foreign']['data']['items'],
 					'domestic' => $mag_list['domestic']['data']['items'],					
@@ -126,8 +130,12 @@ class Magazine extends MY_Controller {
 		}else{
 			$magazine['read_mag_id'] = substr($magazine['id'], 0, 3);
 		}
-		$recommendation = $this->mag_model->_get_recommendation_mag();
-		$maylike = $this->mag_model->_get_maylike_mag();
+		$limit_recom = 6;
+		$start_recom = 0;
+		$limit_maylike = 6;
+		$start_maylike = 6;
+		$recommendation = $this->mag_model->_get_recommendation_mag($limit_recom, $start_recom);
+		$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike);
 		$type = 'magazine';
 		$object_id = '232';
 //		$comment = $this->comment_model->refresh_comment();

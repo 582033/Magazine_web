@@ -1,23 +1,66 @@
 {include file='header.tpl'}
-
+<script type="text/javascript" src="/sta/js/jquery.cycle.all.js"></script>
+<script>
+$(document).ready(function(){
+	$('#magazine_gallery_container').cycle({
+		fx:     'scrollHorz',
+		speed:  500,
+		timeout: 0,
+		next:   '#next1',
+		prev:   '#prev1',
+		pager: $('.mag_list .point'),
+		pagerAnchorBuilder : function(i, slide) {
+			return $('.mag_list .point').children().eq(i);
+		},
+		activePagerClass:'sel',
+		after:function(c,n,o) {
+			if (o.speed == 0) {
+			  return setTimeout(function() {
+				toggleM(o);
+			  }, 100);
+			} else {
+			  toggleM(o);
+			}
+		}
+	});
+	function toggleM(o) {
+		$('.mag_list .topic h2').each(function(i){
+					if(i==o.currSlide) {
+						$(this).show();
+					}
+					else {
+						$(this).hide();
+					}
+				});
+	}
+})
+</script>
 <div class="main">
 	<dl class="mag_list m_topic clearfix">
 		<dt><strong><span><a href="#">看杂志</a></span></strong></dt>
 		<dd class="topic">
 			<div class="slide_pic">
-				<a href="#"><img src="/sta/images/temp/980x280.jpg" alt="描述" /></a>
+				<div id="magazine_gallery_container">
+				{foreach from=$mag_gallery item=item key=key}
+					<a href="/magazine/magazine_detail?id={$item.id}"><img src="{$item.cover}" width="980" height="280" alt="{$item.id}" /></a>
+				{/foreach}
+				</div>
 				<div class="tab">
-					<a href="javascript:void(0);" class="sel">1</a>
-					<a href="javascript:void(0);">2</a>
-					<a href="javascript:void(0);">3</a>
-					<a href="javascript:void(0);">4</a>
+					<div class="point">
+						<a href="#" class="sel"></a>
+						<a href="#"></a>
+						<a href="#"></a>
+						<a href="#"></a>
+					</div>
 				</div>
 				<div class="slide_nav">
-					<a href="javascript:void(0);" class="prev">上一个</a>
-					<a href="javascript:void(0);" class="next">下一个</a>
+					<a href="javascript:void(0);" class="prev" id="prev1">上一个</a>
+					<a href="javascript:void(0);" class="next" id="next1">下一个</a>
 				</div>
 			</div>
-			<h2><a href="#">那些年 让我们一见倾心的鞋子</a></h2>
+			{foreach from=$mag_gallery item=item key=key}
+			<h2 style="display:block;"><a href="/magazine/magazine_detail?id={$item.id}">{$item.intro}</a></h2>
+			{/foreach}
 		</dd>
 		<dd class="info clearfix">
 		
@@ -55,29 +98,40 @@
 					<dl>
 						<dd>
 							<div class="cover">
-								<a href="#"><img src="/sta/images/temp/180x276.jpg" alt="宠爱日记" /></a>
+								<a href="#"><img src="{$item.cover}" width='180px' height='276px' title="{$item.magazine_id}" alt="宠爱日记" /></a>
 								<div class="mouseover">
 									<div class="bg"></div>
 									<div class="content">
 										<div class="info">
-											简介文字
+											<ul style="margin-left:2px;">
+												<li><span>杂志：</span><span>{$item.name}</span></li>
+												<li><span>作者：</span><span>{$item.author.nickname}</span></li>
+												<li><span>发布：</span><span>{$item.publishedAt}</span></li>							
+											</ul>
 										</div>
-										<a href="#" class="read">阅读</a>
+										<a href="/magazine/magazine_detail?id={$item.id}" class="read">阅读</a>
+										<a href="#" class="del_mag">删除</a>
 										<div class="more">
 												<a href="#" class="comment">评论</a>
-												<a href="#" class="share">分享</a>
-												<a href="#" class="like">喜欢</a>
+												<a href="javascript:void(0);" class="share">分享</a>
+												<a href="#" class="like">{$item.likes}</a>
+										</div>
+										<div class="shareto">
+											<div class="bg"></div>
+					<!--						<ul>
+												<li><a href="#" class="s_qq">分享到QQ空间</a></li>
+												<li><a href="#" class="s_sina">分享到新浪微博</a></li>
+												<li><a href="#" class="s_renren">分享到人人网</a></li>
+												<li><a href="#" class="s_qt">分享到腾讯微博</a></li>
+												<li><a href="#" class="s_douban">分享到豆瓣</a></li>
+												<li><a href="#" class="s_baidu">分享到百度空间</a></li>
+												<li><a href="#" class="s_kaixin01">分享到开心网</a></li>
+											</ul>-->
 										</div>
 									</div>
 								</div>
 							</div>
-							<h3><a href="#">宠爱日记</a></h3>
-						</dd>
-						<dd>
-							<div>
-								<a href="#"><img src="/sta/images/temp/180x276.jpg" alt="宠爱日记" /></a>
-							</div>
-							<h3><a href="#">宠爱日记宠爱日记宠爱日记宠爱日记</a></h3>
+							<h3><a href="#">{$item.name}</a></h3>
 						</dd>
 					</dl>
 				</li>
