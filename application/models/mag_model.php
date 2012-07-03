@@ -83,7 +83,8 @@ class Mag_Model extends CI_Model {
 	
 	
 	function _get_index_info(){		//首页杂志信息{{{
-		$mag_result = request($this->api_host . "/magazines?limit=13&start=0");
+		//$mag_result = request($this->api_host . "/magazines?limit=13&start=0");
+		  $mag_result = request($this->api_host."/ads/image/indextop");
 		$mag_item = $mag_result['data']['items'];
 		$mag_gallery = $mag_list = array();
 		for ($i = 0; $i < count($mag_item); $i++){

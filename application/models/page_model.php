@@ -27,7 +27,7 @@
 		else {
 			$page_list =  "
 			<p class='pagenav msg_pagenav'>
-				<a href='".($page == $min ? $min : ($page-1))."' class='prav'>上一页</a>";
+				<a href='$uri/".($page == $min ? $min : ($page-1))."' class='prav'>上一页</a>";
 				for ($i = $min; $i <= $max; $i++) {
 					if ($page == $i)
 						$page_list .= "<a href='javascript:void(0)' class='sel'> $i </a>";
@@ -35,7 +35,7 @@
 						$page_list .= "<a href='$i'> $i </a>";
 				}
 			$page_list .= "
-				<a href='".($page == $max ? $max : ($page+1))."' class='next'>下一页</a>
+				<a href='$uri/".($page == $max ? $max : ($page+1))."' class='next'>下一页</a>
 			</p>";
 		}
 		return $page_list;

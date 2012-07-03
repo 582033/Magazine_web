@@ -9,8 +9,12 @@
             {include file='user/magazine.tpl'}
         {/if}
         {if $bookstore}
-			{include file='user/my_bookstore.tpl'}
+	    {include file='user/my_bookstore.tpl'}
         {/if}
+        {if $msg_page}
+	    {include file='msg/show.tpl'}
+        {/if}
+	
 
     </div>
 {include file='footer.tpl'}

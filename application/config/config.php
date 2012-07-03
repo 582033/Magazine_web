@@ -286,7 +286,7 @@ $config['sess_use_database']	= FALSE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
-$config['sess_time_to_update']	= 72000000;
+$config['sess_time_to_update']	= 7200;
 
 /*
 |--------------------------------------------------------------------------
@@ -407,6 +407,7 @@ $config['pub_host'] = 'http://pub.in1001.com';
 
 $config['cookie_expire'] = '1209600';//cookie缓存时间,14天
 
+$config['page_msg_num']=10;
 if (file_exists(APPPATH. 'config/local.config.php')){
 	include(APPPATH. 'config/local.config.php');
 }

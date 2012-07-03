@@ -284,7 +284,7 @@ a.tag02{ color:#F60; background:none; line-height:20px;}
 .my_msg_list dl,.my_follow_list dl{ width:690px; margin:10px auto;}
 .my_msg_list dl dt{ float:left; width:50px; padding-right:20px; background:url(/sta/images/bg_msg_box.gif) no-repeat 60px 18px;}
 .my_msg_list dl dd{ float:left; padding-top:4px; background:#E9E9E9 url(/sta/images/bg_msg_box.gif) no-repeat -10px top; width:620px;}
-.my_msg_list dl dd div{ float:left; margin:0; display:inline; height:100%; padding-bottom:4px; background:url(/sta/images/bg_msg_box.gif) no-repeat -630px bottom;}
+.my_msg_list dl dd div{ float:left; margin:0; display:inline;  padding-bottom:4px; background:url(/sta/images/bg_msg_box.gif) no-repeat -630px bottom;}
 .my_msg_list dl dd p{ float:left; display:inline; width:480px; padding:1px 10px;}
 .my_msg_list dl dd p a{ color:#F60;}
 .my_msg_list dl dd p a:hover{ text-decoration:underline;}

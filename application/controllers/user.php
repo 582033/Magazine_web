@@ -174,4 +174,92 @@ class User extends Magazine {
 		}
 		$this->_json_output($data);
 	}	//}}}
+
+
+
+	function check_signin(){
+	$this->auth->check();
+	$session_id=$this->session->userdata('session_id');
+	$user_id=$this->session->userdata('id');
+	if(TRUE){
+return array(
+	'id'=>$user_id,
+	'session_id'=>$session_id,
+
+);
+
+}
+else{
+return FALSE;
+
+}
+
+}
+	
+
+	//index msg page
+	function index($p=1){
+	$user_info=$this->check_signin();
+	//check login status
+	if($user_info===FALSE){
+	header('HTTP1.1 401');
+	exit();
+
+}
+	if($p==1){
+	$start=0;
+	$limit=$this->config->item('page_msg_num');
+}
+else{
+	$start=$this->config->item('page_msg_num')*($p-1);
+	$limit=$this->config->item('page_msg_num');
+
+}
+	$res=(request($this->api_host."/user/".$user_info['id']."/activities",array('start'=>$start,"limit"=>$limit,"session_id"=>$user_info['session_id'])));
+	$arr_totpl=array();
+	$msg_ctt='';
+	$totalnum=$res['data']['totalResults'];
+	foreach($res['data']['items'] as $k=>$v){
+	
+	$tmp_msg=(json_decode($v['object'],true));
+	$msg_ctt.='
+<dl class="clearfix" id="'.$v['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /></a></dt> <dd> <div> <p> <strong><a href="#">戴斯：</a></strong>欢迎阅读杂志编号为'.'------'.$v['msg_id'].'的杂志<a href="#">《我的杂志》</a> </p> <span> 2012-5-6 17:40 <a href="javascript:delmsg('.$v['msg_id'].')" class="del_msg" onclick="delmsg('.$v['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
+	
+
+
+}
+$page_list = $this->page_model->page_list("/user/msg", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
+$data=array();
+$data['msg']=$msg_ctt;
+$data['page_list']=$page_list;
+$data['msg_page']='msg_page';
+$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/msg/del/"+msgid, {}, function(response){window.location.reload(); });';
+	$this->smarty->view('user/user_center_main.tpl',$data);
+
+}
+	//show all messages
+	function msglist($page){
+	$this->index($page);
+
+
+}
+
+	//api proxy
+	function show(){	//{{{
+	//$this->smarty->view('msg/show.tpl');
+	$user_info=$this->check_signin();
+	$res=(request($this->api_host."/user/1/activities",array('session_id'=>$user_info['session_id'])));
+	//echo "<pre>";
+	//print_r($res['data']);
+	}	//}}}
+	function del($msgid){
+	//echo $this->api_host;
+
+	$user_info=$this->check_signin();
+	$res=request($this->api_host."/activity/".$msgid,'session_id='.$user_info['session_id'],"DELETE");
+
+
+}
+
+
 }

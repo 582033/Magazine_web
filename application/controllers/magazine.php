@@ -75,12 +75,12 @@ class Magazine extends MY_Controller {
 		$mag_items = array();
 		foreach ($index_info['mag_gallery'] as $i => $mag) {
 			$mag_items[] = array(
-					'title' => $mag['name'],
-					'text' => $mag['intro'] . $i,
+					'title' => $mag['title'],
+					'text' => $mag['text'] ,
 					"image" => array(
-						'url' => $mag['cover'],
+						'url' => $mag['image'],
 						),
-					'url' => "/magazine/detail/$mag[id]",
+					'url' => $mag['url'],
 					);
 		}
 

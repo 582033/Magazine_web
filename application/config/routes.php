@@ -74,10 +74,19 @@ $route['find/(:num)'] = 'magazine/find_elements/$1';
 
 $route['mag'] = 'magazine/main_magazine_list';
 $route['home'] = 'magazine/index';
+
 $route['soft'] = 'magazine/soft';
 $route['soft/(pc|android)'] = 'magazine/soft/$1';
 
+$route['msg'] = 'user/index';
+$route['msg/activities'] = 'user/show';
+
 $route['magazine/detail/(:num)'] = 'magazine/magazine_detail/$1';
+
+$route['user/msg'] = 'user/index';
+$route['user/msg/(:num)'] = 'user/msglist/$1';
+$route['msg/activities'] = 'user/show';
+$route['msg/del/(:num)'] = 'user/del/$1';
 
 
 $route['v1/user/(:num)']='user/user/$1';
