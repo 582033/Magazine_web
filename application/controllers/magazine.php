@@ -29,6 +29,7 @@ class Magazine extends MY_Controller {
  */
 		$this->load->helper('url');
 		//$this->current_url = current_url();
+		$this->smarty->assign('pub_host', $this->config->item('pub_host'));
 	}
 
 	function _get_more ($keys, $input){	//{{{

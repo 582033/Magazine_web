@@ -81,7 +81,7 @@
 			<div class="slide_pic">
 				<div id="element_gallery_container">
 					{foreach from=$elem_gallery item=item key=key}
-						<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}"><img src="{$item.image.url}" width="580" height="380" alt="描述" /></a>
+						<a href="{$item.read_mag_id}/{$item.magId}/web/#{$item.page}"><img src="{$item.image.url}" width="580" height="380" alt="描述" /></a>
 					{/foreach}
 				</div>
 				<div class="tab">
@@ -109,7 +109,7 @@
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
-						<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
+						<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
 								<a href="javascript:void(0);" class="like">喜欢</a>
@@ -125,11 +125,11 @@
 		{else}
 		<dd class="col2">
 			<div class="cover">
-				<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}"><img src="{$item.image.128}" width='380px' height='180px' alt="宠爱日记" /></a>
+				<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}"><img src="{$item.image.128}" width='380px' height='180px' alt="宠爱日记" /></a>
 				<div class="mouseover">
 					<div class="bg"></div>
 					<div class="content">
-						<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
+						<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
 								<a href="javascript:void(0);" class="like">喜欢</a>

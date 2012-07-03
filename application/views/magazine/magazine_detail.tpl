@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+<script src="/sta/js/jquery.jscrollpane.min.js"></script>
 <div class="current"><a href="#">杂志</a> &gt;<a href="#" class="current">{$magazine.cate}</a> &gt; <a href="#" class="cur">{$magazine.name}</a></div>
 
 <div class="main mag_preview clearfix">
@@ -25,7 +26,7 @@
 				<a href="#" class="s_kaixin01" title="分享到开心网">分享到开心网</a>
 			</p>
 			<p class="readonline">
-				<a href="http://pub.1001s.cn/{$magazine.read_mag_id}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
+				<a href="{$pub_host}/{$magazine.read_mag_id}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
 			</p>
 			<p class="info">
 				<span class="view"><a href="javascript:void(0)" title="阅读">阅读</a>{$magazine.views}</span>
@@ -39,7 +40,7 @@
 			<dd class="scrollbar">
 					<ul>
 						{foreach from=$magazine.pageThumbs item=item key=key}
-						<li><a href="http://pub.1001s.cn/{$magazine.read_mag_id}/{$magazine.id}/web/#p{$key+1}"><img src="{$item}" alt="page 16" width="104px" height="160px" style="overflow:hidden;" /></a></li>
+						<li><a href="{$pub_host}/{$magazine.read_mag_id}/{$magazine.id}/web/#p{$key+1}"><img src="{$item}" alt="page 16" width="104px" height="160px" style="overflow:hidden;" /></a></li>
 						{/foreach}
 					</ul>
 			</dd>

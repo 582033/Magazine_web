@@ -12,7 +12,7 @@
 					<div class="mouseover">
 						<div class="bg"></div>
 						<div class="content">
-							<a href="http://pub.1001s.cn/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
+							<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 							<div class="more">
 									<a href="#" class="share">分享</a>
 									<a href="#" class="like">喜欢</a>
