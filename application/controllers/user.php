@@ -104,7 +104,6 @@ class User extends Magazine {
 				'loved_author' => $loved_author,
 				'loved_element' => $loved_element,
 				);
-		print_r($data);
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
@@ -140,7 +139,7 @@ class User extends Magazine {
 		opt($url_with_get, $post);
 	}	//}}}
 	
-	public function bind() {
+	public function bind() {	//绑定第三方帐号{{{
 		$data = array();
 		$sessionid = $this->session->userdata('session_id');
 		$this->load->model('Sns_Model');
@@ -157,8 +156,9 @@ class User extends Magazine {
 		$data['session_id'] = $sessionid;
 		$this->smarty->view('user/bind.tpl',$data);
 		
-	}
-	public function unbind() {
+	}	//}}}
+
+	public function unbind() {	//解除绑定第三方帐号{{{
 		$data = array(
 			'error'=>null,
 			'status'=>0,
@@ -179,5 +179,5 @@ class User extends Magazine {
 			}
 		}
 		$this->_json_output($data);
-	}
+	}	//}}}
 }
