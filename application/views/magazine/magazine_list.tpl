@@ -24,9 +24,9 @@
 						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more">
-								<a href="#" class="comment">评论</a>
+								<a href="/magazine/{$item.id}/comment/p/1" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
-								<a href="#" class="like">{$item.likes}</a>
+								<a href="javascript:void(0);" class="like">{$item.likes}</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>

@@ -59,10 +59,6 @@ $("document").ready(function(){
 		$(this).find(".cover").css("z-index","0");
 	});
 
-	$("a.like").click(function(){
-		$(this).css("background","url('/sta/images/heart.png') no-repeat");
-		$(this).css("background-position","17px 4px");
-	});
 	$('.mouseover .share').hover(
 		function(){
 			$bdshare = $('#bdshare').show();
@@ -103,33 +99,6 @@ $("document").ready(function(){
 })
 
 $("document").ready(function(){
-	$("#tour_reader").click(function(){
-		$(".foreign").css("display","none");
-		$(".local").css("display","none");
-		$(".tour_reader").css("display","block");
-		$("#foreign").removeClass("sel");
-		$("#local").removeClass("sel");
-		$("#tour_reader").addClass("sel");
-	})
-
-	$("#foreign").click(function(){
-		$(".tour_reader").css("display","none");
-		$(".local").css("display","none");
-		$(".foreign").css("display","block");
-		$("#tour_reader").removeClass("sel");
-		$("#local").removeClass("sel");
-		$("#foreign").addClass("sel");
-	})
-
-	$("#local").click(function(){
-		$(".tour_reader").css("display","none");
-		$(".foreign").css("display","none");
-		$(".local").css("display","block");
-		$("#tour_reader").removeClass("sel");
-		$("#foreign").removeClass("sel");
-		$("#local").addClass("sel");
-	})
-
 	$("#add").click(function (){
 		var options = {
 			dataType: 'json',

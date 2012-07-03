@@ -51,7 +51,7 @@
 						<div class="more" border:1px solid blue;>
 								<a href="/magazine/{$item.id}/comment/p/1" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
-								<a href="javascript:void(0);" class="like">{$item.likes}</a>
+								<a href="javascript:void(0);" id="magazine_{$item.id}" onclick="like('magazine','{$item.id}');" class="like">{$item.likes}</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
@@ -68,7 +68,7 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">{$item.name}</a></h3>
+			<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
 			<p>{$item.intro|truncate:30}</p>
 		</dd>
 		{/foreach}
@@ -112,7 +112,7 @@
 						<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
-								<a href="javascript:void(0);" class="like">喜欢</a>
+								<a href="javascript:void(0);" id="element_{$item.id}" onclick="like('element','{$item.id}');" class="like">喜欢</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
@@ -120,7 +120,7 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">宠爱日记</a></h3>
+			<h3><a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}">宠爱日记</a></h3>
 		</dd>
 		{else}
 		<dd class="col2">
@@ -140,7 +140,7 @@
 					</div>
 				</div>
 			</div>
-			<h3><a href="#">鼠标滑过测试鼠标滑过测试鼠标滑过测试鼠标滑过测试鼠标滑过测试</a></h3>
+			<h3><a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}">鼠标滑过测试鼠标滑过测试鼠标滑过测试鼠标滑过测试鼠标滑过测试</a></h3>
 		</dd>
 		{/if}
 		{/foreach}

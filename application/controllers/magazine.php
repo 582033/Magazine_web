@@ -200,9 +200,16 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function like($type, $type_id){		//喜欢杂志{{{
-		//$this->auth->check();
-		echo $type . "--" . $type_id;
-		echo $this->session->userdata('id');
+		$this->auth->check();
+	//	echo $type . "--" . $type_id;
+	//	echo $this->session->userdata('id');
+		$this->mag_model->_like($type, $type_id);
+		if ($type == 'magazine'){
+			$result = $this->mag_model->_get_magazine_by_id($type_id);
+		}else if ($type == 'element'){
+			$result = $this->mag_model->_get_element_by_id($type_id);
+		}
+		$this->_json_output($result);
 	//	$this->auth->check();
 	}//}}}
 

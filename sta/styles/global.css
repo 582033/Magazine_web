@@ -125,7 +125,7 @@ html{ width:100%; background:url(../images/bg.gif) repeat;}
 .mag_list dd .cover .mouseover .more a,
 .element_list dd .cover .mouseover .more a{ float:right; display:block; width:60px; height:20px; padding-top:30px; color:#FFF; text-align:center; background:url(../images/mouseover_ico.png) no-repeat left bottom;}
 .mag_list dd .cover .mouseover .more a.like,
-.element_list dd .cover .mouseover .more a.like{ background-position:-2px -16px;}
+.element_list dd .cover .mouseover .more a.like{ background-position:-2px -16px;cursor:pointer;}
 .mag_list dd .cover .mouseover .more a.like:hover,
 .element_list dd .cover .mouseover .more a.like:hover{ background-position:-2px -69px;}
 .mag_list dd .cover .mouseover .more a.share,
