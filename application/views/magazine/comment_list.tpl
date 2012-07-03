@@ -10,10 +10,10 @@
 
 	<div class="right_main">
 		<h2>留言板</h2>
-		<form id="comment" class="comment_sub" action="/magazine/refresh_comment?object_id={$magazine.id}&start=0&limit=10" method="post">
+		<form id="comment" class="comment_sub" action="/magazine/refresh_comment?type=magazine&object_id={$magazine.id}&start=0&limit=10" method="post">
 			<img src="/sta/images/userhear_def.gif" alt="用户头像" />
-			<textarea class="text" name="content"></textarea>
-			<input type="button" id="add" value="发布"/>
+			<textarea class="text" name="conment"></textarea>
+			<button type="button" id="add">发布</button>
 		</form>
 		<dl id="list" class="clearfix">
 			{foreach from=$comment item=item}

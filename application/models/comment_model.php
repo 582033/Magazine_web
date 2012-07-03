@@ -15,11 +15,12 @@ class Comment_model extends CI_Model {
 
 	function refresh_comment ($type, $object_id, $parent_id, $comment, $start=0, $limit=10) {
 		$params = array(
-			'comment' => $this->input->post('content'),
-			'parent_id' => '1',
+			'comment' => $comment,
+			'parent_id' => '0',
 		);
-		request($this->api_host."/magazine/$object_id/comments", $params, "POST");
-		$this->api_host."/magazine/$object_id/comments";
+		$session_id = $this->session->userdata('session_id');
+		request($this->api_host."/magazine/$object_id/comments?session_id=$session_id", $params, "POST");
+//		echo $this->api_host."/magazine/$object_id/comments?session_id=$session_id";exit;
 		$data = request($this->api_host."/magazine/$object_id/comments?start=$start&limit=$limit");
 		$this->api_host."/magazine/$object_id/comments?start=0&limit=5";
 		return $data['data'];

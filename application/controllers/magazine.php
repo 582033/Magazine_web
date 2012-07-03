@@ -219,8 +219,8 @@ class Magazine extends MY_Controller {
 
 	function comment (){	//评论{{{
 		$sid = $this->session->userdata('sid');
-		$type = $this->_get_non_empty('type');
-		$object_id = $this->_get_non_empty('object_id');
+		echo $type = $this->_get_non_empty('type');
+		echo $object_id = $this->_get_non_empty('object_id');
 		$start = $this->_get_non_empty('start');
 		$limit = $this->_get_non_empty('limit');
 		$comment = $this->comment_model->comment_list($type, $object_id, $start, $limit);
@@ -233,9 +233,10 @@ class Magazine extends MY_Controller {
 	}	//}}}
 
 	function refresh_comment(){	//{{{
-		$type = $this->input->post('type');
+		$this->auth->check();
+		$type = $this->input->get('type');
 		$object_id = $this->input->get('object_id');
-		$comment = $this->input->post('comment');
+		$comment = $this->input->post('conment');
 		$parent_id = $this->input->post('parent_id');
 		$start = $this->input->get('start');
 		$limit = $this->input->get('limit');
