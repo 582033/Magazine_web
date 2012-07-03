@@ -142,7 +142,8 @@ class Magazine extends MY_Controller {
 	function main_magazine_list(){		//杂志二级列表页面{{{
 		$limit_gallery = 4;
 		$start_gallery = 0;
-		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery);
+		$id = '';
+		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery, $id);
 		$limit_list = 15;
 		$start_list = 0;
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit_list, $start_list);
