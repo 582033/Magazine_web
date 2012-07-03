@@ -49,7 +49,7 @@
 						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
 						<div class="more" border:1px solid blue;>
-								<a href="/comment/magazine/{$item.id}" class="comment">评论</a>
+								<a href="/magazine/{$item.id}/comment/p/1" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
 								<a href="javascript:void(0);" class="like">{$item.likes}</a>
 						</div>
@@ -81,7 +81,7 @@
 			<div class="slide_pic">
 				<div id="element_gallery_container">
 					{foreach from=$elem_gallery item=item key=key}
-						<a href="{$item.read_mag_id}/{$item.magId}/web/#{$item.page}"><img src="{$item.image.url}" width="580" height="380" alt="描述" /></a>
+						<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}"><img src="{$item.image.180}" width="580" height="380" alt="描述" /></a>
 					{/foreach}
 				</div>
 				<div class="tab">

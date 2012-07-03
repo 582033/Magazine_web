@@ -129,13 +129,13 @@ class Mag_Model extends CI_Model {
 		return $magazine['data'];
 	}//}}}
 	
-	function _get_recommendation_mag($limit, $start){		//获得推荐杂志列表{{{
-		$recommendation = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start");
+	function _get_recommendation_mag($limit, $start, $id){		//获得推荐杂志列表{{{
+		$recommendation = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start&id=$id");
 		return $recommendation['data']['items'];
 	}//}}}
 	
-	function _get_maylike_mag(){		//获得猜你喜欢的杂志列表{{{
-		$maylike = request($this->api_host . "/recommendation/maylike?limit=6&start=6");
+	function _get_maylike_mag($limit, $start, $id){		//获得猜你喜欢的杂志列表{{{
+		$maylike = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start&id=$id");
 		return $maylike['data']['items'];
 	}//}}}
 	

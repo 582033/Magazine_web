@@ -168,8 +168,8 @@ class Magazine extends MY_Controller {
 		$start_recom = 0;
 		$limit_maylike = 6;
 		$start_maylike = 6;
-		$recommendation = $this->mag_model->_get_recommendation_mag($limit_recom, $start_recom);
-		$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike);
+		$recommendation = $this->mag_model->_get_recommendation_mag($limit_recom, $start_recom, $id);
+		$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike, $id);
 		$comment = $this->comment_model->comment_list('magazine', $magazine_id, $start=0, $limit=5);
 		$data = array(
 					'api_host' => $this->config->item('api_host'),
