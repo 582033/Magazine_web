@@ -30,7 +30,7 @@
 			</p>
 			<p class="info">
 				<span class="view"><a href="javascript:void(0)" title="阅读">阅读</a>{$magazine.views}</span>
-				<span class="like"><a href="javascript:void(0)" title="喜欢">喜欢</a>{$magazine.likes}</span>
+				<span class="like"><a href="javascript:void(0)" id="magazine_{$magazine.id}" onclick="detail_like('{$magazine.id}');" title="喜欢">喜欢</a><span>{$magazine.likes}</span></span>
 				<!--span class="liked"><a href="javascript:void(0)" title="已经喜欢">已经喜欢</a>2121</span-->
 			</p>
 		</div>

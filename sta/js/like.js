@@ -16,7 +16,6 @@ function like(type, type_id){
 function detail_like(magazine_id){
 	$dataType = {dataType:'json'};
 	$.post("/like/magazine/"+magazine_id, $dataType, function(data){
-		data.likes = 1;
-		
+		$("#magazine_"+magazine_id).next('span').text(data.likes);
 	})
 }
