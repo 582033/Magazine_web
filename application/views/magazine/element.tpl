@@ -32,5 +32,6 @@
 <script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="/sta/js/element.js"></script>
 <script type="text/javascript" src="/sta/js/jquery.infinitescroll.min.js"></script>
+<script type="text/javascript" src="/sta/js/like.js"></script>
 {include file="footer.tpl"}
 {include file='share.tpl'}
