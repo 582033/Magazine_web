@@ -15,7 +15,26 @@
 			<p class="intro_txt" style="height:77px;"><strong>简介：</strong>
 				{$magazine.intro}
 			</p>
-			<p class="shareto">
+			<div style="height:35px;">
+				<!-- Baidu Button BEGIN -->
+					<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+						<a class="bds_tsina" style="margin-left:5px;"></a>
+						<a class="bds_renren" style="margin-left:10px;"></a>
+						<a class="bds_tqq" style="margin-left:10px;"></a>
+						<a class="bds_douban" style="margin-left:10px;"></a>
+						<a class="bds_hi" style="margin-left:10px;"></a>
+						<a class="bds_kaixin001" style="margin-left:10px;"></a>
+				<!--		<span class="bds_more">更多</span>-->
+					</div>
+					<script type="text/javascript" id="bdshare_js" data="type=tools&amp;mini=1" ></script>
+					<script type="text/javascript" id="bdshell_js"></script>
+					<script type="text/javascript">
+						document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+					</script>
+				<!-- Baidu Button END -->
+			</div>
+			<div style="clear:both;"></div>
+		<!--	<p class="shareto">
 				分享到：
 				<a href="#" class="s_qq" title="分享到QQ空间">分享到QQ空间</a>
 				<a href="#" class="s_sina" title="分享到新浪微博">分享到新浪微博</a>
@@ -24,7 +43,8 @@
 				<a href="#" class="s_douban" title="分享到豆瓣">分享到豆瓣</a>
 				<a href="#" class="s_baidu" title="分享到百度空间">分享到百度空间</a>
 				<a href="#" class="s_kaixin01" title="分享到开心网">分享到开心网</a>
-			</p>
+			
+			</p>	-->
 			<p class="readonline">
 				<a href="{$pub_host}/{$magazine.read_mag_id}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
 			</p>
@@ -94,5 +114,4 @@
 		</dl>
 	</div>
 </div>
-
 {include file="footer.tpl"}
