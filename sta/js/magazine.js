@@ -11,9 +11,6 @@ function resize(){
 		$(".mag_list").css("height",$(".main_left_line").height()+"px");
 	}
 }
-window.onload= function(){
-	detail_resize();
-}
 
 function signin(){
 	var options = {

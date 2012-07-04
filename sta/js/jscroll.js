@@ -1,3 +1,7 @@
+window.onload= function(){
+	detail_resize();
+}
+
 function detail_resize(){
 	page_height = $(".main").height();
 	if ($(".left_main").height()<page_height){
