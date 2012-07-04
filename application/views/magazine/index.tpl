@@ -48,7 +48,7 @@
 						</div>
 						<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 						<a href="#" class="del_mag">删除</a>
-						<div class="more" border:1px solid blue;>
+						<div class="more">
 								<a href="/magazine/{$item.id}/comment/p/1" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
 								<a href="javascript:void(0);" id="magazine_{$item.id}" onclick="like('magazine','{$item.id}');" class="like">{$item.likes}</a>
@@ -112,7 +112,7 @@
 						<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
-								<a href="javascript:void(0);" id="element_{$item.id}" onclick="like('element','{$item.id}');" class="like">喜欢</a>
+								<a href="javascript:void(0);" id="element_{$item.id}" onclick="like('element','{$item.id}');" class="like">{$item.likes}</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>
@@ -132,7 +132,7 @@
 						<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 						<div class="more">
 								<a href="#" class="share">分享</a>
-								<a href="javascript:void(0);" class="like">喜欢</a>
+								<a href="javascript:void(0);" id="element_{$item.id}" onclick="like('element','{$item.id}');"  class="like">{$item.likes}</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>

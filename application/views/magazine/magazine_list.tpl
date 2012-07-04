@@ -26,7 +26,7 @@
 						<div class="more">
 								<a href="/magazine/{$item.id}/comment/p/1" class="comment">评论</a>
 								<a href="javascript:void(0);" class="share">分享</a>
-								<a href="javascript:void(0);" class="like">{$item.likes}</a>
+								<a href="javascript:void(0);" id="magazine_{$item.id}" onclick="like('magazine','{$item.id}');" class="like">{$item.likes}</a>
 						</div>
 						<div class="shareto">
 							<div class="bg"></div>

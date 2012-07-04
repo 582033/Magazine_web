@@ -15,7 +15,7 @@
 							<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}" class="read">阅读</a>
 							<div class="more">
 									<a href="#" class="share">分享</a>
-									<a href="javascript:void(0);" class="like">喜欢</a>
+									<a href="javascript:void(0);" id="element_{$item.id}" onclick="like('element','{$item.id}');" class="like">{$item.likes}</a>
 							</div>
 							<div class="shareto">
 								<div class="bg"></div>
