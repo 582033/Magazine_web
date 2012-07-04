@@ -59,7 +59,7 @@
 	{else}
 			<div class="self_info">
 				<div class="log_reg">
-					<a href="/user/signup?height=200&width=400&modal=true" class="thickbox reg">注册</a>
+					<a href="/user/signup?height=404&width=736&modal=true" class="thickbox reg">注册</a>
 					<a href="/user/signin?height=404&width=736&modal=true" class="thickbox login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
 					<form name="form" id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'" action="/user/signin" method="post" enctype="multipart/form-data">
 						<p><input type="text" name="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>

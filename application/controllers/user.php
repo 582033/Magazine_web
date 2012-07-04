@@ -32,8 +32,9 @@ class User extends Magazine {
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
 			$return = $this->reg_model->reg($username, $passwd);
-			echo "<pre>";
-			echo $return;
+			//echo json_encode($return);
+			//exit;
+			$this->_json_output($return);
 		}
 		else {
 			$this->smarty->view('user/signup.tpl');
@@ -46,13 +47,6 @@ class User extends Magazine {
 			$passwd = $this->input->post('passwd');
 			$need_remember = $this->input->post('need_remember');
 			$return = $this->Login_Model->login($username, $passwd, $need_remember);
-			/*
-			echo "<pre>";
-			print_r($return);
-			$this->smarty->assign('commend_author', $return);
-			*/
-			//redirect($this->current_url);
-			//redirect("/");
 			echo json_encode($return);
 			exit;
 		}

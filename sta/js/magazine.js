@@ -29,7 +29,17 @@ function resize(){
 	}
 }
 
-function signin(){
+$("document").ready(function(){
+	username = $('[name="username"]');
+	passwd = $('[name="passwd"]');
+	err_msg = $(".err_msg");
+	passwd.focusout(function (){
+		if (passwd.val().length < 6) err_msg.html("<font color='red'>密码少于6位</font>");
+		if(passwd.val().length >= 6) err_msg.html("");
+	});
+});
+
+function signin(){	//执行登录{{{
 	var options = {
 		dataType : 'json',
 		success:    function(result) {
@@ -43,8 +53,23 @@ function signin(){
 		}
 	};
 	$('[name="form"]').ajaxForm(options);
-}
+}	//}}}
 
+function signup(){	//注册{{{
+	var options = {
+		dataType : 'json',
+		success:    function(result) {
+			if (result == 'seccess') {
+				self.parent.tb_remove();
+				tb_show("/",false);
+			}
+			else {
+				$(".err_msg").html("<font color='red'>"+result+"</font>");
+			}
+		}
+	};
+	$('[name="form"]').ajaxForm(options);
+}	//}}}
 
 $("document").ready(function(){
     $(".mag_list dd").mouseenter(function(){
@@ -98,7 +123,6 @@ $("document").ready(function(){
         $(this).find("span").css("display","none");
         $(this).css("z-index","0");
     });
-
 })
 
 $("document").ready(function(){

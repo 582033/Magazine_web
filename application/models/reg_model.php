@@ -5,16 +5,32 @@ class reg_model extends CI_Model{
 	}
 	
 	function reg ($username, $passwd){
-		$api_data = request($this->api_host."/magazine/reg?username=$username&passwd=$passwd");
-		echo "<pre>";print_r($api_data);
-		if(isset($api_data['data']['errcode']) && $api_data['data']['errcode'] == '0'){
-			return "注册成功";	
+		if ($username == '' or $passwd == ''){
+			$err_msg = "用户名或密码不能为空";	
 		}
-		else if (isset($api_data['data']['errcode'])){
-			return $api_data['data']['msg'];
+		$post = array(
+				'username' => $username,
+				'passwd' => $passwd,
+				);
+		$api_data = request($this->api_host."/auth/signup", $post, 'POST');
+		if(isset($api_data['httpcode']) && $api_data['httpcode'] == '200'){
+			switch ($api_data['data']['status']) {
+				case 'OK':
+					$this->Login_Model->login($username, $passwd);		
+					$err_msg = "seccess";
+					break;
+				case 'USER_EXISTS':
+					$err_msg = "用户已存在";
+					break;
+			}
+		}
+		elseif (isset($api_data['httpcode']) && $api_data['httpcode'] != '200' ) {
+			$err_msg = $api_data['httpcode'];
 		}
 		else {
-			return "注册失败;api未返回数据";
+			$err_msg = "api未返回数据";	
 		}
+			return $err_msg;
 	}
+
 }
