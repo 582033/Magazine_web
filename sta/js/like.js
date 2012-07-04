@@ -17,5 +17,14 @@ function detail_like(magazine_id){
 	$dataType = {dataType:'json'};
 	$.post("/like/magazine/"+magazine_id, $dataType, function(data){
 		$("#magazine_"+magazine_id).next('span').text(data.likes);
+		$("#magazine_"+magazine_id).parent().css("display","none");
+		$("#new_likes").text(data.likes);
+		$("#magazine_"+magazine_id).parent().next('.liked').css("display","block");
 	})
+}
+function detail_liked(magazine_id){
+	$dataType = {dataType:'json'};
+	$.post("/like/magazine/"+magazine_id, $dataType, function(data){
+		$('#new_likes').text(data.likes);
+	});
 }

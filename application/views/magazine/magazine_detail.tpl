@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 <script src="/sta/js/jquery.jscrollpane.min.js"></script>
+<script src="/sta/js/jscroll.js"></script>
 <div class="current"><a href="#">杂志</a> &gt;<a href="#" class="current">{$magazine.cate}</a> &gt; <a href="#" class="cur">{$magazine.name}</a></div>
 
 <div class="main mag_preview clearfix">
@@ -9,9 +10,9 @@
 		</div>
 		<div class="intro">
 			<h2>{$magazine.name}</h2>
-			<p class="auther">作者：<a href="#">{$magazine.author.nickname}</a> <a href="#" class="follow"><img src="/sta/images/ico_plus.gif" alt="加关注" /> 加关注</a></p>
+			<p class="auther">作者：<a href="#">{$magazine.author.nickname}</a> <a {if $user_info.id == $magazine.author.id}style="display:none;"{/if} href="/like/author/{$magazine.author.id}" class="follow"><img src="/sta/images/ico_plus.gif" alt="加关注" /> 加关注</a></p>
 			<p>上传：{$magazine.publishedAt}</p>
-			<p class="tag">TAG：{foreach from=$magazine['tag'] item=item}<a href="#">{$item}</a>&nbsp;&nbsp;{/foreach}</p>
+			<p class="tag">TAG：{foreach from=$magazine['tag'] item=item}<a href="/mag_list/{if $item == '国内游'}domestic{else if $item == '旅游攻略'}tour_reader{else if $item == '出境游'}foreign{/if}/1">{$item}</a>&nbsp;&nbsp;{/foreach}</p>
 			<p class="intro_txt" style="height:77px;"><strong>简介：</strong>
 				{$magazine.intro}
 			</p>
@@ -51,7 +52,7 @@
 			<p class="info">
 				<span class="view"><a href="javascript:void(0)" title="阅读">阅读</a>{$magazine.views}</span>
 				<span class="like"><a href="javascript:void(0)" id="magazine_{$magazine.id}" onclick="detail_like('{$magazine.id}');" title="喜欢">喜欢</a><span>{$magazine.likes}</span></span>
-				<!--span class="liked"><a href="javascript:void(0)" title="已经喜欢">已经喜欢</a>2121</span-->
+				<span class="liked" style="display:none;"><a href="javascript:void(0)" title="已经喜欢" onclick="detail_liked('{$magazine.id}');">已经喜欢</a><span id="new_likes">{$magazine.likes}</span></span>
 			</p>
 		</div>
 
