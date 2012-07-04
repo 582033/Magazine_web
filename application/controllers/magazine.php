@@ -213,6 +213,10 @@ class Magazine extends MY_Controller {
 	//	$this->auth->check();
 	}//}}}
 
+	function soft () {	//{{{
+		$this->smarty->view('magazine/down.tpl');
+	}	//}}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	function mag_list (){	//杂志列表{{{
