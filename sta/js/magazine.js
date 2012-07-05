@@ -6,6 +6,18 @@ window.onload= function(){
 	detail_resize();
 }
 
+$("document").ready(function () {	//顶部搜索{{{
+	$(".search").find("button").click(function(){
+		window.location.href="/search/"+$("[name='keyword']").val();
+	});
+});	//}}}
+
+$("document").ready(function () {	//搜索页搜索框{{{
+	$(".search_big").find("button").click(function(){
+		window.location.href="/search/"+$("[name='search_big']").val();
+	});
+});	//}}}
+
 function detail_resize(){
 	page_height = $(".main").height();
 	if ($(".left_main").height()<page_height){

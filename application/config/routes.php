@@ -75,6 +75,9 @@ $route['find/(:num)'] = 'magazine/find_elements/$1';
 $route['mag'] = 'magazine/main_magazine_list';
 $route['home'] = 'magazine/index';
 
+$route['search/(:any)'] = 'search/index/$1';
+$route['search/(:any)/(magazine|author)/(:num)'] = 'search/index/$1/$2/$3';
+
 $route['soft'] = 'magazine/soft';
 $route['soft/(pc|android)'] = 'magazine/soft/$1';
 

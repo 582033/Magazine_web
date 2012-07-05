@@ -37,10 +37,10 @@
  		</ul>
 
  		<div class="rightcon">
- 			<form class="search">
- 				<input type="text" value="搜索" onfocus="if(this.value=='搜索')this.value='';" onblur="if(this.value=='')this.value='搜索'"/>
+ 			<div class="search">
+ 				<input type="text" name="keyword" value="{if $keyword}{$keyword}{else}搜索{/if}" onfocus="if(this.value !='')this.value='';" onblur="if(this.value=='')this.value='{if $keyword}{$keyword}{else}搜索{/if}'"/>
  				<button type="submit">搜索</button>
- 			</form>
+ 			</div>
 	{if isset($user_info.id)}
  			<div class="self_info">
  				<div class="user_info">
