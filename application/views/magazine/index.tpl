@@ -4,34 +4,7 @@
 <div class="main">
 	<dl class="mag_list clearfix">
 		<dt><strong>看杂志</strong> <a href="/mag" class="more">More</a></dt>
-		<dd class="topic">
-			<div class="slide_pic">
-				<div id="magazine_gallery_container">
-					{foreach from=$mag_gallery item=item key=key}
-						<a href="/magazine/detail/{$item.id}"><img src="{$item.cover}" width="580" height="576" alt="描述" /></a>
-					{/foreach}
-				</div>
-				<div class="tab">
-					<div class="point">
-						<a href="#" class="sel"></a>
-						<a href="#"></a>
-						<a href="#"></a>
-						<a href="#"></a>
-					</div>
-				</div>
-				<div class="slide_nav">
-					<a href="javascript:void(0);" class="prev" id="prev1">上一个</a>
-					<a href="javascript:void(0);" class="next" id="next1">下一个</a>
-				</div>
-			</div>
-			{foreach from=$mag_gallery item=item key=key}
-				<h2><a href="#">{$item.name}</a></h2>
-				<p>
-					<a href="#">{$item.intro|truncate:50}</a>
-					<a href="/magazine/detail/{$item.id}" class="readmore">阅读+</a>
-				</p>
-			{/foreach}
-		</dd>
+		{include file="magazine/lib/ad-gallery.tpl" container_id="magazine_gallery_container" ad_slot=$ad_slot_indextop}
 		{foreach from=$mag_list item=item key=key}
 		{include file="magazine/lib/magcover.tpl" cover_show_intro=true}
 		{/foreach}
@@ -39,30 +12,7 @@
 
 	<dl class="element_list clearfix">
 		<dt><strong>爱发现</strong> <a href="/find" class="more">More</a></dt>
-		<dd class="topic">
-			<div class="slide_pic">
-				<div id="element_gallery_container">
-					{foreach from=$elem_gallery item=item key=key}
-						<a href="{$pub_host}/{$item.read_mag_id}/{$item.magId}/web/#{$item.page}"><img src="{$item.image.180}" width="580" height="380" alt="描述" /></a>
-					{/foreach}
-				</div>
-				<div class="tab">
-					<div class="point">
-						<a href="#" class="sel"></a>
-						<a href="#"></a>
-						<a href="#"></a>
-						<a href="#"></a>
-					</div>
-				</div>
-				<div class="slide_nav">
-					<a href="javascript:void(0);" class="prev" id="prev2">上一个</a>
-					<a href="javascript:void(0);" class="next" id="next2">下一个</a>
-				</div>
-			</div>
-			{foreach from=$elem_gallery item=item key=key}
-				<h2><a href="#">1那些年 让我们一见倾心的鞋子</a></h2>
-			{/foreach}
-		</dd>
+		{include file="magazine/lib/ad-gallery.tpl" container_id="element_gallery_container" ad_slot=$ad_slot_indexbottom}
 		{foreach from=$elem_list item=item key=key}
 		{if $key != 4}
 		<dd>

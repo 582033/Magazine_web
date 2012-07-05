@@ -50,18 +50,56 @@ class Magazine extends MY_Controller {
 
 	function index(){		//首页显示{{{
 		$index_info = $this->mag_model->_get_index_info();
-		for ($i = 0; $i < count($index_info['elem_gallery']); $i++){
-			if ($index_info['elem_gallery'][$i]['page'] == 'cover'){
-				$index_info['elem_gallery'][$i]['page'] = 'p1';
+
+		$elem_items = array();
+		foreach ($index_info['elem_gallery'] as $i => $elem) {
+			if ($elem['page'] == 'cover'){
+				$elem['page'] = 'p1';
 			}else{
-				$index_info['elem_gallery'][$i]['page'] = substr($index_info['elem_gallery'][$i]['page'], 0, 1) .  (substr($index_info['elem_gallery'][$i]['page'], 1)+2);
+				$elem['page'] = substr($elem['page'], 0, 1) .  (substr($elem['page'], 1)+2);
 			}
-			if (strlen($index_info['elem_gallery'][$i]['magId']) <= 3){
-				$index_info['elem_gallery'][$i]['read_mag_id'] = $index_info['elem_gallery'][$i]['magId'];
+			if (strlen($elem['magId']) <= 3){
+				$elem['read_mag_id'] = $elem['magId'];
 			}else{
-				$index_info['elem_gallery'][$i]['read_mag_id'] = substr($index_info['elem_gallery'][$i]['magId'], 0, 3);
+				$elem['read_mag_id'] = substr($elem['magId'], 0, 3);
 			}
+			$elem_items[] = array(
+					"title" => "那些年 让我们一见倾心的鞋子$i",
+					"image" => array(
+						'url' => $elem['image']['180'],
+						),
+					'url' => $this->config->item('pub_host') . "/$elem[read_mag_id]/$elem[magId]/web/#$elem[page]",
+					);
 		}
+
+		$mag_items = array();
+		foreach ($index_info['mag_gallery'] as $i => $mag) {
+			$mag_items[] = array(
+					'title' => $mag['name'],
+					'text' => $mag['intro'] . $i,
+					"image" => array(
+						'url' => $mag['cover'],
+						),
+					'url' => "/magazine/detail/$mag[id]",
+					);
+		}
+
+		$ad_slot_indextop = array(
+			'width' => 580,
+			'height' => 576,
+			'show_text' => true,
+			'items' => $mag_items,
+			);
+		$ad_slot_indexbottom = array(
+			'width' => 580,
+			'height' => 380,
+			'show_text' => false,
+			'items' => $elem_items,
+			);
+
+		$index_info['ad_slot_indextop'] = $ad_slot_indextop;
+		$index_info['ad_slot_indexbottom'] = $ad_slot_indexbottom;
+
 		for ($j = 0; $j <count($index_info['elem_list']); $j++){
 			if ($index_info['elem_list'][$j]['page'] == 'cover'){
 				$index_info['elem_list'][$j]['page'] = 'p1';
@@ -153,6 +191,25 @@ class Magazine extends MY_Controller {
 					'foreign' => $mag_list['foreign']['data']['items'],
 					'domestic' => $mag_list['domestic']['data']['items'],
 					);
+
+		$mag_items = array();
+		foreach ($data['mag_gallery'] as $i => $mag) {
+			$mag_items[] = array(
+					'title' => $mag['name'],
+					'text' => $mag['intro'] . $i,
+					"image" => array(
+						'url' => $mag['cover'],
+						),
+					'url' => "/magazine/detail/$mag[id]",
+					);
+		}
+
+		$data['ad_slot_magtop'] = array(
+			'width' => 980,
+			'height' => 280,
+			'show_text' => false,
+			'items' => $mag_items,
+			);
 		$this->smarty->view('magazine/magazine.tpl', $data);
 	}//}}}
 

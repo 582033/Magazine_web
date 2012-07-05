@@ -5,32 +5,8 @@
 <div class="main">
 	<dl class="mag_list m_topic clearfix">
 		<dt><strong><span><a href="#">看杂志</a></span></strong></dt>
-		<dd class="topic">
-			<div class="slide_pic">
-				<div id="magazine_gallery_container">
-				{foreach from=$mag_gallery item=item key=key}
-					<a href="/magazine/detail/{$item.id}"><img src="{$item.cover}" width="980" height="280" alt="{$item.id}" /></a>
-				{/foreach}
-				</div>
-				<div class="tab">
-					<div class="point">
-						<a href="#" class="sel"></a>
-						<a href="#"></a>
-						<a href="#"></a>
-						<a href="#"></a>
-					</div>
-				</div>
-				<div class="slide_nav">
-					<a href="javascript:void(0);" class="prev" id="prev1">上一个</a>
-					<a href="javascript:void(0);" class="next" id="next1">下一个</a>
-				</div>
-			</div>
-			{foreach from=$mag_gallery item=item key=key}
-			<h2 style="display:block;"><a href="/magazine/detail/{$item.id}">{$item.intro}</a></h2>
-			{/foreach}
-		</dd>
+		{include file="magazine/lib/ad-gallery.tpl" ad_slot=$ad_slot_magtop}
 		<dd class="info clearfix">
-		
 			<ul class="clearfix">
 				<li class="text_list">
 					<dl>
