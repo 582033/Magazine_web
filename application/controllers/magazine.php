@@ -213,7 +213,8 @@ class Magazine extends MY_Controller {
 	//	$this->auth->check();
 	}//}}}
 
-	function soft () {	//{{{
+	function soft ($type='pc') {	//{{{
+		$this->smarty->assign('type', $type);
 		$this->smarty->view('magazine/down.tpl');
 	}	//}}
 

@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+<!--
 <script type="text/javascript" >
  function play(){
  	allSrc=$(".slidescreen img");
@@ -20,9 +21,11 @@
  	});
  })
  </script>
+-->
  <div class="down">
  	<dl class="client_down">
- 		<dt class="sel">PC工具下载</dt>
+ 		<dt {if $type == 'pc'}class="sel"{else} onclick="location.href='/soft/pc'" onmouseover="this.style.cursor='hand'"{/if}>PC工具下载</dt>
+		{if $type == 'pc'}
  		<dd class="pc">
  			<div class="intro">
  				<a href="javascript:void(0);">申请试用</a>
@@ -46,8 +49,10 @@
  				</li>
  			</ul>
  		</dd>
- 		<dt>Android客户端下载</dt>
- 		<dd class="android">
+		{/if}
+ 		<dt {if $type == 'android'}class="sel"{else}onclick="location.href='/soft/android'" onmouseover="this.style.cursor='hand'"{/if}>Android客户端下载</dt>
+		{if $type == 'android'}
+ 		<dd class="android" style="display:block">
  			<div class="intro">
  				<a href="#" class="downbtn">下载Android客户端</a>
  				<div class="slidescreen">
@@ -79,6 +84,7 @@
  				</li>
  			</ul>
  		</dd>
+		{/if}
  	</dl>
  </div>
 {include file="footer.tpl"}
