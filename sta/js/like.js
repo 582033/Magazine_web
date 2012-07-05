@@ -1,12 +1,17 @@
+function getLikeUrl(type, id, action) {
+	return "/" + type + "/" + id + "/" + action;
+}
 function cancelLike(type, type_id) {
 	$dataType = {dataType: 'json'};
-	$.post("/" + type + "/" + type_id + "/cancelLike", {dataType: 'json'}, function(data) {
+	$.post(getLikeUrl(type, type_id, 'cancelLike'),
+			{dataType: 'json'}, function(data) {
 		window.location.reload();
 	});
 }
 function like(type, type_id) {
 	var action = type == 'user' ? 'follow' : 'like';
-	$.post("/" + type + "/" + type_id + '/' + action, {dataType: 'json'},  function(data) {
+	$.post(getLikeUrl(type, type_id, action),
+			{dataType: 'json'},  function(data) {
 		if ($.inArray(type, ['magazine', 'element']) >= 0) {
 			if (data.likes) {
 				var $e = $("#" + type + "_" + type_id);
@@ -25,7 +30,8 @@ function like(type, type_id) {
 }
 function detail_like(magazine_id){
 	$dataType = {dataType:'json'};
-	$.post("/like/magazine/"+magazine_id, $dataType, function(data){
+	$.post(getLikeUrl('magazine', magazine_id, 'like'),
+			$dataType, function(data) {
 		if (data.likes != null){
 			$("#magazine_"+magazine_id).next('span').text(data.likes);
 			$("#magazine_"+magazine_id).parent().css("display","none");
@@ -36,7 +42,8 @@ function detail_like(magazine_id){
 }
 function detail_liked(magazine_id){
 	$dataType = {dataType:'json'};
-	$.post("/like/magazine/"+magazine_id, $dataType, function(data){
+	$.post(getLikeUrl('magazine', magazine_id, 'like'),
+			$dataType, function(data) {
 		$('#new_likes').text(data.likes);
 	});
 }
