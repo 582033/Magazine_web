@@ -1,20 +1,22 @@
-function like(type, type_id){
-	$dataType = {dataType:'json'};
-	$.post("/like/"+type+"/"+type_id, $dataType,  function(data) {
-		if (type == 'magazine'){
-			if (data.likes != null){
-				$("#magazine_"+type_id).text(data.likes);
-				$("#magazine_"+type_id).css("background","url('/sta/images/heart.png') no-repeat");
-				$("#magazine_"+type_id).css("background-position","17px 4px");
+function cancelLike(type, type_id) {
+	$dataType = {dataType: 'json'};
+	$.post("/" + type + "/" + type_id + "/cancelLike", {dataType: 'json'}, function(data) {
+		window.location.reload();
+	});
+}
+function like(type, type_id) {
+	var action = type == 'user' ? 'follow' : 'like';
+	$.post("/" + type + "/" + type_id + '/' + action, {dataType: 'json'},  function(data) {
+		if ($.inArray(type, ['magazine', 'element']) >= 0) {
+			if (data.likes) {
+				var $e = $("#" + type + "_" + type_id);
+				$e.text(data.likes)
+					.css("background","url('/sta/images/heart.png') no-repeat")
+					.css("background-position","17px 4px");
 			}
-		}else if (type == 'element'){
-			if (data.likes != null){
-				$("#element_"+type_id).text(data.likes);
-				$("#element_"+type_id).css("background","url('/sta/images/heart.png') no-repeat");
-				$("#element_"+type_id).css("background-position","17px 4px");
-			}
-		}else if (type == 'user'){
-			if (data.status == 'success'){
+		}
+		else if (type == 'user') {
+			if (data.status == 'success') {
 				$("img.fellow_item").css("display","none");
 				$("span.fellow_item").text("已关注");
 			}

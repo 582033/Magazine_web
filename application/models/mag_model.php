@@ -154,11 +154,7 @@ class Mag_Model extends CI_Model {
 		return $element['data'];
 	}//}}}
 	
-	function _like($type, $id){		//用户喜欢{{{
-		if ($type != 'user'){
-			request($this->api_host . "/$type/$id/like?session_id=".$this->session->userdata('session_id'), array(), 'POST');
-		}else{
-			request($this->api_host . "/user/$id/follow/1?session_id=".$this->session->userdata('session_id'), array(), 'POST');
-		}
+	function _like($type, $id, $action='like') {// 喜欢杂志/元素, follow用户, 以及逆向操作 {{{
+		return request($this->api_host . "/$type/$id/$action?session_id=" . $this->session->userdata('session_id'), array(), 'POST');
 	}//}}}
 }

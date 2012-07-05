@@ -256,9 +256,13 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/comment_list.tpl', $data);
 	}//}}}
 
-	function like($type, $type_id){		//喜欢杂志，元素，关注作者{{{
+	function like($type, $type_id, $action) { //喜欢杂志, 元素, 关注作者 {{{
 		$this->auth->check();
-		$this->mag_model->_like($type, $type_id);
+		$resp = $this->mag_model->_like($type, $type_id, $action);
+		if ($resp['httpcode'] != 200) {
+			show_error('', $resp['httpcode']);
+		}
+
 		if ($type == 'magazine'){
 			$result = $this->mag_model->_get_magazine_by_id($type_id);
 		}else if ($type == 'element'){

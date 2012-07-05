@@ -12,7 +12,7 @@
 					</ul>
 				</div>
 				<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
-				{if $cover_show_del}<a href="#" class="del_mag">删除</a>{/if}
+				{if $cover_show_del}<a href="javascript:void(0)" class="del_mag" onclick="cancelLike('magazine', '{$item.id}')">删除</a>{/if}
 				<div class="more">
 					<a href="/magazine/{$item.id}/comment/p/1" class="comment">评论</a>
 					<a href="javascript:void(0);" class="share">分享</a>
