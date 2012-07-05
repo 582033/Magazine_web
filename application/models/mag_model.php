@@ -155,6 +155,10 @@ class Mag_Model extends CI_Model {
 	}//}}}
 	
 	function _like($type, $id){		//用户喜欢{{{
-		request($this->api_host . "/$type/$id/like?session_id=".$this->session->userdata('session_id'), array(), 'POST');
+		if ($type != 'user'){
+			request($this->api_host . "/$type/$id/like?session_id=".$this->session->userdata('session_id'), array(), 'POST');
+		}else{
+			request($this->api_host . "/user/$id/follow/1?session_id=".$this->session->userdata('session_id'), array(), 'POST');
+		}
 	}//}}}
 }
