@@ -3,7 +3,6 @@ include 'magazine.php';
 
 class User extends Magazine {
 
-
 	function User () {	//{{{
 		parent::__construct();
 		$this->load->model('user_loved_model');
@@ -58,7 +57,7 @@ class User extends Magazine {
 		redirect("/");
 	}	//}}}
 
-	function _get_loved ($page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者)
+	function _get_loved ($page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{
 		$this->auth->check();
 		$url_data = array(
 				'start' => ($page-1)*($this->limit),
@@ -79,8 +78,7 @@ class User extends Magazine {
 				$type => $loved_ob,
 				);
 		$this->smarty->view('user/user_center_main.tpl', $data);
-	
-	}
+	}	//}}}
 
 	function magazine ($page = '1'){	//喜欢的杂志列表{{{
 		$page_url = "/user/magazine"; 

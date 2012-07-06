@@ -58,17 +58,12 @@ class Magazine extends MY_Controller {
 			}else{
 				$elem['page'] = substr($elem['page'], 0, 1) .  (substr($elem['page'], 1)+2);
 			}
-			if (strlen($elem['magId']) <= 3){
-				$elem['read_mag_id'] = $elem['magId'];
-			}else{
-				$elem['read_mag_id'] = substr($elem['magId'], 0, 3);
-			}
 			$elem_items[] = array(
 					"title" => "那些年 让我们一见倾心的鞋子$i",
 					"image" => array(
 						'url' => $elem['image']['180'],
 						),
-					'url' => $this->config->item('pub_host') . "/$elem[read_mag_id]/$elem[magId]/web/#$elem[page]",
+					'url' => $this->config->item('pub_host') . "/" . substr($elem['magId'], 0, 3) .  "/$elem[magId]/web/#$elem[page]",
 					);
 		}
 
@@ -106,11 +101,6 @@ class Magazine extends MY_Controller {
 			}else{
 				$index_info['elem_list'][$j]['page'] = substr($index_info['elem_list'][$j]['page'], 0, 1) .  (substr($index_info['elem_list'][$j]['page'], 1)+2);
 			}
-			if (strlen($index_info['elem_list'][$j]['magId']) <= 3){
-				$index_info['elem_list'][$j]['read_mag_id'] = $index_info['elem_list'][$j]['magId'];
-			}else{
-				$index_info['elem_list'][$j]['read_mag_id'] = substr($index_info['elem_list'][$j]['magId'], 0, 3);
-			}
 		}
 		$this->smarty->view('magazine/index.tpl', $index_info);
 	}//}}}
@@ -137,11 +127,6 @@ class Magazine extends MY_Controller {
 				$element_list[$i]['page'] = 'p1';
 			}else{
 				$element_list[$i]['page'] = substr($element_list[$i]['page'], 0, 1) .  (substr($element_list[$i]['page'], 1)+2);
-			}
-			if (strlen($element_list[$i]['magId']) <= 3){
-				$element_list[$i]['read_mag_id'] = $element_list[$i]['magId'];
-			}else{
-				$element_list[$i]['read_mag_id'] = substr($element_list[$i]['magId'], 0, 3);
 			}
 
 		}
@@ -218,11 +203,6 @@ class Magazine extends MY_Controller {
 		$magazine_id = $id;
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
 		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
-		if (strlen($magazine['id']) <= 3){
-			$magazine['read_mag_id'] = $magazine['id'];
-		}else{
-			$magazine['read_mag_id'] = substr($magazine['id'], 0, 3);
-		}
 		$limit_recom = 6;
 		$start_recom = 0;
 		$limit_maylike = 6;
