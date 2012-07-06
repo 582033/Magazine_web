@@ -13,7 +13,7 @@
 				if ($page == $i)
 					$page_list .= "<li><a href='javascript:void(0)' class='sel'> $i </a></li>";
 				else
-					$page_list .= "<li><a href='$uri/$i'> $i </a></li>";
+					$page_list .= "<li><a href='$uri/p/$i'> $i </a></li>";
 			}
 			$page_list .= "
 					</ul>
@@ -32,7 +32,7 @@
 					if ($page == $i)
 						$page_list .= "<a href='javascript:void(0)' class='sel'> $i </a>";
 					else
-						$page_list .= "<a href='$uri/$i'> $i </a>";
+						$page_list .= "<a href='$uri/p/$i'> $i </a>";
 				}
 			$page_list .= "
 				<a href='$uri/".($page == $max ? $max : ($page+1))."' class='next'>下一页</a>

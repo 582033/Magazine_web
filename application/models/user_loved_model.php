@@ -9,8 +9,7 @@ class user_loved_model extends CI_Model {
 		$this->api_host = $this->config->item('api_host');
 	}	//}}} 
 
-	function get_loved ($url_data, $type, $mag_category = null) {	//{{{
-		$user_id = $this->session->userdata('id');
+	function get_loved ($user_id, $url_data, $type, $mag_category = null) {	//{{{
 		switch ($type) {
 			case 'author':
 				$uri = "followees";

@@ -5,7 +5,7 @@
 		</dd>
 		<dt> </dt>
 		{foreach from=$magazine.items item=item}
-		{include file="magazine/lib/magcover.tpl" cover_show_del=true}
+		{include file="magazine/lib/magcover.tpl" cover_show_del=$is_me}
 		{/foreach}
 	</dl>
 	{$page_list}

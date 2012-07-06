@@ -9,7 +9,7 @@
 		</div>
 		<div class="intro">
 			<h2>{$magazine.name}</h2>
-			<p class="auther">作者：<a href="#">{$magazine.author.nickname}</a> <a  href="javascript:void(0);" class="follow"><img src="/sta/images/ico_plus.gif" alt="加关注" class="fellow_item" onclick="like('user','{$magazine.author.id}');" />&nbsp;<span class="fellow_item" onclick="like('user','{$magazine.author.id}');">加关注</span></a></p>
+			<p class="auther">作者：<a href="/user/{$magazine.author.id}">{$magazine.author.nickname}</a> <a  href="javascript:void(0);" class="follow"><img src="/sta/images/ico_plus.gif" alt="加关注" class="fellow_item" onclick="like('user','{$magazine.author.id}');" />&nbsp;<span class="fellow_item" onclick="like('user','{$magazine.author.id}');">加关注</span></a></p>
 			<p>上传：{$magazine.publishedAt}</p>
 			<p class="tag">TAG：{foreach from=$magazine['tag'] item=item}<a href="/mag_list/{if $item == '国内游'}domestic{else if $item == '旅游攻略'}tour_reader{else if $item == '出境游'}foreign{/if}/1">{$item}</a>&nbsp;&nbsp;{/foreach}</p>
 			<p class="intro_txt" style="height:77px;"><strong>简介：</strong>

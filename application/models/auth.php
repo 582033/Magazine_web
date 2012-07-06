@@ -39,8 +39,13 @@
 		}
 	}
 
+	function is_logged_in() {
+		return $this->user_id and $this->session_id;
+	}
 	function check () {
-		if (!$this->user_id or !$this->session_id) exit("haven't userId or session_id error, signin please"); 
+		if (!$this->is_logged_in()) {
+			exit("signin please"); 
+		}
 	}
 
 }

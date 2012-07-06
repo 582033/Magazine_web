@@ -81,17 +81,7 @@ $route['search/(:any)/(magazine|author)/(:num)'] = 'search/index/$1/$2/$3';
 $route['soft'] = 'magazine/soft';
 $route['soft/(pc|android)'] = 'magazine/soft/$1';
 
-$route['msg'] = 'user/index';
-$route['msg/activities'] = 'user/show';
-
 $route['magazine/detail/(:num)'] = 'magazine/magazine_detail/$1';
-
-$route['user/msg'] = 'user/index';
-$route['user/msg/(:num)'] = 'user/msglist/$1';
-$route['msg/activities'] = 'user/show';
-$route['msg/del/(:num)'] = 'user/del/$1';
-
-$route['v1/user/(:num)']='user/user/$1';
 
 $route['user/element/(:num)']='user/element/$1';
 $route['user/bookstore/(:num)']='user/bookstore/$1';
@@ -100,6 +90,12 @@ $route['magazine/(:num)/comment/p/(:num)'] = '/magazine/comment_list/$1/$2';
 
 $route['(magazine|element)/(:num)/(like|cancelLike)'] = '/magazine/like/$1/$2/$3';
 $route['user/(:num)/(follow|unfollow)'] = '/magazine/like/user/$1/$2';
+
+$route['user/(:any)/(bookstore|magazines|elements|followees|messages)'] = '/user/$2/$1'; # user/me/elements -> user/elements/me
+$route['user/(:any)/(:any)/p/(:num)'] = '/user/$2/$1/$3';
+$route['user/me'] = 'user/bookstore/me';
+$route['user/(:num)'] = 'user/magazines/$1';
+$route['message/del/(:num)'] = 'user/del_msg/$1';
 
 $route['(about_us|contact_us|business_cooperation|legal_statement)'] = '/about/foot_link/$1';
 /* End of file routes.php */
