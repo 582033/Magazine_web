@@ -23,4 +23,4 @@
 	</dl>
 </div>
 {include file='share.tpl'}
-{include file='footer_big.tpl'}
+{include file='footer.tpl'}
