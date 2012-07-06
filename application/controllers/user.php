@@ -290,8 +290,6 @@ function messages($user_id, $p=1) {
 		$msg_ctt.='
 			<dl class="clearfix" id="'.$v['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /></a></dt> <dd> <div> <p> <strong><a href="#">戴斯：</a></strong>欢迎阅读杂志编号为'.'------'.$v['msg_id'].'的杂志<a href="#">《我的杂志》</a> </p> <span> 2012-5-6 17:40 <a href="javascript:delmsg('.$v['msg_id'].')" class="del_msg" onclick="delmsg('.$v['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
 
-
-
 	}
 	$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
 	$data=array();
@@ -303,6 +301,13 @@ function messages($user_id, $p=1) {
 	$data['is_me'] = TRUE;
 	$data['user_id'] = 'me';
 	$this->smarty->view('user/user_center_main.tpl',$data);
+
+}
+	//show all messages
+	function msglist($page){
+	$this->index($page);
+
+
 }
 
 //api proxy
