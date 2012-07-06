@@ -83,16 +83,21 @@ class Mag_Model extends CI_Model {
 	
 	
 	function _get_index_info(){		//首页杂志信息{{{
-		//$mag_result = request($this->api_host . "/magazines?limit=13&start=0");
-		  $mag_result = request($this->api_host."/ads/image/indextop");
+		$mag_result = request($this->api_host . "/magazines?limit=9&start=0");
+		$mag_resultad = request($this->api_host."/ads/image/indextop");
 		$mag_item = $mag_result['data']['items'];
+		$mag_itemad = $mag_resultad['data']['items'];
 		$mag_gallery = $mag_list = array();
+		for($i=0; $i <count($mag_itemad); $i++){
+				array_push($mag_gallery, $mag_itemad[$i]);
+
+		}
 		for ($i = 0; $i < count($mag_item); $i++){
-			if ($i < 4){
-				array_push($mag_gallery, $mag_item[$i]);
-			}else{
+			//if ($i < 4){
+			//	array_push($mag_gallery, $mag_item[$i]);
+			//}else{
 				array_push($mag_list, $mag_item[$i]);
-			}
+			//}
 		}
 		$elem_gallery = $elem_list = array();
 		$elem_result = request($this->api_host . "/elements?limit=12&start=0");
@@ -131,8 +136,10 @@ class Mag_Model extends CI_Model {
 	}//}}}
 	
 	function _get_recommendation_mag($limit, $start, $id){		//获得推荐杂志列表{{{
-		$recommendation = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start&id=$id");
-		return $recommendation['data']['items'];
+		$mag_resultad = request($this->api_host."/ads/image/magtop");
+		return $mag_resultad;
+		//$recommendation = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start&id=$id");
+		//return $recommendation['data']['items'];
 	}//}}}
 	
 	function _get_maylike_mag($limit, $start, $id){		//获得猜你喜欢的杂志列表{{{

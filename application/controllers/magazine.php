@@ -186,7 +186,7 @@ class Magazine extends MY_Controller {
 		$start_list = 0;
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit_list, $start_list);
 		$data = array(
-					'mag_gallery' => $mag_recommend,
+					'mag_gallery' => $mag_recommend['data']['items'],
 					'tour_reader' => $mag_list['tour_reader']['data']['items'],
 					'foreign' => $mag_list['foreign']['data']['items'],
 					'domestic' => $mag_list['domestic']['data']['items'],
@@ -195,14 +195,15 @@ class Magazine extends MY_Controller {
 		$mag_items = array();
 		foreach ($data['mag_gallery'] as $i => $mag) {
 			$mag_items[] = array(
-					'title' => $mag['name'],
-					'text' => $mag['intro'] . $i,
+					'title' => $mag['title'],
+					'text' => $mag['text'] . $i,
 					"image" => array(
-						'url' => $mag['cover'],
+						'url' => $mag['image'],
 						),
-					'url' => "/magazine/detail/$mag[id]",
+					'url' => $mag['url']
 					);
 		}
+	//var_dump($mag_items);exit();
 
 		$data['ad_slot_magtop'] = array(
 			'width' => 980,
