@@ -106,6 +106,7 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function find_elements($page = '1'){		//元素列表页面{{{
+		if (!$page) $page = 1;
 		$this->load->model('display_model');
 		$limit = 30;
 		$start = ($page-1) * $limit;
@@ -121,7 +122,7 @@ class Magazine extends MY_Controller {
 
 	function magazine_list($tag = 'tour_reader', $page = '1'){		//杂志列表页面{{{
 		$page = $page ? $page : 1;
-		$limit = 5;
+		$limit = 10;
 		$start = ($page-1)*$limit;
 		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
 		$totalResults = $mag_list[$tag]['data']['totalResults'];

@@ -26,7 +26,7 @@
  	<dt><span>共<strong>{$authors.totalResults}</strong>个符合该关键字的用户</span> <a href="/search/{$keyword}/author" class="more">More</a></dt>
 	{foreach from=$authors.items item=item}
  	<dd>
- 		<a href="#"><img src="{$item.image}" alt="{$item.nickname}" />{$item.nickname}</a>
+ 		<a href="/user/{$item.id}"><img src="{$item.image}" alt="{$item.nickname}" />{$item.nickname}</a>
  	</dd>
 	{/foreach}
 </dl>

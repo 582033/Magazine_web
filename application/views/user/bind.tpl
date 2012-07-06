@@ -1,5 +1,5 @@
 {include file='header.tpl'}
-<div class="current"><a href="#">首页</a> &gt; <a href="#" class="cur">基本资料</a></div>
+<div class="current"><a href="/home">首页</a> &gt; <a href="#" class="cur">基本资料</a></div>
 <div class="main setting clearfix">
 	{include file='user/left.tpl'}
 	<div class="set_main share">

@@ -8,6 +8,7 @@ class search extends Magazine{
 	}
 
 	function index ($keyword, $type=null, $page='1') {	//{{{
+		$page = $page ? $page : 1;
 		if ($type) {
 			$limit = $type == 'magazine' ? 20 : 60;
 			$start = ($page-1)*$limit;

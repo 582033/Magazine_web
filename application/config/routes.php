@@ -68,15 +68,14 @@ $route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
 
-$route['mag_list/(tour_reader|foreign|domestic)(/(:num))?'] = 'magazine/magazine_list/$1/$3';
-$route['find'] = 'magazine/find_elements';
-$route['find/(:num)'] = 'magazine/find_elements/$1';
+$route['mag_list/(tour_reader|foreign|domestic)(/p/(:num))?'] = 'magazine/magazine_list/$1/$3';
+$route['find(/p/(:num))?'] = 'magazine/find_elements/$2';
 
 $route['mag'] = 'magazine/main_magazine_list';
 $route['home'] = 'magazine/index';
 
+$route['search/(:any)/(magazine|author)(/p/(:num))?'] = 'search/index/$1/$2/$4';
 $route['search/(:any)'] = 'search/index/$1';
-$route['search/(:any)/(magazine|author)/(:num)'] = 'search/index/$1/$2/$3';
 
 $route['soft'] = 'magazine/soft';
 $route['soft/(pc|android)'] = 'magazine/soft/$1';
@@ -90,9 +89,8 @@ $route['magazine/(:num)/comment/p/(:num)'] = '/magazine/comment_list/$1/$2';
 
 $route['(magazine|element)/(:num)/(like|cancelLike)'] = '/magazine/like/$1/$2/$3';
 $route['user/(:num)/(follow|unfollow)'] = '/magazine/like/user/$1/$2';
-
-$route['user/(:any)/(bookstore|magazines|elements|followees|messages)'] = '/user/$2/$1'; # user/me/elements -> user/elements/me
-$route['user/(:any)/(:any)/p/(:num)'] = '/user/$2/$1/$3';
+# user/me/elements -> user/elements/me, user/me/elements/p/2 -> user/elements/me/2
+$route['user/(:any)/(bookstore|magazines|elements|followees|messages)(/p/(:num))?'] = '/user/$2/$1/$4';
 $route['user/me'] = 'user/bookstore/me';
 $route['user/(:num)'] = 'user/magazines/$1';
 $route['message/del/(:num)'] = 'user/del_msg/$1';

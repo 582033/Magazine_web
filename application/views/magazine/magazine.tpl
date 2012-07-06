@@ -55,7 +55,7 @@
 				<li><a id="domestic">国内游</a></li>
 			</ul>
 		</dd>
-		<dt><a href="/mag_list/tour_reader/1" class="more">More</a></dt>
+		<dt><a href="/mag_list/tour_reader" class="more">More</a></dt>
 		{foreach from=$tour_reader item=item key=key}
 		{include file="magazine/lib/magcover.tpl" dd_class="tour_reader"}
 		{/foreach}

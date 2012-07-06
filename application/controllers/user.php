@@ -58,6 +58,7 @@ class User extends Magazine {
 	}	//}}}
 
 	function _get_loved ($user_id, $page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{
+		$page = $page ? $page : 1;
 		if ($user_id == 'me') {
 			$this->auth->check();
 			$user_id = $this->session->userdata('id');
@@ -107,6 +108,7 @@ class User extends Magazine {
 	}	//}}}
 
 	function bookstore($user_id, $page = '1'){	//{{{
+		$page = $page ? $page : 1;
 		if ($user_id == 'me') {
 			$this->auth->check();
 			$user_id = $this->session->userdata('id');
@@ -209,6 +211,7 @@ return FALSE;
 	
 //show all messages
 function messages($user_id, $p=1) {
+	$p = $p ? $p : 1;
 	$user_info = $this->check_signin();
 	//check login status
 	if($user_info===FALSE){
