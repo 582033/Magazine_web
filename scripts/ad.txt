@@ -3,7 +3,7 @@ image||indextop||http://www.in1001.com/magazine/detail/383||拾梦法兰西||htt
 image||indextop||http://www.in1001.com/magazine/detail/377||斯德哥尔摩速览||http://img.1001s.cn/upload/20120706/ad_indextop_2.jpg||波罗的海旁的浮光掠影
 image||indextop||http://www.in1001.com/magazine/detail/371||与危险共舞||http://img.1001s.cn/upload/20120706/ad_indextop_3.jpg||旅行：勇敢者的人生游戏
 image||indextop||http://www.in1001.com/magazine/detail/373||十日游缅甸||http://img.1001s.cn/upload/20120706/ad_indextop_4.jpg||还未离开已经想念
-image||indextop||http://pub.in1001.com/401/401/web/#p1||吃货行遍中国||http://img.1001s.cn/upload/20120706/ad_indextop_1.jpg||成都：味蕾上的鸿篇巨著
+image||indextop||http://pub.in1001.com/401/401/web/#p1||吃货行遍中国||http://img.1001s.cn/upload/20120706/ad_indextop_5.jpg||成都：味蕾上的鸿篇巨著
 image||magtop||http://pub.in1001.com/403/403/web/#p2||奇趣:世界性文化旅行地||http://img.1001s.cn/upload/20120706/ad_mag_top_1.jpg||
 image||magtop||http://pub.in1001.com/407/407/web/||漂流一夏，尽享清凉之旅||http://img.1001s.cn/upload/20120706/ad_mag_top_2.jpg||
 image||magtop||http://www.in1001.com/magazine/detail/405||不可思议的马德里||http://img.1001s.cn/upload/20120706/ad_mag_top_3.jpg||
