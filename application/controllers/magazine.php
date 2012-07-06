@@ -281,18 +281,6 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/down.tpl');
 	}	//}}
 	
-	function foot_link($link){		//页面底部链接及跳转{{{
-		if ($link == 'about_us'){
-			$this->smarty->view('about_us.tpl');
-		}else if ($link == 'contact_us'){
-			$this->smarty->view('contact_us.tpl');
-		}else if ($link == 'business_cooperation'){
-			$this->smarty->view('business_cooperation.tpl');
-		}else if ($link == 'legal_statement'){
-			$this->smarty->view('legal_statement.tpl');
-		}
-	}//}}}
-	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	function mag_list (){	//杂志列表{{{

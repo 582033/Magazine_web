@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/foot.css"/>
 <div class="foot_container">
 	<div class="contact_us_container"><!-- 联系我们 -->
-		<div class="title">联系我们</div>
+		<div class="title_l">联系我们</div>
 		<div class="subtitle">北京乐投信息技术有限公司</div>
 		<ul>
 			<li>电话：010-64981756</li>

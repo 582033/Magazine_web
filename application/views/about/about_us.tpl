@@ -3,7 +3,7 @@
 <div class="foot_container">
 	<div class="about_us_container">
 		<div class="about_1001"><!-- 关于1001夜 -->
-			<div class="title">关于&nbsp;"1001夜"</div>
+			<div class="title_b">关于&nbsp;"1001夜"</div>
 			<div class="content"><!-- 内容 -->
 				<div class="about_1001_first">
 					<div class="little_title">1001夜互动阅读平台</div>
@@ -42,7 +42,7 @@
 			</div><!-- end 内容 -->
 		</div><!-- end 关于1001夜 -->
 		<div class="about_letou"><!-- 关于乐投信息 -->
-			<div class="title">关于乐投信息</div>
+			<div class="title_m">关于乐投信息</div>
 			<div class="content">
 				<p>北京乐投信息技术有限公司是北京乐投科技公司的控股子公司，联合创始人和主要股东由在移动互联网业界拥有丰富阅历的资深人士组成，乐投团队现有员工70人，骨干分别来自谷歌、微软、MOTO、联想、百度、酷派等知名企业，具备强大技术实力和经管能力，已经获得天使投资人和知名风投的投资支持。</p>
 				<div class="occupying_by_10"></div>

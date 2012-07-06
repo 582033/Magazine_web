@@ -517,7 +517,7 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .footer.big{ height:192px; background-position:left top; }
 .footer ul{ width:1000px; margin:0 auto; overflow:hidden; clear:both; background:url(/sta/images/bg_footer.png) repeat-x left -192px;}
 .footer.big ul{ background:left top;}
-.footer ul li{ float:left; width:160px; height:35px; padding:20px 0 0 40px; }
+.footer ul li{ float:left; width:160px; height:35px; padding:20px 0 0 40px; color:#FFF;text-align:center;}
 .footer.big ul li{ height:145px; margin-left:-3px; background:url(/sta/images/line_footer.png) no-repeat left top;}
 .footer li a{ color:#FFF; font-size:16px;}
 .footer dl dt{ padding-bottom:10px;}

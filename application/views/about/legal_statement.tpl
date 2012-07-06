@@ -3,7 +3,7 @@
 <div class="foot_container">
 	<div class="legal_statement_container">
 		<div class="legal_container"><!-- legal_container -->
-			<div class="title">法律声明</div>
+			<div class="title_l">法律声明</div>
 			<div class="occupying_by_10"></div>
 			<div class="content">
 				<div class="little_title">1. 关于本协议</div>
@@ -101,7 +101,7 @@
 		</div><!-- enc legal_container -->
 		<div class="privacy_policy"><!-- privacy_policy -->
 			<div class="occupying_by_10"></div>
-			<div class="title_big">“1001夜” 隐私协议</div>
+			<div class="title_s">“1001夜” 隐私协议</div>
 			<div class="occupying_by_10"></div>
 			<div class="simple_intro">
 				<p>www.in1001.com（简称"本网站"）的版权属于北京乐投信息技术有限公司（简称"乐投信息"或"我们"）。我们为您提供"1001夜"软件（简称"1001夜"），本软件是一款为PC机和个人移动通信设备提供多精品内容阅读、多媒体杂志制作工具及其他相关服务的应用软件。 依据法律的规定，我们将在特定情形下收集、使用、保存和披露您的个人信息。以下条款描述了我们如何收集、使用、保存和披露您的个人信息。</p>
