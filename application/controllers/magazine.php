@@ -61,7 +61,7 @@ class Magazine extends MY_Controller {
 			$elem_items[] = array(
 					"title" => "那些年 让我们一见倾心的鞋子$i",
 					"image" => array(
-						'url' => $elem['image']['180'],
+						'url' => $elem['image']['180']['url'],
 						),
 					'url' => $this->config->item('pub_host') . "/" . substr($elem['magId'], 0, 3) .  "/$elem[magId]/web/#$elem[page]",
 					);
@@ -106,32 +106,14 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function find_elements($page = '1'){		//元素列表页面{{{
-		$start = ($page-1)*30;
+		$this->load->model('display_model');
 		$limit = 30;
-		//$this->page_model->page_list("/find", "每页显示的数量", "数据总数", $page)
+		$start = ($page-1) * $limit;
 		$element = $this->mag_model->_get_element_list($limit, $start);
 		$page_list = $this->page_model->page_list("/find", $limit, $element['data']['totalResults'], $page);
-		$element_list = $element['data']['items'];
-		$mode = '/[0-9]{3}x[0-9]{3}/';
-		for ($i = 0; $i < count($element_list); $i++){
-			preg_match($mode, $element_list[$i]['image']['180'], $matches);
-			$size[$i] = $matches[0];
-			if ($element_list[$i]['thumbSize'] == '1x2'){
-				$element_list[$i]['width'] = substr($size[$i], 0, 3);
-				$element_list[$i]['height'] = substr($size[$i], 4, 3);
-			}else{
-				$element_list[$i]['width'] = substr($size[$i], 0, 3);
-				$element_list[$i]['height'] = substr($size[$i], 4, 3) - 10;
-			}
-			if ($element_list[$i]['page'] == 'cover'){
-				$element_list[$i]['page'] = 'p1';
-			}else{
-				$element_list[$i]['page'] = substr($element_list[$i]['page'], 0, 1) .  (substr($element_list[$i]['page'], 1)+2);
-			}
-
-		}
+		$elements = $this->display_model->process_elements($element['data']['items']);
 		$data = array(
-					'element_list' => $element_list,
+					'element_list' => $elements,
 					'page_list' => $page_list,
 					);
 		$this->smarty->view('magazine/element.tpl', $data);

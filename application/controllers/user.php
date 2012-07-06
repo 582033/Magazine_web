@@ -59,6 +59,7 @@ class User extends Magazine {
 
 	function _get_loved ($page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{
 		$this->auth->check();
+		$this->load->model('display_model');
 		$url_data = array(
 				'start' => ($page-1)*($this->limit),
 				'limit' => $this->limit,
@@ -66,6 +67,9 @@ class User extends Magazine {
 		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
 		if ($type != 'followees') {
 			$loved_ob = $this->user_loved_model->get_loved($url_data, $type);
+			if ($type == 'element') {
+				$loved_ob['items'] = $this->display_model->process_elements($loved_ob['items']);
+			}
 			$page_style = null;
 		}
 		else {

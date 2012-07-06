@@ -15,9 +15,9 @@
 		{include file="magazine/lib/ad-gallery.tpl" container_id="element_gallery_container" ad_slot=$ad_slot_indexbottom}
 		{foreach from=$elem_list item=item key=key}
 		{if $key == 4}
-		{include file="magazine/lib/elemcover.tpl" thumbSize="2x1" cover_show_title=true}
+		{include file="magazine/lib/elemcover.tpl" width=360 height=180 cover_show_title=true}
 		{else}
-		{include file="magazine/lib/elemcover.tpl" thumbSize='1x1' cover_show_title=true}
+		{include file="magazine/lib/elemcover.tpl" width=180 height=180 cover_show_title=true}
 		{/if}
 		{/foreach}
 	</dl>
