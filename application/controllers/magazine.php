@@ -281,20 +281,16 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/down.tpl');
 	}	//}}
 	
-	function about_us(){		//{{{关于我们
-		$this->smarty->view('about_us.tpl');
-	}//}}}
-	
-	function contact_us(){		//{{{联系我们
-		$this->smarty->view('contact_us.tpl');
-	}//}}}
-	
-	function business_cooperation(){		//商务合作{{{
-		$this->smarty->view('business_cooperation.tpl');
-	}//}}}
-	
-	function legal_statement(){		//法律声明{{{
-		$this->smarty->view('legal_statement.tpl');
+	function foot_link($link){		//页面底部链接及跳转{{{
+		if ($link == 'about_us'){
+			$this->smarty->view('about_us.tpl');
+		}else if ($link == 'contact_us'){
+			$this->smarty->view('contact_us.tpl');
+		}else if ($link == 'business_cooperation'){
+			$this->smarty->view('business_cooperation.tpl');
+		}else if ($link == 'legal_statement'){
+			$this->smarty->view('legal_statement.tpl');
+		}
 	}//}}}
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

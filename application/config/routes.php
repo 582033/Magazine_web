@@ -91,7 +91,6 @@ $route['user/msg/(:num)'] = 'user/msglist/$1';
 $route['msg/activities'] = 'user/show';
 $route['msg/del/(:num)'] = 'user/del/$1';
 
-
 $route['v1/user/(:num)']='user/user/$1';
 
 $route['user/element/(:num)']='user/element/$1';
@@ -102,5 +101,6 @@ $route['magazine/(:num)/comment/p/(:num)'] = '/magazine/comment_list/$1/$2';
 $route['(magazine|element)/(:num)/(like|cancelLike)'] = '/magazine/like/$1/$2/$3';
 $route['user/(:num)/(follow|unfollow)'] = '/magazine/like/user/$1/$2';
 
+$route['(about_us|contact_us|business_cooperation|legal_statement)'] = '/magazine/foot_link/$1';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
