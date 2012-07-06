@@ -11,7 +11,7 @@
 					<ul class='pagenav clearfix'>";
 			for ($i = $min; $i <= $max; $i++) {
 				if ($page == $i)
-					$page_list .= "<li><a href='$uri/$i' class='sel'> $i </a></li>";
+					$page_list .= "<li><a href='javascript:void(0)' class='sel'> $i </a></li>";
 				else
 					$page_list .= "<li><a href='$uri/$i'> $i </a></li>";
 			}
@@ -32,7 +32,7 @@
 					if ($page == $i)
 						$page_list .= "<a href='javascript:void(0)' class='sel'> $i </a>";
 					else
-						$page_list .= "<a href='$i'> $i </a>";
+						$page_list .= "<a href='$uri/$i'> $i </a>";
 				}
 			$page_list .= "
 				<a href='$uri/".($page == $max ? $max : ($page+1))."' class='next'>下一页</a>

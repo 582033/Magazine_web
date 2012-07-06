@@ -2,10 +2,10 @@
     <div class="current"><a href="#">首页</a> &gt; <a href="#" class="cur">个人中心</a></div>
     <div class="main main_left_line clearfix">
         {include file='user/sidebar_left.tpl'}
-        {if $loved_element}
+        {if $element}
             {include file='user/element.tpl'}
         {/if}
-        {if $loved_magazine}
+        {if $magazine}
             {include file='user/magazine.tpl'}
         {/if}
         {if $bookstore}
@@ -14,7 +14,9 @@
         {if $msg_page}
 	    {include file='user/show.tpl'}
         {/if}
-	
+        {if $followees}
+	    {include file='user/followees.tpl'}
+        {/if}
 
     </div>
 {include file='footer.tpl'}

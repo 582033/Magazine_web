@@ -58,47 +58,44 @@ class User extends Magazine {
 		redirect("/");
 	}	//}}}
 
-	function magazine ($page = '1'){	//喜欢的杂志列表{{{
+	function _get_loved ($page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者)
 		$this->auth->check();
 		$url_data = array(
 				'start' => ($page-1)*($this->limit),
 				'limit' => $this->limit,
 				);
-		$mag_category = $this->input->get('mag_category');
-		if ($mag_category) $url_data['mag_category'] = $mag_category;
 		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
-		$loved_magazine = $this->user_loved_model->get_loved($url_data, 'magazine');
-		/*
-		   get_loved($url_data, $type) $type[element/author/magazine]
-		*/
+		if ($type != 'followees') {
+			$loved_ob = $this->user_loved_model->get_loved($url_data, $type);
+			$page_style = null;
+		}
+		else {
+			$loved_ob = $loved_author;
+			$page_style = TRUE;
+		}
 		$data = array(
-				'page_list' => $this->page_model->page_list("/user/magazine", $this->limit, $loved_magazine['totalResults'], $page),
+				'page_list' => $this->page_model->page_list($page_url, $this->limit, $loved_ob['totalResults'], $page, $page_style),
 				'loved_author' => $loved_author,
-				'loved_magazine' => $loved_magazine,
+				$type => $loved_ob,
 				);
 		$this->smarty->view('user/user_center_main.tpl', $data);
+	
+	}
+
+	function magazine ($page = '1'){	//喜欢的杂志列表{{{
+		$page_url = "/user/magazine"; 
+		$this->_get_loved($page, 'magazine', $page_url);
 	}	//}}}
 
 	function element ($page = '1'){	//喜欢的元素列表{{{
+		$page_url = "/user/element"; 
+		$this->_get_loved($page, 'element', $page_url);
 		$this->auth->check();
-		$url_data = array(
-				'start' => ($page-1)*($this->limit),
-				'limit' => $this->limit,
-				);
-		$element_type = $this->input->get('element_type');
-		if ($element_type) $url_data['element_type'] = $element_type;
-		$loved_element = $this->user_loved_model->get_loved($url_data, 'element');
-		$loved_author = $this->user_loved_model->get_loved($url_data, 'author');
-		/*
-		   get_loved($url_data, $type) $type[element/author/magazine]
-		*/
-		$data = array(
-				//'page_list' => $this->page_list("/user/element", 100, $page),
-				'page_list' => $this->page_model->page_list("/user/element", $this->limit, $loved_element['totalResults'], $page),
-				'loved_author' => $loved_author,
-				'loved_element' => $loved_element,
-				);
-		$this->smarty->view('user/user_center_main.tpl', $data);
+	}	//}}}
+
+	function followees ($page = '1') {	//关注的作者{{{
+		$page_url = "/user/followees"; 
+		$this->_get_loved($page, 'followees', $page_url);
 	}	//}}}
 
 	function bookstore($page = '1'){	//{{{

@@ -4,7 +4,7 @@
 		{include file='user/user_nav.tpl'}
 		</dd>
 		<dt style="display:none;"><a href="#" class="sel">全部发现<span>(12)</span></a>　|　<a href="#">发现的美图<span>(12)</span></a>　|　<a href="#">发现的视频<span>(12)</span></a></dt>
-		{foreach from=$loved_element['items'] item=item}
+		{foreach from=$element['items'] item=item}
 		{include file="magazine/lib/elemcover.tpl" cover_show_del=true}
 		{/foreach}
 	</dl>
