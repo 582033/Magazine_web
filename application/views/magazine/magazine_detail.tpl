@@ -97,9 +97,8 @@
 
 	<div class="sidebar_right">
 		<div class="topic">
-		<a href="#"><img src="/sta/images/temp/230x180.jpg" alt="预览" /></a>
+			<a href="/soft/android"><img src="/sta/images/temp/230x180.jpg" alt="预览" /></a>
 		</div>
-
 		<dl class="mag_topic">
 			<dt>推荐的杂志</dt>
 			{foreach from=$recommendation item=item}
