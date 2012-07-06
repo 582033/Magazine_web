@@ -85,13 +85,7 @@ $("document").ready(function(){
  	<div class="right_main">
  		<div class="msg_list clearfix">
  			<div class="menu">
- 				<ul>
- 					<li><a href="#" class="sel">消息中心</a></li>
- 					<li><a href="#">关注的作者</a></li>
- 					<li><a href="#">喜欢的发现</a></li>
- 					<li><a href="#">喜欢的书</a></li>
- 					<li><a href="#">我的作品</a></li>
- 				</ul>
+			{include file="user/user_nav.tpl"}
  			</div>
  			
  			<div class="my_msg_list">

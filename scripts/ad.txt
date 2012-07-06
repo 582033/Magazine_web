@@ -14,4 +14,8 @@ image||magtop||http://www.in1001.com/magazine/detail/409||携手走进浪漫世�
 
 
 
-#text||slot||url||title||imageurl
+#text||slot||url||title||text
+text||magmiddle||http://pub.1001s.cn/316/316/web/||那些年，我们一见倾心的鞋子AAAAAAAAAAAAAAA||那些年，我们的鞋子textAAAAAAAAAAAAAAAAAAAAAAAAAA
+text||magmiddle||http://pub.1001s.cn/315/315/web/||那些年，我们一见倾心的鞋子BBBBBBBBBBBBBBB||那些年，我们的鞋子textBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+text||magmiddle||http://pub.1001s.cn/322/322/web/||那些年，我们一见倾心的鞋子CCCCCCCCCCCCCCC||那些年，我们的鞋子textCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+

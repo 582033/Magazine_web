@@ -12,7 +12,7 @@
 	    {include file='user/my_bookstore.tpl'}
         {/if}
         {if $msg_page}
-	    {include file='msg/show.tpl'}
+	    {include file='user/show.tpl'}
         {/if}
 	
 

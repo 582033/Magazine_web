@@ -231,6 +231,7 @@ else{
 $page_list = $this->page_model->page_list("/user/msg", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
 $data=array();
 $data['msg']=$msg_ctt;
+$data['love_msg']="true";
 $data['page_list']=$page_list;
 $data['msg_page']='msg_page';
 $data['web_host']='$.getJSON("'.$this->config->item('web_host').'/msg/del/"+msgid, {}, function(response){window.location.reload(); });';

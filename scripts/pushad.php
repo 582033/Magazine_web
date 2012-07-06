@@ -50,11 +50,20 @@ foreach($arr_lines as $v){
 	}
 //text process
 	if($arr_row['0']=='text'){
+		$row_db=array(
+				'type'=>'text',
+				'slot'=>$arr_row['1'],
+				'weight'=>rand(10,20),
+				'enabled'=>0,
+				'url'=>$arr_row['2'],
+				'title'=>$arr_row['3'],
+				'text'=>$arr_row['4'],
+			);	
 
 
+	$arr_to_ins[]=$row_db;
 }
 }
-
 
 
 //push data into db
