@@ -15,14 +15,15 @@
 				else
 					$page_list .= "<li><a href='$uri/p/$i'> $i </a></li>";
 			}
-			$page_list .= "
+			$page_list .= <<<EOF
 					</ul>
-					<form>
+					<form action="$uri">
 						<p class='page_no'>
-							<input type='text' value='$page' /> | $total_page 页 <button type='submit' style='display:none'>跳转</button>
+							<input type='text' name="goto" value='$page' /> | <span class="totalPage">$total_page</span> 页 <button type='submit' style='display:none'>跳转</button>
 						</p>
 					</form>
-				</div>";
+				</div>
+EOF;
 		}
 		else {
 			$page_list =  "

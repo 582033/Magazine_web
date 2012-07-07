@@ -73,7 +73,7 @@ $route['find(/p/(:num))?'] = 'magazine/find_elements/$2';
 
 $route['mag'] = 'magazine/main_magazine_list';
 
-$route['search/(all|magazine|author)/(:any)(/p/(:num))?'] = 'search/index/$1/$2/$4';
+$route['search/(all|magazine|author)/([^/]+?)(/p/(:num))?'] = 'search/index/$1/$2/$4';
 
 $route['soft'] = 'magazine/soft';
 $route['soft/(pc|android)'] = 'magazine/soft/$1';

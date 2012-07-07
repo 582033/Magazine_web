@@ -2,6 +2,7 @@ $(function() {
  resize();
  detail_resize();
  init_search();
+ init_goto_page();
 });
 
 function init_search() { // {{{
@@ -21,6 +22,17 @@ function init_search() { // {{{
 			});
 		});
 } //}}}
+
+function init_goto_page() {
+	$('div.pagearea form').submit(function() {
+			$p = $(this).find('input[name="goto"]');
+			var gotop = parseInt($p.val());
+			var totalPage = parseInt($(this).find('.totalPage').text());
+			if (!gotop || gotop > totalPage) return false;
+			window.location.href = this.action + '/p/' + gotop;
+			return false;
+			});
+}
 
 
 function detail_resize(){
