@@ -83,7 +83,7 @@ $route['magazine/detail/(:num)'] = 'magazine/magazine_detail/$1';
 $route['user/element/(:num)']='user/element/$1';
 $route['user/bookstore/(:num)']='user/bookstore/$1';
 
-$route['magazine/(:num)/comment/p/(:num)'] = '/magazine/comment_list/$1/$2';
+$route['magazine/(:num)/comments(/p/(:num))?'] = '/magazine/comment_list/$1/$2/$4';
 
 $route['(magazine|element)/(:num)/(like|cancelLike)'] = '/magazine/like/$1/$2/$3';
 $route['user/(:num)/(follow|unfollow)'] = '/magazine/like/user/$1/$2';

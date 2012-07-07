@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-	<div class="current"><a href="#">杂志</a> &gt; <a href="#">{$magazine.cate}</a> &gt; <a href="#">{$magazine.name}</a> &gt; <a href="#" class="cur">留言板</a></div>
+	<div class="current"><a href="/mag">杂志</a> &gt; <a href="#">{$magazine.cate}</a> &gt; <a href="/magazine/detail/{$magazine.id}">{$magazine.name}</a> &gt; <span class="cur">留言板</span></div>
 <div class="main comment clearfix">
 	<div class="sidebar_left">
 		<a href="#"><img src="{$magazine.cover}" width="180px" height="276px" alt="杂志名" /></a>
@@ -15,17 +15,8 @@
 			<textarea class="text" name="conment"></textarea>
 			<button type="button" id="add">发布</button>
 		</form>
-		<dl id="list" class="clearfix">
-			{foreach from=$comment item=item}
-			<dt><a href="javascript:void(0)"><img src="{$item.author.image}" alt="用户头像" /></a></dt>
-			<dd>
-				<p class="info"><a href="javascript:void(0)" class="author">{$item.author.nickname}</a><span></span></p>
-				<p>{$item.content}</p>
-			</dd>
-			<dd class="edit_reply"><a href="javascript:void(0)" class="reply">回复</a></dd>
-			{/foreach}
-		</dl>
-{$page_list}
+		{include file="magazine/lib/comments.tpl"}
+		{$page_list}
 	</div>
 </div>
 

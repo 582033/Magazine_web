@@ -11,7 +11,7 @@
 					<ul class='pagenav clearfix'>";
 			for ($i = $min; $i <= $max; $i++) {
 				if ($page == $i)
-					$page_list .= "<li><a href='javascript:void(0)' class='sel'> $i </a></li>";
+					$page_list .= "<li><a href='$uri/p/$i' class='sel'> $i </a></li>";
 				else
 					$page_list .= "<li><a href='$uri/p/$i'> $i </a></li>";
 			}
@@ -26,18 +26,20 @@
 EOF;
 		}
 		else {
-			$page_list =  "
-			<p class='pagenav msg_pagenav'>
-				<a href='$uri/".($page == $min ? $min : ($page-1))."' class='prav'>上一页</a>";
-				for ($i = $min; $i <= $max; $i++) {
-					if ($page == $i)
-						$page_list .= "<a href='javascript:void(0)' class='sel'> $i </a>";
-					else
-						$page_list .= "<a href='$uri/p/$i'> $i </a>";
-				}
-			$page_list .= "
-				<a href='$uri/".($page == $max ? $max : ($page+1))."' class='next'>下一页</a>
-			</p>";
+			$page_list =  "<p class='pagenav msg_pagenav'>";
+			if ($page > 1) {
+				$page_list .= "<a href='$uri/p/" . ($page-1) . "' class='prav'>上一页</a>";
+			}
+			for ($i = $min; $i <= $max; $i++) {
+				if ($page == $i)
+					$page_list .= "<a href='$uri/p/$i' class='sel'> $i </a>";
+				else
+					$page_list .= "<a href='$uri/p/$i'> $i </a>";
+			}
+			if ($page < $max) {
+				$page_list .= "<a href='$uri/p/" . ($page+1) . "' class='next'>下一页</a>";
+			}
+			$page_list .= "</p>";
 		}
 		return $page_list;
 	}	//}}}

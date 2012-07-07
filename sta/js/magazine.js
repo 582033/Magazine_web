@@ -1,8 +1,28 @@
+$.format = function (source, params) {
+     if (arguments.length == 1)
+         return function () {
+             var args = $.makeArray(arguments);
+             args.unshift(source);
+             return $.format.apply(this, args);
+         };
+     if (arguments.length > 2 && params.constructor != Array) {
+         params = $.makeArray(arguments).slice(1);
+     }
+     if (params.constructor != Array) {
+         params = [params];
+     }
+     $.each(params, function (i, n) {
+         source = source.replace(new RegExp("\\{" + i + "\\}", "g"), n);
+     });
+     return source;
+ };
+ 
 $(function() {
  resize();
  detail_resize();
  init_search();
  init_goto_page();
+ init_comment();
 });
 
 function init_search() { // {{{
@@ -154,31 +174,36 @@ $("document").ready(function(){
     });
 })
 
-$("document").ready(function(){
+
+function init_comment() { //{{{
 	$("#add").click(function (){
 		var options = {
 			dataType: 'json',
 			success: function (result) {
-				ref(result);
+				refresh_comments(result);
 			},
 		};
 		$("#comment").ajaxSubmit(options);
 	})
 
-	$(".reply").click(function (){
-		var author = $(this).parent().prev().find(".author").text();
-		$(".text").val('');
-		$(".text").focus();
-		$(".text").val("回复 "+author+"：");
-	})
-})
+	$(document).on('click', '#comments .reply', function () {
+		$("#comment .text").focus()
+			.val("回复 " + $(this).data('authorNickname') + "：");
+	});
+} //}}}
 
-function ref (result) {
+function refresh_comments(result) { //{{{
 	$("#list").html("");
 	var div = "";
+	var templ = "<dt><a href='{0}'><img src='{1}' alt='用户头像' /></a></dt><dd><p class='info'><a href='{0}' class='author'>{2}</a><span></span></p><p>{3}</p></dd><dd class='edit_reply'>" +
+		'<a href="javascript:void(0)" class="reply" data-comment-id="{4}" data-author-nickname="{2}" data-author-id="{5}">回复</a></dd>';
 	for(i=0; i<result.length; i++){
-		div += "<dt><a href='javascript:void(0)'><img src='"+result[i].author.image+"' alt='用户头像' /></a></dt><dd><p class='info'><a href='javascript:void(0)' class='author'>"+result[i].author.nickname+"</a><span></span></p><p>"+result[i].content+"</p></dd><dd class='edit_reply'><a href='javascript:void(0)' class='reply'>回复</a></dd>";
+		var c = result[i];
+		var  a = c.author;
+		div += $.format(templ, a.url, a.image, a.nickname, c.content, c.id, a.id);
 	}
-	$("#list").html(div);
+	$("#comments").html(div);
 	$(".text").val('');
-}
+} //}}}
+
+// vim: fdm=marker

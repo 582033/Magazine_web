@@ -203,15 +203,16 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
 
-	function comment_list($id, $page){		//杂志评论页面{{{
+	function comment_list($id, $page="1"){		//杂志评论页面{{{
 	//	$this->auth->check();
+		$page = $page ? $page : 1;
 		$limit = 10;
 		$start = ($page-1)*$limit;
 		$page = $page ? $page : 1;
 		$magazine = $this->mag_model->_get_magazine_by_id($id);
 		$comment = $this->comment_model->comment_list('magazine', $id, $start, $limit);
 		$totalResults = $comment['totalResults'];
-		$page_list = $this->page_model->page_list('magazine', $limit, $totalResults, $page, 'pagenav');
+		$page_list = $this->page_model->page_list("/magazine/$id/comments", $limit, $totalResults, $page, 'pagenav');
 		$data = array(
 					'magazine' => $magazine,
 					'comment' => $comment['items'],
@@ -279,7 +280,7 @@ class Magazine extends MY_Controller {
 		$start = $this->input->get('start');
 		$limit = $this->input->get('limit');
 		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment, $start, $limit);
-		echo json_encode($data['items']);
+		$this->_json_output($data['items']);
 	}	//}}}
 
 	function get_same_author_mag(){		//获取该作者的其他杂志{{{

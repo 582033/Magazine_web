@@ -75,22 +75,10 @@
 				<textarea class="text" name="conment"></textarea>
 				<button type="button" id="add">发布</button>
 			</form>
-
-			<dl id="list" class="clearfix">
-				{foreach from=$comment item=item}
-				<dt><a href="javascript:void(0)"><img src="{$item.author.image}" alt="用户头像" /></a></dt>
-				<dd>
-					<p class="info"><a href="javascript:void(0)" class="author">{$item.author.nickname}</a><span></span></p>
-					<p>{$item.content}</p>
-				</dd>
-				<dd class="edit_reply"><a href="javascript:void(0)" class="reply">回复</a></dd>
-				{/foreach}
-			</dl>
-
-				<p class="more_comment">
-					<a href="/magazine/{$magazine.id}/comment/p/1">查看全部留言</a>
-				</p>
-
+			{include file="magazine/lib/comments.tpl"}
+			<p class="more_comment">
+				<a href="/magazine/{$magazine.id}/comments">查看全部留言</a>
+			</p>
 		</div>
 
 	</div>
