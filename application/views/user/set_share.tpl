@@ -1,7 +1,3 @@
-{include file='header.tpl'}
-<div class="current"><a href="/home">首页</a> &gt; <a href="#" class="cur">基本资料</a></div>
-<div class="main setting clearfix">
-	{include file='user/left.tpl'}
 	<div class="set_main share">
 			<h2>绑定分享帐号</h2>
 			<dl class="clearfix">
@@ -46,4 +42,3 @@ $("document").ready(function(){
 })
 </script>
 {/literal}
-{include file='footer_big.tpl'}

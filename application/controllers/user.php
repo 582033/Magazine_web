@@ -131,10 +131,42 @@ class User extends Magazine {
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
-	function user_info () {	//设置个人信息{{{
-		$session_id = $this->session->userdata('sid');
-		$user_info = api($this->api_host."/magazine/user_info?session_id=$session_id");
-		$this->smarty->view('user/user_info.tpl', $user_info);
+	function set_base () {	//设置个人信息{{{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$session_id = $this->session->userdata('sid');
+			request($this->api_host."/magazine/user_info?session_id=$session_id");
+		}
+		else {
+			$data = array(
+					'user_set' => 'set_base',
+					'user_set_name' => '基本资料',
+					);
+			$this->smarty->view('user/set_main.tpl', $data);
+		}
+	}	//}}}
+
+	function set_headpic () {	//头像设置{{{
+		$data = array(
+				'user_set' => 'set_headpic',
+				'user_set_name' => '头像设置',
+				);
+		$this->smarty->view('user/set_main.tpl', $data);
+	}
+
+	function set_tag () {	//个人标签{{{
+		$data = array(
+				'user_set' => 'set_tag',
+				'user_set_name' => '个人标签',
+				);
+		$this->smarty->view('user/set_main.tpl', $data);
+	}
+
+	function set_auther () {	//作者信息设置{{{
+		$data = array(
+				'user_set' => 'set_auther',
+				'user_set_name' => '作者信息设置',
+				);
+		$this->smarty->view('user/set_main.tpl', $data);
 	}	//}}}
 
 	function set_user_info () {	//{{{
@@ -146,7 +178,7 @@ class User extends Magazine {
 		opt($url_with_get, $post);
 	}	//}}}
 	
-	public function bind() {	//绑定第三方帐号{{{
+	public function set_share() {	//绑定第三方帐号{{{
 		$data = array();
 		$sessionid = $this->session->userdata('session_id');
 		$this->load->model('Sns_Model');
@@ -159,11 +191,15 @@ class User extends Magazine {
 			$data['bindinfo'][$v['snsid']] = $v;
 			unset($unbind[$v['snsid']]);
 		}
-		$data['unbind'] = $unbind;
-		$data['session_id'] = $sessionid;
-		$this->smarty->view('user/bind.tpl',$data);
-		
+		$other = array(
+				'ubind' => $unbind,
+				'session_id' => $session_id,
+				'user_set' => 'set_share',
+				'user_set_name' => '分享管理',
+				);
+		$this->smarty->view('user/set_main.tpl', array_merge($data, $other));
 	}	//}}}
+	
 
 	public function unbind() {	//解除绑定第三方帐号{{{
 		$data = array(

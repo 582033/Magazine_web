@@ -64,7 +64,7 @@
  				<div class="clearfix"></div>
  				<a href="#" class="msg_tip"><span>00</span></a>
  				<ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
- 					<li><a href="/user/me/set">账号设置</a></li>
+ 					<li><a href="/user/me/setting">账号设置</a></li>
  					<li><a href="/user/me/magazines">喜欢的书</a></li>
  					<li><a href="/user/me/elements">喜欢的发现</a></li>
  					<li><a href="/user/me/messages">站内消息</a></li>
