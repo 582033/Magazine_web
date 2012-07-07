@@ -7,8 +7,8 @@
  			<legend>绑定1001夜账号</legend>
  			<p><input type="text" name="username" id="dialog_reg_Email" /> &nbsp;Email地址</p>
 			<p>请输入您的常用Email地址</p>
- 			<p><input type="text" name="passwd" id="dialog_reg_Pass" /> &nbsp;密码</p>
- 			<p><input type="text" name="re_passwd" id="dialog_reg_RePass" /> &nbsp;重复输入密码</p>
+ 			<p><input type="password" name="passwd" id="dialog_reg_Pass" /> &nbsp;密码</p>
+ 			<p><input type="password" name="re_passwd" id="dialog_reg_RePass" /> &nbsp;重复输入密码</p>
  			<p><button type="submit" onclick="signup()">马上注册成为会员</button></p>
 			<p class="err_msg"></p>
  		</dl>
