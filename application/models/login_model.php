@@ -12,9 +12,9 @@ class Login_Model extends CI_Model {
 		$url = $this->api_host."/auth/getkey";
 		$getkey = request($url);
 		if ($getkey['httpcode'] == '200'){
-			$getkey_data = $getkey['data']['key'];
-			$passwd = md5(md5($passwd).$getkey_data);
-			$api_data = request($this->api_host."/auth/signin?username=$username&passwd=$passwd");
+			$salt = $getkey['data']['key'];
+			$passwd = md5(md5($passwd) . $salt);
+			$api_data = request($this->api_host."/auth/signin?username=$username&passwd=$passwd&key=$salt");
 			$return = $this->check_signin_api($username, $api_data, $need_remember);
 		}
 		else {
@@ -23,7 +23,7 @@ class Login_Model extends CI_Model {
 		return $return;
 	}	//}}}
 
-	function check_signin_api ($username, $api_data, $need_remember=null) {	//访问登录api成功,判断登录返回状态{{{
+	function check_signin_api($username, $api_data, $need_remember=null) {	//访问登录api成功,判断登录返回状态{{{
 		if ($api_data['httpcode'] == '200')	{
 			switch ($api_data['data']['status']) {
 				case 'OK':
