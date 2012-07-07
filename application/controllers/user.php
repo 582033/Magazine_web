@@ -52,9 +52,13 @@ class User extends Magazine {
 		$this->smarty->view('user/signin.tpl');
 	}	//}}}
 
-	function logout () {	//{{{
+	function signout () {	//{{{
 		$this->session->sess_destroy();
-		redirect("/");
+		delete_cookie('username');
+		delete_cookie('nickname');
+		delete_cookie('rmsalt');
+		header('Location: /', TRUE, 302);
+		exit;
 	}	//}}}
 
 	function _get_loved ($user_id, $page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{

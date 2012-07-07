@@ -10,9 +10,10 @@
 <style type="text/css">
 </style>
 <title>{$title}</title>
-<script type="text/javascript" src="/sta/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="/sta/js/jquery.form.js"></script>
-<script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="/sta/js/magazine.js"></script>
 <script type="text/javascript" src="/sta/js/thickbox.js"></script>
 <script type="text/javascript" src="/sta/js/check.js"></script>
@@ -68,14 +69,14 @@
  					<li><a href="/user/me/magazines">喜欢的书</a></li>
  					<li><a href="/user/me/elements">喜欢的发现</a></li>
  					<li><a href="/user/me/messages">站内消息</a></li>
- 					<li><a href="/user/logout">退出账号</a></li>
+ 					<li><a href="/user/signout">退出账号</a></li>
  				</ul>
  			</div>
 	{else}
 			<div class="self_info">
 				<div class="log_reg">
 					<a href="/user/signup?height=404&width=736&modal=true" class="thickbox reg">注册</a>
-					<a href="/user/signin?height=404&width=736&modal=true" class="thickbox login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
+					<a href="javascript:void(0)" class="login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
 					<form name="form" id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'" action="/user/signin" method="post" enctype="multipart/form-data">
 						<p><input type="text" name="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
 						<p><input type="password" name="passwd" value="" /></p>

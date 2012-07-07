@@ -44,7 +44,7 @@
 	}
 	function check () {
 		if (!$this->is_logged_in()) {
-			exit("signin please"); 
+			show_error('signin please', 401);
 		}
 	}
 

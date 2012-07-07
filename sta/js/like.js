@@ -1,3 +1,20 @@
+$(function() {
+		$(document).ajaxError(function(e, jqxhr, settings, exception) {
+			if (jqxhr.status == 401) showSigninBox();
+			});
+		});
+function showSigninBox() {
+	tb_show('登陆', '/user/signin?height=404&width=736&modal=true', false);
+}
+function checkSignedIn() {
+	if ($.cookie('nickname')) {
+		return true;
+	}
+	else {
+		showSigninBox();
+		return false;
+	}
+}
 function getLikeUrl(type, id, action) {
 	return "/" + type + "/" + id + "/" + action;
 }
@@ -9,6 +26,7 @@ function cancelLike(type, type_id) {
 	});
 }
 function like(type, type_id) {
+	if (!checkSignedIn()) return;
 	var action = type == 'user' ? 'follow' : 'like';
 	$.post(getLikeUrl(type, type_id, action),
 			{dataType: 'json'},  function(data) {
@@ -29,6 +47,7 @@ function like(type, type_id) {
 	});
 }
 function detail_like(magazine_id){
+	if (!checkSignedIn()) return;
 	$dataType = {dataType:'json'};
 	$.post(getLikeUrl('magazine', magazine_id, 'like'),
 			$dataType, function(data) {
@@ -41,6 +60,7 @@ function detail_like(magazine_id){
 	})
 }
 function detail_liked(magazine_id){
+	if (!checkSignedIn()) return;
 	$dataType = {dataType:'json'};
 	$.post(getLikeUrl('magazine', magazine_id, 'like'),
 			$dataType, function(data) {

@@ -7,7 +7,7 @@
  			<legend>登录1001夜</legend>
 			<p><input type="text" name="username" id="dialog_login_Email" /> &nbsp;Email地址 </p>
 			<p><!--class正确为right，错误为error-->请输入您的常用Email地址</p>
- 			<p><input type="text" name="passwd" id="dialog_login_Pass" /> &nbsp;密码</p>
+ 			<p><input type="password" name="passwd" id="dialog_login_Pass" /> &nbsp;密码</p>
 			<p>请输入您的1001夜密码</p>
  			<p><button type="submit" onclick="signin()">登录</button></p>
 			<p class="err_msg"></p>
