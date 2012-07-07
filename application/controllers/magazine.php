@@ -102,6 +102,7 @@ class Magazine extends MY_Controller {
 				$index_info['elem_list'][$j]['page'] = substr($index_info['elem_list'][$j]['page'], 0, 1) .  (substr($index_info['elem_list'][$j]['page'], 1)+2);
 			}
 		}
+		$index_info['curnav'] = 'home';
 		$this->smarty->view('magazine/index.tpl', $index_info);
 	}//}}}
 
@@ -116,6 +117,7 @@ class Magazine extends MY_Controller {
 		$data = array(
 					'element_list' => $elements,
 					'page_list' => $page_list,
+					'curnav' => 'find',
 					);
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
@@ -131,6 +133,7 @@ class Magazine extends MY_Controller {
 				'items' => $mag_list[$tag]['data']['items'],
 				'page_list' => $page_list,
 				'tag' => $tag,
+				'curnav' => 'mag',
 				);
 		$this->smarty->view('magazine/magazine_list.tpl', $data);
 
@@ -158,6 +161,7 @@ class Magazine extends MY_Controller {
 					'tour_reader' => $mag_list['tour_reader']['data']['items'],
 					'foreign' => $mag_list['foreign']['data']['items'],
 					'domestic' => $mag_list['domestic']['data']['items'],
+					'curnav' => 'mag',
 					);
 
 		$mag_items = array();
@@ -199,6 +203,7 @@ class Magazine extends MY_Controller {
 					'recommendation' => $recommendation,
 					'maylike' => $maylike,
 					'comment' => $comment['items'],
+					'curnav' => 'mag',
 					);
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
@@ -241,9 +246,12 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function soft ($type='pc') {	//{{{
-		$this->smarty->assign('type', $type);
-		$this->smarty->view('magazine/down.tpl');
-	}	//}}
+		$data = array(
+				'type' => $type,
+				'curnav' => 'soft',
+				);
+		$this->smarty->view('magazine/down.tpl', $data);
+	}	//}}}
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

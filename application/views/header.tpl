@@ -42,11 +42,10 @@
  	<div class="container clearfix">
 		<a href="/" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>
  		<ul class="menu">
- 			<!--<li class="home"><a href="/home" class="sel">首页</a></li>-->
- 			<li class="home"><a href="/">首页</a></li>
- 			<li class="mag"><a href="/mag">阅读</a></li>
- 			<li class="find"><a href="/find">发现</a></li>
- 			<li class="soft"><a href="/soft">下载</a></li>
+ 			<li class="home"><a href="/"{if $curnav == 'home'} class="sel"{/if}>首页</a></li>
+ 			<li class="mag"><a href="/mag"{if $curnav == 'mag'} class="sel"{/if}>阅读</a></li>
+ 			<li class="find"><a href="/find"{if $curnav == 'find'} class="sel"{/if}>发现</a></li>
+ 			<li class="soft"><a href="/soft"{if $curnav == 'soft'} class="sel"{/if}>下载</a></li>
  		</ul>
 
  		<div class="rightcon">
