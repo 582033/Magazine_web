@@ -51,8 +51,10 @@
 
  		<div class="rightcon">
  			<div class="search">
- 				<input type="text" name="keyword" value="{if $keyword}{$keyword}{else}搜索{/if}" onfocus="if(this.value !='')this.value='';" onblur="if(this.value=='')this.value='{if $keyword}{$keyword}{else}搜索{/if}'"/>
- 				<button type="submit">搜索</button>
+				<form id="search_top" action="/search/all" method="GET">
+					<input type="text" name="q" class="graytext" value="{$keyword|default:"请输入关键字"}" />
+					<button type="submit">搜索</button>
+				</form>
  			</div>
 	{if isset($user_info.id)}
  			<div class="self_info">

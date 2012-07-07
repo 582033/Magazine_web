@@ -38,7 +38,7 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 
 .header .rightcon{ float:right; width:470px; padding-top:20px;}
 .header .rightcon .search{ display:block; float:left; width:282px; height:29px; background:url(/sta/images/bg_search.gif) no-repeat left top;}
-.header .rightcon .search input{ float:left; width:252px; height:29px; line-height:29px; padding-left:10px; background:transparent; border:none; font-size:14px; color:#C4C4C4;}
+.header .rightcon .search input{ float:left; width:252px; height:29px; line-height:29px; padding-left:10px; background:transparent; border:none; font-size:14px;}
 .header .rightcon .search button{ display:block; float:left; border:none; background:url(/sta/images/ico_top_search.gif) no-repeat left top; width:16px; height:16px; margin-top:5px; text-indent:-60px; overflow:hidden;}
 
 .header .log_reg{ float:left; width:130px; padding-left:56px; position:relative; z-index:9}

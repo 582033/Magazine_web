@@ -1,22 +1,27 @@
-window.onload= function(){
+$(function() {
  resize();
-}
+ detail_resize();
+ init_search();
+});
 
-window.onload= function(){
-	detail_resize();
-}
+function init_search() { // {{{
+	$('#search_top,#search_big').each(function() {
+		var $q = $(this).find('input[name="q"]');
+		$q.blur(function() {
+			if (!this.value) this.value = '请输入关键字';
+			$(this).addClass('graytext');
+			}).focus(function() {
+				if (this.value == '请输入关键字') this.value = '';
+				$(this).removeClass('graytext');
+			});
+		$(this).submit(function() {
+			if ($q.val() == '' || $q.val() == '请输入关键字') return false;
+			window.location.href = this.action + '/' + encodeURI($q.val());
+			return false;
+			});
+		});
+} //}}}
 
-$("document").ready(function () {	//顶部搜索{{{
-	$(".search").find("button").click(function(){
-		window.location.href="/search/"+$("[name='keyword']").val();
-	});
-});	//}}}
-
-$("document").ready(function () {	//搜索页搜索框{{{
-	$(".search_big").find("button").click(function(){
-		window.location.href="/search/"+$("[name='search_big']").val();
-	});
-});	//}}}
 
 function detail_resize(){
 	page_height = $(".main").height();
