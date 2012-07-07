@@ -40,10 +40,10 @@
 </head>
 <div class="header">
  	<div class="container clearfix">
- 		<a href="#" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>
+		<a href="/" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>
  		<ul class="menu">
  			<!--<li class="home"><a href="/home" class="sel">首页</a></li>-->
- 			<li class="home"><a href="/home">首页</a></li>
+ 			<li class="home"><a href="/">首页</a></li>
  			<li class="mag"><a href="/mag">阅读</a></li>
  			<li class="find"><a href="/find">发现</a></li>
  			<li class="soft"><a href="/soft">下载</a></li>
