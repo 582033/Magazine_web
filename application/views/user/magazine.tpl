@@ -6,3 +6,4 @@
 	</dl>
 	{$page_list}
 </div>
+{include file='share.tpl'}

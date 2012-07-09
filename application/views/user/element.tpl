@@ -16,3 +16,4 @@
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.masonry.js"></script>
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.infinitescroll.js"></script>
 <script type="text/javascript" src="/sta/js/element.js"></script>
+{include file='share.tpl'}

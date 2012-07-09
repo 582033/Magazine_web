@@ -123,27 +123,22 @@ $(function(){
 		var show = e.type == 'mouseenter' ? true : false;
 		$(this).find(".mouseover").toggle(show);
 	});
-	$('.mouseover .share').hover(
-		function(){
+	$(document).on('mouseenter mouseleave', '.mouseover .share', function(e) {
+		if (e.type == 'mouseenter') {
 			$bdshare = $('#bdshare').show();
 			$share = $(this).parent().parent().find('.shareto');
 			$bdshare.appendTo($share);
 			$share.show();
-		},
-		function(){
+		}
+		else {
 			$share = $(this).parent().parent().find('.shareto');
 			$share.hide();
 		}
-	);
-	$('.mouseover .shareto').hover(
-		function(){
-			$('#bdshare').show();
-			$(this).show();
-		},
-		function(){
-			$(this).hide();
-		}
-	);
+	});
+	$(document).on('mouseenter mouseleave', '.mouseover .shareto', function(e) {
+		var show = e.type == 'mouseenter' ? true : false;
+		$(this).toggle(show);
+	});
 
     $(".follows a").mouseenter(function(){
         $(".follows .gray").css("display","block");

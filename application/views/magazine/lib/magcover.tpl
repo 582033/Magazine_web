@@ -31,11 +31,11 @@
 <li><a href="#" class="s_baidu">分享到百度空间</a></li>
 <li><a href="#" class="s_kaixin01">分享到开心网</a></li>
 </ul>-->
-</div>
-</div>
-</div>
-</div>
-<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
-{if $cover_show_intro}<p>{$item.intro|truncate:30}</p>{/if}
+				</div>
+			</div>
+		</div>
+	</div>
+	<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
+	{if $cover_show_intro}<p>{$item.intro|truncate:30}</p>{/if}
 </dd>
 
