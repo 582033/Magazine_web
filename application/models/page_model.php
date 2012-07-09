@@ -1,6 +1,7 @@
 <?php class page_model {
 
 	function page_list ($uri, $limit, $total, $page, $style=null) {	//{{{
+		if ($total == 0) return "";
 		$total_page = $total % $limit == '0' ? floor($total / $limit) : floor($total / $limit) +1;
 		$min = $this->get_min($page, $total_page);
 		$max = $this->get_max($page, $total_page);
