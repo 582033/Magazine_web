@@ -4,6 +4,7 @@
 		<div class="mouseover">
 			<div class="bg"></div>
 			<div class="content">
+<!--
 				<div class="info">
 					<ul style="margin-left:2px;">
 						<li><span>杂志：</span><span>{$item.name}</span></li>
@@ -11,10 +12,11 @@
 						<li><span>发布：</span><span>{$item.publishedAt}</span></li>
 					</ul>
 				</div>
+-->
 				<a href="/magazine/detail/{$item.id}" class="read">阅读</a>
 				{if $cover_show_del}<a href="javascript:void(0)" class="del_mag" onclick="cancelLike('magazine', '{$item.id}')">删除</a>{/if}
 				<div class="more">
-					<a href="/magazine/{$item.id}/comment/p/1" class="comment">评论</a>
+					<a href="/magazine/{$item.id}/comments" class="comment">评论</a>
 					<a href="javascript:void(0);" class="share">分享</a>
 					<a href="javascript:void(0);" id="magazine_{$item.id}" onclick="like('magazine','{$item.id}');" class="like">{$item.likes}</a>
 				</div>

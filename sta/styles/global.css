@@ -141,7 +141,7 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .element_list dd .cover .mouseover .del_mag{ position:absolute; display:block; z-index:2; color:#FFF; right:10px; top:10px; width:11px; height:11px; text-indent:-100px; overflow:hidden; background:url(/sta/images/ico_del.gif) no-repeat left top;}
 
 /*share to*/
-.cover .mouseover .shareto{ padding-top:7px; position:absolute; width:180px; height:26px; left:0; bottom:0px; background:url(/sta/images/share_ico.gif) no-repeat center -30px; overflow:hidden; display:none; }
+.cover .mouseover .shareto{ padding-top:7px; position:absolute; width:180px; height:26px; left:0; bottom:-33px; background:url(/sta/images/share_ico.gif) no-repeat center -30px; overflow:hidden; display:none; }
 .cover .mouseover .shareto ul{ position:absolute; z-index:2; width:182px; left:-1px;}
 .cover .mouseover .shareto ul li{ float:left; width:26px;}
 .cover .mouseover .shareto ul a{ display:block; width:26px; height:26px; background:url(/sta/images/share_ico.gif) no-repeat left 5px; text-indent:-400px; overflow:hidden;}
