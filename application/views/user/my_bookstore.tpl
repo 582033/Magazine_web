@@ -1,8 +1,5 @@
 <div class="right_main">
 	<dl class="mag_list clearfix">
-		<dd class="menu">
-		{include file='user/user_nav.tpl'}
-		</dd>
 		{if $is_me}
 		<dt><a href="#" class="sel">已发布的杂志<span>(12)</span></a>　|　<a href="#">未发布的杂志<span>(12)</span></a></dt>
 		{/if}

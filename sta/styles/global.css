@@ -165,10 +165,22 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 
 .element_list dd .cover .mouseover .shareto{ left:auto; top:auto; right:0; bottom:-33px; background:url(/sta/images/share_ico.gif) repeat-x 60px -30px;}
 
+/*
 .element_list dd.menu{ font-weight:bold; font-size:16px; color:#C4C4C4; background:none; float:none; clear:both; border-right:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8;}
 .element_list dd.menu a{ color:#0792BB;}
 .element_list dd.menu a.sel{ color:#000;}
 .element_list dd.menu.my{ border:none; padding:0;}
+*/
+
+/*
+div.menu{
+	font-weight:bold; font-size:16px; color:#C4C4C4; background:none; float:none; clear:both; border-right:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8;
+	display: block;
+}
+div.menu a{ color:#0792BB;}
+div.menu a.sel{ color:#000;}
+div.menu.my{ border:none; padding:0;}
+*/
 
 /*magzine_list*/
 .mag_list.m_index { margin-top:55px;}
@@ -206,11 +218,28 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .mag_list.m_topic dd.info .text_list dd a{ color:#4e4e4e; line-height:18px;}
 .mag_list.m_topic dd.info .text_list dd a.readmore{ color:#0590b3;}
 
-/*my sidebar left*/
 .main.main_left_line{ background:#fff url(/sta/images/line.gif) repeat-y left top; margin-bottom:20px;}
-.current { width:1000px; margin:0 auto; clear:both; height:25px; padding-top:20px; font-size:14px; color:#c5c5c5;}
+.current {
+	width:1000px; margin:0 auto; clear:both; font-size:14px; color:#c5c5c5;
+	padding-top: 6px;
+}
 .current a{ color:#0590B7; font-weight:bold;}
 .current a.cur, .current span.cur { color:#000; font-weight: bold;}
+div.current .nav {
+	float: left;
+	padding-top: 14px;
+}
+div.current .menu {
+	position: relative;
+	z-index: 10;
+	top: 1px;
+	padding:0; margin:0; border:none; background:none;float: right;
+}
+div.current .menu ul{ width:800px; float:right;}
+div.current .menu ul li{ float:right; padding-left:3px;}
+div.current .menu ul li a{ display:block; background:#000; font-size:16px; width:100px; height:39px; line-height:37px; text-align:center; color:#FFF; font-weight:bold;}
+div.current .menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8e8e8; border-bottom:none;}
+/*my sidebar left*/
 .sidebar_left{ width:200px; float:left; background:url(/sta/images/line.gif) repeat-y right top; border-bottom:1px solid #e8e8e8;}
 .sidebar_left .userinfo{ padding-top:10px; background:#DCDADF;}
 .sidebar_left .userinfo .userhead{ display:block; margin:0 auto;}
@@ -260,12 +289,6 @@ a.tag02{ color:#F60; background:none; line-height:20px;}
 .right_main .element_list dt a.sel{ color:#000;}
 .right_main .mag_list dt a span,
 .right_main .element_list dt a span{ font-weight:normal; color:#000; font-family:Simsun;}
-
-.right_main .menu{ position:absolute; z-index:2; top:-39px; left:0; padding:0; margin:0; border:none; background:none; height:0;}
-.right_main .menu ul{ width:800px; float:right;}
-.right_main .menu ul li{ float:right; padding-left:3px;}
-.right_main .menu ul li a{ display:block; background:#000; font-size:16px; width:100px; height:39px; line-height:37px; text-align:center; color:#FFF; font-weight:bold;}
-.right_main .menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8e8e8; border-bottom:none;}
 
 .right_main .mag_list dd h3{ text-align:center;}
 .right_main .pagearea{ padding:10px; background:url(/sta/images/bg_line.gif) no-repeat right bottom;}

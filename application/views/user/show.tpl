@@ -84,10 +84,6 @@ $("document").ready(function(){
  <body>
  	<div class="right_main">
  		<div class="msg_list clearfix">
- 			<div class="menu">
-			{include file="user/user_nav.tpl"}
- 			</div>
- 			
  			<div class="my_msg_list">
 {$msg} 
 			</div>

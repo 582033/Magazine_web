@@ -1,8 +1,5 @@
 	<div class="right_main">
 		<div class="msg_list clearfix">
-			<div class="menu">
-				{include file='user/user_nav.tpl'}
-			</div>
 			<div class="my_follow_list">
 				{foreach from=$followees['items'] item=item}
 				<dl class="clearfix">
