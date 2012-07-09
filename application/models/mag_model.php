@@ -69,18 +69,10 @@ class Mag_Model extends CI_Model {
 							);
 		return $index_info;
 	}//}}}
-	
-	function _get_magazines_by_tag($limit, $start){		//杂志列表页数据{{{
-		$tour_reader = request($this->api_host . "/magazines?limit=$limit&start=$start&tag=旅游攻略");
-		$foreign = request($this->api_host . "/magazines?limit=$limit&start=$start&tag=出境游");
-		$domestic = request($this->api_host . "/magazines?limit=$limit&start=$start&tag=国内游");
-		$mag_list = array(
-						'tour_reader' => $tour_reader,
-						'foreign' => $foreign,
-						'domestic' => $domestic,
-						);
-		return $mag_list;
-	}//}}}
+	function get_magazines($params) {
+		$url = $this->api_host . '/magazines?' . http_build_query($params);
+		return request($url);
+	}
 	
 	function _get_magazine_by_id($id){		//获取杂志详情页信息{{{
 		$magazine = request($this->api_host . "/magazine/$id");

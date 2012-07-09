@@ -1,7 +1,6 @@
-{include file='header.tpl'}
+{include file='header.tpl' pageid="magazine_home"}
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.cycle.all.js"></script>
 <script type="text/javascript" src="/sta/js/gallery.js"></script>
-<script type="text/javascript" src="/sta/js/magazine_main.js"></script>
 <div class="main">
 	<dl class="mag_list m_topic clearfix">
 		<dt><strong><span><a href="#">看杂志</a></span></strong></dt>
@@ -43,30 +42,28 @@
 					</dl>
 				</li>
 			</ul>
-		
 		</dd>
 	</dl>
 	
 	<dl class="mag_list m_index clearfix">
-	<dd class="menu">
+		<dd class="menu">
 			<ul>
-				<li><a class="sel" id="tour_reader">旅游攻略</a></li>
-				<li><a id="foreign">出境游</a></li>
-				<li><a id="domestic">国内游</a></li>
+				{foreach $cate_magazines as $mags}
+				<li><a id="{$mags.cid}"{if $mags@index == 0} class="sel"{/if}>{$mags.cname}</a></li>
+				{/foreach}
 			</ul>
 		</dd>
-		<dt><a href="/mag_list/tour_reader" class="more">More</a></dt>
-		{foreach from=$tour_reader item=item key=key}
-		{include file="magazine/lib/magcover.tpl" dd_class="tour_reader"}
-		{/foreach}
-		{foreach from=$foreign item=item key=key}
-		{include file="magazine/lib/magcover.tpl" dd_class="foreign" dd_style="display:none"}
-		{/foreach}
-		{foreach from=$domestic item=item key=key}
-		{include file="magazine/lib/magcover.tpl" dd_class="domestic" dd_style="display:none"}
-		{/foreach}
-</dl>
-
+		<div class="tabs">
+			{foreach $cate_magazines as $mags}
+			<div class="{$mags.cid}"{if $mags@index > 0} style="display: none"{/if}>
+				<dt><a href="{$mags.more_url}" class="more">More</a></dt>
+				{foreach $mags.items as $item}
+					{include file="magazine/lib/magcover.tpl"}
+				{/foreach}
+			</div>
+			{/foreach}
+		</div>
+	</dl>
 	
 </div>
 {include file="footer.tpl"}

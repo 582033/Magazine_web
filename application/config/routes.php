@@ -68,10 +68,10 @@ $route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
 
-$route['mag_list/(tour_reader|foreign|domestic)(/p/(:num))?'] = 'magazine/magazines/$1/$3';
+$route['mag_list/([a-z_]+)(/p/(:num))?'] = 'magazine/magazines/$1/$3';
 $route['find(/p/(:num))?'] = 'magazine/find_elements/$2';
 
-$route['mag'] = 'magazine/main_magazine_list';
+$route['mag'] = 'magazine/magazine_home';
 
 $route['search/(all|magazine|author)/([^/]+?)(/p/(:num))?'] = 'search/index/$1/$2/$4';
 

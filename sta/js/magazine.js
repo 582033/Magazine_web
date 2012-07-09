@@ -1,4 +1,4 @@
-$.format = function (source, params) {
+$.format = function (source, params) { //{{{
      if (arguments.length == 1)
          return function () {
              var args = $.makeArray(arguments);
@@ -15,15 +15,32 @@ $.format = function (source, params) {
          source = source.replace(new RegExp("\\{" + i + "\\}", "g"), n);
      });
      return source;
- };
+ }; //}}}
  
 $(function() {
- resize();
- detail_resize();
- init_search();
- init_goto_page();
- init_comment();
+		resize();
+		detail_resize();
+		init_search();
+		init_goto_page();
+		init_comment();
+		switch ($('body').attr('id')) {
+		case 'magazine_home':
+			init_magazine_home();
+			break;
+		default:
+			break;
+		}
 });
+
+function init_magazine_home() { //{{{
+	var $mags = $('dl.mag_list');
+	$('dd.menu a', $mags).click(function() {
+		$('dd.menu a', $mags).removeClass('sel');
+		$(this).addClass('sel');
+		$('div.tabs > div', $mags).hide()
+		$('div.' + this.id, $mags).show();
+	});
+} //}}}
 
 function init_search() { // {{{
 	$('#search_top,#search_big').each(function() {
@@ -54,8 +71,7 @@ function init_goto_page() { // {{{
 			});
 } //}}}
 
-
-function detail_resize(){
+function detail_resize(){ //{{{
 	page_height = $(".main").height();
 	if ($(".left_main").height()<page_height){
 		$(".left_main").css("height",page_height+"px");
@@ -66,9 +82,9 @@ function detail_resize(){
 				autoReinitialise: true
 			});
 	})
-}
+} //}}}
 
-function resize(){
+function resize(){ //{{{
 	page_height = $(".main_left_line").height();
 	if ($(".sidebar_left").height()<page_height){
 		$(".sidebar_left").css("height",$(".main_left_line").height()-1+"px");
@@ -76,7 +92,7 @@ function resize(){
 	if ($(".right_main").height()<page_height){
 		$(".mag_list").css("height",$(".main_left_line").height()+"px");
 	}
-}
+} //}}}
 
 function signin(){	//执行登录{{{
 	var options = {

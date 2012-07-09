@@ -4,6 +4,11 @@ class Magazine extends MY_Controller {
 	var $api_host;
 	var $current_url;
 	var $limit;
+	var $cate_map = array(
+			'tour_recommendation' => '旅游推荐',
+			'tour_foreign' => '国外游',
+			'tour_domestic' => '国内游',
+			);
 
 	function Magazine (){
 		parent::__construct();
@@ -126,45 +131,56 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
 
-	function magazines($tag = 'tour_reader', $page = '1'){		//杂志列表页面{{{
+	function magazines($cate0 = 'tour_recommendation', $page = '1'){		//杂志列表页面 {{{
+		$cate = element($cate0, $this->cate_map, $cate0);
 		$page = $page ? $page : 1;
-		$limit = 10;
-		$start = ($page-1)*$limit;
-		$mag_list = $this->mag_model->_get_magazines_by_tag($limit, $start);
-		$totalResults = $mag_list[$tag]['data']['totalResults'];
-		$page_list = $this->page_model->page_list("/mag_list/$tag", $limit, $totalResults, $page);
+		$limit = 20;
+		$start = ($page-1) * $limit;
+		$result = $this->mag_model->get_magazines(array('cate' => $cate, 'start' => $start, 'limit' => $limit));
+		if ($result['httpcode'] != 200) {
+			show_error('', $result['httpcode']);
+		}
+		$mags = $result['data'];
+		$totalResults = $mags['totalResults'];
+		$page_list = $this->page_model->page_list("/mag_list/$cate0", $limit, $totalResults, $page);
+		$cates = array();
+		foreach ($this->cate_map as $cid => $cname) {
+			$cates[] = array(
+					'id' => $cid,
+					'name' => $cname,
+					'url' => "/mag_list/$cid",
+					'current' => $cid == $cate0,
+					);
+		}
 		$data = array(
-				'items' => $mag_list[$tag]['data']['items'],
+				'items' => $mags['items'],
 				'page_list' => $page_list,
-				'tag' => $tag,
 				'curnav' => 'mag',
+				'cates' => $cates,
 				);
 		$this->smarty->view('magazine/magazines.tpl', $data);
-
-	//	$page_list = $this->page_model->page_list("/mag_list/$tag/$page", $limit, $totalResults, $page);
-/*		$data = array(
-					'tour_reader' => $mag_list['tour_reader']['data']['items'],
-					'foreign' => $mag_list['foreign']['data']['items'],
-					'local' => $mag_list['local']['data']['items'],
-					'page_list' => $page_list,
-					);
-		$this->smarty->view('magazine/magazines.tpl', $data);
-*/
 	}//}}}
 
-	function main_magazine_list(){		//杂志二级列表页面{{{
+	function magazine_home(){		//杂志二级列表页面{{{
 		$limit_gallery = 4;
 		$start_gallery = 0;
 		$id = '';
 		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery, $id);
-		$limit_list = 15;
-		$start_list = 0;
-		$mag_list = $this->mag_model->_get_magazines_by_tag($limit_list, $start_list);
+		$cate_magazines = array();
+		foreach ($this->cate_map as $cid => $cname) {
+			$result = $this->mag_model->get_magazines(array('cate' => $cname, 'start' => 0, 'limit' => 15));
+			if ($result['httpcode'] == 200) {
+				$cate_magazines[] = array(
+						'cid' => $cid,
+						'cname' => $cname,
+						'items' => $result['data']['items'],
+						'more_url' => "/mag_list/$cid",
+						);
+			}
+		}
 		$data = array(
 					'mag_gallery' => $mag_recommend['data']['items'],
-					'tour_reader' => $mag_list['tour_reader']['data']['items'],
-					'foreign' => $mag_list['foreign']['data']['items'],
-					'domestic' => $mag_list['domestic']['data']['items'],
+					'cate_magazines' => $cate_magazines,
 					'curnav' => 'mag',
 					);
 
@@ -179,7 +195,6 @@ class Magazine extends MY_Controller {
 					'url' => $mag['url']
 					);
 		}
-	//var_dump($mag_items);exit();
 
 		$data['ad_slot_magtop'] = array(
 			'width' => 980,
@@ -187,7 +202,7 @@ class Magazine extends MY_Controller {
 			'show_text' => false,
 			'items' => $mag_items,
 			);
-		$this->smarty->view('magazine/magazine.tpl', $data);
+		$this->smarty->view('magazine/magazine_home.tpl', $data);
 	}//}}}
 
 	function magazine_detail($id){		//杂志详情页面{{{
