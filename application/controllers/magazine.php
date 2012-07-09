@@ -368,13 +368,4 @@ class Magazine extends MY_Controller {
 		$this->_json_output($url);
 	}	//}}}
 
-	function get_mag_for_list(){	//获取列表页杂志列表{{{
-		$keys = array('mag_category', 'limit', 'start', 'status');
-		$gets = $this->_get_more_non_empty($keys);
-		$tag = $this->input->get('tag');
-		$gets['tag'] = $tag;
-		$mag_list = $this->mag_model->_get_mag_for_list($gets);
-		$this->_json_output($mag_list);
-	}	//}}}
-
 }
