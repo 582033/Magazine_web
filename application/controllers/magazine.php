@@ -216,7 +216,22 @@ class Magazine extends MY_Controller {
 		$recommendation = $this->mag_model->_get_recommendation_mag($limit_recom, $start_recom, $id);
 		$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike, $id);
 		$comment = $this->comment_model->comment_list('magazine', $magazine_id, $start=0, $limit=5);
+		$reverse_cate_mag = array_flip($this->cate_map);
 		$data = array(
+				'navs' => array(
+					array(
+						'name' => '杂志',
+						'url' => '/mag',
+						),
+					array(
+						'name' => $magazine['cate'],
+						'url' => '/mag_list/' . element($magazine['cate'], $reverse_cate_mag, $magazine['cate']),
+						),
+					array(
+						'name' => $magazine['name'],
+						'current' => TRUE,
+						),
+					),
 					'api_host' => $this->config->item('api_host'),
 					'magazine' => $magazine,
 					'recommendation' => $recommendation,

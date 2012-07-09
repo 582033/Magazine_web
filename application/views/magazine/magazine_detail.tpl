@@ -1,6 +1,14 @@
 {include file="header.tpl"}
 <script src="/sta/js/jquery.jscrollpane.min.js"></script>
-<div class="current"><a href="/mag">杂志</a> &gt;<a href="#" class="current">{$magazine.cate}</a> &gt; <a href="#" class="cur">{$magazine.name}</a></div>
+<div class="current">
+	<div class="nav">
+	{foreach $navs as $nav}
+		{if $nav@index > 0}&gt;{/if}
+		{if $nav.current}<span class="cur">{$nav.name}</span>
+		{else}<a href="{$nav.url}">{$nav.name}</a>{/if}
+	{/foreach}
+	</div>
+</div>
 
 <div class="main mag_preview clearfix">
 	<div class="left_main">

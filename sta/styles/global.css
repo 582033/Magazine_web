@@ -221,7 +221,8 @@ div.menu.my{ border:none; padding:0;}
 .main.main_left_line{ background:#fff url(/sta/images/line.gif) repeat-y left top; margin-bottom:20px;}
 .current {
 	width:1000px; margin:0 auto; clear:both; font-size:14px; color:#c5c5c5;
-	padding-top: 6px;
+	padding-top: 5px;
+	height: 40px;
 }
 .current a{ color:#0590B7; font-weight:bold;}
 .current a.cur, .current span.cur { color:#000; font-weight: bold;}
