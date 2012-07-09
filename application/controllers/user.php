@@ -7,6 +7,7 @@ class User extends Magazine {
 		parent::__construct();
 		$this->load->model('user_loved_model');
 		$this->load->model('user_info_model');
+		$this->load->model('sent_email_model');
 
 /*
  *		验证登录状态
@@ -211,7 +212,23 @@ class User extends Magazine {
 				);
 		$this->smarty->view('user/set_main.tpl', $data);
 	}
-
+	function set_pwd(){		
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$post = array(
+						'old_pwd' => trim($this->input->post('old_pwd')),
+						'new_pwd' => trim($this->input->post('reset_pwd')),
+						);
+			$item = $this->user_info_model->_modify_user_pwd($post);
+			echo json_encode($item);
+		}else{
+			$data = array(
+					'user_set' => 'set_pwd',
+					'user_set_name' => '修改密码',
+					);
+			$this->smarty->view('user/set_main.tpl', $data);
+		}
+	}
+	
 	function set_tag () {	//个人标签{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$data = array(
@@ -297,22 +314,19 @@ class User extends Magazine {
 
 
 	function check_signin(){
-	$this->auth->check();
-	$session_id=$this->session->userdata('session_id');
-	$user_id=$this->session->userdata('id');
-	if(TRUE){
-return array(
-	'id'=>$user_id,
-	'session_id'=>$session_id,
+		$this->auth->check();
+		$session_id=$this->session->userdata('session_id');
+		$user_id=$this->session->userdata('id');
+		if(TRUE){
+			return array(
+				'id'=>$user_id,
+				'session_id'=>$session_id,
 
-);
-
-}
-else{
-return FALSE;
-
-}
-
+			);
+		}
+		else{
+			return FALSE;
+		}
 }
 	
 //show all messages
@@ -374,5 +388,18 @@ function del_msg($msgid){
 	$res=request($this->api_host."/activity/".$msgid,'session_id='.$user_info['session_id'],"DELETE");
 }
 
+
+
+function reset_password(){
+		$this->smarty->view('user/reset_password.tpl');
+}
+
+function forget_password(){
+	$user_id = $this->session->userdata('id');
+	$email = $this->sent_email_model->_get_username($user_id);
+	echo $email;
+	
+//	$this->smarty->view('user/forget_password.tpl');
+}
 
 }

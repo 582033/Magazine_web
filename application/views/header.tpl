@@ -76,7 +76,7 @@
 							 <form name="form" id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'" action="/user/signin" method="post" enctype="multipart/form-data">
 								 <p><input type="text" name="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
 								 <p><input type="password" name="passwd" value="" /></p>
-								 <p><a href="#" class="findpass">忘记密码？</a>
+								 <p><a href="/user/forget_password" class="findpass">忘记密码？</a>
 								 <input type="checkbox" name="need_remember" id="rem_me" class="clear" value="1" /><label for="rem_me">下次自动登录</label></p>
 								 <p class="err_msg"></p>
 								 <p><button type="submit" onclick="signin()">立即登录</button></p>

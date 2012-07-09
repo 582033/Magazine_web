@@ -55,4 +55,19 @@
 	function get_tag_list () {
 		return json_encode($this->default_tag_list[array_rand($this->default_tag_list, 1)]);
 	}
+	
+	function _modify_user_pwd($data){
+		$session_id = $this->session->userdata("session_id");
+		$item = request($this->api_host . "/user/changepwd?session_id=$session_id", $data, 'POST');
+		if ($item['httpcode'] == '200'){
+			if ($item['data']['status'] == 'OK'){
+				$msg = "修改成功";
+			}else{
+				$msg = "原密码错误";
+			}
+		}else{
+			$msg = "修改失败";
+		}
+		return $msg;
+	}
 }

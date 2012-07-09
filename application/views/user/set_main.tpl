@@ -15,9 +15,14 @@
 			<li class="s_share {if $user_set == 'set_share'}sel{/if}">
 				<a href="set_share">分享管理</a>
 			</li>
+			<li class="s_pwd {if $user_set == 'set_pwd'}sel{/if}">
+				<a href="set_pwd">修改密码</a>
+			</li>
+<!--
 			<li class="s_auther {if $user_set == 'set_auther'}sel{/if}">
 				<a href=set_auther#">作者信息设置</a>
 			</li>
+-->
 <!--
 			<li class="s_ana {if $user_set == 'set_ana'}sel{/if}">
 				<a href="set_ana">数据分析</a>
@@ -33,6 +38,7 @@
 	{if $user_set == 'set_tag'}{include file="user/set_tag.tpl"}{/if}
 	{if $user_set == 'set_auther'}{include file="user/set_auther.tpl"}{/if}
 	{if $user_set == 'set_share'}{include file="user/set_share.tpl"}{/if}
+	{if $user_set == 'set_pwd'}{include file="user/set_pwd.tpl"}{/if}
 </div>
 {include file='footer.tpl'}
 

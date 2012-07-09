@@ -541,6 +541,7 @@ p.pagenav a.prav{ position:relative\09; top:-1px\09; background:url(/sta/images/
 .set_menu ul li.s_pic a{ background-position:left -30px;}
 .set_menu ul li.s_tag a{ background-position:left -60px;}
 .set_menu ul li.s_share a{ background-position:left -90px;}
+.set_menu ul li.s_pwd a{ background-position:left -90px;}
 .set_menu ul li.s_auther a{ background-position:left -120px;}
 .set_menu ul li.s_ana a{ background-position:left -150px;}
 .set_menu a.btn_auther{ background:url(/sta/images/btn_auther.gif) no-repeat left top; width:183px; height:28px; display:block; text-indent:-300px; overflow:hidden; margin:0 auto; margin-top:10px;}
@@ -596,8 +597,9 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 
 /*footer*/
 .footer{ height:79px; background:url(/sta/images/bg_footer.png) repeat-x left bottom;}
+.footer div.main{text-align:center;}
 .footer.big{ height:192px; background-position:left top; }
-.footer ul{ width:1000px; margin:0 auto; overflow:hidden; clear:both; background:url(/sta/images/bg_footer.png) repeat-x left -192px;}
+.footer div.main ul{ width:800px; margin:0 auto; overflow:hidden; clear:both; background:url(/sta/images/bg_footer.png) repeat-x left -192px;text-align:right;}
 .footer.big ul{ background:left top;}
 .footer ul li{ float:left; width:160px; height:35px; padding:20px 0 0 40px; color:#FFF;text-align:center;}
 .footer.big ul li{ height:145px; margin-left:-3px; background:url(/sta/images/line_footer.png) no-repeat left top;}
@@ -697,6 +699,31 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .client_down dd.android li.n3{ background-position:40px -400px; height:130px;}
 .client_down dd.android li.n4{ background-position:40px -600px; height:130px;}
 
+
+/* 用户密码操作 */
+.occupying_by_30{height:30px;clear:both;}
+.occupying_by_20{height:20px;clear:both;}
+.occupying_by_10{height:10px;clear:both;}
+.occupying_by_5{height:5px;clear:both;}
+.modify_password,.reset_password,.forget_password{margin:auto;width:1000px;height:900px;}
+.modify_password .container, .reset_password .container, .forget_password .container{margin-left:20px;width:98%;}
+.modify_password .title, .reset_password .title, .forget_password .title{font-size:20px;font-weight:bold;height:30px;}
+.modify_password .container .main, .reset_password .container .main{width:550px;margin-left:20px;text-align:center;}
+.modify_password .container .main p, .reset_password .container .main p{font-size:16px;float:left;width:100px;height:35px;text-align:center;padding-top:15px;}
+.modify_password .container .main input.old_pwd,input.reset_pwd,input.pwd_sure, .reset_password .container .main input.reset_pwd,input.pwd_sure{width:350px;height:50px;font-size:18px;float:left;}
+.forget_password .container .main{width:500px;margin-left:20px;text-align:center;height:200px;}
+.forget_password .container .main p{font-size:16px;float:left;width:100px;height:35px;text-align:center;padding-top:15px;}
+.forget_password .container .main input.email{width:350px;height:50px;font-size:18px;}
+.forget_password .container .main div.main_body{float:left;}
+.forget_password .container .main div.main_body .description{font-size:16px;color:#A2A2A2;width:350px;margin-top:5px;text-align:left;}
+.container .main input.submit{width:130px;height:55px;}
+.container .main div.reset_pwd{height:50px;}
+.container .main button.submit{width:90px; height:33px; padding:0 5px 0 0; margin:0; background:url(/sta/images/btn_set.gif) no-repeat right -32px; border:none; overflow:visible; color:#FFF;}
+.container .main button.submit span{font-size:16px;}
+.forget_password .container .main button.submit{margin-left:40px;}
+.container .main div.error_msg{margin-top:10px;font-size:16px;color:#FF0000;text-align:center;}
+
+/* end 用户密码操作 */
 /**zshen**/
 .main .commonform {width:100%;background:#FFFFFF;padding:30px 30px 30px 30px;}
 .main .commonform .title{font-size:20px;font-weight:bold;margin:0 0 30px 0;}
