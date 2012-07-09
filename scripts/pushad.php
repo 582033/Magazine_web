@@ -63,6 +63,37 @@ foreach($arr_lines as $v){
 
 	$arr_to_ins[]=$row_db;
 }
+//elem process
+	if($arr_row['0']=='elem'){
+		$row_db=array(
+				'type'=>'elem',
+				'slot'=>$arr_row['1'],
+				'weight'=>rand(10,20),
+				'enabled'=>0,
+				'url'=>$arr_row['2'],
+				'title'=>$arr_row['3'],
+				'image'=>$arr_row['4'],
+			);	
+
+
+	$arr_to_ins[]=$row_db;
+}
+//maga process
+	if($arr_row['0']=='maga'){
+		$row_db=array(
+				'type'=>'maga',
+				'slot'=>$arr_row['1'],
+				'weight'=>rand(10,20),
+				'enabled'=>0,
+				'url' => 'http://in1001s.com',
+				'title'=>$arr_row['2'],
+			);	
+
+
+	$arr_to_ins[]=$row_db;
+}
+
+
 }
 
 

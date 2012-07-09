@@ -24,14 +24,14 @@ class Magazine extends MY_Controller {
 		$this->load->model('page_model');
 		$this->load->library('session');
 		$this->limit = '3';
-/*
- *		验证登录状态
- */
+		/*
+		 *		验证登录状态
+		 */
 		$this->load->model('auth');
 		$this->auth->auth_user();
-/*
- *		传递当前浏览页,使其登录后可以跳转到登录前的页面
- */
+		/*
+		 *		传递当前浏览页,使其登录后可以跳转到登录前的页面
+		 */
 		$this->load->helper('url');
 		//$this->current_url = current_url();
 		$this->smarty->assign('pub_host', $this->config->item('pub_host'));
@@ -56,19 +56,22 @@ class Magazine extends MY_Controller {
 	function index(){		//首页显示{{{
 		$index_info = $this->mag_model->_get_index_info();
 
+		$index_infotpl['mag_list']=$index_info['mag_list'];
 		$elem_items = array();
 		foreach ($index_info['elem_gallery'] as $i => $elem) {
-			if ($elem['page'] == 'cover'){
-				$elem['page'] = 'p1';
-			}else{
-				$elem['page'] = substr($elem['page'], 0, 1) .  (substr($elem['page'], 1)+2);
-			}
+			/*
+			   if ($elem['page'] == 'cover'){
+			   $elem['page'] = 'p1';
+			   }else{
+			   $elem['page'] = substr($elem['page'], 0, 1) .  (substr($elem['page'], 1)+2);
+			   }
+			 */
 			$elem_items[] = array(
-					"title" => "那些年 让我们一见倾心的鞋子$i",
+					"title" => $elem['title'],
 					"image" => array(
-						'url' => $elem['image']['180']['url'],
+						'url' => $elem['image'],
 						),
-					'url' => $this->config->item('pub_host') . "/" . substr($elem['magId'], 0, 3) .  "/$elem[magId]/web/#$elem[page]",
+					'url' => $elem['url'],
 					);
 		}
 
@@ -83,6 +86,48 @@ class Magazine extends MY_Controller {
 					'url' => $mag['url'],
 					);
 		}
+		$width_height=array(
+				
+				'elm_4'=>array(
+					'width'=>'180',
+					'height'=>'180',
+					),
+				'elm_3'=>array(
+					'width'=>'180',
+					'height'=>'180',
+					),
+				'elm_1'=>array(
+					'width'=>'360',
+					'height'=>'180',
+					),
+				
+				
+				);
+
+		foreach(array('elm_4','elm_3','elm_1') as $ka => $va)
+		{
+				$index_infotpl[$va]=array(
+						'width' => $width_height[$va]['width'],
+						'height' => $width_height[$va]['height'],
+						'show_text' => true,
+						'items' => array(),
+						);
+
+			foreach($index_info[$va] as $kb => $vb){
+
+				$index_infotpl[$va]['items'][]=array(
+					'title' => $vb['title'],
+					'text' => $vb['text'] ,
+					"image" => array(
+						'url' => $vb['image'],
+						),
+					'url' => $vb['url'],
+						);
+			}
+		
+		
+		}
+
 
 		$ad_slot_indextop = array(
 			'width' => 580,
@@ -97,18 +142,18 @@ class Magazine extends MY_Controller {
 			'items' => $elem_items,
 			);
 
-		$index_info['ad_slot_indextop'] = $ad_slot_indextop;
-		$index_info['ad_slot_indexbottom'] = $ad_slot_indexbottom;
+		$index_infotpl['ad_slot_indextop'] = $ad_slot_indextop;
+		$index_infotpl['ad_slot_indexbottom'] = $ad_slot_indexbottom;
 
-		for ($j = 0; $j <count($index_info['elem_list']); $j++){
-			if ($index_info['elem_list'][$j]['page'] == 'cover'){
-				$index_info['elem_list'][$j]['page'] = 'p1';
-			}else{
-				$index_info['elem_list'][$j]['page'] = substr($index_info['elem_list'][$j]['page'], 0, 1) .  (substr($index_info['elem_list'][$j]['page'], 1)+2);
-			}
-		}
-		$index_info['curnav'] = 'home';
-		$this->smarty->view('magazine/index.tpl', $index_info);
+	//	for ($j = 0; $j <count($index_info['elem_list']); $j++){
+	//		if ($index_info['elem_list'][$j]['page'] == 'cover'){
+	//			$index_info['elem_list'][$j]['page'] = 'p1';
+	//		}else{
+	//			$index_info['elem_list'][$j]['page'] = substr($index_info['elem_list'][$j]['page'], 0, 1) .  (substr($index_info['elem_list'][$j]['page'], 1)+2);
+	//		}
+	//	}
+		$index_infotpl['curnav'] = 'home';
+		$this->smarty->view('magazine/index.tpl', $index_infotpl);
 	}//}}}
 
 	function find_elements($page = '1'){		//元素列表页面{{{
@@ -186,7 +231,16 @@ class Magazine extends MY_Controller {
 		$limit_gallery = 4;
 		$start_gallery = 0;
 		$id = '';
+
+		$mag_middle=$this->mag_model->_get_mag_middle();
+		foreach($mag_middle as $k=>$v){
+			$mag_middle[$k]['id']=$v['magazine_id'];
+
+		
+		}
+
 		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery, $id);
+
 		$cate_magazines = array();
 		foreach ($this->cate_map as $cid => $cname) {
 			$result = $this->mag_model->get_magazines(array('cate' => $cname, 'start' => 0, 'limit' => 15));
@@ -199,10 +253,18 @@ class Magazine extends MY_Controller {
 						);
 			}
 		}
+
+		$limit_list = 15;
+		$start_list = 0;
+		//$mag_list = $this->mag_model->_get_magazines_by_tag($limit_list, $start_list);
+		$mag_limit = 3;
+		$mag_text = $this->mag_model->_get_mag_text($mag_limit);
+
 		$data = array(
 					'mag_gallery' => $mag_recommend['data']['items'],
 					'cate_magazines' => $cate_magazines,
 					'curnav' => 'mag',
+					'mag_text' => $mag_text['data']['items'],
 					);
 
 		$mag_items = array();
@@ -217,12 +279,26 @@ class Magazine extends MY_Controller {
 					);
 		}
 
+		$mag_text = array();
+		foreach($data['mag_text'] as $k => $v){
+			$mag_text[]=array(
+					'title' => $v['title'],
+					'text' => $v['text'],
+					'url' => $v['url'],
+					
+					);
+
+		
+		
+		}
 		$data['ad_slot_magtop'] = array(
 			'width' => 980,
 			'height' => 280,
 			'show_text' => false,
 			'items' => $mag_items,
+			'text' => $mag_text,
 			);
+		$data['mag_mid']=$mag_middle;
 		$this->smarty->view('magazine/magazine_home.tpl', $data);
 	}//}}}
 

@@ -8,37 +8,25 @@
 		<dd class="info clearfix">
 			<ul class="clearfix">
 				<li class="text_list">
-					<dl>
-						<dt>
-							<a href="#">那些年，我们一见倾心的鞋子</a>
-						</dt>
-						<dd>
-							<a href="#">描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</a>
-							<a href="#" class="readmore">阅读+</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">那些年，我们一见倾心的鞋子</a>
-						</dt>
-						<dd>
-							<a href="#">描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</a>
-							<a href="#" class="readmore">阅读+</a>
-						</dd>
-					</dl>
+{foreach from=$mag_text key=k item=i}
 					<dl class="last">
 						<dt>
-							<a href="#">那些年，我们一见倾心的鞋子</a>
+							<a href="{$i.url}">{$i.title}</a>
 						</dt>
 						<dd>
-							<a href="#">描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</a>
-							<a href="#" class="readmore">阅读+</a>
+							<a href="{$i.url}">{$i.text}</a>
+							<a href="{$i.url}" class="readmore">阅读+</a>
 						</dd>
 					</dl>
+
+{/foreach}
 				</li>
 				<li>
 					<dl>
-						{include file="magazine/lib/magcover.tpl"}
+		{foreach from=$mag_mid item=item key=key}
+
+						{include file="magazine/lib/magcover.tpl" dd_class="foreign" dd_style=""}
+		{/foreach}
 					</dl>
 				</li>
 			</ul>

@@ -13,12 +13,14 @@
 	<dl class="element_list clearfix">
 		<dt><strong>爱发现</strong> <a href="/find" class="more">More</a></dt>
 		{include file="magazine/lib/ad-gallery.tpl" container_id="element_gallery_container" ad_slot=$ad_slot_indexbottom}
-		{foreach from=$elem_list item=item key=key}
-		{if $key == 4}
-		{include file="magazine/lib/elemcover.tpl" width=360 height=180 cover_show_title=true}
-		{else}
+		{foreach from=$elm_4.items item=item key=key}
 		{include file="magazine/lib/elemcover.tpl" width=180 height=180 cover_show_title=true}
-		{/if}
+		{/foreach}
+		{foreach from=$elm_1.items item=item key=key}
+		{include file="magazine/lib/elemcover.tpl" width=360 height=180 cover_show_title=true}
+		{/foreach}
+		{foreach from=$elm_3.items item=item key=key}
+		{include file="magazine/lib/elemcover.tpl" width=180 height=180 cover_show_title=true}
 		{/foreach}
 	</dl>
 </div>

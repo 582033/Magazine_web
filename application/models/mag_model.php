@@ -34,9 +34,45 @@ class Mag_Model extends CI_Model {
 		}		return $list['data'];
 	}//}}}
 	
+	function _get_mag_for_list($gets){		//获取杂志列表页 杂志列表{{{
+			$list = api($this->api_host . "/magazine/get_mag_for_list?mag_category=".$gets['mag_category']."&status=".$gets['status']."&limit=".$gets['limit']."&start=".$gets['start']."&tag=".$gets['tag']);
+			return $list['data'];
+	}//}}}
+	
+	
+	
+	
+	
+	
+	function _get_mag_text($limit)	{
+		$mag_text  = request($this->api_host . "/ads/text/magmiddle?limit=" .$limit);
+	
+		return $mag_text;
+	
+	
+	}
+	
+	//mag page ,middle magazine ,2  个	
+ 	function _get_mag_middle()	{
+		$mag_result = request($this->api_host . "/ads/magmiddle/2");
+	
+		$mag_item = $mag_result['data']['items'];
+		$mag_list = array();
+	
+		for ($i = 0; $i < count($mag_item); $i++){
+				array_push($mag_list, $mag_item[$i]);
+		}
+		return $mag_list;
+	
+	
+	}
+	
 	function _get_index_info(){		//首页杂志信息{{{
-		$mag_result = request($this->api_host . "/magazines?limit=9&start=0");
-		$mag_resultad = request($this->api_host."/ads/image/indextop");
+		//右上及中部的9本杂志
+		//$mag_result = request($this->api_host . "/magazines?limit=9&start=0");
+		$mag_result = request($this->api_host . "/ads/indextop/9");
+		//顶部幻灯片，最多5张
+		$mag_resultad = request($this->api_host."/ads/image/indextop?limit=5");
 		$mag_item = $mag_result['data']['items'];
 		$mag_itemad = $mag_resultad['data']['items'];
 		$mag_gallery = $mag_list = array();
@@ -51,21 +87,44 @@ class Mag_Model extends CI_Model {
 				array_push($mag_list, $mag_item[$i]);
 			//}
 		}
-		$elem_gallery = $elem_list = array();
-		$elem_result = request($this->api_host . "/elements?limit=12&start=0");
-		$elem_item = $elem_result['data']['items'];
+		$elem_gallery = $elem_list4 = array();
+		$elem_list3 = $elem_list1 = array();
+		//elem gallery
+		$elem_gallery_result= request($this->api_host."/ads/image/indexlovefind?limit=5");
+		$elem_item = $elem_gallery_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
-			if ($j < 4){
 				array_push($elem_gallery, $elem_item[$j]);
-			}else{
-				array_push($elem_list, $elem_item[$j]);
-			}
 		}
+
+		//elem list4
+		$elem_list_result= request($this->api_host."/ads/elem/indexelem4?limit=4");
+		$elem_item = $elem_list_result['data']['items'];
+		for ($j = 0; $j < count($elem_item); $j++){
+				array_push($elem_list4, $elem_item[$j]);
+		}
+		//elem list3
+		$elem_list_result= request($this->api_host."/ads/elem/indexelem3?limit=3");
+		$elem_item = $elem_list_result['data']['items'];
+		for ($j = 0; $j < count($elem_item); $j++){
+				array_push($elem_list3, $elem_item[$j]);
+		}
+		//elem list1
+		$elem_list_result= request($this->api_host."/ads/elem/indexelem1?limit=1");
+		$elem_item = $elem_list_result['data']['items'];
+		for ($j = 0; $j < count($elem_item); $j++){
+				array_push($elem_list1, $elem_item[$j]);
+		}
+
+
+
+		//echo "<pre>";var_dump($elem_list);exit;
 		$index_info = array(
 							'mag_gallery' => $mag_gallery,
 							'mag_list' => $mag_list,
 							'elem_gallery' => $elem_gallery,
-							'elem_list' => $elem_list,
+							'elm_4' => $elem_list4,
+							'elm_3' => $elem_list3,
+							'elm_1' => $elem_list1,
 							);
 		return $index_info;
 	}//}}}
