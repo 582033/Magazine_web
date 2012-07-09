@@ -207,7 +207,9 @@ class Sns extends MY_Controller {
 				$passwd1 = md5(md5($passwd).$getkey_data);
 				$params = array(
 						'username'=>$username,
-						'passwd'=>$passwd1
+						'passwd'=>$passwd1,
+						'key' => $getkey_data,
+
 				);
 				$result = request($this->apiHost.'/auth/signin',$params);//登陆
 				if($result['httpcode']!=200 || $result['data']['status']!='OK') {
