@@ -1,7 +1,7 @@
 {include file='header.tpl'}
 <div class="current clearfix">
 	<div class="nav">
-		<a href="/home">首页</a> &gt; <a href="#" class="cur">个人中心</a>
+		<a href="/">首页</a> &gt; <a href="#" class="cur">个人中心</a>
 	</div>
 	<div class="menu clearfix">
 		<ul>
