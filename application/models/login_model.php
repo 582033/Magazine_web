@@ -23,23 +23,26 @@ class Login_Model extends CI_Model {
 		return $return;
 	}	//}}}
 
+	function set_signin_cookie($uid, $nickname) { // {{{
+		$this->input->set_cookie(array(
+					'name' => 'uid',
+					'value' => $uid,
+					'expire' => $this->config->item('cookie_expire'),
+					));
+
+		$this->input->set_cookie(array(
+					'name' => 'nickname',
+					'value' => $nickname,
+					'expire' => $this->config->item('cookie_expire'),
+					));
+	} //}}}
 	function check_signin_api($username, $api_data, $need_remember=null) {	//访问登录api成功,判断登录返回状态{{{
 		if ($api_data['httpcode'] == '200')	{
 			switch ($api_data['data']['status']) {
 				case 'OK':
 					$user_info  = $api_data['data'];
 					$this->session->set_userdata($user_info);
-					$cookie_username = array(
-							'name' => 'username',
-							'value' => $username,
-							'expire' => $this->config->item('cookie_expire'),
-							);
-					$this->input->set_cookie($cookie_username);
-					$this->input->set_cookie(array(
-							'name' => 'nickname',
-							'value' => $user_info['nickname'],
-							'expire' => $this->config->item('cookie_expire'),
-							));
+					$this->set_signin_cookie($user_info['id'], $user_info['nickname']);
 					if ($need_remember) {	//设置cookie,下次自动登录{{{
 						$rmsalt = $this->_get_rmsalt($username);
 						$cookie_rmsalt = array(

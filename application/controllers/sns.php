@@ -28,7 +28,7 @@ class Sns extends MY_Controller {
 		授权成功返回callback页面
 	 *
 	 */
-	public function redirect() {
+	public function redirect() { // {{{
 		$snsid = (string)$this->input->get('snsid');
 		$apptype = strtolower((string)$this->input->get('apptype'));
 		if (!in_array($apptype, Sns_Model::getAppTypes())) {
@@ -55,7 +55,7 @@ class Sns extends MY_Controller {
 		else {
 			return  show_error('参数错误',500);
 		}
-	}
+	} // }}}
 	/**
 	 * 接口说明：授权回调页,验证授权有效性,从session拿到接口1中临时数据A,调用接口5,获取返回值,根据op实现用户操作,
 		1).当op为1时，即登陆操作
@@ -68,7 +68,7 @@ class Sns extends MY_Controller {
 		看接口说明
 	 *
 	 */
-	public function callback() {
+	public function callback() { // {{{
 		$query = $_SERVER['QUERY_STRING'];
 		$state = @json_decode(base64_decode(urldecode((string)$this->input->get('state'))),true);
 		if(!$state || !$query) {
@@ -111,7 +111,7 @@ class Sns extends MY_Controller {
 				$this->smarty->view('sns/register.tpl',$renderData);
 			}
 		}
-	}
+	} //}}}
 	/**
 	 * 接口说明：为接口3中的两个实际页面,用户输入用户名和密码登陆成功后用获取到的sessionid以及临时数据A调用接口8,获取返回信息，清除临时数据A,根据apptype传回sessionid(客户端提供相关js回调方法)
 	请求方式：get|提交时post	
@@ -121,7 +121,7 @@ class Sns extends MY_Controller {
 		看接口说明
 	 *
 	 */
-	public function bind() {
+	public function bind() { // {{{
 		$new = (int)$this->input->get_post('new');
 		$snsid = (string)$this->input->get_post('snsid');
 		$apptype = (string)$this->input->get_post('apptype');
@@ -130,7 +130,7 @@ class Sns extends MY_Controller {
 			return  show_error('参数错误',500);
 		}
 		$method = strtoupper($this->input->server('REQUEST_METHOD'));
-		if($new) { //创建账号绑定
+		if($new) { // {{{ 创建账号绑定
 			if($method == 'POST') {
 				$username = $this->input->post('username');
 				$passwd = $this->input->post('passwd');
@@ -182,8 +182,8 @@ class Sns extends MY_Controller {
 						);
 				return $this->smarty->view('sns/register.tpl',$renderData);
 			}
-		}
-		else { //输入已有账号绑定
+		} // }}}
+		else { // {{{ 输入已有账号绑定
 			if($method == 'POST') {
 				$username = $this->input->post('username');
 				$passwd = $this->input->post('passwd');
@@ -197,25 +197,15 @@ class Sns extends MY_Controller {
 					$renderData['errormessage']='请输入正确用户名和密码';
 					$this->smarty->view('sns/login.tpl',$renderData);
 				}
-				
-				$getkey = request($this->apiHost."/auth/getkey");
-				if ($getkey['httpcode'] != '200'){
-					$renderData['errormessage']='登陆失败';
-					$this->smarty->view('sns/login.tpl',$renderData);
-				}
-				$getkey_data = $getkey['data']['key'];
-				$passwd1 = md5(md5($passwd).$getkey_data);
-				$params = array(
-						'username'=>$username,
-						'passwd'=>$passwd1,
-						'key' => $getkey_data,
 
-				);
-				$result = request($this->apiHost.'/auth/signin',$params);//登陆
-				if($result['httpcode']!=200 || $result['data']['status']!='OK') {
-					$renderData['errormessage']='登陆失败';
-					return $this->smarty->view('sns/login.tpl',$renderData);
+				$this->load->model('login_model');
+				$result = $this->login_model->login($username, $passwd);
+				if (is_string($result)) {
+					$renderData['errormessage'] = "登陆失败: $return";
+					$this->smarty->view('sns/login.tpl',$renderData);
+					return;
 				}
+
 				$sessionData = $result['data'];
 				$bindParams = array(
 						'session_id'=>$sessionData['session_id'],
@@ -239,10 +229,11 @@ class Sns extends MY_Controller {
 				);
 				return $this->smarty->view('sns/login.tpl',$renderData);
 			}
-		}
-	}
+		} // }}}
+	} // }}}
 	
-	private function __finish($apptype,$status,array &$data) {
+	private function __finish($apptype,$status,array &$data) { // {{{
+		$this->load->model('login_model');
 		switch ($apptype) {
 			case 'web':
 				$status = Sns_Model::decodeAuthString($status);
@@ -255,6 +246,7 @@ class Sns extends MY_Controller {
 						'session_id'=>$data['session_id']
 						);
 				$this->session->set_userdata($sessionData);
+				$this->login_model->set_signin_cookie($data['id'], $data['nickname']);
 				$u = '/';
 				if(isset($status['state']['refer']) && isset($status['state']['refer'])) {
 					$u = $status['state']['refer'];
@@ -268,6 +260,6 @@ class Sns extends MY_Controller {
 			default:
 				exit(0);
 		}
-	}
+	} // }}}
 }
 
