@@ -620,13 +620,13 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 
 .client_down dd.pc li.n1{ background-position:40px -800px;}
 .client_down dd.pc li.n2{ background-position:40px -1000px;}
-.client_down dd.pc li.n3{ background-position:40px -1200px;}
-.client_down dd.pc li.n4{ background-position:40px -1400px;}
+.client_down dd.pc li.n3{ background-position:40px -1200px; height:130px;}
+.client_down dd.pc li.n4{ background-position:40px -1400px; height:130px;}
 
 .client_down dd.android li.n1{ background-position:40px 0px;}
 .client_down dd.android li.n2{ background-position:40px -200px;}
-.client_down dd.android li.n3{ background-position:40px -400px;}
-.client_down dd.android li.n4{ background-position:40px -600px;}
+.client_down dd.android li.n3{ background-position:40px -400px; height:130px;}
+.client_down dd.android li.n4{ background-position:40px -600px; height:130px;}
 
 /**zshen**/
 .main .commonform {width:100%;background:#FFFFFF;padding:30px 30px 30px 30px;}
