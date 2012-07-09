@@ -1,13 +1,7 @@
 {include file="header.tpl"}
 <script src="/sta/js/jquery.jscrollpane.min.js"></script>
 <div class="current">
-	<div class="nav">
-	{foreach $navs as $nav}
-		{if $nav@index > 0}&gt;{/if}
-		{if $nav.current}<span class="cur">{$nav.name}</span>
-		{else}<a href="{$nav.url}">{$nav.name}</a>{/if}
-	{/foreach}
-	</div>
+	{include file="magazine/lib/nav.tpl" navs=$navs}
 </div>
 
 <div class="main mag_preview clearfix">

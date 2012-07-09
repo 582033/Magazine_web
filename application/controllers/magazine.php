@@ -252,7 +252,27 @@ class Magazine extends MY_Controller {
 		$comment = $this->comment_model->comment_list('magazine', $id, $start, $limit);
 		$totalResults = $comment['totalResults'];
 		$page_list = $this->page_model->page_list("/magazine/$id/comments", $limit, $totalResults, $page, 'pagenav');
+		$reverse_cate_mag = array_flip($this->cate_map);
+		$magazine['url'] = '/magazine/detail/' . $magazine['id'];
 		$data = array(
+				'navs' => array(
+					array(
+						'name' => '杂志',
+						'url' => '/mag',
+						),
+					array(
+						'name' => $magazine['cate'],
+						'url' => '/mag_list/' . element($magazine['cate'], $reverse_cate_mag, $magazine['cate']),
+						),
+					array(
+						'name' => $magazine['name'],
+						'url' => '/magazine/detail/' . $magazine['id'],
+						),
+					array(
+						'name' => '留言板',
+						'current' => TRUE,
+						),
+					),
 					'magazine' => $magazine,
 					'comment' => $comment['items'],
 					'page_list' => $page_list,

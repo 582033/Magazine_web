@@ -1,11 +1,12 @@
 {include file="header.tpl"}
-
-	<div class="current"><a href="/mag">杂志</a> &gt; <a href="#">{$magazine.cate}</a> &gt; <a href="/magazine/detail/{$magazine.id}">{$magazine.name}</a> &gt; <span class="cur">留言板</span></div>
+<div class="current">
+{include file="magazine/lib/nav.tpl" navs=$navs}
+</div>
 <div class="main comment clearfix">
 	<div class="sidebar_left">
-		<a href="#"><img src="{$magazine.cover}" width="180px" height="276px" alt="杂志名" /></a>
-		<h2><a href="#">{$magazine.name}</a></h2>
-		<p>作者:<a href="#">{$magazine.author.nickname}</a></p>
+		<a href="{$magazine.url}"><img src="{$magazine.cover}" width="180px" height="276px" alt="{$magazine.name}" /></a>
+		<h2><a href="{$magazine.url}">{$magazine.name}</a></h2>
+		<p>作者:&nbsp;<a href="{$magazine.author.url}">{$magazine.author.nickname}</a></p>
 	</div>
 
 	<div class="right_main">
