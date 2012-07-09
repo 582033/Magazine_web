@@ -5,7 +5,9 @@
 		/**
 		  type - magazine/author
 		 */
-		$result = request($this->config->item('api_host') . '/magazines?' .
+		if ($type == 'author') $apiname = 'users';
+		else $apiname = "${type}s";
+		$result = request($this->config->item('api_host') . "/$apiname?" .
 				http_build_query(array('start' => $start, 'limit' => $limit, 'q' => $keyword)));
 		return $result['data'];
 	}
