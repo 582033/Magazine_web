@@ -59,10 +59,10 @@
  			<div class="self_info">
  				<div class="user_info">
  					<span>
- 					<a href="#">{$user_info.nickname}<img class="userhead_small" src="{$user_info.image}" width="24px" height="24px" /></a> </span> <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
+ 					<a href="/user/me">{$user_info.nickname}<img class="userhead_small" src="{$user_info.image}" width="24px" height="24px" /></a> </span> <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
  				</div>
  				<div class="clearfix"></div>
- 				<a href="#" class="msg_tip"><span>00</span></a>
+ 				<a href="/user/me/messages" class="msg_tip"><span>00</span></a>
  				<ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
  					<li><a href="/user/me/setting">账号设置</a></li>
  					<li><a href="/user/me/magazines">喜欢的书</a></li>
