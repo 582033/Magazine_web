@@ -160,6 +160,27 @@ class Magazine extends MY_Controller {
 				);
 		$this->smarty->view('magazine/magazines.tpl', $data);
 	}//}}}
+	function magazines_tag($tag, $page = '1'){		//杂志列表页面 {{{
+		$tag = urldecode($tag);
+		$page = $page ? $page : 1;
+		$limit = 20;
+		$start = ($page-1) * $limit;
+		$result = $this->mag_model->get_magazines(array('tag' => $tag, 'start' => $start, 'limit' => $limit));
+		if ($result['httpcode'] != 200) {
+			show_error('', $result['httpcode']);
+		}
+		$mags = $result['data'];
+		$totalResults = $mags['totalResults'];
+		$page_list = $this->page_model->page_list("/mag_list/tag/$tag", $limit, $totalResults, $page);
+		$data = array(
+				'items' => $mags['items'],
+				'page_list' => $page_list,
+				'curnav' => 'mag',
+				'tag' => $tag,
+				'pageid' => 'mag_tag',
+				);
+		$this->smarty->view('magazine/magazines.tpl', $data);
+	}//}}}
 
 	function magazine_home(){		//杂志二级列表页面{{{
 		$limit_gallery = 4;

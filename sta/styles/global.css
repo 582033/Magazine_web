@@ -90,6 +90,13 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .mag_list dd h3 a:hover,.element_list dd h3 a:hover{ color:#0590b3;}
 .element_list dd h3{ text-align:center; height:40px; line-height:40px;}
 .mag_list.m_index dd h3{ text-align:center;}
+#mag_tag .mag_list {
+	padding-top: 0px;
+}
+#mag_tag .mag_list dd h3 {
+	text-align: left;
+	padding-left: 10px;
+}
 .element_list dd.col2 h3{ width:380px;}
 .mag_list dd p{ display:block; color:#515050; line-height:17px; width:180px; height:36px; overflow:hidden;}
 
@@ -184,7 +191,7 @@ div.menu.my{ border:none; padding:0;}
 
 /*magzine_list*/
 .mag_list.m_index { margin-top:55px;}
-.mag_list.m_index dd.menu{ position:relative; padding:0; border:none; background:#e8e8e8; height:1px; float:none; clear:both; width:100%;}
+.mag_list.m_index dd.menu{ position:relative; padding:0; border:none; background:#e8e8e8; float:none; clear:both; width:100%;}
 .mag_list.m_index dd.menu ul{ position:absolute; top:-39px; left:0; width:100%;}
 .mag_list.m_index dd.menu ul li{ float:left; display:block; width:100px; padding-right:4px; text-align:center; cursor:pointer;}
 .mag_list.m_index dd.menu ul li a{ display:block; font-size:16px; padding:10px 15px; height:18px; overflow:hidden; font-weight:bold; background:#000; border:1px solid #000; border-bottom:none; color:#FFF;}

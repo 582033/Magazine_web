@@ -68,6 +68,7 @@ $route['default_controller'] = "magazine";
 $route['404_override'] = '';
 
 
+$route['mag_list/tag/(:any)(/p/(:num))?'] = 'magazine/magazines_tag/$1/$3';
 $route['mag_list/([a-z_]+)(/p/(:num))?'] = 'magazine/magazines/$1/$3';
 $route['find(/p/(:num))?'] = 'magazine/find_elements/$2';
 
