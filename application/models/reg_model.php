@@ -5,9 +5,15 @@ class reg_model extends CI_Model{
 	}
 	
 	function reg ($username, $passwd){
+		$err_msg = null;
 		if ($username == '' or $passwd == ''){
 			$err_msg = "用户名或密码不能为空";	
 		}
+		$this->load->helper('email');
+		if (!valid_email($username)) {
+			$err_msg = '请输入正确的email';
+		}
+		if ($err_msg) return $err_msg;
 		$post = array(
 				'username' => $username,
 				'passwd' => $passwd,
@@ -30,7 +36,7 @@ class reg_model extends CI_Model{
 		else {
 			$err_msg = "api未返回数据";	
 		}
-			return $err_msg;
+		return $err_msg;
 	}
 
 }

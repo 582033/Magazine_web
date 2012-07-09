@@ -43,7 +43,7 @@ function init_search() { // {{{
 		});
 } //}}}
 
-function init_goto_page() {
+function init_goto_page() { // {{{
 	$('div.pagearea form').submit(function() {
 			$p = $(this).find('input[name="goto"]');
 			var gotop = parseInt($p.val());
@@ -52,7 +52,7 @@ function init_goto_page() {
 			window.location.href = this.action + '/p/' + gotop;
 			return false;
 			});
-}
+} //}}}
 
 
 function detail_resize(){
@@ -78,16 +78,6 @@ function resize(){
 	}
 }
 
-$("document").ready(function(){
-	username = $('[name="username"]');
-	passwd = $('[name="passwd"]');
-	err_msg = $(".err_msg");
-	passwd.focusout(function (){
-		if (passwd.val().length < 6) err_msg.html("<font color='red'>密码少于6位</font>");
-		if(passwd.val().length >= 6) err_msg.html("");
-	});
-});
-
 function signin(){	//执行登录{{{
 	var options = {
 		dataType : 'json',
@@ -105,20 +95,28 @@ function signin(){	//执行登录{{{
 }	//}}}
 
 function signup(){	//注册{{{
+	var $form = $('#signup_form');
+	if ($('input.passwd', $form).val() != $('input.re_passwd', $form).val()) {
+		$('p.err_msg', $form).text('密码不一致');
+		return false;
+	}
+
 	var options = {
 		dataType : 'json',
-		success:    function(result) {
+		success: function(result) {
 			if (result == 'seccess') {
 				self.parent.tb_remove();
 				tb_show("/",false);
 			}
 			else {
-				$(".err_msg").html("<font color='red'>"+result+"</font>");
+				$(".err_msg").html(result);
 			}
 		}
 	};
-	$('[name="form"]').ajaxForm(options);
-}	//}}}
+
+	$form.ajaxForm(options);
+	return false;
+} //}}}
 
 $(function(){
 	$(document).on('mouseenter mouseleave', '.element_list dd, .mag_list dd', function(e) {

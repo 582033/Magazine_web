@@ -2,14 +2,14 @@
 <div class="dialog reg">
  	<div class="bg"></div>
  	<div class="main">
-		<form name="form" action="/user/signup" method="POST" enctype="multipart/form-data">
+		<form id="signup_form" name="form" action="/user/signup" method="POST" enctype="multipart/form-data">
 		<dl>
- 			<legend>绑定1001夜账号</legend>
- 			<p><input type="text" name="username" id="dialog_reg_Email" /> &nbsp;Email地址</p>
+ 			<legend>注册1001夜账号</legend>
+ 			<p><input type="text" name="username" class="username" id="dialog_reg_Email" /> &nbsp;Email地址</p>
 			<p>请输入您的常用Email地址</p>
- 			<p><input type="password" name="passwd" id="dialog_reg_Pass" /> &nbsp;密码</p>
- 			<p><input type="password" name="re_passwd" id="dialog_reg_RePass" /> &nbsp;重复输入密码</p>
- 			<p><button type="submit" onclick="signup()">马上注册成为会员</button></p>
+ 			<p><input type="password" name="passwd" class="passwd" id="dialog_reg_Pass" /> &nbsp;密码</p>
+ 			<p><input type="password" name="re_passwd" class="re_passwd" id="dialog_reg_RePass" /> &nbsp;重复输入密码</p>
+ 			<p><button type="submit" onclick="return signup()">马上注册成为会员</button></p>
 			<p class="err_msg"></p>
  		</dl>
  		</form>
