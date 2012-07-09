@@ -114,11 +114,15 @@ class Magazine extends MY_Controller {
 		$element = $this->mag_model->_get_element_list($limit, $start);
 		$page_list = $this->page_model->page_list("/find", $limit, $element['data']['totalResults'], $page);
 		$elements = $this->display_model->process_elements($element['data']['items']);
+		$total = $element['data']['totalResults'];
 		$data = array(
 					'element_list' => $elements,
 					'page_list' => $page_list,
 					'curnav' => 'find',
 					);
+		if ($total > $start + $limit) {
+			$data['nextpage'] = '/find/p/' . ($page + 1);
+		}
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
 

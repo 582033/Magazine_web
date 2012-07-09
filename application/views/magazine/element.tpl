@@ -10,11 +10,14 @@
 			{/foreach}
 		</div>
 	</dl>
-{$page_list}
+	{if isset($nextpage)}
+	<div id="pagenav" style="display:none">
+		<a href="{$nextpage}"></a>
+	</div>
+	{/if}
 </div>
-<script type="text/javascript" src="/sta/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.masonry.js"></script>
+<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.infinitescroll.js"></script>
 <script type="text/javascript" src="/sta/js/element.js"></script>
-<script type="text/javascript" src="/sta/js/jquery.infinitescroll.min.js"></script>
-<script type="text/javascript" src="/sta/js/like.js"></script>
 {include file="footer.tpl"}
 {include file='share.tpl'}

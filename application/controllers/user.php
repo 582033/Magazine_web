@@ -86,12 +86,20 @@ class User extends Magazine {
 			$page_style = TRUE;
 		}
 		$data = array(
-				'page_list' => $this->page_model->page_list($page_url, $this->limit, $loved_ob['totalResults'], $page, $page_style),
 				'loved_author' => $loved_author,
 				$type => $loved_ob,
 				'is_me' => $is_me,
 				'user_id' => $is_me ? 'me' : $user_id,
 				);
+		if ($type == 'element') {
+			$total = $loved_ob['totalResults'];
+			if ($total > $url_data['start'] + $url_data['limit']) {
+				$data['nextpage'] = $page_url . '/p/' . ($page + 1);
+			}
+		}
+		else {
+			$data['page_list'] = $this->page_model->page_list($page_url, $this->limit, $loved_ob['totalResults'], $page, $page_style);
+		}
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 

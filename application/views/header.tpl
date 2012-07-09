@@ -13,7 +13,6 @@
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.cookie.js"></script>
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.form.js"></script>
-<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.masonry.min.js"></script>
 <script type="text/javascript" src="/sta/js/magazine.js"></script>
 <script type="text/javascript" src="/sta/js/thickbox.js"></script>
 <script type="text/javascript" src="/sta/js/check.js"></script>

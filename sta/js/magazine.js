@@ -120,22 +120,11 @@ function signup(){	//注册{{{
 	$('[name="form"]').ajaxForm(options);
 }	//}}}
 
-$("document").ready(function(){
-    $(".mag_list dd").mouseenter(function(){
-		$(this).find(".mouseover").css("display","block");
+$(function(){
+	$(document).on('mouseenter mouseleave', '.element_list dd, .mag_list dd', function(e) {
+		var show = e.type == 'mouseenter' ? true : false;
+		$(this).find(".mouseover").toggle(show);
 	});
-    $(".mag_list dd").mouseleave(function(){
-		$(this).find(".mouseover").css("display","none");
-	});
-	$(".element_list dd").mouseenter(function(){
-		$(this).find(".mouseover").css("display","block");
-		$(this).find(".cover").css("z-index","99");
-	});
-    $(".element_list dd").mouseleave(function(){
-		$(this).find(".mouseover").css("display","none");
-		$(this).find(".cover").css("z-index","0");
-	});
-
 	$('.mouseover .share').hover(
 		function(){
 			$bdshare = $('#bdshare').show();
