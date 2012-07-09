@@ -184,12 +184,12 @@ class User extends Magazine {
 	
 	public function set_share() {	//绑定第三方帐号{{{
 		$data = array();
-		$sessionid = $this->session->userdata('session_id');
+		$session_id = $this->session->userdata('session_id');
 		$this->load->model('Sns_Model');
 		$unbind = Sns_Model::getAllSns();
-		if(!$sessionid) return;
+		if(!$session_id) return;
 
-		$result = request($this->api_host.'/sns/bindinfo',array('session_id'=>$sessionid),'GET');
+		$result = request($this->api_host.'/sns/bindinfo',array('session_id'=>$session_id),'GET');
 		if($result['httpcode']!=200) return;
 		foreach ($result['data'] AS $v) {
 			$data['bindinfo'][$v['snsid']] = $v;
