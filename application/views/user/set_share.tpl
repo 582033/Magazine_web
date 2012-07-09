@@ -32,7 +32,7 @@ $("document").ready(function(){
 				{snsid:$(this).attr('id')},
 				function(data){
 					if(data.status=='OK') {
-						window.location='/user/bind';
+						window.location='/user/me/set_share';
 					}
 				},
 				'json'

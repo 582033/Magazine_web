@@ -89,7 +89,7 @@ class Sns extends MY_Controller {
 		$data = $result['data'];
 		if($state['op']==2) { //绑定
 			if($data) {
-				$u = isset($state['refer']) && $state['refer'] ? $state['refer']:'/user/bind';
+				$u = isset($state['refer']) && $state['refer'] ? $state['refer']:'/user/me/set_share';
 				redirect($u);
 				//return  show_error('绑定成功',200,'恭喜');
 			}
