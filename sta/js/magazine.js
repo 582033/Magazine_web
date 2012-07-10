@@ -120,7 +120,7 @@ function signup(){	//注册{{{
 	var options = {
 		dataType : 'json',
 		success: function(result) {
-			if (result == 'seccess') {
+			if (result == 'success') {
 				self.parent.tb_remove();
 				tb_show("/",false);
 			}
@@ -131,6 +131,31 @@ function signup(){	//注册{{{
 	};
 
 	$form.ajaxForm(options);
+	return false;
+} //}}}
+function applyAuthor(){	// {{{ 申请成为作者
+	var $form = $('#apply_author_form');
+	if (! $('input.code', $form).val()) {
+		$('p.err_msg', $form).text('请输入邀请码');
+		return false;
+	}
+
+	var options = {
+		dataType : 'json',
+		success: function(result) {
+			if (result.status == 'OK') {
+				//self.parent.tb_remove();
+				$('#apply_author div.main').hide();
+				$('#apply_author div.apply_ok').show();
+				//tb_show("/",false);
+			}
+			else {
+				$(".err_msg").html(result.message);
+			}
+		}
+	};
+
+	$form.ajaxSubmit(options);
 	return false;
 } //}}}
 

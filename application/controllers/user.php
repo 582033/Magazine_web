@@ -40,6 +40,29 @@ class User extends Magazine {
 		}
 	}	//}}}
 
+	function applyAuthor($stage){	//{{{
+		if ($stage == 'invitation') {
+			$this->smarty->view('user/invitation_code.tpl');
+		}
+		elseif ($stage == 'apply') {
+			$status2msg = array(
+					'OK' => '成功',
+					'INVALID_CODE' => '错误的邀请码',
+					'CODE_USED' => '邀请码已被使用',
+					);
+			$code = $this->input->post('code');
+			$this->load->model('user_info_model');
+			$return = $this->user_info_model->apply_author($code);
+			if ($return['httpcode'] != 200) show_error('', $return['httpcode']);
+			$status = $return['data']['status'];
+			$result = array(
+					'status' => $status,
+					'message' => element($status, $status2msg, '未知错误'),
+					);
+			$this->_json_output($result);
+		}
+	}	//}}}
+
 	function signin (){	//{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$username = $this->input->post('username');
@@ -85,11 +108,13 @@ class User extends Magazine {
 			$loved_ob = $loved_author;
 			$page_style = TRUE;
 		}
+		$this->load->model('user_info_model');
 		$data = array(
 				'loved_author' => $loved_author,
 				$type => $loved_ob,
 				'is_me' => $is_me,
 				'user_id' => $is_me ? 'me' : $user_id,
+				'user_info' => $this->user_info_model->get_user($user_id),
 				);
 		if ($type == 'element') {
 			$total = $loved_ob['totalResults'];

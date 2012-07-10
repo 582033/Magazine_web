@@ -25,7 +25,7 @@ function cancelLike(type, type_id) {
 		window.location.reload();
 	});
 }
-function like(type, type_id) {
+function like(type, type_id, where) {
 	if (!checkSignedIn()) return;
 	var action = type == 'user' ? 'follow' : 'like';
 	$.post(getLikeUrl(type, type_id, action),
@@ -40,8 +40,13 @@ function like(type, type_id) {
 		}
 		else if (type == 'user') {
 			if (data.status == 'success') {
-				$("img.fellow_item").css("display","none");
-				$("span.fellow_item").text("已关注");
+				if (where == 'user_center') {
+					$('div.userinfo a.follow').text('已关注').addClass('followed');
+				}
+				else {
+					$("img.fellow_item").css("display","none");
+					$("span.fellow_item").text("已关注");
+				}
 			}
 		}
 	});

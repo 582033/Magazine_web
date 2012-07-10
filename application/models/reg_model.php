@@ -23,7 +23,7 @@ class reg_model extends CI_Model{
 			switch ($api_data['data']['status']) {
 				case 'OK':
 					$this->Login_Model->login($username, $passwd);		
-					$err_msg = "seccess";
+					$err_msg = "success";
 					break;
 				case 'USER_EXISTS':
 					$err_msg = "用户已存在";

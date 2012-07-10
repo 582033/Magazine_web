@@ -1,28 +1,41 @@
 <div class="sidebar_left">
  		<div class="userinfo">
- 			<p><a href="#">{$user_info['nickname']}</a> <a href="/user/me/setting" class="edit">修改</a> <!--a href="#" class="auther">认证作者</a--></p>
+			<p>
+				<a href="/user/{$user_id}">{$user_info.nickname}</a>
+				{if $is_me}
+				<a href="/user/me/setting" class="edit">修改</a>
+				{else}
+				<a href="javascript:void(0)" class="auther">认证作者</a>
+				{/if}
+			</p>
  			<div class="user_info">
- 				<a href="#"><img src="{if $user_info['image']}{$user_info['image']}{else}/sta/images/userhead/big.jpg{/if}" width="180px" height="180px" class="userhead" alt="{$user_info.nickname}" /></a>
+ 				<a href="#">
+					<img src="{$user_info.image|default:'/sta/images/userhead/big.jpg'}" width="180px" height="180px" class="userhead" alt="1{$user_info.nickname}" />
+ 				</a>
  				<ul class="clearfix">
- 					<li><a href="#">关注<span>{$user_info['followers']}</span></a></li>
- 					<li><a href="#">粉丝<span>{$user_info['followers']}</span></a></li>
- 					<li class="last"><a href="#">杂志<span>{$user_info['magazines']}</span></a></li>
+ 					<li><a href="#">关注<span>{$user_info.followers}</span></a></li>
+ 					<li><a href="#">粉丝<span>{$user_info.followers}</span></a></li>
+ 					<li class="last"><a href="#">杂志<span>{$user_info.magazines}</span></a></li>
  				</ul>
  			</div>
- 			<a href="#" class="follow">关注该作者</a>
- 			<!--
- 			<a href="#" class="attest">认证作者</a>
- 			-->
+			{if $is_me}
+			{if $user_info.role == 0}
+ 			<a href="/user/applyAuthor/invitation?height=404&width=736&modal=true" class="applyauthor thickbox">申请成为作者</a>
+			{else}
+ 			<a href="javascript:void(0)" class="applyauthor alreadyauthor">认证作者</a>
+			{/if}
+			{else}
+ 			<a class="follow" href="javascript:void(0)" onclick="like('user', '{$user_id}', 'user_center')">关注作者</a>
+			{/if}
  			<p class="bottombg"></p>
  		</div>
  		
  		<dl class="tag">
  			<dt>我的标签  <a href="/user/me/set_tag" class="edit">修改</a></dt>
  			<dd>
-				{if $user_info['tags']}
-					{$i=1}
-					{foreach from=$user_info['tags'] item=item}
-						<a href="#" class="{if $i++%2=='0'}tag01{else}tag02{/if}">{$item}</a>
+				{if $user_info.tags}
+					{foreach $user_info.tags as $item}
+					<a href="#" class="{cycle values="tag01,tag02"}">{$item}</a>
 					{/foreach}
 				{else}
 					&nbsp;&nbsp;您还没有设置标签
@@ -33,14 +46,12 @@
  		<dl class="follows">
  			<dt>我关注的作者</dt>
  			<dd>
- 			
  				<div class="clearfix">
 					{foreach from=$loved_author.items item=item}
 						<a href="/user/{$user_id}"><img src="{$item.image}" alt="{$item.nickname}" /><span>{$item.nickname}</span></a>
 					{/foreach}
  					<span class="gray"></span>
  				</div>
- 			
  			</dd>
  		</dl>
  	</div>

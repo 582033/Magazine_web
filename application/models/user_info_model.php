@@ -6,7 +6,7 @@
 		$this->api_host = $this->config->item('api_host');
 	}	//}}}
 
-	function get_user_tags ($user_id) {
+	function get_user_tags ($user_id) { // {{{
 		$tags = request($this->api_host . "/user/" . $user_id . "/tags/own");
 		if (isset($tags['data']))
 			$tags = $tags['data'];
@@ -15,7 +15,15 @@
 		//echo $this->api_host . "/user/" . $user_id . "/tags/own";
 		//print_r($tags);
 		return $tags;
-
+	} // }}}
+	function get_user($user_id) {
+		$return = request($this->api_host . "/user/" . $user_id);
+		return $return['data'];
+	}
+	function apply_author($code) {
+		$user_id = $this->session->userdata('id');
+		$params = array('code' => $code, 'session_id' => $this->session->userdata('session_id'));
+		return request($this->api_host . "/user/$user_id/applyAuthor?" .  http_build_query($params));
 	}
 
 	function get_user_info () {

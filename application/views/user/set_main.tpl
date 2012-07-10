@@ -24,7 +24,9 @@
 			</li>
 -->
 		</ul>
-		<a href="#" class="btn_auther">申请成为作者</a>
+		{if $user_info.role == 0}
+		<a href="/user/applyAuthor/invitation?height=404&width=736&modal=true" class="btn_auther thickbox">申请成为作者</a>
+		{/if}
 	</div>
 	{if $user_set == 'set_base'}{include file="user/set_base.tpl"}{/if}
 	{if $user_set == 'set_headpic'}{include file="user/set_headpic.tpl"}{/if}
