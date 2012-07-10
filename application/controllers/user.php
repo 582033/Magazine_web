@@ -143,10 +143,21 @@ class User extends Magazine {
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
+	function get_user_info () {
+		$this->_json_output($this->user_info_model->get_user_info());
+	}
+
 	function set_base () {	//设置个人信息{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$session_id = $this->session->userdata('sid');
-			request($this->api_host."/magazine/user_info?session_id=$session_id");
+			$data = array(
+					'nickname' => $this->input->post('nickname'),
+					'gender' => $this->input->post('gender'),
+					'birthday' => $this->input->post('year') . "-" . $this->input->post('month') . "-"  . $this->input->post('day'),
+					'province' => $this->input->post('true_province'),
+					'city' => $this->input->post('true_city'),
+					);
+			$return = $this->user_info_model->set_base(json_encode($data));
+			echo json_encode($return);
 		}
 		else {
 			$data = array(
