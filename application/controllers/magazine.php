@@ -396,6 +396,14 @@ class Magazine extends MY_Controller {
 				'type' => $type,
 				'curnav' => 'soft',
 				);
+		if ($type == 'pc') {
+			$this->load->library('session');
+			$user_id = $this->session->userdata('id');
+			if ($user_id) {
+				$this->load->model('user_info_model');
+				$data['user_info'] = $this->user_info_model->get_user($user_id);
+			}
+		}
 		$this->smarty->view('magazine/down.tpl', $data);
 	}	//}}}
 	

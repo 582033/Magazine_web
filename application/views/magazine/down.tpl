@@ -1,34 +1,30 @@
 {include file="header.tpl"}
-<!--
 <script type="text/javascript" >
- function play(){
- 	allSrc=$(".slidescreen img");
- 	if ( typeof(i) == "undefined" || i == null || i>=allSrc.length ){
- 		i=0;
- 	}
- 	allSrc.css("display","none");
- 	allSrc[i].style.display="block";
- 	i++;
- }
- $("document").ready(function(){
- 	setInterval("play()", 2000);
- 	play();
-     $(".client_down dt").mouseenter(function(){
- 		$(".client_down dt").attr("class","");
- 		$(".client_down dd").css("display","none");
- 		$(this).attr("class","sel");
- 		$(this).next("dd").css("display","block");
- 	});
- })
- </script>
--->
+function play(){
+      allSrc=$(".slidescreen img");
+      if ( typeof(i) == "undefined" || i == null || i>=allSrc.length ){
+              i=0;
+      }
+      allSrc.css("display","none");
+      allSrc[i].style.display="block";
+      i++;
+}
+$(function(){
+      setInterval("play()", 2000);
+      play();
+})
+</script>
  <div class="down">
  	<dl class="client_down">
  		<dt {if $type == 'pc'}class="sel"{else} onclick="location.href='/soft/pc'" onmouseover="this.style.cursor='hand'"{/if}>PC工具下载</dt>
 		{if $type == 'pc'}
  		<dd class="pc">
  			<div class="intro">
- 				<a href="javascript:void(0);">申请试用</a>
+				{if isset($user_info) && $user_info.role == 1}
+				<a href="http://58.30.78.70:84/LetouMagazine_20120709.rar">下载</a>
+				{else}
+ 				<a class="thickbox" href="/user/applyAuthor/invitation?height=404&width=736&modal=true">下载</a>
+				{/if}
  			</div>
  			<ul>
  				<li class="n1">
@@ -54,7 +50,7 @@
 		{if $type == 'android'}
  		<dd class="android" style="display:block">
  			<div class="intro">
- 				<a href="#" class="downbtn">下载Android客户端</a>
+				<a href="http://d.in1001.com/apk/magazine_bookshelf.apk" class="downbtn">下载Android客户端</a>
  				<div class="slidescreen">
  					<img src="/sta/images/appscreen/1.jpg" alt="截图1" />
  					<img src="/sta/images/appscreen/2.jpg" alt="截图2" />

@@ -42,6 +42,11 @@ class User extends Magazine {
 
 	function applyAuthor($stage){	//{{{
 		if ($stage == 'invitation') {
+			$user_id = $this->session->userdata('id');
+			if (!$user_id) {
+				header('Location: /user/signin', TRUE, 302);
+				return;
+			}
 			$this->smarty->view('user/invitation_code.tpl');
 		}
 		elseif ($stage == 'apply') {
