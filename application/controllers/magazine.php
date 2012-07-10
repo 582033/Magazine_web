@@ -23,7 +23,7 @@ class Magazine extends MY_Controller {
 		$this->load->model('comment_model');
 		$this->load->model('page_model');
 		$this->load->library('session');
-		$this->limit = '3';
+		$this->limit = '20';
 		/*
 		 *		验证登录状态
 		 */
