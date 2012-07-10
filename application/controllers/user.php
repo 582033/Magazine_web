@@ -173,9 +173,13 @@ class User extends Magazine {
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
-	function get_user_info () {
+	function get_user_info () {	//{{{
 		$this->_json_output($this->user_info_model->get_user_info());
-	}
+	}	//}}}
+
+	function get_tag_list () {	//{{{
+		echo $this->user_info_model->get_tag_list();
+	}	//}}}
 
 	function set_base () {	//设置个人信息{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -207,11 +211,22 @@ class User extends Magazine {
 	}
 
 	function set_tag () {	//个人标签{{{
-		$data = array(
-				'user_set' => 'set_tag',
-				'user_set_name' => '个人标签',
-				);
-		$this->smarty->view('user/set_main.tpl', $data);
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$data = array(
+					'tags' => $this->input->post('tags'),
+					);
+			$return = $this->user_info_model->set_base(json_encode($data));
+			echo json_encode($return);
+		}
+		else {
+			$tags = $this->user_info_model->get_user_tags($this->session->userdata('id'));
+			$data = array(
+					'user_set' => 'set_tag',
+					'user_set_name' => '个人标签',
+					'tags' => $tags,
+					);
+			$this->smarty->view('user/set_main.tpl', $data);
+		}
 	}
 
 	function set_auther () {	//作者信息设置{{{

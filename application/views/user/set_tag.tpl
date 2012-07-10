@@ -1,15 +1,13 @@
 <div class="set_main tag">
 		<h2>个人标签</h2>
 		<p>添加描述自己职业、兴趣爱好等方面的词语，让更多人找到你，让你找到更多同类</p>
-		<form>
-			<input type="text" /> <button type="submit" class="btn_set"><span>添加</span></button>
+		<form name="tags_form" action="/user/me/set_tag" method="post">
+			<input name="tags" type="text" value="{$tags}"/><button type="submit" class="btn_set"><span>添加</span></button>
 		</form>
 		
 		<dl class="clearfix">
-			<dt><a href="#">换一组</a>您可能感兴趣的标签：</dt>
-			<dd>
-			<a href="#">+旅游</a> <a href="#">+旅游旅游旅游</a> <a href="#">+旅旅游游</a> <a href="#">+旅旅游旅游游</a> <a href="#">+旅旅游游</a> <a href="#">+旅旅游旅游旅游游</a> <a href="#">+旅旅游游</a> <a href="#">+旅旅游游</a> <a href="#">+旅旅游旅游旅游游</a> <a href="#">+旅旅游游</a> <a href="#">+旅游旅游旅游</a> <a href="#">+旅旅游游</a>
-			</dd>
+			<dt><a href="javascript:void(0)" class="change">换一组</a>您可能感兴趣的标签：</dt>
+			<dd></dd>
 		</dl>
 		
 		<p>关于标签</p>
@@ -19,3 +17,47 @@
 		<p>·点击你已添加的标签，可以搜索到有同样兴趣的人。</p>
 		
 	</div>
+<script>
+$(function(){
+	change_tag();
+	$(".change").click(function(){
+		change_tag();
+	});
+	
+	$(".btn_set").click(function(){
+		var options = {
+			dataType : 'json',
+			success : function(result){
+				alert(result);	
+			}
+		}
+		$("[name='tags_form']").ajaxSubmit(options);
+		return false;
+	});
+});
+
+function change_tag(){
+	var options = {
+		url:"/user/get_tag_list",
+		dataType:'json',
+		success:function(result){
+			var dd_html = "";
+			for(i=0;i<=10;i++){
+				if (result[i]) dd_html += "<a href='javascript:void(0)'>"+result[i]+"</a>";
+			}
+			$(".clearfix").find("dd").html(dd_html);
+			$(".clearfix").find("dd").children().click(function(){
+				val = $("[name='tags']").val();
+				if (val==""){
+					tag = $(this).text();
+				}
+				else {
+					tag = val +","+$(this).text();
+				}
+				$("[name='tags']").val(tag);
+			});
+		}
+	};
+	$.ajax(options);
+}
+</script>
