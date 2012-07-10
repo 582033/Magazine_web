@@ -17,20 +17,11 @@
 				{if $cover_show_del}<a href="javascript:void(0)" class="del_mag" onclick="cancelLike('magazine', '{$item.id}')">删除</a>{/if}
 				<div class="more">
 					<a href="/magazine/{$item.id}/comments" class="comment">评论</a>
-					<a href="javascript:void(0);" class="share">分享</a>
+					<a href="javascript:void(0);" class="share" data-type="1" data-title="{$item.name}" data-des="{$item.intro|truncate:30}" data-id="{$item.id}" data-img="{$item.cover}">分享</a>
 					<a href="javascript:void(0);" id="magazine_{$item.id}" onclick="like('magazine','{$item.id}');" class="like">{$item.likes}</a>
 				</div>
 				<div class="shareto">
 					<div class="bg"></div>
-<!--<ul>
-<li><a href="#" class="s_qq">分享到QQ空间</a></li>
-<li><a href="#" class="s_sina">分享到新浪微博</a></li>
-<li><a href="#" class="s_renren">分享到人人网</a></li>
-<li><a href="#" class="s_qt">分享到腾讯微博</a></li>
-<li><a href="#" class="s_douban">分享到豆瓣</a></li>
-<li><a href="#" class="s_baidu">分享到百度空间</a></li>
-<li><a href="#" class="s_kaixin01">分享到开心网</a></li>
-</ul>-->
 				</div>
 			</div>
 		</div>

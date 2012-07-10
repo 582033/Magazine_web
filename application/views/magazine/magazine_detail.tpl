@@ -31,22 +31,18 @@
 					<script type="text/javascript" id="bdshare_js" data="type=tools&amp;mini=1" ></script>
 					<script type="text/javascript" id="bdshell_js"></script>
 					<script type="text/javascript">
+						var bds_config = {
+							'bdDes':'',
+							'bdText':'{$magazine.name} {$magazine.intro|truncate:30|escape}......http://www.in1001.com/magazine/detail/{$magazine.id}',
+							'bdPopTitle':'',
+							'bdPic':'{$magazine.cover}',
+							'searchPic':0,//'0为抓取，1为不抓取，默认为0，目前只针对新浪微博'
+						}
 						document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
 					</script>
 				<!-- Baidu Button END -->
 			</div>
 			<div style="clear:both;"></div>
-		<!--	<p class="shareto">
-				分享到：
-				<a href="#" class="s_qq" title="分享到QQ空间">分享到QQ空间</a>
-				<a href="#" class="s_sina" title="分享到新浪微博">分享到新浪微博</a>
-				<a href="#" class="s_renren" title="分享到人人网">分享到人人网</a>
-				<a href="#" class="s_qt" title="分享到腾讯微博">分享到腾讯微博</a>
-				<a href="#" class="s_douban" title="分享到豆瓣">分享到豆瓣</a>
-				<a href="#" class="s_baidu" title="分享到百度空间">分享到百度空间</a>
-				<a href="#" class="s_kaixin01" title="分享到开心网">分享到开心网</a>
-			
-			</p>	-->
 			<p class="readonline">
 				<a href="{$pub_host}/{$magazine.id|truncate:3}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
 			</p>

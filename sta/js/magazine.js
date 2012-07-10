@@ -135,6 +135,31 @@ function signup(){	//注册{{{
 } //}}}
 
 $(function(){
+	var getShareConfig = function($share) {
+		if (typeof window.bds_config==undefined || typeof window.bdShare ==undefined) return;
+		var title=des=img=id='';
+		var text = url = null;
+		var urlPre = 'http://www.in1001.com';
+		if ($share.data('title')) title=$share.data('title');
+		if ($share.data('des')) des = $share.data('des');
+		if ($share.data('img')) img = $share.data('img');
+		if ($share.data('id')) id = $share.data('id');
+		switch ($share.data('type')) {
+		case 1:
+			if (id) url=urlPre+'/magazine/detail/'+id;
+			text = title+' '+des+'......'+url;
+			break;
+		case 2:
+			if (id) url=id;
+			text = title+' （来自 1001夜互动阅读平台）'+'......'+url;
+			break;
+		default:
+			return;
+		}
+		window.bds_config.bdText = text;
+		window.bds_config.bdPic = img;
+		window.bdShare.fn.init();
+	};
 	$(document).on('mouseenter mouseleave', '.element_list dd, .mag_list dd', function(e) {
 		var show = e.type == 'mouseenter' ? true : false;
 		$(this).find(".mouseover").toggle(show);
@@ -144,6 +169,7 @@ $(function(){
 			$bdshare = $('#bdshare').show();
 			$share = $(this).parent().parent().find('.shareto');
 			$bdshare.appendTo($share);
+			getShareConfig($(this));
 			$share.show();
 		}
 		else {
