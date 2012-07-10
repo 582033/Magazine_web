@@ -116,8 +116,9 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .mag_list dd.topic p a.readmore{ color:#0590b3;}
 
 .mag_list dd .cover,.element_list dd .cover{ position:relative;}
-.mag_list dd .cover .mouseover,
-.element_list dd .cover .mouseover{ position:absolute; left:0; top:0; width:100%; height:100%; display:none;}
+.mag_list dd .cover .mouseover, .element_list dd .cover .mouseover {
+	position:absolute; left:0; top:0; width:100%; height:100%; display:none;
+}
 .element_list dd .cover .mouseover{ height:100%; }
 .mag_list dd .cover .mouseover .bg,
 .element_list dd .cover .mouseover .bg{ width:100%; height:100%; background:#000; -moz-opacity:0.5; filter:alpha(opacity=50);opacity:0.5;}
@@ -145,6 +146,16 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .element_list dd .cover .mouseover .more a.comment{background-position:-238px -16px; }
 .mag_list dd .cover .mouseover .more a.comment:hover,
 .element_list dd .cover .mouseover .more a.comment:hover{background-position:-238px -69px;}
+
+.element_list dd .cover .mouseover .more {
+	width: 100%;
+}
+.element_list dd .cover .mouseover .more a {
+	float: left;
+}
+.element_list dd .cover .mouseover .more a.share {
+	float: right;
+}
 
 .mag_list dd .cover .mouseover .del_mag,
 .element_list dd .cover .mouseover .del_mag{ position:absolute; display:block; z-index:2; color:#FFF; right:10px; top:10px; width:11px; height:11px; text-indent:-100px; overflow:hidden; background:url(/sta/images/ico_del.gif) no-repeat left top;}
