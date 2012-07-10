@@ -215,7 +215,7 @@ class User extends Magazine {
 			unset($unbind[$v['snsid']]);
 		}
 		$other = array(
-				'ubind' => $unbind,
+				'unbind' => $unbind,
 				'session_id' => $session_id,
 				'user_set' => 'set_share',
 				'user_set_name' => '分享管理',
