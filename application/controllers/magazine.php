@@ -233,11 +233,6 @@ class Magazine extends MY_Controller {
 		$id = '';
 
 		$mag_middle=$this->mag_model->_get_mag_middle();
-		foreach($mag_middle as $k=>$v){
-			$mag_middle[$k]['id']=$v['magazine_id'];
-
-		
-		}
 
 		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery, $id);
 

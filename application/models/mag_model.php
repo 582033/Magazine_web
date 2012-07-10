@@ -45,7 +45,7 @@ class Mag_Model extends CI_Model {
 	
 	
 	function _get_mag_text($limit)	{
-		$mag_text  = request($this->api_host . "/ads/text/magmiddle?limit=" .$limit);
+		$mag_text  = request($this->api_host . "/ltapp/ads/text/magmiddle?limit=" .$limit);
 	
 		return $mag_text;
 	
@@ -54,15 +54,11 @@ class Mag_Model extends CI_Model {
 	
 	//mag page ,middle magazine ,2  个	
  	function _get_mag_middle()	{
-		$mag_result = request($this->api_host . "/ads/magmiddle/2");
+		$mag_result = request($this->api_host . "/ltapp/ads/magmiddle/2");
 	
 		$mag_item = $mag_result['data']['items'];
-		$mag_list = array();
 	
-		for ($i = 0; $i < count($mag_item); $i++){
-				array_push($mag_list, $mag_item[$i]);
-		}
-		return $mag_list;
+		return $mag_item;
 	
 	
 	}
@@ -70,46 +66,38 @@ class Mag_Model extends CI_Model {
 	function _get_index_info(){		//首页杂志信息{{{
 		//右上及中部的9本杂志
 		//$mag_result = request($this->api_host . "/magazines?limit=9&start=0");
-		$mag_result = request($this->api_host . "/ads/indextop/9");
+		$mag_result = request($this->api_host . "/ltapp/ads/indextop/9");
 		//顶部幻灯片，最多5张
-		$mag_resultad = request($this->api_host."/ads/image/indextop?limit=5");
-		$mag_item = $mag_result['data']['items'];
+		$mag_resultad = request($this->api_host."/ltapp/ads/image/indextop?limit=5");
 		$mag_itemad = $mag_resultad['data']['items'];
 		$mag_gallery = $mag_list = array();
 		for($i=0; $i <count($mag_itemad); $i++){
 				array_push($mag_gallery, $mag_itemad[$i]);
 
 		}
-		for ($i = 0; $i < count($mag_item); $i++){
-			//if ($i < 4){
-			//	array_push($mag_gallery, $mag_item[$i]);
-			//}else{
-				array_push($mag_list, $mag_item[$i]);
-			//}
-		}
 		$elem_gallery = $elem_list4 = array();
 		$elem_list3 = $elem_list1 = array();
 		//elem gallery
-		$elem_gallery_result= request($this->api_host."/ads/image/indexlovefind?limit=5");
+		$elem_gallery_result= request($this->api_host."/ltapp/ads/image/indexlovefind?limit=5");
 		$elem_item = $elem_gallery_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 				array_push($elem_gallery, $elem_item[$j]);
 		}
 
 		//elem list4
-		$elem_list_result= request($this->api_host."/ads/elem/indexelem4?limit=4");
+		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem4?limit=4");
 		$elem_item = $elem_list_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 				array_push($elem_list4, $elem_item[$j]);
 		}
 		//elem list3
-		$elem_list_result= request($this->api_host."/ads/elem/indexelem3?limit=3");
+		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem3?limit=3");
 		$elem_item = $elem_list_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 				array_push($elem_list3, $elem_item[$j]);
 		}
 		//elem list1
-		$elem_list_result= request($this->api_host."/ads/elem/indexelem1?limit=1");
+		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem1?limit=1");
 		$elem_item = $elem_list_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 				array_push($elem_list1, $elem_item[$j]);
@@ -120,12 +108,13 @@ class Mag_Model extends CI_Model {
 		//echo "<pre>";var_dump($elem_list);exit;
 		$index_info = array(
 							'mag_gallery' => $mag_gallery,
-							'mag_list' => $mag_list,
+							'mag_list' => $mag_result['data']['items'],
 							'elem_gallery' => $elem_gallery,
 							'elm_4' => $elem_list4,
 							'elm_3' => $elem_list3,
 							'elm_1' => $elem_list1,
 							);
+		//echo "<pre>";print_r($index_info);exit;
 		return $index_info;
 	}//}}}
 	function get_magazines($params) {
@@ -139,7 +128,7 @@ class Mag_Model extends CI_Model {
 	}//}}}
 	
 	function _get_recommendation_mag($limit, $start, $id){		//获得推荐杂志列表{{{
-		$mag_resultad = request($this->api_host."/ads/image/magtop");
+		$mag_resultad = request($this->api_host."/ltapp/ads/image/magtop");
 		return $mag_resultad;
 		//$recommendation = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start&id=$id");
 		//return $recommendation['data']['items'];
