@@ -514,5 +514,34 @@ class Magazine extends MY_Controller {
 		$url = api($this->api_host."/magazine/download?id=".$id);
 		$this->_json_output($url);
 	}	//}}}
+	
+	public function pub_like() { //喜欢杂志, 元素, 关注作者 {{{
 
+		$return = array(
+				'status' => 'nologin'
+				);
+		$type = 'magazine';
+		$type_id = $this->input->get('id');
+		$action = 'like';
+		if ($this->auth->is_logged_in()) {
+			$resp = $this->mag_model->_like($type, $type_id, $action);
+			if ($resp['httpcode'] != 200) {
+				$return['status'] = 'error';
+			}
+			else {
+				$return['status'] = 'ok';
+			}
+			if ($type == 'magazine'){
+				$return['data'] = $this->mag_model->_get_magazine_by_id($type_id);
+			}else if ($type == 'element'){
+				$return['data'] = $this->mag_model->_get_element_by_id($type_id);
+			}else if ($type == 'user'){
+				$return['status'] = 'ok';
+			}
+		}
+		$this->output->set_output($this->__jsonp($return));
+	}//}}}
+	public function __jsonp(array &$result) {
+		return $this->input->get('callback').'('.json_encode($result).')';
+	}
 }
