@@ -541,7 +541,7 @@ p.pagenav a.prav{ position:relative\09; top:-1px\09; background:url(/sta/images/
 .set_menu ul li.s_pic a{ background-position:left -30px;}
 .set_menu ul li.s_tag a{ background-position:left -60px;}
 .set_menu ul li.s_share a{ background-position:left -90px;}
-.set_menu ul li.s_pwd a{ background-position:left -90px;}
+.set_menu ul li.s_pwd a{ background-position:left -90px;background:url(/sta/images/key.png) no-repeat left;}
 .set_menu ul li.s_auther a{ background-position:left -120px;}
 .set_menu ul li.s_ana a{ background-position:left -150px;}
 .set_menu a.btn_auther{ background:url(/sta/images/btn_auther.gif) no-repeat left top; width:183px; height:28px; display:block; text-indent:-300px; overflow:hidden; margin:0 auto; margin-top:10px;}
@@ -718,10 +718,12 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .forget_password .container .main div.main_body .description{font-size:16px;color:#A2A2A2;width:350px;margin-top:5px;text-align:left;}
 .container .main input.submit{width:130px;height:55px;}
 .container .main div.reset_pwd{height:50px;}
-.container .main button.submit{width:90px; height:33px; padding:0 5px 0 0; margin:0; background:url(/sta/images/btn_set.gif) no-repeat right -32px; border:none; overflow:visible; color:#FFF;}
+.container .main .submit{width:90px; height:33px; padding:0 5px 0 0; margin:0; background:url(/sta/images/btn_set.gif) no-repeat right -32px; border:none; overflow:visible; color:#FFF;}
 .container .main button.submit span{font-size:16px;}
+.container .main button.find{border:0px;}
 .forget_password .container .main button.submit{margin-left:40px;}
-.container .main div.error_msg{margin-top:10px;font-size:16px;color:#FF0000;text-align:center;}
+.container .main div.error_msg{margin-top:10px;font-size:16px;color:#FF0000;text-align:center;width:100%;}
+.container .main div.return_msg p{font-size:16px;margin-left:100px;width:300px;padding:0px;text-indent:0em;text-align:left;}
 
 /* end 用户密码操作 */
 /**zshen**/

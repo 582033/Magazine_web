@@ -35,11 +35,12 @@
 			<div class="contact">
 				<div class="left">
 					<ul>
-						<li><span class="bold">渠道合作请联系：</span>马先生</li>
+						<li><span class="bold">渠道合作请联系：</span>Chanryma</li>
 						<li class="occupying_by_5"></li>
-						<li>Mobile： 13683598472</li>
+						<li>Mobile： 13381152260</li>
 						<li class="occupying_by_5"></li>
 						<li>Email：qlma@eee168.com  (请于周一至周五9：00-18：00联系）</li>
+						<li>QQ：1148812977</li>
 					</ul>
 				</div>
 				<div class="right">

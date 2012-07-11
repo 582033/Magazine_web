@@ -7,7 +7,7 @@ class User extends Magazine {
 		parent::__construct();
 		$this->load->model('user_loved_model');
 		$this->load->model('user_info_model');
-		$this->load->model('sent_email_model');
+		$this->load->model('send_email_model');
 
 /*
  *		验证登录状态
@@ -406,11 +406,35 @@ function reset_password(){
 }
 
 function forget_password(){
-	$user_id = $this->session->userdata('id');
-	$email = $this->sent_email_model->_get_username($user_id);
-	echo $email;
+	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+		$email = trim($this->input->post('email'));
+		$info = $this->send_email_model->_get_username($email);
+		if ($info == 0){
+			$msg = 'false';
+			echo json_encode($msg);
+		}else{
+			$msg = 'true';
+			echo json_encode($msg);
+		}
+	}else{
+		$this->smarty->view('user/forget_password.tpl');
+	}
 	
 //	$this->smarty->view('user/forget_password.tpl');
+/*		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$post = array(
+						'old_pwd' => trim($this->input->post('old_pwd')),
+						'new_pwd' => trim($this->input->post('reset_pwd')),
+						);
+			$item = $this->user_info_model->_modify_user_pwd($post);
+			echo json_encode($item);
+		}else{
+			$data = array(
+					'user_set' => 'set_pwd',
+					'user_set_name' => '修改密码',
+					);
+			$this->smarty->view('user/set_main.tpl', $data);
+		}
+*/
 }
-
 }

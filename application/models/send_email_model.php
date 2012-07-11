@@ -1,17 +1,17 @@
 <?php
-class sent_email_model extends CI_Model{
-	function sent_email_model (){
+class send_email_model extends CI_Model{
+	function send_email_model (){
 		parent::__construct();
 		$this->load->database();
 	}
 	
-	function _get_username($email){		//获取用户邮箱
+	function _get_username($email){		//判断是否有邮箱
 		$where = array('account_name' => $email);
 		$row = $this->db
 						->from('account')
 						->where($where)
 						->get()
-						->row_array();
+						->num_rows();
 		return $row;
 	}
 	
