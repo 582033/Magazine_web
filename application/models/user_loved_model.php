@@ -32,7 +32,7 @@ class user_loved_model extends CI_Model {
 			$api_url .= "?session_id=$session_id"; 
 		}
 		$request = request($api_url);
-		array_push($request['data'], $this->_get_my_magazines_total());
+		if ($this->session->userdata('session_id')) array_push($request['data'], $this->_get_my_magazines_total());
 		return $request;
 	}	//}}}
 

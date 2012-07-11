@@ -165,14 +165,25 @@ class User extends Magazine {
 				);
 		$books = $this->user_loved_model->my_magazines($user_id, $url_data, $type);
 		$loved_author = $this->user_loved_model->get_loved($user_id, $url_data, 'author');
+		if ($type == 'unpublished') {
+			$page_list = $this->page_model->page_list("/user/me/unpublished", $this->limit, $books['data']['totalResults'], $page);
+		}
+		else {
+			if ($is_me){
+				$page_list = $this->page_model->page_list("/user/me/published", $this->limit, $books['data']['totalResults'], $page);
+			}
+			else {
+				$page_list = $this->page_model->page_list("/user/$user_id/bookstore", $this->limit, $books['data']['totalResults'], $page);
+			}
+		}
 		$data = array(
-				'page_list' => $this->page_model->page_list("/user/$user_id/bookstore", $this->limit, $books['data']['totalResults'], $page),
+				'page_list' => $page_list,
 				'loved_author' => $loved_author,
 				'bookstore' => $books['data'],
 				'is_me' => $is_me,
 				'user_id' => $is_me ? 'me' : $user_id,
 				'type' => $type,
-				);
+			);
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
