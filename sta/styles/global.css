@@ -649,7 +649,10 @@ width:736px; height:404px;
 .dialog.reg .main form p button{
 	cursor: pointer;
    	display:block; width:249px; height:42px; background:url(/sta/images/btn_dialog_reg.jpg) no-repeat left top; border:none; text-indent:-400px; overflow:hidden;}
-.dialog.login .main form p button{ display:block; width:111px; height:42px; background:url(/sta/images/btn_dialog_login.jpg) no-repeat left top; border:none; text-indent:-400px; overflow:hidden;}
+.dialog.login .main form p button{
+	cursor: pointer;
+	display:block; width:111px; height:42px; background:url(/sta/images/btn_dialog_login.jpg) no-repeat left top; border:none; text-indent:-400px; overflow:hidden;
+}
 .dialog.reg .main dl,.dialog.login .main dl{ float:left; padding-left:40px; padding-top:10px;}
 .dialog.login .main dd.right{ text-align:right;}
 .dialog.reg .main dd a{ font-size:16px; font-weight:bold; color:#0590B3; text-decoration:underline;}

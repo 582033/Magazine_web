@@ -4,7 +4,11 @@ $(function() {
 			});
 		});
 function showSigninBox() {
-	tb_show('登陆', '/user/signin?height=404&width=736&modal=true', false);
+	$.colorbox({
+		overlayClose: false,
+		fixed: true,
+		href: '/user/signin'
+	});
 }
 function checkSignedIn() {
 	if ($.cookie('nickname')) {

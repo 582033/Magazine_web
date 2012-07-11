@@ -34,14 +34,13 @@ $(function() {
 });
 
 function init_colorbox() {
+	$(document).on('cbox_closed', function(){
+		window.location.reload();
+	});
 	var opts = {
 		overlayClose: false,
 		fixed: true,
 	};
-	/*
-	$('a.thickbox.reg').colorbox($.extend({}, opts, {
-	}));
-	*/
 	$(document).on('click', 'a.thickbox', function() {
 		$(this).colorbox($.extend({}, opts, {open: true}));
 		return false;
@@ -127,7 +126,6 @@ function signin(form) {	// {{{
 		success: function(result) {
 			if (result.status == 'OK') {
 				$.colorbox.close();
-				window.location.reload();
 			}
 			else {
 				error(messages[result.status] || result.status);
@@ -172,7 +170,6 @@ function signup(form) {	// {{{
 		success: function(result) {
 			if (result.status == 'OK') {
 				$.colorbox.close();
-				window.location.reload();
 			}
 			else {
 				error(messages[result.status] || result.status);
@@ -183,8 +180,8 @@ function signup(form) {	// {{{
 	$form.ajaxSubmit(options);
 	return false;
 } //}}}
-function applyAuthor(){	// {{{ 申请成为作者
-	var $form = $('#apply_author_form');
+function applyAuthor(form){	// {{{ 申请成为作者
+	var $form = $(form);
 	if (! $('input.code', $form).val()) {
 		$('p.err_msg', $form).text('请输入邀请码');
 		return false;
@@ -194,10 +191,8 @@ function applyAuthor(){	// {{{ 申请成为作者
 		dataType : 'json',
 		success: function(result) {
 			if (result.status == 'OK') {
-				//self.parent.tb_remove();
 				$('#apply_author div.main').hide();
 				$('#apply_author div.apply_ok').show();
-				//tb_show("/",false);
 			}
 			else {
 				$(".err_msg").html(result.message);
