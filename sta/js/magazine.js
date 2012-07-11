@@ -193,6 +193,7 @@ function applyAuthor(form){	// {{{ 申请成为作者
 			if (result.status == 'OK') {
 				$('#apply_author div.main').hide();
 				$('#apply_author div.apply_ok').show();
+				setTimeout(function() {$.colorbox.close()}, 3000);
 			}
 			else {
 				$(".err_msg").html(result.message);

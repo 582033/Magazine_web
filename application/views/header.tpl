@@ -6,6 +6,7 @@
 		<meta name="msapplication-window" content="width=1550;height=768" />
 		<link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
+		<link rel="stylesheet" type="text/css" href="/sta/styles/main.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/colorbox/colorbox.css"/>
 		<title>{$title}</title>
 		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery-1.7.2.min.js"></script>

@@ -3,8 +3,8 @@
 environment = :production
 line_comments = false
 http_path = "/"
-css_dir = "sta/css"
-sass_dir = "sta/css"
+css_dir = "sta/styles"
+sass_dir = "sta/styles"
 images_dir = "sta/img"
 javascripts_dir = "sta/js"
 output_style = (environment == :production) ? :compressed : :expanded
