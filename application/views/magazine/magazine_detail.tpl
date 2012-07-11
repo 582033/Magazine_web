@@ -1,5 +1,5 @@
 {include file="header.tpl"}
-<script src="/sta/js/jquery.jscrollpane.min.js"></script>
+<script src="http://sta.in1001.com/lib/jquery/jquery.jscrollpane.min.js"></script>
 <div class="current">
 	{include file="magazine/lib/nav.tpl" navs=$navs}
 </div>
