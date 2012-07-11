@@ -161,7 +161,7 @@ function applyAuthor(){	// {{{ 申请成为作者
 
 $(function(){
 	var getShareConfig = function($share) {
-		if (typeof window.bds_config==undefined || typeof window.bdShare ==undefined) return;
+		if (typeof window.bds_config=='undefined' || typeof window.bdShare =='undefined') return;
 		var title=des=img=id='';
 		var text = url = null;
 		var urlPre = 'http://www.in1001.com';
