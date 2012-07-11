@@ -7,7 +7,7 @@
 			<div class="occupying_by_30"></div>
 				<div class="main">
 					<form action="/user/set_pwd" name="modify_pwd" method="post">
-						<div class="old_pwd"><p class="old_pwd">原始密码：</p><input type="text" name="old_pwd" class="old_pwd" /></div>
+						<div class="old_pwd"><p class="old_pwd">原始密码：</p><input type="password" name="old_pwd" class="old_pwd" /></div>
 						<div class="occupying_by_30"></div>
 						<div class="reset_pwd"><p class="reset_pwd">重置密码：</p><input type="password" name="reset_pwd" class="reset_pwd" /></div>
 						<div class="occupying_by_30"></div>
