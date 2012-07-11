@@ -41,17 +41,19 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .header .rightcon .search input{ float:left; width:252px; height:29px; line-height:29px; padding-left:10px; background:transparent; border:none; font-size:14px;}
 .header .rightcon .search button{ display:block; float:left; border:none; background:url(/sta/images/ico_top_search.gif) no-repeat left top; width:16px; height:16px; margin-top:5px; text-indent:-60px; overflow:hidden;}
 
-.header .log_reg{ float:left; width:130px; padding-left:56px; position:relative; z-index:9}
+.header .log_reg{ float:left; width:130px; padding-left:56px; position:relative;}
 .header .log_reg a{ font-size:14px; color:#FFF;}
-.header .log_reg .reg{ display:block; float:left; padding-top:5px;}
+.header .log_reg .signup { display:block; float:left; padding-top:5px;}
 .header .log_reg .login{
 	cursor: default;
 	display:block; float:right; width:70px; height:25px; padding:6px 0 0 11px; background:url(/sta/images/bg_top_login.gif) no-repeat left top; position:relative;}
-.header .log_reg form{ position:absolute; display:none; width:220px; padding:5px 19px; border:1px solid #DC7B09; background:#FFF; top:28px; right:0; font-size:12px;}
+.header .log_reg form { position:absolute;
+	z-index: 1000;
+	display:none; width:220px; padding:5px 19px; border:1px solid #DC7B09; background:#FFF; top:28px; right:0; font-size:12px;}
 .header .log_reg form a{ color:#0590B3; font-size:12px;}
 .header .log_reg form a:hover{ text-decoration:underline;}
 .header .log_reg form p{ padding:5px 0; clear:both;}
-.header .log_reg form input{ width:220px; height:30px; padding-left:10px; background:url(/sta/images/bg_longintip_input.gif) no-repeat left top; border:none; line-height:30px; vertical-align:text-top;}
+.header .log_reg form input{ width:210px; height:30px; padding-left:10px; background:url(/sta/images/bg_longintip_input.gif) no-repeat left top; border:none; line-height:30px; vertical-align:text-top;}
 .header .log_reg form input.clear{ width:auto; height:auto; background:none;}
 .header .log_reg form .findpass{ float:right;}
 .header .log_reg form span{ display:block; height:31px; color:#0590B3; background:#EDEDED; line-height:31px; text-align:center;}
@@ -610,22 +612,36 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .footer p{ text-align:center; clear:both; color:#717171; font-size:12px;}
 
 /*dialog*/
+/*
 .dialog{ position:absolute; z-index:10000;}
+*/
 .dialog .bg{ width:100%; height:100%; background:#000; -moz-opacity:0.3; filter:alpha(opacity=30);opacity:0.3;}
 .dialog .close{ width:32px; height:32px; background:url(/sta/images/dialog_close.gif) no-repeat left top; position:absolute; right:10px; top:10px; text-indent:-100px; overflow:hidden;}
 .dialog .close:hover{ background-position:left bottom;}
 
 /*dialog_reg  And  dialog_login*/
-.dialog.reg,.dialog.login{ top:50%; left:50%; width:736px; height:404px; margin:-202px 0 0 -368px;}
+.dialog.reg,.dialog.login{
+	/*
+	top:50%; left:50%;
+	margin:-202px 0 0 -368px;
+	*/
+width:736px; height:404px;
+}
 .dialog.reg .main,.dialog.login .main{ position:absolute; left:4px; top:4px; width:728px; height:390px; padding:3px 0; background:#FFF;}
 .dialog.reg .main form,.dialog.login .main form{ float:left; width:400px; height:100%; border-right:1px solid #DDD;}
 .dialog.reg .main form legend,.dialog.login .main form legend{
 	line-height: 30px;
 	padding:10px 0 0 0;
 	font-size:25px; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium';}
-.dialog.reg .main form p,.dialog.login .main form p{ width:330px; padding:22px 0; padding-left:110px; position:relative;}
+.dialog.reg .main form p,.dialog.login .main form p{
+	width:330px; padding:22px 0; padding-left:110px; position:relative;
+}
+.dialog.reg .main form p.err_msg,.dialog.login .main form p.err_msg {
+	padding: 10px 0 0 33px;
+	font-size: 14px;
+}
 .dialog.reg .main form p label,.dialog.login .main form p label{ width:100px; position:absolute; left:0; top:35px; font-size:15px; text-align:right;}
-.dialog.reg .main form p input,.dialog.login .main form p input,.dialog.bundle .main form p input{ width:248px; height:40px; padding:0 10px; background:url(/sta/images/bg_dialog_binput.jpg) no-repeat left top; border:none; line-height:40px; font-size:14px; color:#333;}
+.dialog.reg .main form p input,.dialog.login .main form p input,.dialog.bundle .main form p input{ width:228px; height:40px; padding:0 10px; background:url(/sta/images/bg_dialog_binput.jpg) no-repeat left top; border:none; line-height:40px; font-size:14px; color:#333;}
 
 .dialog.reg .main form p span,.dialog.login .main form p span,.dialog.bundle .main form p span{ position:absolute; left:110px; top:66px; font-size:12px; color:#C4C4C4;}
 .dialog.reg .main form p span.error,.dialog.login .main form p span.error,.dialog.bundle .main form p span.error{ color:#C00;}

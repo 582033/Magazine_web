@@ -23,6 +23,7 @@ $(function() {
 		init_search();
 		init_goto_page();
 		init_comment();
+		init_colorbox();
 		switch ($('body').attr('id')) {
 		case 'magazine_home':
 			init_magazine_home();
@@ -31,6 +32,21 @@ $(function() {
 			break;
 		}
 });
+
+function init_colorbox() {
+	var opts = {
+		overlayClose: false,
+		fixed: true,
+	};
+	/*
+	$('a.thickbox.reg').colorbox($.extend({}, opts, {
+	}));
+	*/
+	$(document).on('click', 'a.thickbox', function() {
+		$(this).colorbox($.extend({}, opts, {open: true}));
+		return false;
+	});
+}
 
 function init_magazine_home() { //{{{
 	var $mags = $('dl.mag_list');
@@ -94,43 +110,77 @@ function resize(){ //{{{
 	}
 } //}}}
 
-function signin(){	//执行登录{{{
-	var options = {
-		dataType : 'json',
-		success:    function(result) {
-			if (result.httpcode == '200') {
-				self.parent.tb_remove();
-				window.location="/";
-			}
-			else {
-				$(".err_msg").html("<font color='red'>"+result+"</font>");
-			}
-		}
-	};
-	$('[name="form"]').ajaxForm(options);
-}	//}}}
-
-function signup(){	//注册{{{
-	var $form = $('#signup_form');
-	if ($('input.passwd', $form).val() != $('input.re_passwd', $form).val()) {
-		$('p.err_msg', $form).text('密码不一致');
+function signin(form) {	// {{{
+	var $form = $(form);
+	function error(msg) {
+		$('.err_msg', $form).text(msg).show();
 		return false;
 	}
+	var messages = {
+		'AUTH_FAIL': '错误的用户名或密码'
+	};
+	var username = $('input.username', $form).val();
+	if (!username) return error('Email不能为空');
 
 	var options = {
 		dataType : 'json',
 		success: function(result) {
-			if (result == 'success') {
-				self.parent.tb_remove();
-				tb_show("/",false);
+			if (result.status == 'OK') {
+				$.colorbox.close();
+				window.location.reload();
 			}
 			else {
-				$(".err_msg").html(result);
+				error(messages[result.status] || result.status);
+			}
+		},
+		error: function() {
+				   error('未知错误');
+		}
+
+	};
+	$form.ajaxSubmit(options);
+	return false;
+}	//}}}
+
+function signup(form) {	// {{{
+	var $form = $(form);
+	function error(msg) {
+		$('p.err_msg', $form).text(msg).show();
+		return false;
+	}
+	var email = $('input.username', $form).val();
+	var passwd = $('input.passwd', $form).val();
+	var re_passwd = $('input.re_passwd', $form).val();
+	if (!email) {
+		return error('Email不能为空');
+	}
+	if (!checkEmail(email)) {
+		return error('Email格式不正确');
+	}
+	if (!passwd) {
+		return error('密码不能为空');
+	}
+	if (passwd != re_passwd) {
+		return error('密码不一致');
+	}
+
+	var messages = {
+		'USER_EXISTS': '用户名已存在'
+	};
+	var options = {
+		dataType : 'json',
+		success: function(result) {
+			if (result.status == 'OK') {
+				$.colorbox.close();
+				window.location.reload();
+			}
+			else {
+				error(messages[result.status] || result.status);
 			}
 		}
 	};
 
-	$form.ajaxForm(options);
+	$form.ajaxSubmit(options);
 	return false;
 } //}}}
 function applyAuthor(){	// {{{ 申请成为作者

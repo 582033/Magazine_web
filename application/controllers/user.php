@@ -27,14 +27,15 @@ class User extends Magazine {
 		return json_encode($return, true);
 	}	//}}}
 
-	function signup (){	//{{{
+	function signup() {	//{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
-			$return = $this->reg_model->reg($username, $passwd);
-			//echo json_encode($return);
-			//exit;
-			$this->_json_output($return);
+			$return = $this->_api_post('/auth/signup', array('username' => $username, 'passwd' => $passwd));
+			if ($return['data']['status'] == 'OK') {
+				$this->Login_Model->set_signin_session_cookie($return['data']);
+			}
+			$this->_json_output($return['data']);
 		}
 		else {
 			$this->smarty->view('user/signup.tpl');
@@ -69,26 +70,26 @@ class User extends Magazine {
 		}
 	}	//}}}
 
-	function signin (){	//{{{
+	function signin() { //{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
 			$need_remember = $this->input->post('need_remember');
 			$return = $this->Login_Model->login($username, $passwd, $need_remember);
-			echo json_encode($return);
-			exit;
+			return $this->_json_output($return['data']);
 		}
-		$this->smarty->view('user/signin.tpl');
-	}	//}}}
+		else {
+			$this->smarty->view('user/signin.tpl');
+		}
+	} //}}}
 
-	function signout () {	//{{{
+	function signout() { //{{{
 		$this->session->sess_destroy();
 		delete_cookie('username');
 		delete_cookie('nickname');
 		delete_cookie('rmsalt');
-		header('Location: /', TRUE, 302);
-		exit;
-	}	//}}}
+		redirect_to_referer();
+	} //}}}
 
 	function _get_loved ($user_id, $page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{
 		$page = $page ? $page : 1;

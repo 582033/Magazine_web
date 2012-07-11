@@ -6,13 +6,13 @@
 		<meta name="msapplication-window" content="width=1550;height=768" />
 		<link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
-		<link rel="stylesheet" type="text/css" href="/sta/styles/thickbox.css"/>
+		<link rel="stylesheet" type="text/css" href="/sta/colorbox/colorbox.css"/>
 		<title>{$title}</title>
 		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.cookie.js"></script>
 		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.form.js"></script>
+		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.colorbox.js"></script>
 		<script type="text/javascript" src="/sta/js/magazine.js"></script>
-		<script type="text/javascript" src="/sta/js/thickbox.js"></script>
 		<script type="text/javascript" src="/sta/js/check.js"></script>
 		<script type="text/javascript" src="/sta/js/like.js"></script>
 		<!--[if IE 6]>
@@ -71,15 +71,18 @@
 					 {else}
 					 <div class="self_info">
 						 <div class="log_reg">
-							 <a href="/user/signup?height=404&width=736&modal=true" class="thickbox reg">注册</a>
-							 <a href="javascript:void(0)" class="login" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'">登录</a>
-							 <form name="form" id="loginTip" class="clearfix" onmouseover="document.getElementById('loginTip').style.display='block'" onmouseout="document.getElementById('loginTip').style.display='none'" action="/user/signin" method="post" enctype="multipart/form-data">
-								 <p><input type="text" name="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
-								 <p><input type="password" name="passwd" value="" /></p>
+							 <a href="/user/signup?height=404&width=736&modal=true" class="thickbox signup">注册</a>
+							 <a href="javascript:void(0)" class="login" onmouseover="$('#loginTip').show()" onmouseout="$('#loginTip').hide()">登录</a>
+							 <form name="form" id="loginTip" class="clearfix"
+								 onmouseover="this.style.display='block'" onmouseout="this.style.display='none'"
+								 onsubmit="return signin(this)"
+								 action="/user/signin" method="post" enctype="multipart/form-data">
+								 <p><input type="text" name="username" class="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
+								 <p><input type="password" name="passwd" class="passwd" value="" /></p>
 								 <p><a href="/user/forget_password" class="findpass">忘记密码？</a>
-								 <input type="checkbox" name="need_remember" id="rem_me" class="clear" value="1" /><label for="rem_me">下次自动登录</label></p>
+									 <input type="checkbox" name="need_remember" id="rem_me" class="clear" value="1" /><label for="rem_me">下次自动登录</label></p>
 								 <p class="err_msg"></p>
-								 <p><button type="submit" onclick="signin()">立即登录</button></p>
+								 <p><button type="submit">立即登录</button></p>
 								 <p>其他帐号登录：</p>
 								 <p><span><a href="/sns/redirect?snsid=sina&apptype=web&op=1">新浪微博账号登录</a> | <a href="/sns/redirect?snsid=qq&apptype=web&op=1">QQ账号登录</a></span></p>
 							 </form>

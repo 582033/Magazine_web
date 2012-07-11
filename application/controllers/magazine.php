@@ -14,6 +14,7 @@ class Magazine extends MY_Controller {
 		parent::__construct();
 		$this->load->helper('api');
 		$this->api_host = $this->config->item('api_host');
+		$this->load->model('api_model');
 		$this->load->model('Login_Model');
 		$this->load->model('mag_model');
 		$this->load->model('love_model');
@@ -23,6 +24,7 @@ class Magazine extends MY_Controller {
 		$this->load->model('comment_model');
 		$this->load->model('page_model');
 		$this->load->library('session');
+		$this->load->helper('url');
 		$this->limit = '20';
 		/*
 		 *		验证登录状态
@@ -500,5 +502,19 @@ class Magazine extends MY_Controller {
 	}//}}}
 	public function __jsonp(array &$result) {
 		return $this->input->get('callback').'('.json_encode($result).')';
+	}
+
+	function _validate_api_result($result) {
+		if ($return['httpcode'] >= 300) {
+			show_error_text($return['httpcode'], $return['data']);
+		}
+	}
+	function _api_post($url, $params) {
+		if (!preg_match('/^https?:/', $url)) $url = $this->api_host . $url;
+		$return = request($url, $params, 'POST');
+		if ($return['httpcode'] >= 300) {
+			show_error_text($return['httpcode'], $return['data']);
+		}
+		return $return;
 	}
 }
