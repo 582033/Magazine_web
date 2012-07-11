@@ -73,6 +73,7 @@ foreach($arr_lines as $v){
 				'url'=>$arr_row['2'],
 				'title'=>$arr_row['3'],
 				'image'=>$arr_row['4'],
+				'resource_id'=>$arr_row['5'],
 			);	
 
 

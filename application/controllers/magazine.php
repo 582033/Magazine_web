@@ -57,7 +57,6 @@ class Magazine extends MY_Controller {
 		$index_info = $this->mag_model->_get_index_info();
 
 		$index_infotpl['mag_list']=$index_info['mag_list'];
-		$elem_items = array();
 		foreach ($index_info['elem_gallery'] as $i => $elem) {
 			/*
 			   if ($elem['page'] == 'cover'){
@@ -86,48 +85,6 @@ class Magazine extends MY_Controller {
 					'url' => $mag['url'],
 					);
 		}
-		$width_height=array(
-				
-				'elm_4'=>array(
-					'width'=>'180',
-					'height'=>'180',
-					),
-				'elm_3'=>array(
-					'width'=>'180',
-					'height'=>'180',
-					),
-				'elm_1'=>array(
-					'width'=>'360',
-					'height'=>'180',
-					),
-				
-				
-				);
-
-		foreach(array('elm_4','elm_3','elm_1') as $ka => $va)
-		{
-				$index_infotpl[$va]=array(
-						'width' => $width_height[$va]['width'],
-						'height' => $width_height[$va]['height'],
-						'show_text' => true,
-						'items' => array(),
-						);
-
-			foreach($index_info[$va] as $kb => $vb){
-
-				$index_infotpl[$va]['items'][]=array(
-					'title' => $vb['title'],
-					'text' => $vb['text'] ,
-					"image" => array(
-						'url' => $vb['image'],
-						),
-					'url' => $vb['url'],
-						);
-			}
-		
-		
-		}
-
 
 		$ad_slot_indextop = array(
 			'width' => 580,
@@ -144,14 +101,8 @@ class Magazine extends MY_Controller {
 
 		$index_infotpl['ad_slot_indextop'] = $ad_slot_indextop;
 		$index_infotpl['ad_slot_indexbottom'] = $ad_slot_indexbottom;
+		$index_infotpl['elm_4'] = $index_info['elm_4'];
 
-	//	for ($j = 0; $j <count($index_info['elem_list']); $j++){
-	//		if ($index_info['elem_list'][$j]['page'] == 'cover'){
-	//			$index_info['elem_list'][$j]['page'] = 'p1';
-	//		}else{
-	//			$index_info['elem_list'][$j]['page'] = substr($index_info['elem_list'][$j]['page'], 0, 1) .  (substr($index_info['elem_list'][$j]['page'], 1)+2);
-	//		}
-	//	}
 		$index_infotpl['curnav'] = 'home';
 		$this->smarty->view('magazine/index.tpl', $index_infotpl);
 	}//}}}

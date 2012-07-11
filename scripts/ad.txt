@@ -36,21 +36,18 @@ text||magmiddle||http://pub.in1001.com/315/315/web/||揽翠台北吃货游||有�
 text||magmiddle||http://pub.in1001.com/322/322/web/||珀斯，西澳的这抹温闲||珀斯，位于澳大利亚西南角的天鹅河畔，号称是澳大利亚最孤独的城市，有广阔的居住空间及高水平的生活质素，于每年的世界最佳居住城市评选中都是名列前茅，跟随我一起去看看吧。
 
 
-#index elem 4
+#index elem 9
 #elem||slot||url||title||image
-elem||indexelem4||http://pub.in1001.com/387/387/web/#10||丹麦的春天||http://pub.in1001.com/387/387/web/assets/images/p8/0.jpg
-elem||indexelem4||http://pub.in1001.com/375/375/web/#10||勇者的旅行||http://pub.in1001.com/375/375/web/assets/images/p4/0.jpg
-elem||indexelem4||http://pub.in1001.com/389/389/web/#10||毕业季，一起去旅行||http://pub.in1001.com/389/389/web/assets/images/p8/0.jpg
-elem||indexelem4||http://pub.in1001.com/383/383/web/#10||拾梦法兰西||http://pub.in1001.com/383/383/web/assets/images/p8/0.jpg
-
-#index elem 3
-elem||indexelem3||http://pub.in1001.com/381/381/web/#10||二次元旅行||http://pub.in1001.com/381/381/web/assets/images/p10/0.jpg
-elem||indexelem3||http://pub.in1001.com/379/379/web/#10||岛之旅||http://pub.in1001.com/379/379/web/assets/images/p8/0.jpg
-elem||indexelem3||http://pub.in1001.com/377/377/web/#10||北欧之魅||http://pub.in1001.com/377/377/web/assets/images/p8/0.jpg
-
-#index elem 1
-#elem||slot||url||title||image
-elem||indexelem1||http://pub.in1001.com/371/371/web/#10||危险之旅||http://pub.in1001.com/371/371/web/assets/images/p8/0.jpg
+elem||indexelem4||http://pub.in1001.com/387/387/web/#10||丹麦的春天||http://pub.in1001.com/387/387/web/assets/images/p8/0.jpg||19601
+elem||indexelem4||http://pub.in1001.com/375/375/web/#10||勇者的旅行||http://pub.in1001.com/375/375/web/assets/images/p4/0.jpg||18523
+elem||indexelem4||http://pub.in1001.com/389/389/web/#10||毕业季，一起去旅行||http://pub.in1001.com/389/389/web/assets/images/p8/0.jpg||20011
+elem||indexelem4||http://pub.in1001.com/383/383/web/#10||拾梦法兰西||http://pub.in1001.com/383/383/web/assets/images/p8/0.jpg||19353
+elem||indexelem4||http://pub.in1001.com/381/381/web/#10||二次元旅行||http://pub.in1001.com/381/381/web/assets/images/p10/0.jpg||19183
+elem||indexelem4||http://pub.in1001.com/379/379/web/#10||岛之旅||http://pub.in1001.com/379/379/web/assets/images/p8/0.jpg||18987
+elem||indexelem4||http://pub.in1001.com/377/377/web/#10||北欧之魅||http://pub.in1001.com/377/377/web/assets/images/p8/0.jpg||18779
+elem||indexelem4||http://pub.in1001.com/371/371/web/#10||危险之旅||http://pub.in1001.com/371/371/web/assets/images/p8/0.jpg||18171
+elem||indexelem4||http://pub.in1001.com/697/697/web/#10||My上海之旅||http://pub.in1001.com/697/697/web/assets/images/p8/0.jpg||30669
+elem||indexelem4||http://pub.in1001.com/395/395/web/#10||只愿身在庐山中||http://pub.in1001.com/395/395/web/assets/images/p8/0.jpg||20305
 
 
 #index  maga  9
@@ -70,3 +67,11 @@ maga||indextop||西塘——我的世界有你一起||雨中静谧的夜色水�
 # magmiddle   maga type
 maga||magmiddle||普吉岛美到不行
 maga||magmiddle||山西--辽风晋韵的千年古城
+
+# guessulove  maga type
+maga||guessulove||普吉岛美到不行
+maga||guessulove||My上海之旅
+maga||guessulove||只愿身在庐山中
+maga||guessulove||最近的那片海
+maga||guessulove||甩掉酷暑-长滩岛之旅
+maga||guessulove||罪犯流放地变成的自由乐土-澳洲游记

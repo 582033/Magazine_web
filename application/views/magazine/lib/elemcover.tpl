@@ -1,6 +1,6 @@
 <dd class="item">
 	<div class="cover">
-		<a href="#"><img src="{$item.image.url}" width="{$width|default:180}" height="{$height|default:$item.image.180.height}" alt="{$item.title}" /></a>
+		<a href="{$item.url}"><img src="{$item.image.180.url}" width="{$width|default:180}" height="{$height|default:$item.image.180.height}" alt="{$item.magId}" /></a>
 		<div class="mouseover">
 			<div class="bg"></div>
 			<div class="content">

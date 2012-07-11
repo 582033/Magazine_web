@@ -54,7 +54,7 @@ class Mag_Model extends CI_Model {
 	
 	//mag page ,middle magazine ,2  个	
  	function _get_mag_middle()	{
-		$mag_result = request($this->api_host . "/ltapp/ads/magmiddle/2");
+		$mag_result = request($this->api_host . "/ltapp/ads/maga/magmiddle?limit=2");
 	
 		$mag_item = $mag_result['data']['items'];
 	
@@ -66,7 +66,7 @@ class Mag_Model extends CI_Model {
 	function _get_index_info(){		//首页杂志信息{{{
 		//右上及中部的9本杂志
 		//$mag_result = request($this->api_host . "/magazines?limit=9&start=0");
-		$mag_result = request($this->api_host . "/ltapp/ads/indextop/9");
+		$mag_result = request($this->api_host . "/ltapp/ads/maga/indextop?limit=9");
 		//顶部幻灯片，最多5张
 		$mag_resultad = request($this->api_host."/ltapp/ads/image/indextop?limit=5");
 		$mag_itemad = $mag_resultad['data']['items'];
@@ -85,24 +85,11 @@ class Mag_Model extends CI_Model {
 		}
 
 		//elem list4
-		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem4?limit=4");
+		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem4?limit=9");
 		$elem_item = $elem_list_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 				array_push($elem_list4, $elem_item[$j]);
 		}
-		//elem list3
-		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem3?limit=3");
-		$elem_item = $elem_list_result['data']['items'];
-		for ($j = 0; $j < count($elem_item); $j++){
-				array_push($elem_list3, $elem_item[$j]);
-		}
-		//elem list1
-		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem1?limit=1");
-		$elem_item = $elem_list_result['data']['items'];
-		for ($j = 0; $j < count($elem_item); $j++){
-				array_push($elem_list1, $elem_item[$j]);
-		}
-
 
 
 		//echo "<pre>";var_dump($elem_list);exit;
@@ -111,8 +98,6 @@ class Mag_Model extends CI_Model {
 							'mag_list' => $mag_result['data']['items'],
 							'elem_gallery' => $elem_gallery,
 							'elm_4' => $elem_list4,
-							'elm_3' => $elem_list3,
-							'elm_1' => $elem_list1,
 							);
 		//echo "<pre>";print_r($index_info);exit;
 		return $index_info;
