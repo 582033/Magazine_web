@@ -86,9 +86,9 @@ foreach($arr_lines as $v){
 				'slot'=>$arr_row['1'],
 				'weight'=>rand(10,20),
 				'enabled'=>0,
-				'url' => 'http://in1001s.com',
 				'title'=>$arr_row['2'],
 				'text'=>$arr_row['3'],
+				'resource_id' => $arr_row['4'],
 			);	
 
 

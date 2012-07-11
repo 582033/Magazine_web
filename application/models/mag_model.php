@@ -112,6 +112,11 @@ class Mag_Model extends CI_Model {
 		return $magazine['data'];
 	}//}}}
 	
+	function _get_recommend_bycat($catid){		//获得推荐杂志列表,仅用于商品详情页的推荐的杂志部分{{{
+		$mag_rec = request($this->api_host. "/ltapp/ads/maga/guessulove");
+		return $mag_rec;
+
+	}
 	function _get_recommendation_mag($limit, $start, $id){		//获得推荐杂志列表{{{
 		$mag_resultad = request($this->api_host."/ltapp/ads/image/magtop");
 		return $mag_resultad;

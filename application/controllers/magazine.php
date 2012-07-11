@@ -256,7 +256,10 @@ class Magazine extends MY_Controller {
 		$start_recom = 0;
 		$limit_maylike = 6;
 		$start_maylike = 6;
-		$recommendation = $this->mag_model->_get_recommendation_mag($limit_recom, $start_recom, $id);
+		//catid 目前不使用，因所有杂志页推荐相同，取广告位api
+		$catid=0;
+		$all_recommendation = $this->mag_model->_get_recommend_bycat($catid);
+		$recommendation=$all_recommendation['data']['items'];
 		$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike, $id);
 		$comment = $this->comment_model->comment_list('magazine', $magazine_id, $start=0, $limit=5);
 		$reverse_cate_mag = array_flip($this->cate_map);
