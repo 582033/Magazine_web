@@ -28,5 +28,13 @@
 	</div>
 	<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
 	{if $cover_show_intro}<p>{$item.intro|truncate:30}</p>{/if}
+	{if $cover_show_status}
+	<div class="edit_btn">
+		{if $item.status == '0'}<span>新上传</span>{/if}
+		{if $item.status == '1'}<span>审核中</span>{/if}
+		{if $item.status == '3'}<span>审核未通过</span>{/if}
+		{if $item.status == '2'}<a href="#">审核通过</a>{/if}
+	</div>
+	{/if}
 </dd>
 

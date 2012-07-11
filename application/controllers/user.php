@@ -149,8 +149,9 @@ class User extends Magazine {
 		$this->_get_loved($user_id, $page, 'followees', $page_url);
 	}	//}}}
 
-	function bookstore($user_id, $page = '1'){	//{{{
+	function bookstore($user_id, $page = '1', $type = 'published'){	//{{{
 		$page = $page ? $page : 1;
+		$type = $type ? $type : 'published';
 		if ($user_id == 'me') {
 			$this->auth->check();
 			$user_id = $this->session->userdata('id');
@@ -161,14 +162,15 @@ class User extends Magazine {
 				'start' => ($page-1)*($this->limit),
 				'limit' => $this->limit,
 				);
-		$request = request($this->api_host."/user/$user_id/magazines/published?start=" . $url_data['start'] . '&limit=' . $url_data['limit']);
+		$books = $this->user_loved_model->my_magazines($user_id, $url_data, $type);
 		$loved_author = $this->user_loved_model->get_loved($user_id, $url_data, 'author');
 		$data = array(
-				'page_list' => $this->page_model->page_list("/user/$user_id/bookstore", $this->limit, $request['data']['totalResults'], $page),
+				'page_list' => $this->page_model->page_list("/user/$user_id/bookstore", $this->limit, $books['data']['totalResults'], $page),
 				'loved_author' => $loved_author,
-				'bookstore' => $request['data'],
+				'bookstore' => $books['data'],
 				'is_me' => $is_me,
 				'user_id' => $is_me ? 'me' : $user_id,
+				'type' => $type,
 				);
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
