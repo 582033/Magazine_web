@@ -154,6 +154,26 @@
 	a.edit{ display:inline-block; width:16px; height:16px; margin-bottom:-3px; background:url(/sta/images/ico_setting.png) no-repeat left top; text-indent:-150px; _text-indent:inherit; _font-size:1px; overflow:hidden;}
 } /* }}} */
 
+#mag_tag {
+	div.main .menu {
+		background: transparent;
+		border-bottom: 1px solid #E8E8E8;
+		padding: 5px 0 5px 5px;
+		width: auto;
+	}
+	.mag_list {
+		margin-top: 15px;
+		dd h3 {
+			font-weight: normal;
+			text-align: left;
+			padding-left: 30px;
+			line-height: 30px;
+			height: 30px;
+			background: url(../images/ico_srtting.png) no-repeat left -60px;
+		}
+	}
+}
+
 /*
 vim: fdm=marker
 */

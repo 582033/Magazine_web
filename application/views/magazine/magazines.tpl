@@ -3,7 +3,7 @@
 	<dl class="mag_list m_index clearfix">
 		<dd class="menu">
 		{if isset($tag)}
-		<h3 class="tag">tag: {$tag}</h3>
+		<h3 class="tag">标签: {$tag}</h3>
 		{else}
 			<ul>
 			{foreach from=$cates item=c}
