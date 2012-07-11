@@ -555,7 +555,7 @@ width:736px; height:404px;
 .dialog.reg .main form,.dialog.login .main form{ float:left; width:400px; height:100%; border-right:1px solid #DDD;}
 .dialog.reg .main form legend,.dialog.login .main form legend{
 	line-height: 30px;
-	padding:10px 0 0 0;
+	padding:10px 0 0 25px;
 	font-size:25px; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium';}
 .dialog.reg .main form p,.dialog.login .main form p{
 	width:330px; padding:22px 0; padding-left:110px; position:relative;
