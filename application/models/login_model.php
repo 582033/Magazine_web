@@ -1,4 +1,5 @@
 <?php
+require_once APPPATH . 'models/api_model.php';
 class Login_Model extends Api_Model {
 
 	function Login_Model (){
