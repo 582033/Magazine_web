@@ -5,9 +5,9 @@ class Magazine extends MY_Controller {
 	var $current_url;
 	var $limit;
 	var $cate_map = array(
-			'tour_recommendation' => '旅游推荐',
-			'tour_foreign' => '国外游',
-			'tour_domestic' => '国内游',
+			'tour_recommendation' => '目的地推荐',
+			'tour_foreign' => '异域风情',
+			'tour_domestic' => '狂野中国',
 			);
 
 	function Magazine (){
