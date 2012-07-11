@@ -88,6 +88,7 @@ foreach($arr_lines as $v){
 				'enabled'=>0,
 				'url' => 'http://in1001s.com',
 				'title'=>$arr_row['2'],
+				'text'=>$arr_row['3'],
 			);	
 
 
