@@ -264,77 +264,6 @@ div.current .menu ul{ width:800px; float:right;}
 div.current .menu ul li{ float:right; padding-left:3px;}
 div.current .menu ul li a{ display:block; background:#000; font-size:16px; width:100px; height:39px; line-height:37px; text-align:center; color:#FFF; font-weight:bold;}
 div.current .menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8e8e8; border-bottom:none;}
-/*my sidebar left*/
-.sidebar_left{ width:200px; float:left; background:url(/sta/images/line.gif) repeat-y right top; border-bottom:1px solid #e8e8e8;}
-.sidebar_left .userinfo{ padding-top:10px; background:#DCDADF;}
-.sidebar_left .userinfo .userhead{ display:block; margin:0 auto;}
-.sidebar_left .userinfo p{ width:180px; margin:0 auto; height:14px; padding-bottom:10px;}
-.sidebar_left .userinfo p a{ position:relative; font-size:14px; font-weight:bold;}
-.sidebar_left .userinfo p a.auther{
-	display:inline-block;
-	width:60px;
-	height:18px;
-	font-size:1px;
-	font-weight:normal;
-	background:url(/sta/images/ico_author.png) no-repeat left bottom;
-	bottom:1px; bottom:-4px\9;
-	text-indent:-200px;
-	overflow:hidden;
-	cursor: default;
-}
-.sidebar_left .userinfo .user_info{ clear:both; float:none; width:180px; margin:0 auto;}
-.sidebar_left .userinfo .user_info li{ float:left; width:59px; height:36px; padding-top:4px; text-align:center; background:#362C35; border-right:1px solid #000; line-height:16px;}
-.sidebar_left .userinfo .user_info li a{ color:#fff; display:block; margin:0 auto;}
-.sidebar_left .userinfo .user_info li a span{ display:block; margin:0 auto;}
-.sidebar_left .userinfo .user_info li.last{ width:60px; border:none;}
-
-.sidebar_left .userinfo a.alreadyauthor {
-	cursor: default;
-}
-.sidebar_left .userinfo a.follow,.sidebar_left .userinfo a.applyauthor {
-	display:block;
-	clear:both width:181px;
-	height:28px;
-	margin:10px;
-	background-position: no-repeat left top;
-	text-indent:-300px;
-	overflow:hidden;
-}
-.sidebar_left .userinfo a.applyauthor {
-	background-image: url(/sta/images/btn_auther.gif);
-}
-.sidebar_left .userinfo a.alreadyauthor {
-	background-image:url(/sta/images/ico_author.png);
-}
-.sidebar_left .userinfo a.follow {
-	background-image:url(/sta/images/ico_author.png);
-	background-position:left -30px;
-}
-.sidebar_left .userinfo a.followed {
-	background: none;
-	text-indent: 0;
-}
-.sidebar_left .userinfo .bottombg{ display:block; width:198px; margin:10px auto 0 auto; height:15px; margin:0; background:url(/sta/images/ico_setting.png) repeat-x left -25px; padding:0;}
-
-.sidebar_left .tag{ padding-top:10px;}
-.sidebar_left .tag dt,
-.sidebar_left .follows dt{ font-size:14px; padding:0 10px; width:180px; border-bottom:1px solid #e8e8e8; height:20px;}
-.sidebar_left .tag dd{ padding:10px 10px;}
-.sidebar_left .tag a.edit{ display:inline-block; float:none; word-break:keep-all; line-height:180%;}
-a.tag01{ font-size:14px; font-weight:bold; background:none; line-height:20px;}
-a.tag02{ color:#F60; background:none; line-height:20px;}
-
-.sidebar_left .follows { padding-top:10px;}
-.sidebar_left .follows dd{ padding:10px 0;}
-.sidebar_left .follows div{ position:relative; width:153px; margin:0 auto;}
-.sidebar_left .follows div a{ float:left; position:relative; z-index:1; display:inline-block; margin-right:1px; margin-bottom:1px;}
-.sidebar_left .follows div a span{ display:none; position:absolute; width:153px; text-align:center; font-size:14px; color:#FFF; font-weight:bold; top:65px; left:0;}
-.sidebar_left .follows div a:hover{ z-index:3;}
-.sidebar_left .follows div a:hover span{ display:block;}
-.sidebar_left .follows div a img{ display:block;}
-.sidebar_left .follows .gray{ position:absolute; left:0; top:0; background:#000; display:none; z-index:2; width:152px; height:203px; -moz-opacity:0.6; filter:alpha(opacity=60);opacity:0.6;}
-
-.sidebar_left a.edit{ display:inline-block; width:16px; height:16px; margin-bottom:-3px; background:url(/sta/images/ico_setting.png) no-repeat left top; text-indent:-150px; _text-indent:inherit; _font-size:1px; overflow:hidden;}
 
 .right_main{ width:800px; float:left; background:url(/sta/images/line.gif) repeat-y right top}
 
@@ -454,6 +383,8 @@ div.main.comment{ width:998px; border:1px solid #e8e8e8; background:#FFF; margin
 .mag_preview .left_main .intro p.auther a{ font-weight:bold;}
 .mag_preview .left_main .intro p.auther a.follow{ font-weight:normal;}
 .mag_preview .left_main .intro p.auther a.follow img{ display:inline-block; vertical-align:text-bottom;}
+.mag_preview .left_main .intro p.auther a.followed { font-weight:normal;}
+.mag_preview .left_main .intro p.auther a.followed img{ display:inline-block; vertical-align:text-bottom;}
 .mag_preview .left_main .intro p.tag a{ color:#0590b3;}
 .mag_preview .left_main .intro p.tag a:hover{ text-decoration:underline;}
 .mag_preview .left_main .intro p.intro_txt{ position:relative; padding-left:39px; color:#505050;}

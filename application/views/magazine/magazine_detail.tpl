@@ -17,6 +17,10 @@
 					<img src="/sta/images/ico_plus.gif" alt="加关注" class="fellow_item" onclick="like('user','{$magazine.author.id}');" />
 					&nbsp;<span class="fellow_item" onclick="like('user','{$magazine.author.id}');">加关注</span>
 				</a>
+				<a  href="javascript:void(0);" class="followed" style="display:none">
+					<img src="/sta/images/ico_minus.gif" alt="已关注" class="fellow_item" onclick="cancelLike('user','{$magazine.author.id}');" />
+					&nbsp;<span class="fellow_item" onclick="cancelLike('user','{$magazine.author.id}');">已关注</span>
+				</a>
 			</p>
 			<p>上传：{$magazine.publishedAt}</p>
 			<p class="tag">TAG：{foreach from=$magazine['tag'] item=item}<a href="/mag_list/tag/{$item}">{$item}</a>&nbsp;&nbsp;{/foreach}</p>

@@ -26,6 +26,10 @@
 			{/if}
 			{else}
  			<a class="follow" href="javascript:void(0)" onclick="like('user', '{$user_id}', 'user_center')">关注作者</a>
+ 			<p class="followed" style="display: none">
+				<a class="followed" href="javascript:void(0)" onclick="like('user', '{$user_id}', 'user_center')">已关注作者</a>
+				<a class="cancel" href="javascript:void(0)" onclick="cancelLike('user', '{$user_id}', 'user_center')">取消</a>
+			</p>
 			{/if}
  			<p class="bottombg"></p>
  		</div>

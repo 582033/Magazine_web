@@ -22,11 +22,25 @@ function checkSignedIn() {
 function getLikeUrl(type, id, action) {
 	return "/" + type + "/" + id + "/" + action;
 }
-function cancelLike(type, type_id) {
+function cancelLike(type, type_id, where) {
+	if (!checkSignedIn()) return;
+	var action = type == 'user' ? 'unfollow' : 'cancelLike';
 	$dataType = {dataType: 'json'};
-	$.post(getLikeUrl(type, type_id, 'cancelLike'),
+	$.post(getLikeUrl(type, type_id, action),
 			{dataType: 'json'}, function(data) {
-		window.location.reload();
+		if ($.inArray(type, ['magazine', 'element']) >= 0) {
+			window.location.reload();
+		}
+		else if (type == 'user') {
+			if (where == 'user_center') {
+				$('div.userinfo a.follow').show();
+				$('div.userinfo p.followed').hide();
+			}
+			else { // detail
+				$('a.follow').show();
+				$('a.followed').hide();
+			}
+		}
 	});
 }
 function like(type, type_id, where) {
@@ -45,11 +59,12 @@ function like(type, type_id, where) {
 		else if (type == 'user') {
 			if (data.status == 'success') {
 				if (where == 'user_center') {
-					$('div.userinfo a.follow').text('已关注').addClass('followed');
+					$('div.userinfo a.follow').hide();
+					$('div.userinfo p.followed').show();
 				}
-				else {
-					$("img.fellow_item").css("display","none");
-					$("span.fellow_item").text("已关注");
+				else { // detail
+					$('a.follow').hide();
+					$('a.followed').show();
 				}
 			}
 		}
