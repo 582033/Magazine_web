@@ -75,7 +75,7 @@
 		</dl>
 
 		<div class="comment_preview">
-			{include file="magazine/lib/comments.tpl" limit=5}
+			{include file="magazine/lib/main-comments.tpl" limit=5}
 			<p class="more_comment">
 				<a href="/magazine/{$magazine.id}/comments">查看全部留言</a>
 			</p>

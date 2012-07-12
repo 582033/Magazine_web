@@ -291,11 +291,12 @@ function close_comment_reply() {
 function init_comment() { //{{{
 	$("#add").click(function (){
 		var options = {
-			dataType: 'json',
+			dataType: 'html',
 			success: function (result) {
-				console.log(result);
-				refresh_comments(result);
-			},
+				$("#comments").html(result);
+				$("#comment textarea").val('');
+				close_comment_reply();
+			}
 		};
 		if (!$.trim($('#comment textarea').val())) return false;
 		$("#comment").ajaxSubmit(options);
@@ -307,28 +308,13 @@ function init_comment() { //{{{
 		var authorUrl = $(this).parent().prev('dt').find('a').attr('href');
 		var data = $(this).data();
 		$('span.comment-content', $replyc).text(content);
-		$('a.username', $replyc)
+		$('a.author', $replyc)
 			.text(data.authorNickname)
 			.attr('href', authorUrl);
 		$('input', $replyc).val(data.commentId);
 		$("#comment textarea").focus();
 		$replyc.show();
 	});
-} //}}}
-
-function refresh_comments(result) { //{{{
-	$("#list").html("");
-	var div = "";
-	var templ = "<dt><a href='{0}'><img src='{1}' alt='用户头像' /></a></dt><dd><p class='info'><a href='{0}' class='author'>{2}</a><span></span></p><p class='content'>{3}</p></dd><dd class='edit_reply'>" +
-		'<a href="javascript:void(0)" class="reply" data-comment-id="{4}" data-author-nickname="{2}" data-author-id="{5}">回复</a></dd>';
-	for(i=0; i<result.length; i++){
-		var c = result[i];
-		var  a = c.author;
-		div += $.format(templ, a.url, a.image, a.nickname, c.content, c.id, a.id);
-	}
-	$("#comments").html(div);
-	$("#comment .text").val('');
-	close_comment_reply();
 } //}}}
 
 // vim: fdm=marker

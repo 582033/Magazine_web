@@ -284,7 +284,7 @@ class Magazine extends MY_Controller {
 					'magazine' => $magazine,
 					'recommendation' => $recommendation,
 					'maylike' => $maylike,
-					'comment' => $comment['items'],
+					'comments' => $comment['items'],
 					'curnav' => 'mag',
 					);
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
@@ -321,7 +321,7 @@ class Magazine extends MY_Controller {
 						),
 					),
 					'magazine' => $magazine,
-					'comment' => $comment['items'],
+					'comments' => $comment['items'],
 					'page_list' => $page_list,
 					);
 		$this->smarty->view('magazine/comment_list.tpl', $data);
@@ -398,7 +398,7 @@ class Magazine extends MY_Controller {
 		$start = $this->input->get('start');
 		$limit = $this->input->get('limit');
 		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment, $start, $limit);
-		$this->_json_output($data['items']);
+		$this->smarty->view('magazine/lib/comments.tpl', array('comments' => $data['items']));
 	}	//}}}
 
 	function get_same_author_mag(){		//获取该作者的其他杂志{{{

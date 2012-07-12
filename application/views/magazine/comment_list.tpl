@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="right_main">
-		{include file="magazine/lib/comments.tpl" limit=10}
+		{include file="magazine/lib/main-comments.tpl" limit=10}
 		{$page_list}
 	</div>
 </div>
