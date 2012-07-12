@@ -10,13 +10,7 @@
 	</div>
 
 	<div class="right_main">
-		<h2>留言板</h2>
-		<form id="comment" class="comment_sub" action="/magazine/refresh_comment?type=magazine&object_id={$magazine.id}&start=0&limit=10" method="post">
-			<img src="/sta/images/userhear_def.gif" alt="用户头像" />
-			<textarea class="text" name="conment"></textarea>
-			<button type="button" id="add">发布</button>
-		</form>
-		{include file="magazine/lib/comments.tpl"}
+		{include file="magazine/lib/comments.tpl" limit=10}
 		{$page_list}
 	</div>
 </div>

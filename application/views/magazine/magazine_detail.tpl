@@ -74,16 +74,8 @@
 			</dd>
 		</dl>
 
-
-
 		<div class="comment_preview">
-			<h3>留言板</h3>
-			<form id="comment" class="comment_sub" action="/magazine/refresh_comment?object_id={$magazine.id}&start=0&limit=5" method="post">
-				<img src="/sta/images/userhear_def.gif" alt="用户头像" />
-				<textarea class="text" name="conment"></textarea>
-				<button type="button" id="add">发布</button>
-			</form>
-			{include file="magazine/lib/comments.tpl"}
+			{include file="magazine/lib/comments.tpl" limit=5}
 			<p class="more_comment">
 				<a href="/magazine/{$magazine.id}/comments">查看全部留言</a>
 			</p>

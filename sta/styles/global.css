@@ -330,41 +330,6 @@ div.current .menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8
 
 .mag_list_title{ margin-bottom:0; padding:0 9px; border-top:none;}
 
-/*comment*/
-div.main.comment{ width:998px; border:1px solid #e8e8e8; background:#FFF; margin-bottom:30px;}
-.main.comment .sidebar_left{ background:none; border:none; width:180px; padding:9px; border-right:1px solid #e8e8e8; text-align:center;}
-.main.comment .sidebar_left h2 { padding:10px 0 14px 0;}
-.main.comment .sidebar_left h2 a{ font-size:20px; font-weight:bold; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium';}
-.main.comment .sidebar_left p a{ font-weight:bold;}
-
-.main.comment .right_main{ width:705px; padding:0 47px; background:none;}
-.main.comment .right_main h2,
-.comment_preview h3{ height:60px; line-height:60px; font-size:16px; font-weight:bold;}
-.main.comment .right_main form,
-.comment_preview form{ display:block; margin-bottom:20px; position:relative; background:#f8f8f8; padding:20px 20px 15px 90px; text-align:right;}
-.main.comment .right_main form img,
-.comment_preview form img{ position:absolute; display:block; left:20px; _left:-70px; top:20px;}
-.main.comment .right_main form textarea,
-.comment_preview form textarea{ width:586px; height:80px; padding:3px; border:1px solid #EFEFEF; text-align:left;}
-.main.comment .right_main form button,
-.comment_preview form button { height:36px; width:84px; display:inline-block; border:none; background:url(/sta/images/btn_pub.gif) no-repeat right top; color:#FFF; font-size:14px; margin-top:10px;}
-
-.main.comment .right_main dl,
-.comment_preview dl{ float:left; width:100%; border-bottom:1px solid #efefef; margin:10px 0;}
-.main.comment .right_main dt,
-.comment_preview dt{ float:left; width:70px; text-align:center;}
-.main.comment .right_main dd,
-.comment_preview dd{ float:left; width:580px;}
-.main.comment .right_main dd .info,
-.comment_preview dd.info{ font-size:14px; padding-bottom:5px;}
-.main.comment .right_main dd .info a,
-.comment_preview dd .info a{ color:#0590b3; font-weight:bold;}
-.main.comment .right_main dd .info span,
-.comment_preview dd .info span{ color:#c4c4c4;}
-.main.comment .right_main dd.edit_reply,
-.comment_preview dd.edit_reply{ float:left; width:50px; height:70px; text-align:right;}
-.main.comment .right_main .pagenav.msg_pagenav{ padding-top:10px; height:auto;}
-.comment_preview dd .info { padding-bottom:3px;}
 
 /*magzine preview*/
 .main.mag_preview{ border:1px solid #e8e8e8; background:#fff; margin-bottom:20px;}

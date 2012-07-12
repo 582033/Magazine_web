@@ -280,30 +280,46 @@ $(function(){
         $(this).find("span").css("display","none");
         $(this).css("z-index","0");
     });
-})
+});
 
 
+function close_comment_reply() {
+	var $replyc = $('#comment div.reply-comment').hide();
+	$replyc.hide();
+	$('input', $replyc).val('');
+}
 function init_comment() { //{{{
 	$("#add").click(function (){
 		var options = {
 			dataType: 'json',
 			success: function (result) {
+				console.log(result);
 				refresh_comments(result);
 			},
 		};
+		if (!$.trim($('#comment textarea').val())) return false;
 		$("#comment").ajaxSubmit(options);
-	})
-
+	});
+	var $replyc = $('#comment div.reply-comment').hide();
+	$('.close-reply', $replyc).click(close_comment_reply);
 	$(document).on('click', '#comments .reply', function () {
-		$("#comment .text").focus()
-			.val("回复 " + $(this).data('authorNickname') + "：");
+		var content = $(this).parent().prev('dd').find('p.content').text();
+		var authorUrl = $(this).parent().prev('dt').find('a').attr('href');
+		var data = $(this).data();
+		$('span.comment-content', $replyc).text(content);
+		$('a.username', $replyc)
+			.text(data.authorNickname)
+			.attr('href', authorUrl);
+		$('input', $replyc).val(data.commentId);
+		$("#comment textarea").focus();
+		$replyc.show();
 	});
 } //}}}
 
 function refresh_comments(result) { //{{{
 	$("#list").html("");
 	var div = "";
-	var templ = "<dt><a href='{0}'><img src='{1}' alt='用户头像' /></a></dt><dd><p class='info'><a href='{0}' class='author'>{2}</a><span></span></p><p>{3}</p></dd><dd class='edit_reply'>" +
+	var templ = "<dt><a href='{0}'><img src='{1}' alt='用户头像' /></a></dt><dd><p class='info'><a href='{0}' class='author'>{2}</a><span></span></p><p class='content'>{3}</p></dd><dd class='edit_reply'>" +
 		'<a href="javascript:void(0)" class="reply" data-comment-id="{4}" data-author-nickname="{2}" data-author-id="{5}">回复</a></dd>';
 	for(i=0; i<result.length; i++){
 		var c = result[i];
@@ -311,7 +327,8 @@ function refresh_comments(result) { //{{{
 		div += $.format(templ, a.url, a.image, a.nickname, c.content, c.id, a.id);
 	}
 	$("#comments").html(div);
-	$(".text").val('');
+	$("#comment .text").val('');
+	close_comment_reply();
 } //}}}
 
 // vim: fdm=marker

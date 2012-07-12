@@ -1,3 +1,5 @@
+@import 'compass';
+
 .dialog { /* {{{ */
 	&.reg, &.login {
 		width:736px; height:404px;
@@ -349,7 +351,7 @@ body#mag_tag { /* {{{ */
 		}
 	}
 } /* }}} */
-body#down {
+body#down { /* {{{ */
 	.intro_text {
 		padding-top: 84px;
 		padding-left: 48px;
@@ -358,8 +360,133 @@ body#down {
 		width: 400px;
 		text-indent: 30px;
 	}
+} /* }}} */
+/*comment*/
+div.main.comment {
+	width:998px; border:1px solid #e8e8e8; background:#FFF; margin-bottom:30px;
+	.sidebar_left {
+		background:none;
+		border:none;
+		width:180px;
+		padding:9px;
+		border-right:1px solid #e8e8e8;
+		text-align:center;
+		h2 { padding:10px 0 14px 0;}
+		h2 a {
+			font-size:20px;
+			font-weight:bold;
+			font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium';
+		}
+		p a {
+			font-weight:bold;
+		}
+	}
+	.right_main{
+		width:705px; padding:0 47px; background:none;
+		.pagenav.msg_pagenav {
+			padding-top:10px;
+			height:auto;
+		}
+	}
 }
 
+.main.comment .right_main, .comment_preview { /* {{{ */
+	h3 {
+		height:60px;
+		line-height:60px;
+		font-size:16px;
+		font-weight:bold;
+	}
+	form#comment {
+		display:block;
+		margin-bottom:20px;
+		position:relative;
+		background:#f8f8f8;
+		padding:30px 20px 15px 90px;
+		text-align:right;
+		div.reply-comment {
+			overflow: hidden;
+			display: none;
+			top: 0;
+			position: absolute;
+			width: 600px;
+			height: 30px;
+			a.close-reply {
+				float: right;
+				margin-right: 5px;
+				line-height: 30px;
+			}
+			p {
+				line-height: 30px;
+				text-align: left;
+				font-size: 14px;
+				a.author {
+					color: #0590B3;
+					font-weight: bold;
+					cursor: pointer;
+					margin: 0 5px;
+				}
+				span.comment-content {
+					word-wrap:break-word;
+					-ms-word-break: break-all;
+					word-break: break-all;
+				}
+			}
+		}
+		img {
+			position:absolute;
+			display:block;
+			left:20px;
+			_left:-70px;
+			top:30px;
+		}
+		textarea {
+			width:586px;
+			height:80px;
+			padding:3px;
+			border:1px solid #EFEFEF;
+			text-align:left;
+		}
+		button {
+			height:36px;
+			width:84px;
+			display:inline-block;
+			border:none;
+			background:url(/sta/images/btn_pub.gif) no-repeat right top;
+			color:#FFF;
+			font-size:14px;
+			margin-top:10px;
+		}
+	}
+	dl { float:left; width:100%; border-bottom:1px solid #efefef; margin:10px 0;}
+	dt { float:left; width:70px; text-align:center;}
+	dd { float:left; width:580px;}
+	dd .info {
+		font-size:14px;
+		padding-bottom:5px;
+		a.author {
+			color:#0590b3;
+			font-weight:bold;
+		}
+		a.author2 {
+			margin-left: 5px;
+		}
+		span {
+			color:#c4c4c4;
+			margin-left: 5px;
+		}
+	}
+	dd.edit_reply {
+		float:left;
+		width:50px;
+		height:70px;
+		text-align:right;
+	}
+} /* }}} */
+
+.comment_preview dd .info {
+	padding-bottom:3px;
+}
 /*
 vim: fdm=marker
 */
