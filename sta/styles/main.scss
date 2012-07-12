@@ -353,12 +353,17 @@ body#mag_tag { /* {{{ */
 } /* }}} */
 body#down { /* {{{ */
 	.intro_text {
-		padding-top: 84px;
-		padding-left: 48px;
-		font-size: 16px;
+		padding-top: 100px;
+		padding-left: 47px;
+		font-size: 14px;
 		line-height: 30px;
 		width: 400px;
 		text-indent: 30px;
+		font-family:微软雅黑,宋体;
+	}
+	dd.android .intro_text {
+		line-height: 32px;
+		text-indent: 0;
 	}
 } /* }}} */
 /*comment*/

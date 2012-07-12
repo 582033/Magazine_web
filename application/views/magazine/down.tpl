@@ -58,6 +58,10 @@ $(function(){
 		{if $type == 'android'}
  		<dd class="android" style="display:block">
  			<div class="intro">
+				<div class="intro_text">
+					<p>我们致力提供免费的“品质阅读”与“即时分享”。也在试图传递一种阅读新理念——不止满足于观看，更结合了倾听、触摸，将感性阅读与最佳的数字化结合。</p>
+				</div>
+
 				<a href="http://d.in1001.com/apk/magazine_bookshelf.apk" class="downbtn">下载Android客户端</a>
  				<div class="slidescreen">
  					<img src="/sta/images/appscreen/1.jpg" alt="截图1" />

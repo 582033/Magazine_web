@@ -518,7 +518,7 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .client_down dd div.intro{ height:430px; background:url(/sta/images/down_banner.jpg) no-repeat -1px top; position:relative;}
 .client_down dd.pc div.intro{ background-position:-1px -430px;}
 .client_down dd.android{ display:none;}
-.client_down dd.pc a{ position:absolute; left:320px; top:300px; font-size:18px; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; text-decoration:underline;}
+.client_down dd.pc a{ position:absolute; left:320px; top:300px; font-size:16px; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; text-decoration:underline;}
 .client_down dd li{ float:left; width:309px; height:200px; padding-left:150px; padding-right:40px; font-size:14px; line-height:24px; background:url(/sta/images/ico_down.gif) no-repeat;}
 .client_down dd li strong{ font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; font-size:24px; display:block; padding-bottom:15px;}
 .client_down dd.android div.intro a.downbtn{ position:absolute; left:50px; top:210px; display:block; width:232px; height:52px; text-indent:-600px; background:url(/sta/images/btn_down.png) no-repeat left top;}
