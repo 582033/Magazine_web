@@ -208,7 +208,7 @@
 		font-weight: bold;
 	}
 } /* }}} */
-#signin,#signup {
+body#signin,body#signup {
 	hr {
 		position: relative;
 		top: 80px;
@@ -330,7 +330,7 @@
 	a.edit{ display:inline-block; width:16px; height:16px; margin-bottom:-3px; background:url(/sta/images/ico_setting.png) no-repeat left top; text-indent:-150px; _text-indent:inherit; _font-size:1px; overflow:hidden;}
 } /* }}} */
 
-#mag_tag { /* {{{ */
+body#mag_tag { /* {{{ */
 	div.main .menu {
 		background: transparent;
 		border-bottom: 1px solid #E8E8E8;
@@ -349,6 +349,16 @@
 		}
 	}
 } /* }}} */
+body#down {
+	.intro_text {
+		padding-top: 84px;
+		padding-left: 48px;
+		font-size: 16px;
+		line-height: 30px;
+		width: 400px;
+		text-indent: 30px;
+	}
+}
 
 /*
 vim: fdm=marker

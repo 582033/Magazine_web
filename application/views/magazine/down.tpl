@@ -20,6 +20,14 @@ $(function(){
 		{if $type == 'pc'}
  		<dd class="pc">
  			<div class="intro">
+				<div class="intro_text">
+					<p>
+						"1001+"由"1001夜"出品，是一款令人惊奇的数字多媒体制作工具。任何人都能用它快速制作数字杂志、书籍、图册、宣传物等个性化数字读物。革命性颠覆在于：无需编程，即可产出适用于iOS、Android等移动智能系统的数字读物APPS。
+					</p>
+					<p>
+						你需要拥有邀请码，且完成登陆后，才可以下载试用。
+					</p>
+				</div>
 				{if isset($user_info) && $user_info.role == 1}
 				<a href="http://58.30.78.70:84/LetouMagazine_20120709.rar">下载</a>
 				{else}

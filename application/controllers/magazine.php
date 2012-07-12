@@ -350,6 +350,7 @@ class Magazine extends MY_Controller {
 		$data = array(
 				'type' => $type,
 				'curnav' => 'soft',
+				'pageid' => 'down',
 				);
 		if ($type == 'pc') {
 			$this->load->library('session');
