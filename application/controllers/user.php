@@ -44,7 +44,8 @@ class User extends Magazine {
 			$this->_json_output($return['data']);
 		}
 		else {
-			$this->smarty->view('user/signup.tpl');
+			$return = $this->_get('return');
+			$this->smarty->view('user/signup.tpl', array('pageid' => 'signup', 'return' => $return));
 		}
 	}	//}}}
 	function signin() { //{{{
@@ -56,7 +57,8 @@ class User extends Magazine {
 			return $this->_json_output($return['data']);
 		}
 		else {
-			$this->smarty->view('user/signin.tpl');
+			$return = $this->_get('return');
+			$this->smarty->view('user/signin.tpl', array('pageid' => 'signin', 'return' => $return));
 		}
 	} //}}}
 	function signout() { //{{{

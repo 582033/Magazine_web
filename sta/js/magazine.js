@@ -33,7 +33,7 @@ $(function() {
 		}
 });
 
-function init_colorbox() {
+function init_colorbox() { // {{{
 	$(document).on('cbox_closed', function(){
 		window.location.reload();
 	});
@@ -45,7 +45,7 @@ function init_colorbox() {
 		$(this).colorbox($.extend({}, opts, {open: true}));
 		return false;
 	});
-}
+} // }}}
 
 function init_magazine_home() { //{{{
 	var $mags = $('dl.mag_list');
@@ -125,9 +125,14 @@ function signin(form) {	// {{{
 		dataType : 'json',
 		success: function(result) {
 			if (result.status == 'OK') {
-				$.colorbox.close();
-				if (form.id == 'loginTip') {
+				if (form.id == 'loginTip') { // top right signin area
 					window.location.reload();
+				}
+				else if ($form.data('return')) { // single signin page
+					window.location.href = $form.data('return');
+				}
+				else { // signin popup
+					$.colorbox.close();
 				}
 			}
 			else {
@@ -172,7 +177,12 @@ function signup(form) {	// {{{
 		dataType : 'json',
 		success: function(result) {
 			if (result.status == 'OK') {
-				$.colorbox.close();
+				if ($form.data('return')) { // single signin page
+					window.location.href = $form.data('return');
+				}
+				else { // signin popup
+					$.colorbox.close();
+				}
 			}
 			else {
 				error(messages[result.status] || result.status);
