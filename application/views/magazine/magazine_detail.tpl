@@ -54,7 +54,7 @@
 			</div>
 			<div style="clear:both;"></div>
 			<p class="readonline">
-				<a href="{$pub_host}/{$magazine.id|truncate:3}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
+				<a href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
 			</p>
 			<p class="info">
 				<span class="view"><a href="javascript:void(0)" title="阅读">阅读</a>{$magazine.views}</span>
@@ -68,7 +68,7 @@
 			<dd class="scrollbar">
 					<ul>
 						{foreach from=$magazine.pageThumbs item=item key=key}
-						<li><a href="{$pub_host}/{$magazine.id|truncate:3}/{$magazine.id}/web/#p{$key+1}"><img src="{$item}" alt="page 16" width="104px" height="160px" style="overflow:hidden;" /></a></li>
+						<li><a href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web/#p{$key+1}"><img src="{$item}" alt="page 16" width="104px" height="160px" style="overflow:hidden;" /></a></li>
 						{/foreach}
 					</ul>
 			</dd>
