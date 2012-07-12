@@ -291,7 +291,6 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function comment_list($id, $page="1"){		//杂志评论页面{{{
-	//	$this->auth->check();
 		$page = $page ? $page : 1;
 		$limit = 10;
 		$start = ($page-1)*$limit;
@@ -329,7 +328,7 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function like($type, $type_id, $action) { //喜欢杂志, 元素, 关注作者 {{{
-		$this->auth->check();
+		$this->_auth_check_api();
 		$resp = $this->mag_model->_like($type, $type_id, $action);
 		if ($resp['httpcode'] != 200) {
 			show_error('', $resp['httpcode']);
@@ -390,7 +389,7 @@ class Magazine extends MY_Controller {
 	}	//}}}
 
 	function refresh_comment(){	//{{{
-		$this->auth->check();
+		$this->_auth_check_api();
 		$type = $this->input->get('type');
 		$object_id = $this->input->get('object_id');
 		$comment = $this->input->post('conment');
@@ -516,5 +515,31 @@ class Magazine extends MY_Controller {
 			show_error_text($return['httpcode'], $return['data']);
 		}
 		return $return;
+	}
+
+	function _auth_check_web () {
+		$this->load->model('auth');
+		if (!$this->auth->is_logged_in()) {
+			redirect('/user/signin?return=' . current_url());
+			exit;
+		}
+		$session_id = $this->session->userdata('session_id');
+		$user_id = $this->session->userdata('id');
+		return array(
+				'id' => $user_id,
+				'session_id' => $session_id,
+				);
+	}
+	function _auth_check_api() {
+		$this->load->model('auth');
+		if (!$this->auth->is_logged_in()) {
+			show_error_text(401, 'signin please');
+		}
+		$session_id = $this->session->userdata('session_id');
+		$user_id = $this->session->userdata('id');
+		return array(
+				'id' => $user_id,
+				'session_id' => $session_id,
+				);
 	}
 }

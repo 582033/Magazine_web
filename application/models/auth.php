@@ -42,10 +42,4 @@
 	function is_logged_in() {
 		return $this->user_id and $this->session_id;
 	}
-	function check () {
-		if (!$this->is_logged_in()) {
-			show_error('signin please', 401);
-		}
-	}
-
 }

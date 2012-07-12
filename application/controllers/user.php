@@ -100,7 +100,7 @@ class User extends Magazine {
 	function _get_loved ($user_id, $page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{
 		$page = $page ? $page : 1;
 		if ($user_id == 'me') {
-			$this->auth->check();
+			$this->_auth_check_web();
 			$user_id = $this->session->userdata('id');
 		}
 		$is_me = $user_id == $this->session->userdata('id');
@@ -149,7 +149,7 @@ class User extends Magazine {
 	function elements($user_id, $page = '1'){	//喜欢的元素列表{{{
 		$page_url = "/user/$user_id/elements"; 
 		$this->_get_loved($user_id, $page, 'element', $page_url);
-		$this->auth->check();
+		$this->_auth_check_web();
 	}	//}}}
 
 	function followees($user_id, $page = '1') {	//关注的作者{{{
@@ -161,7 +161,7 @@ class User extends Magazine {
 		$page = $page ? $page : 1;
 		$type = $type ? $type : 'published';
 		if ($user_id == 'me') {
-			$this->auth->check();
+			$this->_auth_check_web();
 			$user_id = $this->session->userdata('id');
 		}
 		$is_me = $user_id == $this->session->userdata('id');
@@ -229,8 +229,8 @@ class User extends Magazine {
 				'user_set_name' => '头像设置',
 				);
 		$this->smarty->view('user/set_main.tpl', $data);
-	}
-	function set_pwd(){		
+	} // }}}
+	function set_pwd(){	// {{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$post = array(
 						'old_pwd' => trim($this->input->post('old_pwd')),
@@ -245,9 +245,9 @@ class User extends Magazine {
 					);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}
-	}
+	} // }}}
 	
-	function set_tag () {	//个人标签{{{
+	function set_tag () { //个人标签{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$data = array(
 					'tags' => $this->input->post('tags'),
@@ -264,7 +264,7 @@ class User extends Magazine {
 					);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}
-	}
+	} // }}}
 
 	function set_auther () {	//作者信息设置{{{
 		$data = array(
@@ -328,122 +328,93 @@ class User extends Magazine {
 		}
 		$this->_json_output($data);
 	}	//}}}
-
-
-
-	function check_signin(){
-		$this->auth->check();
-		$session_id=$this->session->userdata('session_id');
-		$user_id=$this->session->userdata('id');
-		if(TRUE){
-			return array(
-				'id'=>$user_id,
-				'session_id'=>$session_id,
-
-			);
+	
+	//show all messages
+	function messages($user_id, $p=1) { //{{{
+		$p = $p ? $p : 1;
+		$user_info = $this->_auth_check_web();
+		if ($user_id != 'me' && $user_id != $user_info['id']) {
+			show_error('', 401);
+		}
+		if($p==1){
+			$start=0;
+			$limit=$this->config->item('page_msg_num');
 		}
 		else{
-			return FALSE;
+			$start=$this->config->item('page_msg_num')*($p-1);
+			$limit=$this->config->item('page_msg_num');
+
 		}
-}
-	
-//show all messages
-function messages($user_id, $p=1) {
-	$p = $p ? $p : 1;
-	$user_info = $this->check_signin();
-	//check login status
-	if($user_info===FALSE){
-		header('HTTP1.1 401');
-		exit();
+		$res = request($this->api_host."/user/".$user_info['id']."/activities",
+				array('start'=>$start,"limit"=>$limit,"session_id"=>$user_info['session_id']));
+		$arr_totpl=array();
+		$msg_ctt='';
+		$totalnum=$res['data']['totalResults'];
+		if(count($res['data']['items'])){
+			foreach($res['data']['items'] as $k=>$v){
 
-	}
-	if ($user_id != 'me' && $user_id != $user_info['id']) {
-		show_error('', 401);
-	}
-	if($p==1){
-		$start=0;
-		$limit=$this->config->item('page_msg_num');
-	}
-	else{
-		$start=$this->config->item('page_msg_num')*($p-1);
-		$limit=$this->config->item('page_msg_num');
+				$tmp_msg=(json_decode($v['object'],true));
+				$msg_ctt.='
+					<dl class="clearfix" id="'.$v['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /></a></dt> <dd> <div> <p> <strong><a href="#">戴斯：</a></strong>欢迎阅读杂志编号为'.'------'.$v['msg_id'].'的杂志<a href="#">《我的杂志》</a> </p> <span> 2012-5-6 17:40 <a href="javascript:delmsg('.$v['msg_id'].')" class="del_msg" onclick="delmsg('.$v['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
 
-	}
-	$res = request($this->api_host."/user/".$user_info['id']."/activities",
-			array('start'=>$start,"limit"=>$limit,"session_id"=>$user_info['session_id']));
-	$arr_totpl=array();
-	$msg_ctt='';
-	$totalnum=$res['data']['totalResults'];
-	if(count($res['data']['items'])){
-	foreach($res['data']['items'] as $k=>$v){
-
-		$tmp_msg=(json_decode($v['object'],true));
-		$msg_ctt.='
-			<dl class="clearfix" id="'.$v['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /></a></dt> <dd> <div> <p> <strong><a href="#">戴斯：</a></strong>欢迎阅读杂志编号为'.'------'.$v['msg_id'].'的杂志<a href="#">《我的杂志》</a> </p> <span> 2012-5-6 17:40 <a href="javascript:delmsg('.$v['msg_id'].')" class="del_msg" onclick="delmsg('.$v['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
-
-	}
-	}
-	$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
-	$data=array();
-	$data['msg']=$msg_ctt;
-	$data['love_msg']="true";
-	$data['page_list']=$page_list;
-	$data['msg_page']='msg_page';
-	$data['web_host']='$.getJSON("'.$this->config->item('api_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
-	$data['is_me'] = TRUE;
-	$data['user_id'] = 'me';
-	$this->smarty->view('user/user_center_main.tpl',$data);
-
-}
+			}
+		}
+		$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
+		$data=array();
+		$data['msg']=$msg_ctt;
+		$data['love_msg']="true";
+		$data['page_list']=$page_list;
+		$data['msg_page']='msg_page';
+		$data['web_host']='$.getJSON("'.$this->config->item('api_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
+		$data['is_me'] = TRUE;
+		$data['user_id'] = 'me';
+		$this->smarty->view('user/user_center_main.tpl',$data);
+	} //}}}
 	//show all messages
 	function msglist($page){
-	$this->index($page);
-
-
-}
-
-//api proxy
-function del_msg($msgid){
-	$user_info=$this->check_signin();
-	$res=request($this->api_host."/activity/".$msgid,'session_id='.$user_info['session_id'],"DELETE");
-}
-
-
-
-function reset_password(){
-		$this->smarty->view('user/reset_password.tpl');
-}
-
-function forget_password(){
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		$email = trim($this->input->post('email'));
-		$info = $this->send_email_model->_get_username($email);
-		if ($info == 0){
-			$msg = 'false';
-			echo json_encode($msg);
-		}else{
-			$msg = 'true';
-			echo json_encode($msg);
-		}
-	}else{
-		$this->smarty->view('user/forget_password.tpl');
+		$this->index($page);
 	}
-	
-//	$this->smarty->view('user/forget_password.tpl');
-/*		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$post = array(
-						'old_pwd' => trim($this->input->post('old_pwd')),
-						'new_pwd' => trim($this->input->post('reset_pwd')),
-						);
-			$item = $this->user_info_model->_modify_user_pwd($post);
-			echo json_encode($item);
+
+	//api proxy
+	function del_msg($msgid) {
+		$user_info = $this->_auth_check_api();
+		$res = request($this->api_host."/activity/".$msgid,'session_id='.$user_info['session_id'],"DELETE");
+	}
+
+	function reset_password(){
+		$this->smarty->view('user/reset_password.tpl');
+	}
+
+	function forget_password(){
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$email = trim($this->input->post('email'));
+			$info = $this->send_email_model->_get_username($email);
+			if ($info == 0){
+				$msg = 'false';
+				echo json_encode($msg);
+			}else{
+				$msg = 'true';
+				echo json_encode($msg);
+			}
 		}else{
-			$data = array(
-					'user_set' => 'set_pwd',
-					'user_set_name' => '修改密码',
-					);
-			$this->smarty->view('user/set_main.tpl', $data);
+			$this->smarty->view('user/forget_password.tpl');
 		}
-*/
-}
+
+		//	$this->smarty->view('user/forget_password.tpl');
+		/*		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+				$post = array(
+				'old_pwd' => trim($this->input->post('old_pwd')),
+				'new_pwd' => trim($this->input->post('reset_pwd')),
+				);
+				$item = $this->user_info_model->_modify_user_pwd($post);
+				echo json_encode($item);
+				}else{
+				$data = array(
+				'user_set' => 'set_pwd',
+				'user_set_name' => '修改密码',
+				);
+				$this->smarty->view('user/set_main.tpl', $data);
+				}
+		 */
+	}
 }
