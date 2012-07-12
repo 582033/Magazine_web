@@ -27,6 +27,12 @@ class User extends Magazine {
 		return json_encode($return, true);
 	}	//}}}
 
+	function signupbox() {	//{{{
+		$this->smarty->view('user/signupbox.tpl');
+	}	//}}}
+	function signinbox() { //{{{
+		$this->smarty->view('user/signinbox.tpl');
+	} //}}}
 	function signup() {	//{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$username = $this->input->post('username');
@@ -41,12 +47,31 @@ class User extends Magazine {
 			$this->smarty->view('user/signup.tpl');
 		}
 	}	//}}}
+	function signin() { //{{{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$username = $this->input->post('username');
+			$passwd = $this->input->post('passwd');
+			$need_remember = $this->input->post('need_remember');
+			$return = $this->Login_Model->login($username, $passwd, $need_remember);
+			return $this->_json_output($return['data']);
+		}
+		else {
+			$this->smarty->view('user/signin.tpl');
+		}
+	} //}}}
+	function signout() { //{{{
+		$this->session->sess_destroy();
+		delete_cookie('username');
+		delete_cookie('nickname');
+		delete_cookie('rmsalt');
+		redirect_to_referer();
+	} //}}}
 
 	function applyAuthor($stage){	//{{{
 		if ($stage == 'invitation') {
 			$user_id = $this->session->userdata('id');
 			if (!$user_id) {
-				header('Location: /user/signin', TRUE, 302);
+				header('Location: /user/signinbox', TRUE, 302);
 				return;
 			}
 			$this->smarty->view('user/invitation_code.tpl');
@@ -69,27 +94,6 @@ class User extends Magazine {
 			$this->_json_output($result);
 		}
 	}	//}}}
-
-	function signin() { //{{{
-		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$username = $this->input->post('username');
-			$passwd = $this->input->post('passwd');
-			$need_remember = $this->input->post('need_remember');
-			$return = $this->Login_Model->login($username, $passwd, $need_remember);
-			return $this->_json_output($return['data']);
-		}
-		else {
-			$this->smarty->view('user/signin.tpl');
-		}
-	} //}}}
-
-	function signout() { //{{{
-		$this->session->sess_destroy();
-		delete_cookie('username');
-		delete_cookie('nickname');
-		delete_cookie('rmsalt');
-		redirect_to_referer();
-	} //}}}
 
 	function _get_loved ($user_id, $page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{
 		$page = $page ? $page : 1;

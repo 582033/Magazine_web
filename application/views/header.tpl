@@ -72,7 +72,7 @@
 					 {else}
 					 <div class="self_info">
 						 <div class="log_reg">
-							 <a href="/user/signup?height=404&width=736&modal=true" class="thickbox signup">注册</a>
+							 <a href="/user/signupbox" class="thickbox signup">注册</a>
 							 <a href="javascript:void(0)" class="login" onmouseover="$('#loginTip').show()" onmouseout="$('#loginTip').hide()">登录</a>
 							 <form name="form" id="loginTip" class="clearfix"
 								 onmouseover="this.style.display='block'" onmouseout="this.style.display='none'"

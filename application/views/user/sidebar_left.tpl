@@ -20,7 +20,7 @@
  			</div>
 			{if $is_me}
 			{if $user_info.role == 0}
- 			<a href="/user/applyAuthor/invitation?height=404&width=736&modal=true" class="applyauthor thickbox">申请成为作者</a>
+ 			<a href="/user/applyAuthor/invitation" class="applyauthor thickbox">申请成为作者</a>
 			{else}
  			<a href="javascript:void(0)" class="applyauthor alreadyauthor">认证作者</a>
 			{/if}
