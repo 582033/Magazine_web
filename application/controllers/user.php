@@ -351,15 +351,90 @@ class User extends Magazine {
 		$arr_totpl=array();
 		$msg_ctt='';
 		$totalnum=$res['data']['totalResults'];
-		if(count($res['data']['items'])){
-			foreach($res['data']['items'] as $k=>$v){
+// join html code with different verb
+	function verb_msg($row){
+		switch($row['verb']){
+			case 'signup':
+		//$ret_verb = '<dl class="clearfix">  <dd> <div align="center"> <p> '.$row['occur_time'].$row['msg_content'].'</p> <span></span> </div> </dd> </dl> ';
 
-				$tmp_msg=(json_decode($v['object'],true));
-				$msg_ctt.='
-					<dl class="clearfix" id="'.$v['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /></a></dt> <dd> <div> <p> <strong><a href="#">戴斯：</a></strong>欢迎阅读杂志编号为'.'------'.$v['msg_id'].'的杂志<a href="#">《我的杂志》</a> </p> <span> 2012-5-6 17:40 <a href="javascript:delmsg('.$v['msg_id'].')" class="del_msg" onclick="delmsg('.$v['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
+		$ret_verb = ' <dl class="clearfix" id="'.$row['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="System" /></a></dt> <dd> <div> <p> <strong><a href="#">System：</a></strong>'.$row['msg_content'].'</p> <span> '.$row['occur_time'].'<a href="javascript:delmsg('.$row['msg_id'].')" class="del_msg" onclick="delmsg('.$row['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
+			break;
+			case 'typeb':
+		$ret_verb = '<dl class="clearfix">  <dd> <div align="center"> <p>verb typeb </p> <span></span> </div> </dd> </dl> ';
+			break;
+			default:
+		$ret_verb = '';
+		
+		
+		}
+
+		return $ret_verb;
+	
+	
+	}
+
+//join msg  info from db and tpl
+function print_msg($arr_db){
+	if(count($arr_db) == 0){
+		//no msg ，show message to prompt
+		$ret= '<dl class="clearfix">  <dd> <div align="center"> <p> 目前暂无消息</p> <span></span> </div> </dd> </dl> ';
+
+	}
+	else{
+		$ret = '';
+		foreach($arr_db as $v){
+			$ret.= $this->verb_msg($v);
+		
+		}
+	
+	}
+
+return $ret;	
+
+}
+	
+//show all messages
+function messages($user_id, $p=1) {
+	$p = $p ? $p : 1;
+	$user_info = $this->check_signin();
+	//check login status
+	if($user_info===FALSE){
+		header('HTTP1.1 401');
+		exit();
+
+	}
+	if ($user_id != 'me' && $user_id != $user_info['id']) {
+		show_error('', 401);
+	}
+	if($p==1){
+		$start=0;
+		$limit=$this->config->item('page_msg_num');
+	}
+	else{
+		$start=$this->config->item('page_msg_num')*($p-1);
+		$limit=$this->config->item('page_msg_num');
+
+	}
+	$res = request($this->api_host."/user/".$user_info['id']."/activities",
+			array('start'=>$start,"limit"=>$limit,"session_id"=>$user_info['session_id']));
+	$arr_totpl=array();
+	$msg_ctt='';
+	$totalnum=$res['data']['totalResults'];
+	if(count($res['data']['items'])){
+		$msg_ctt=$this->print_msg($res['data']['items']);
+	}
+	$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
+	$data=array();
+	$data['msg']=$msg_ctt;
+	$data['love_msg']="true";
+	$data['page_list']=$page_list;
+	$data['msg_page']='msg_page';
+	$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
+	$data['is_me'] = TRUE;
+	$data['user_id'] = 'me';
+	$this->smarty->view('user/user_center_main.tpl',$data);
 
 			}
-		}
 		$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
 		$data=array();
 		$data['msg']=$msg_ctt;
