@@ -126,6 +126,9 @@ function signin(form) {	// {{{
 		success: function(result) {
 			if (result.status == 'OK') {
 				$.colorbox.close();
+				if (form.id == 'loginTip') {
+					window.location.reload();
+				}
 			}
 			else {
 				error(messages[result.status] || result.status);
