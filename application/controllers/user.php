@@ -386,62 +386,48 @@ class User extends Magazine {
 		$this->smarty->view('user/reset_password.tpl');
 	}
 
-function forget_password(){
-	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-		$email = trim($this->input->post('email'));
-		if (valid_email($email)){
-			$info = $this->send_email_model->_get_username($email);
-			if ($info == 0){
-				$msg = 'false';
-				echo json_encode($msg);
+	function forget_password(){
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$email = trim($this->input->post('email'));
+			if (valid_email($email)){
+				$info = $this->send_email_model->_get_username($email);
+				if ($info == 0){
+					$msg = 'false';
+					echo json_encode($msg);
+				}else{
+					$msg = 'true';
+					echo json_encode($msg);
+				}
 			}else{
-				$msg = 'true';
-				echo json_encode($msg);
+					$msg = 'false';
+					echo json_encode($msg);
 			}
 		}else{
 			$this->smarty->view('user/forget_password.tpl');
 		}
 
-		//	$this->smarty->view('user/forget_password.tpl');
-		/*		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-				$post = array(
-				'old_pwd' => trim($this->input->post('old_pwd')),
-				'new_pwd' => trim($this->input->post('reset_pwd')),
-				);
-				$item = $this->user_info_model->_modify_user_pwd($post);
-				echo json_encode($item);
-				}else{
-				$data = array(
-				'user_set' => 'set_pwd',
-				'user_set_name' => '修改密码',
-				);
-				$this->smarty->view('user/set_main.tpl', $data);
-				}
-		 */
-				$email_to = $email;
-				$subject = '1001s重置密码';
-				$content = "<a href='http://mtong.a.1001s.cn/user/reset_password' >http://mtong.a.1001s.cn/user/reset_password</a>";
-				mail($email_to, $subject, $content);
-				echo json_encode($msg);
-			}
-		}else{
-			$msg = 'false';
-			echo json_encode($msg);
-		}
-	}else{
-		$this->load->library('email');
+			//	$this->smarty->view('user/forget_password.tpl');
+			/*		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+					$post = array(
+					'old_pwd' => trim($this->input->post('old_pwd')),
+					'new_pwd' => trim($this->input->post('reset_pwd')),
+					);
+					$item = $this->user_info_model->_modify_user_pwd($post);
+					echo json_encode($item);
+					}else{
+					$data = array(
+					'user_set' => 'set_pwd',
+					'user_set_name' => '修改密码',
+					);
+					$this->smarty->view('user/set_main.tpl', $data);
+					}
+			 */
+			/*		$email_to = $email;
+					$subject = '1001s重置密码';
+					$content = "<a href='http://mtong.a.1001s.cn/user/reset_password' >http://mtong.a.1001s.cn/user/reset_password</a>";
+					mail($email_to, $subject, $content);
+					echo json_encode($msg);
+			*/
 
-		$this->email->from('mtong@eee168.com', 'mtong');
-		$this->email->to('bj135059@163.com');
-		//$this->email->cc('another@another-example.com');
-		//$this->email->bcc('them@their-example.com');
-
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');
-
-		$this->email->send();
-
-		echo $this->email->print_debugger();
-		//$this->smarty->view('user/forget_password.tpl');
 	}
 }

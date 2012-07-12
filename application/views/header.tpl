@@ -16,13 +16,14 @@
 		<script type="text/javascript" src="/sta/js/magazine.js"></script>
 		<script type="text/javascript" src="/sta/js/check.js"></script>
 		<script type="text/javascript" src="/sta/js/like.js"></script>
-		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=set_to_true_or_false"></script>
+		<script type="text/javascript"
+		  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyClCYHH9Q3VOWt7Iajyx5bKVI4wV7Y189o&sensor=false">
+		</script>
 		<script type="text/javascript">
 		  function initialize() {
-			var latlng = new google.maps.LatLng(-34.397, 150.644);
 			var myOptions = {
-			  zoom: 8,
-			  center: latlng,
+			  center: new google.maps.LatLng(39.983637, 116.415492),
+			  zoom: 18,
 			  mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			var map = new google.maps.Map(document.getElementById("map_canvas"),
