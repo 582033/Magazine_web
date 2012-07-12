@@ -368,6 +368,7 @@ function messages($user_id, $p=1) {
 	$arr_totpl=array();
 	$msg_ctt='';
 	$totalnum=$res['data']['totalResults'];
+	if(count($res['data']['items'])){
 	foreach($res['data']['items'] as $k=>$v){
 
 		$tmp_msg=(json_decode($v['object'],true));
@@ -375,13 +376,14 @@ function messages($user_id, $p=1) {
 			<dl class="clearfix" id="'.$v['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="用户名" /></a></dt> <dd> <div> <p> <strong><a href="#">戴斯：</a></strong>欢迎阅读杂志编号为'.'------'.$v['msg_id'].'的杂志<a href="#">《我的杂志》</a> </p> <span> 2012-5-6 17:40 <a href="javascript:delmsg('.$v['msg_id'].')" class="del_msg" onclick="delmsg('.$v['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
 
 	}
+	}
 	$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
 	$data=array();
 	$data['msg']=$msg_ctt;
 	$data['love_msg']="true";
 	$data['page_list']=$page_list;
 	$data['msg_page']='msg_page';
-	$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
+	$data['web_host']='$.getJSON("'.$this->config->item('api_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
 	$data['is_me'] = TRUE;
 	$data['user_id'] = 'me';
 	$this->smarty->view('user/user_center_main.tpl',$data);
