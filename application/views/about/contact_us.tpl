@@ -1,8 +1,36 @@
 {include file="header.tpl"}
+<style type="text/css">
+  #map_canvas { height: 600px; width:100%; }
+</style>
+
 <link rel="stylesheet" type="text/css" href="/sta/styles/foot.css"/>
 <div class="foot_container">
 	<div class="contact_us_container"><!-- 联系我们 -->
 		<div class="title_l">联系我们</div>
+		<div class="occupying_by_20"></div>
+		<div class="contact">
+				<div class="left">
+					<ul>
+						<li><span class="bold">商务合作请联系：</span>Chanryma</li>
+						<li class="occupying_by_5"></li>
+						<li>Mobile： 13381152260</li>
+						<li class="occupying_by_5"></li>
+						<li>Email：qlma@eee168.com  （请于周一至周五9：00-18：00联系）</li>
+						<li>QQ：1148812977</li>
+					</ul>
+				</div>
+				<div class="right">
+					<ul>
+						<li><span class="bold">品牌/推广合作请联系：</span>Winnie</li>
+						<li class="occupying_by_5"></li>
+						<li>Mobile：13264193687</li>
+						<li class="occupying_by_5"></li>
+						<li>Email：xbai@eee168.com  （请于周一至周五9：00-18：00联系）</li>
+						<li class="occupying_by_5"></li>
+						<li>QQ：276565136 </li>
+					</ul>
+				</div>
+			</div>
 		<div class="subtitle">北京乐投信息技术有限公司</div>
 		<ul>
 			<li>电话：010-64981756</li>
@@ -13,12 +41,12 @@
 		<div class="occupying_by_20"></div>
 		<div class="little_title">交通路线</div>
 		<ul>
-			<li>公交：18路、409路、430路、125路等，安苑路站或惠新苑站下车即到；</li>
-			<li>地铁5号线惠新西街北口站下车，C口出，南行300米至安苑路口西行50米；</li>
-			<li>地铁10号线惠新西街南口站下车，B口出，北行500米至安苑路口西行50米；</li>
+			<li>公交：18路、409路、430路、125路等，安苑路站或惠新苑站下车即到</li>
+			<li>地铁5号线惠新西街北口站下车，C口出，南行300米至安苑路口西行50米</li>
+			<li>地铁10号线惠新西街南口站下车，B口出，北行500米至安苑路口西行50米</li>
 		</ul>
 		<div class="occupying_by_10"></div>
-		<img src="/sta/images/foot_images/联系我们-地图.jpg" width="100%" height="600" />
+		<div id="map_canvas"></div>
 		<div class="occupying_by_20"></div>
 	</div><!-- end 联系我们 -->
 </div>

@@ -40,7 +40,7 @@ function judge($type){
 						if (result == 'true'){
 							$("form[name='forget_pwd'] div.return_msg p").text('已经向您填写的邮箱中发送确认邮件，请登录邮箱，点击确认链接，完成密码修改');
 						}else{
-							$("form[name='forget_pwd'] div.return_msg p").text('邮箱填写错误，请检查您填写的邮箱');
+							$("form[name='forget_pwd'] div.return_msg p").text('邮箱错误，请检查您填写的邮箱');
 						}
 					}
 				};

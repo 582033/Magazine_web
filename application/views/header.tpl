@@ -16,6 +16,19 @@
 		<script type="text/javascript" src="/sta/js/magazine.js"></script>
 		<script type="text/javascript" src="/sta/js/check.js"></script>
 		<script type="text/javascript" src="/sta/js/like.js"></script>
+		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=set_to_true_or_false"></script>
+		<script type="text/javascript">
+		  function initialize() {
+			var latlng = new google.maps.LatLng(-34.397, 150.644);
+			var myOptions = {
+			  zoom: 8,
+			  center: latlng,
+			  mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			var map = new google.maps.Map(document.getElementById("map_canvas"),
+				myOptions);
+		  }
+		</script>
 		<!--[if IE 6]>
 		<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
 		<script type="text/javascript">
@@ -35,7 +48,7 @@
 
 		</script>
 	</head>
-	<body{if isset($pageid)} id="{$pageid}"{/if}>
+	<body{if isset($pageid)} id="{$pageid}"{/if} onload="initialize()">
 		 <div class="header">
 			 <div class="container clearfix">
 				 <a href="/" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>

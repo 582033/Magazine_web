@@ -97,6 +97,6 @@ $route['user/me/(.*)'] = 'user/$1';
 $route['user/(:num)'] = 'user/magazines/$1';
 $route['message/del/(:num)'] = 'user/del_msg/$1';
 
-$route['(about_us|contact_us|business_cooperation|legal_statement)'] = '/about/foot_link/$1';
+$route['(about_us|contact_us|join_us|legal_statement)'] = '/about/foot_link/$1';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

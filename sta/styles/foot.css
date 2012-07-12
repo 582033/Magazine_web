@@ -5,7 +5,8 @@
 }
 .foot_container{border:1px solid #CCCCCC;width:1000px;margin:auto;margin-top:20px;background-color:white;}
 .title_l{margin-top:10px;width:120px;height:30px;background-color:black;color:white;font-weight:bold;font-size:22px;text-align:center;padding-top:6px;}
-.title_m{margin-top:10px;width:160px;height:30px;background-color:black;color:white;font-weight:bold;font-size:22px;text-align:center;padding-top:6px;}
+.title_m{margin-top:10px;width:160px;height:30px;background-color:black;text-align:center;padding-top:6px;}
+.title_m a{color:white;font-weight:bold;font-size:22px;}
 .title_b{margin-top:10px;width:180px;height:30px;background-color:black;color:white;font-weight:bold;font-size:22px;text-align:center;padding-top:6px;}
 .title_s{margin-top:10px;width:220px;height:30px;background-color:black;color:white;font-weight:bold;font-size:22px;text-align:center;padding-top:6px;}
 .occupying_by_30{height:30px;clear:both;}
@@ -13,7 +14,7 @@
 .occupying_by_10{height:10px;clear:both;}
 .occupying_by_5{height:5px;clear:both;}
 .occupying{clear:both;}
-.about_us_container,.contact_us_container,.business_cooperation_container,.legal_statement_container{margin-left:10px;width:98%;margin:auto;}
+.about_us_container,.contact_us_container,.join_us_container,.legal_statement_container{margin-left:10px;width:98%;margin:auto;}
 
 /* about_us */
 .about_us_container .about_1001{width:100%;}
@@ -21,37 +22,33 @@
 .about_1001 .content ul{list-style:none;}
 .about_1001 .content ul li{margin-top:2px;}
 .about_1001 .subtitle{margin-top:10px;font-size:20px;font-weight:bold;}
-.about_1001_first .little_title{font-size:18px;font-weight:bold;margin-top:5px;}
-.about_1001_second ul{margin-top:5px;}
-.about_1001_second ul li{margin-left:30px;}
-.about_1001_third .little_title{font-size:18px;margin-top:5px;}
-.about_1001_third ul{margin-left:30px;}
+.about_1001_first .little_title,.about_1001_second .little_title, .about_1001_third .little_title, .about_1001_fourth .little_title{font-size:18px;margin-top:5px;}
+.about_1001_first .little_title span,.about_1001_second .little_title span, .about_1001_third .little_title span, .about_1001_fourth .little_title span{font-size:20px;}
+.about_1001_first ul li, .about_1001_second ul li, .about_1001_third ul li, .about_1001_fourth ul li{margin-left:30px;}
 .about_us_container .about_letou{width:100%;margin-top:30px;}
 .about_letou .content{width:100%;margin-top:5px;}
 .about_letou .content p{text-indent:2em;}
 
+/* join_us */
+.join_us_container .subtitle{margin-top:10px;font-size:18px;font-weight:bold;}
+.join_us_container div.content div{margin-top:5px;}
+.join_us_container .content div.position{font-weight:bold;}
+.join_us_container .content .department{font-weight:bold;}
+.join_us_container .job_description .description{text-indent:2em;}
+.join_us_container .job_requirements ul{margin-left:30px;margin-top:5px;}
+.join_us_container .summary{font-weight:bold;font-size:16px;}
 
 /* contact_us */
 .contact_us_container .subtitle{margin-top:10px;font-size:20px;font-weight:bold;}
 .contact_us_container ul li{}
 .contact_us_container .little_title{font-size:18px;font-weight:bold;}
+.contact_us_container .contact{width:100%;height:100px;}
+.contact_us_container .contact .left{width:50%;float:left;}
+.contact_us_container .contact .right{width:50%;float:left;}
+.contact_us_container .contact ul li{font-size:16px;}
+.contact_us_container .contact .bold{font-size:16px;font-weight:bold;}
 
-/* business cooperation */
-.business_cooperation_container .simple_intro{font-size:18px;}
-.business_cooperation_container .little_title{font-weight:bold;font-size:18px;}
-.business_cooperation_container ul li{font-size:16px;}
-.business_cooperation_container ul li span{font-size:22px;}
-.business_cooperation_container .middle_title{font-size:24px;font-weight:bold;}
-.business_cooperation_container ul.list li{font-size:16px;}
-.business_cooperation_container .contact{width:100%;height:100px;}
-.business_cooperation_container .contact .left{width:50%;float:left;}
-.business_cooperation_container .contact .right{width:50%;float:left;}
-.business_cooperation_container .contact ul li{font-size:16px;}
-.business_cooperation_container .contact .bold{font-size:16px;font-weight:bold;}
-.business_cooperation_container .cooperation_partners{width:100%; height:350px;}
-.business_cooperation_container .cooperation_partners ul li{font-size:16px;}
-.business_cooperation_container .cooperation_partners .left{width:49.8%;float:left;}
-.business_cooperation_container .cooperation_partners .right{width:49.8%;float:left;}
+
 
 
 /* legal_statement */
