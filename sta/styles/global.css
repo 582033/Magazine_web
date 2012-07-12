@@ -279,7 +279,7 @@ div.current .menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8
 .right_main .mag_list.un_pub{+padding-bottom:40px;}
 .right_main .mag_list.un_pub dd{ position:relative; margin-bottom:40px; margin-top:-1px; overflow:visible; border-top:1px solid #e8e8e8;}
 .right_main .mag_list dd.menu{ margin:0; border:none;}
-.right_main dd .edit_btn{ position:absolute; bottom:-40px; left:0; width:200px; height:40px; text-align:center;  }
+.right_main dd .edit_btn{ bottom:-40px; left:0; width:180px; height:40px; text-align:center;  }
 
 .right_main dd .edit_btn span,.right_main dd .edit_btn a{ display:block; width:80px; height:23px; background:url(/sta/images/btn_pub.gif) no-repeat left top; text-align:center; font-size:14px; color:#FFF; margin:8px auto; line-height:23px;}
 .right_main dd .edit_btn a{ background-position:left bottom;}
