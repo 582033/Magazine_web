@@ -480,28 +480,49 @@ function messages($user_id, $p=1) {
 		}else{
 			$this->smarty->view('user/forget_password.tpl');
 		}
-
-			//	$this->smarty->view('user/forget_password.tpl');
-			/*		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-					$post = array(
-					'old_pwd' => trim($this->input->post('old_pwd')),
-					'new_pwd' => trim($this->input->post('reset_pwd')),
-					);
-					$item = $this->user_info_model->_modify_user_pwd($post);
-					echo json_encode($item);
-					}else{
-					$data = array(
-					'user_set' => 'set_pwd',
-					'user_set_name' => '修改密码',
-					);
-					$this->smarty->view('user/set_main.tpl', $data);
-					}
-			 */
 			/*		$email_to = $email;
 					$subject = '1001s重置密码';
 					$content = "<a href='http://mtong.a.1001s.cn/user/reset_password' >http://mtong.a.1001s.cn/user/reset_password</a>";
 					mail($email_to, $subject, $content);
 					echo json_encode($msg);
+					include("class.phpmailer.php");
+					include("class.smtp.php"); // note, this is optional - gets called from main class if not already loaded
+
+					$mail             = new PHPMailer();
+
+					$mail->IsSMTP();
+					$mail->SMTPAuth   = true;                  // enable SMTP authentication
+					$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+					$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+					$mail->Port       = 465;                   // set the SMTP port
+
+					$mail->Username   = "eee168m@gmail.com";  // GMAIL username
+					$mail->Password   = "eee168mailer";            // GMAIL password
+
+					$mail->From       = "eee168m@gmail.com";
+					$mail->FromName   = "Build Daemon";
+					$mail->Subject    = $argv[1];
+					$mail->Body       = $argv[2];
+					$mail->WordWrap   = 80; // set word wrap
+
+					//$mail->AddReplyTo("replyto@yourdomain.com","Webmaster");
+					if ($argc > 3)
+					{
+							$attachment = $argc - 3;
+							while ($attachment > 0)
+							{
+							$mail->AddAddress($argv[2+$attachment]);
+									$attachment = $attachment - 1;
+							}
+					}
+					//$mail->AddAttachment("/path/to/file.zip");             // attachment
+					//$mail->AddAttachment("/path/to/image.jpg", "new.jpg"); // attachment
+
+					if(!$mail->Send()) {
+					  echo "Mailer Error: " . $mail->ErrorInfo;
+					} else {
+					  echo "Message has been sent";
+					}
 			*/
 
 	}

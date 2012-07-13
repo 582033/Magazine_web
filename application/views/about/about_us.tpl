@@ -6,10 +6,9 @@
 			<div class="title_b">关于&nbsp;"1001夜"</div>
 			<div class="content"><!-- 内容 -->
 				<div class="about_1001_first">
-					<div class="little_title"><span>●</span> 品牌理念</div>
+					<div class="concept little_title">品牌理念</div>
 					<ul>
-						<li>1001夜互动阅读平台</li>
-						<li>——每个人都可以用全新的数字形式去讲述自己的精彩故事</li>
+						<li>——每个人都可以用全新方式去讲述自己的故事</li>
 					</ul>
 				</div>
 				<div class="about_1001_second">

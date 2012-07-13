@@ -168,7 +168,7 @@
 			</div>
 		</div>
 		<div class="occupying_by_20"></div>
-		<div class="summary">如果以上职位打动了你，请将您的简历发送至 hr@letouinfo.com，并在邮件标题注明 “软件工程师 (DevOps 方向)”。<br />本职位欢迎应届毕业生申请，并同时提供实习职位。</div>
+		<div class="summary">如果以上职位打动了你，请将您的简历发送至 hr@letouinfo.com，并在邮件标题注明 “应聘职位”。</div>
 	</div>
 	<div class="occupying_by_30"></div>
 </div>

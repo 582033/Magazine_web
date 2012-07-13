@@ -52,6 +52,9 @@ $(function(){
 	$("form[name='forget_pwd']").find(":input").focusout(function(){
 		judge("focusout");
 	});
+	$("form[name='forget_pwd']").find(":input").focus(function(){
+		$("form[name='forget_pwd'] div.return_msg p").text('');
+	});
 	$("button.find").click(function(){
 		judge("click");
 		return false;

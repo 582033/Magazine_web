@@ -557,8 +557,9 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .container .main input.submit{width:130px;height:55px;}
 .container .main div.reset_pwd{height:50px;}
 .container .main .submit{width:90px; height:33px; padding:0 5px 0 0; margin:0; background:url(/sta/images/btn_set.gif) no-repeat right -32px; border:none; overflow:visible; color:#FFF;}
+.container .main button.submit{border:0px;}
 .container .main button.submit span{font-size:16px;}
-.container .main button.find{border:0px;}
+.container .main button.find{border:0px;background-color:#E6E6E6;}
 .forget_password .container .main button.submit{margin-left:40px;}
 .container .main div.error_msg{margin-top:10px;font-size:16px;color:#FF0000;text-align:center;width:100%;}
 .container .main div.return_msg p{font-size:16px;margin-left:100px;width:300px;padding:0px;text-indent:0em;text-align:left;}

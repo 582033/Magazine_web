@@ -25,6 +25,7 @@
 .about_1001_first .little_title,.about_1001_second .little_title, .about_1001_third .little_title, .about_1001_fourth .little_title{font-size:18px;margin-top:5px;}
 .about_1001_first .little_title span,.about_1001_second .little_title span, .about_1001_third .little_title span, .about_1001_fourth .little_title span{font-size:20px;}
 .about_1001_first ul li, .about_1001_second ul li, .about_1001_third ul li, .about_1001_fourth ul li{margin-left:30px;}
+.about_1001_first div.concept{font-size:20px;font-weight:bold;}
 .about_us_container .about_letou{width:100%;margin-top:30px;}
 .about_letou .content{width:100%;margin-top:5px;}
 .about_letou .content p{text-indent:2em;}
@@ -36,7 +37,7 @@
 .join_us_container .content .department{font-weight:bold;}
 .join_us_container .job_description .description{text-indent:2em;}
 .join_us_container .job_requirements ul{margin-left:30px;margin-top:5px;}
-.join_us_container .summary{font-weight:bold;font-size:16px;}
+.join_us_container .summary{font-weight:bold;font-size:18px;}
 
 /* contact_us */
 .contact_us_container .subtitle{margin-top:10px;font-size:20px;font-weight:bold;}
