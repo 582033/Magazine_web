@@ -314,7 +314,12 @@ function init_comment() { //{{{
 		var options = {
 			dataType: 'html',
 			success: function (result) {
-				$("#comments").html(result);
+				var $html = $(result);
+				var total = $html.data('total');
+				if (total > 5) { // for magazine detail page
+					$('p.more_comment').show();
+				}
+				$("#comments").html($html.html());
 				$("#comment textarea").val('');
 				close_comment_reply();
 			}

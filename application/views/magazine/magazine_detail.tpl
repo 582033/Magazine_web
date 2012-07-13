@@ -76,7 +76,7 @@
 
 		<div class="comment_preview">
 			{include file="magazine/lib/main-comments.tpl" limit=5}
-			<p class="more_comment">
+			<p class="more_comment"{if !$hasMoreComments} style="display:none"{/if}>
 				<a href="/magazine/{$magazine.id}/comments">查看全部留言</a>
 			</p>
 		</div>

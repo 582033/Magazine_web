@@ -9,6 +9,4 @@
 	<textarea class="text" name="conment"></textarea>
 	<button type="button" id="add">发布</button>
 </form>
-<dl id="comments" class="clearfix">
-	{include file="magazine/lib/comments.tpl"}
-</dl>
+{include file="magazine/lib/comments.tpl"}
