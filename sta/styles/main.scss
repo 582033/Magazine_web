@@ -320,13 +320,49 @@ body#signin,body#signup {
 	.follows {
 		padding-top:10px;
 		dd{ padding:10px 0;}
-		div{ position:relative; width:153px; margin:0 auto;}
-		div a{ float:left; position:relative; z-index:1; display:inline-block; margin-right:1px; margin-bottom:1px;}
-		div a span{ display:none; position:absolute; width:153px; text-align:center; font-size:14px; color:#FFF; font-weight:bold; top:65px; left:0;}
-		div a:hover{ z-index:3;}
-		div a:hover span{ display:block;}
-		div a img{ display:block;}
-		.gray{ position:absolute; left:0; top:0; background:#000; display:none; z-index:2; width:152px; height:203px; -moz-opacity:0.6; filter:alpha(opacity=60);opacity:0.6;}
+		span.curnick {
+			display: none;
+			position:absolute;
+			left:0;
+			top: 0;
+			width:153px;
+			text-align:center;
+			font-size:14px;
+			color:#FFF;
+			font-weight:bold;
+			line-height: 50px;
+			z-index: 10;
+		}
+		span.gray {
+			position:absolute;
+			left:0;
+			top:0;
+			background:#000;
+			display:none;
+			z-index:2;
+			width:152px;
+			-moz-opacity:0.6;
+			filter:alpha(opacity=60);
+			opacity:0.6;
+		}
+		div { position:relative; width:153px; margin:0 auto;}
+		div a {
+			float:left;
+			z-index:1;
+			position: relative;
+			display:inline-block;
+			margin-right:1px;
+			margin-bottom:1px;
+			span {
+				display: none;
+			}
+			img {
+				display:block;
+			}
+			&:hover {
+				z-index:3;
+			}
+		}
 	}
 
 	a.edit{ display:inline-block; width:16px; height:16px; margin-bottom:-3px; background:url(/sta/images/ico_setting.png) no-repeat left top; text-indent:-150px; _text-indent:inherit; _font-size:1px; overflow:hidden;}

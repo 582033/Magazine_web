@@ -10,7 +10,7 @@
 			</p>
  			<div class="user_info">
  				<a href="#">
-					<img src="{$user_info.image|default:'/sta/images/userhead/big.jpg'}" width="180px" height="180px" class="userhead" alt="1{$user_info.nickname}" />
+					<img src="{$user_info.image}!180" width="180px" height="180px" class="userhead" alt="1{$user_info.nickname}" />
  				</a>
  				<ul class="clearfix">
  					<li><a href="#">关注<span>{$user_info.followers}</span></a></li>
@@ -52,8 +52,9 @@
  			<dd>
  				<div class="clearfix">
 					{foreach from=$loved_author.items item=item}
-						<a href="/user/{$user_id}"><img src="{$item.image}" alt="{$item.nickname}" /><span>{$item.nickname}</span></a>
+						<a href="/user/{$user_id}"><img src="{$item.image}!50" width="50" height="50" alt="{$item.nickname}" /><span>{$item.nickname}</span></a>
 					{/foreach}
+					<span class="curnick"></span>
  					<span class="gray"></span>
  				</div>
  			</dd>

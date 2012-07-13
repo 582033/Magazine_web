@@ -18,12 +18,12 @@ $.format = function (source, params) { //{{{
  }; //}}}
  
 $(function() {
-		resize();
 		detail_resize();
 		init_search();
 		init_goto_page();
 		init_comment();
 		init_colorbox();
+		init_user_center();
 		switch ($('body').attr('id')) {
 		case 'magazine_home':
 			init_magazine_home();
@@ -33,6 +33,42 @@ $(function() {
 		}
 });
 
+
+function init_user_center() { //{{{
+	align_height();
+	var $curnick = $('.follows span.curnick');
+	$(".follows a").hover(
+			function() {
+				var h = $(this).parent().height();
+				var pos = $(this).position();
+				$(".follows .gray").height(h).show();
+				$(this).css("z-index", "999");
+				$curnick.width(153);
+				var top = 0;
+				if(pos.top > h - 60) { // the last line
+					if (pos.top == 0) {
+						top = 0;
+						if (pos.left == 51) {
+							$curnick.width(50);
+						}
+					}
+					else {
+						top = pos.top - 51;
+					}
+				}
+				else {
+					top = pos.top + 51;
+				}
+				$curnick.text($(this).find('span').text())
+					.css('top', top)
+					.show();
+			},
+		function(){
+			$(".follows. .gray").hide();
+			$curnick.hide();
+			$(this).css("z-index","0");
+		});
+} //}}}
 function init_colorbox() { // {{{
 	$(document).on('cbox_closed', function(){
 		window.location.reload();
@@ -99,13 +135,13 @@ function detail_resize(){ //{{{
 	})
 } //}}}
 
-function resize(){ //{{{
-	page_height = $(".main_left_line").height();
-	if ($(".sidebar_left").height()<page_height){
-		$(".sidebar_left").css("height",$(".main_left_line").height()-1+"px");
+function align_height() { //{{{
+	var pageh = $(".main_left_line").height();
+	if ($(".sidebar_left").height() < pageh){
+		$(".sidebar_left").height(pageh - 1);
 	}
-	if ($(".right_main").height()<page_height){
-		$(".mag_list").css("height",$(".main_left_line").height()+"px");
+	if ($(".right_main").height() < pageh){
+		$(".mag_list").height(pageh);
 	}
 } //}}}
 
@@ -265,21 +301,6 @@ $(function(){
 		var show = e.type == 'mouseenter' ? true : false;
 		$(this).toggle(show);
 	});
-
-    $(".follows a").mouseenter(function(){
-        $(".follows .gray").css("display","block");
-        $(this).css("z-index","999");
-        $(this).find("span").css("left","-"+$(this).position().left+"px");
-        $(this).find("span").css("display","block");
-		if($(this).position().top>150){
-        	$(this).find("span").css("top","-35px");
-        }
-    });
-    $(".follows a").mouseleave(function(){
-        $(".gray").css("display","none");
-        $(this).find("span").css("display","none");
-        $(this).css("z-index","0");
-    });
 });
 
 

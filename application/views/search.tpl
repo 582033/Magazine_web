@@ -35,7 +35,7 @@
 	{if isset($authors.moreUrl)}<a href="{$authors.moreUrl}" class="more">More</a></dt>{/if}
 	{foreach from=$authors.items item=item}
  	<dd>
- 		<a href="/user/{$item.id}"><img src="{$item.image}" alt="{$item.nickname}" />{$item.nickname}</a>
+ 		<a href="/user/{$item.id}"><img src="{$item.image}!50" alt="{$item.nickname}" />{$item.nickname}</a>
  	</dd>
 	{/foreach}
 </dl>

@@ -1,5 +1,5 @@
 {foreach from=$comments item=item}
-<dt> <a href="{$item.author.url}"><img src="{$item.author.image|default:'/sta/images/userhear_def.gif'}" alt="用户头像" /></a> </dt>
+<dt> <a href="{$item.author.url}"><img src="{$item.author.image}!50" alt="用户头像" /></a> </dt>
 <dd>
 	<p class="info">
 		<a href="{$item.author.url}" class="author">{$item.author.nickname}</a>

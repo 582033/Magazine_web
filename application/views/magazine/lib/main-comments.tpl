@@ -5,7 +5,7 @@
 		<p>回复<a href="#" class="author"></a><span class="comment-content"></span></p>
 		<input type="hidden" name="parent_id" />
 	</div>
-	<img src="{$user_info.image|default:'/sta/images/userhear_def.gif'}" alt="{$user_info.nickname|default:'用户'}" />
+	<img src="{if $user_info}{$user_info.image}!50{else}/sta/images/userhear_def.gif{/if}" alt="{$user_info.nickname|default:'用户'}" />
 	<textarea class="text" name="conment"></textarea>
 	<button type="button" id="add">发布</button>
 </form>
