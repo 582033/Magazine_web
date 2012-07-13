@@ -69,6 +69,10 @@ class Sns extends MY_Controller {
 	 *
 	 */
 	public function callback() { // {{{
+		//sina返回错误码，qq直接关闭
+		if($this->input->get('error_code') == '21330') {
+			redirect('/');
+		}
 		$query = $_SERVER['QUERY_STRING'];
 		$state = @json_decode(base64_decode(urldecode((string)$this->input->get('state'))),true);
 		if(!$state || !$query) {
