@@ -29,9 +29,9 @@ $(function(){
 					</p>
 				</div>
 				{if isset($user_info) && $user_info.role == 1}
-				<a href="http://58.30.78.70:84/LetouMagazine_20120709.rar">下载</a>
+				<a class="downbtn" href="http://58.30.78.70:84/LetouMagazine_20120709.rar">下载</a>
 				{else}
- 				<a class="thickbox" href="/user/applyAuthor/invitation">下载</a>
+ 				<a class="downbtn thickbox" href="/user/applyAuthor/invitation">下载</a>
 				{/if}
  			</div>
  			<ul>
