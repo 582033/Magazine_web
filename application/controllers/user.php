@@ -335,7 +335,7 @@ class User extends Magazine {
 			case 'signup':
 		//$ret_verb = '<dl class="clearfix">  <dd> <div align="center"> <p> '.$row['occur_time'].$row['msg_content'].'</p> <span></span> </div> </dd> </dl> ';
 				if($row['status'] == 0){
-				$msg_css=' id="unread"';
+				$msg_css=' style=\'background:#ffff37;\'';
 				}
 				else{
 				$msg_css='';
