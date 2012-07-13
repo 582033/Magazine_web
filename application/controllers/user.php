@@ -334,8 +334,14 @@ class User extends Magazine {
 		switch($row['verb']){
 			case 'signup':
 		//$ret_verb = '<dl class="clearfix">  <dd> <div align="center"> <p> '.$row['occur_time'].$row['msg_content'].'</p> <span></span> </div> </dd> </dl> ';
+				if($row['status'] == 0){
+				$msg_css=' id="unread"';
+				}
+				else{
+				$msg_css='';
+				}
 
-		$ret_verb = ' <dl class="clearfix" id="'.$row['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="System" /></a></dt> <dd> <div> <p> <strong><a href="#">System：</a></strong>'.$row['msg_content'].'</p> <span> '.$row['occur_time'].'<a href="javascript:delmsg('.$row['msg_id'].')" class="del_msg" onclick="delmsg('.$row['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
+		$ret_verb = ' <dl class="clearfix" id="'.$row['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="System" /></a></dt> <dd'.$msg_css.'> <div> <p> <strong><a href="#">System：</a></strong>'.$row['msg_content'].'</p> <span> '.$row['occur_time'].'<a href="javascript:delmsg('.$row['msg_id'].')" class="del_msg" onclick="delmsg('.$row['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
 			break;
 			case 'typeb':
 		$ret_verb = '<dl class="clearfix">  <dd> <div align="center"> <p>verb typeb </p> <span></span> </div> </dd> </dl> ';
@@ -362,12 +368,11 @@ function print_msg($arr_db,$info){
 		$ret = '';
 		foreach($arr_db as $v){
 			$ret.= $this->verb_msg($v);
-		$res = request($this->api_host."/activity/".$v['msg_id'].'?session_id='.$info['session_id'],array(),"PUT");
-		var_dump($res);
+			//update message status
+		 request($this->api_host."/activity/".$v['msg_id'].'?session_id='.$info['session_id'],json_encode(array()),"PUT");
 			
 		
 		}
-		exit;
 	
 	}
 
