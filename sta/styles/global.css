@@ -90,7 +90,7 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .element_list dd.topic{ width:580px; height:450px;}
 
 .mag_list dd a img,.element_list dd a img{ display:block;}
-.mag_list dd h3,.element_list dd h3{ zoom:1; width:170px; height:40px; line-height:40px; font-size:17px; font-weight:bold; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
+.mag_list dd h3,.element_list dd h3{ zoom:1; width:170px; height:40px; line-height:40px; font-size:14px; font-weight:bold; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;}
 .mag_list dd h3 a:hover,.element_list dd h3 a:hover{ color:#0590b3;}
 .element_list dd h3{ text-align:center; height:40px; line-height:40px;}
 .mag_list.m_index dd h3{ text-align:center;}

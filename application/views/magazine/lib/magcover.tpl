@@ -26,7 +26,7 @@
 			</div>
 		</div>
 	</div>
-	<h3><a href="/magazine/detail/{$item.id}">{$item.name}</a></h3>
+	<h3><a href="/magazine/detail/{$item.id}" title="{$item.name}">{$item.name}</a></h3>
 	{if $cover_show_intro}<p>{$item.intro|truncate:30}</p>{/if}
 	{if $cover_show_status}
 	<div class="edit_btn">
