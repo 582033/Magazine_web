@@ -7,6 +7,7 @@ function showSigninBox() {
 	$.colorbox({
 		overlayClose: false,
 		fixed: true,
+		opacity: 0.5,
 		href: '/user/signinbox'
 	});
 }

@@ -76,6 +76,7 @@ function init_colorbox() { // {{{
 	var opts = {
 		overlayClose: false,
 		fixed: true,
+		opacity: 0.5
 	};
 	$(document).on('click', 'a.thickbox', function() {
 		$(this).colorbox($.extend({}, opts, {open: true}));
