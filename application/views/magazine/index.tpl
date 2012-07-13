@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/sta/js/gallery.js"></script>
 <div class="main">
 	<dl class="mag_list clearfix">
-		<dt><strong>看杂志</strong> <a href="/mag" class="more">More</a></dt>
+		<dt><strong>爱阅读</strong> <a href="/mag" class="more">More</a></dt>
 		{include file="magazine/lib/ad-gallery.tpl" container_id="magazine_gallery_container" ad_slot=$ad_slot_indextop}
 		{foreach from=$mag_list item=item key=key}
 		{include file="magazine/lib/magcover.tpl" cover_show_intro=true}

@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/sta/js/gallery.js"></script>
 <div class="main">
 	<dl class="mag_list m_topic clearfix">
-		<dt><strong><span><a href="#">看杂志</a></span></strong></dt>
+		<dt><strong><span><a href="#">爱阅读</a></span></strong></dt>
 		{include file="magazine/lib/ad-gallery.tpl" ad_slot=$ad_slot_magtop}
 		<dd class="info clearfix">
 			<ul class="clearfix">

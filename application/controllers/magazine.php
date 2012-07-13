@@ -268,7 +268,7 @@ class Magazine extends MY_Controller {
 		$data = array(
 				'navs' => array(
 					array(
-						'name' => '杂志',
+						'name' => '阅读',
 						'url' => '/mag',
 						),
 					array(
@@ -309,7 +309,7 @@ class Magazine extends MY_Controller {
 		$data = array(
 				'navs' => array(
 					array(
-						'name' => '杂志',
+						'name' => '阅读',
 						'url' => '/mag',
 						),
 					array(

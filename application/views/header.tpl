@@ -81,7 +81,7 @@
 					{/if}
 						 <ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
 							 <li><a href="/user/me/setting">账号设置</a></li>
-							 <li><a href="/user/me/magazines">喜欢的书</a></li>
+							 <li><a href="/user/me/magazines">喜欢的阅读</a></li>
 							 <li><a href="/user/me/elements">喜欢的发现</a></li>
 							 <li><a href="/user/me/messages">站内消息</a></li>
 							 <li><a href="/user/signout">退出账号</a></li>
