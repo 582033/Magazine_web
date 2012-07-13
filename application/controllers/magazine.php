@@ -509,6 +509,18 @@ class Magazine extends MY_Controller {
 	public function __jsonp(array &$result) {
 		return $this->input->get('callback').'('.json_encode($result).')';
 	}
+	public function pub_for_last() {
+		$id = $this->input->get('id');
+		$magazine = $this->mag_model->_get_magazine_by_id($id);
+		$catid=0;
+		$all_recommendation = $this->mag_model->_get_recommend_bycat($catid);
+		$recommendation=$all_recommendation['data']['items']; 
+		$data = array(
+				'author'=>$magazine['author'],
+				'recommend'=>$recommendation
+				);
+		$this->smarty->view('magazine/pub_for_last.tpl', $data);
+	}
 
 	function _validate_api_result($result) {
 		if ($return['httpcode'] >= 300) {
