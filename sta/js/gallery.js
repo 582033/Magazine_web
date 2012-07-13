@@ -7,7 +7,7 @@ $(function() {
 		$me.find('.slide_pic .slides').cycle({
 			fx: 'scrollHorz',
 			speed:  500,
-			timeout: 0,
+			timeout: 4000,
 			next: $me.find('.slide_nav .next'),
 			prev: $me.find('.slide_nav .prev'),
 			pager: $me.find('.point'),
