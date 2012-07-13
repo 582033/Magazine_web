@@ -9,3 +9,11 @@
 	</dl>
 	{$page_list}
 </div>
+{literal}
+<script>
+	$(".edit_btn a").click(function(){
+		val = $(this).next().val();
+		$(this).colorbox({href:"/user/pub_mag?mag_id="+val});
+	});
+</script>
+{/literal}

@@ -159,6 +159,7 @@ class User extends Magazine {
 	}	//}}}
 
 	function bookstore($user_id, $page = '1', $type = 'published'){	//{{{
+		echo $page;
 		$page = $page ? $page : 1;
 		$type = $type ? $type : 'published';
 		if ($user_id == 'me') {
@@ -329,7 +330,27 @@ class User extends Magazine {
 		}
 		$this->_json_output($data);
 	}	//}}}
-	
+
+	function pub_mag (){	//发布杂志{{{
+		if($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$this->auth->check();
+			$request = $this->user_loved_model->pub_mag();
+			echo $request;
+		}
+		else {
+			$this->auth->check();
+			$mag_id = $this->input->get('mag_id');	
+			$mag_info = $this->mag_model->_get_magazine_by_id($mag_id);
+			$mag_info['tag'] = implode(",", $mag_info['tag']);
+			$data = array(
+				'mag_category' => $this->mag_model->_get_mag_category(),
+				'mag_info' => $mag_info,
+				'mag_id' => $mag_id,
+				);
+			$this->smarty->view('user/pub_mag.tpl', $data);
+		}
+	}	//}}}
+
 	function verb_msg($row){
 		switch($row['verb']){
 			case 'signup':
@@ -353,8 +374,6 @@ class User extends Magazine {
 		}
 
 		return $ret_verb;
-	
-	
 	}
 
 //join msg  info from db and tpl
@@ -362,7 +381,6 @@ function print_msg($arr_db,$info){
 	if(count($arr_db) == 0){
 		//no msg ，show message to prompt
 		$ret= '<dl class="clearfix">  <dd> <div align="center"> <p> 目前暂无消息</p> <span></span> </div> </dd> </dl> ';
-
 	}
 	else{
 		$ret = '';
@@ -370,12 +388,8 @@ function print_msg($arr_db,$info){
 			$ret.= $this->verb_msg($v);
 			//update message status
 		 request($this->api_host."/activity/".$v['msg_id'].'?session_id='.$info['session_id'],json_encode(array()),"PUT");
-			
-		
 		}
-	
 	}
-
 return $ret;	
 
 }

@@ -147,4 +147,15 @@ class Mag_Model extends CI_Model {
 	function _like($type, $id, $action='like') {// 喜欢杂志/元素, follow用户, 以及逆向操作 {{{
 		return request($this->api_host . "/$type/$id/$action?session_id=" . $this->session->userdata('session_id'), array(), 'POST');
 	}//}}}
+
+	function _get_mag_category () {	//获取杂志分类列表{{{
+		$cates = request($this->api_host . "/cates");
+		if ($cates['httpcode'] == '200') {
+			$mag_category = array();
+			for ($i=0; $i < $cates['data']['totalResults']; $i++) {
+				$mag_category[$i] = $cates['data']['items'][$i]['name'];
+			}
+			return $mag_category;
+		}
+	}	//}}}
 }

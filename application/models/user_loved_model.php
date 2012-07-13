@@ -47,5 +47,24 @@ class user_loved_model extends CI_Model {
 				);
 		return $total;	
 	}	//}}}
+	
+	function pub_mag () {	//发布杂志{{{
+		$magazine_id = $this->input->post('mag_id');
+		$session_id = $this->session->userdata('session_id');
+		$mag_info = array(
+				'name' => $this->input->post('name'),
+				'mag_category' => $this->input->post('mag_category'),
+				'description' => $this->input->post('description'),
+				'tag' => $this->input->post('tag'),
+				);
+		$pub_mag = request($this->api_host."/magazine/$magazine_id?session_id=$session_id", json_encode($mag_info), 'PUT', false);
+		if ($pub_mag['httpcode'] == '202'){
+			$msg = 'ok';
+		}
+		else {
+			$msg = 'error';
+		}
+		return $msg;
+	}	//}}}
 
 }

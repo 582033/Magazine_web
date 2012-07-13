@@ -33,7 +33,10 @@
 		{if $item.status == '0'}<span>新上传</span>{/if}
 		{if $item.status == '1'}<span>审核中</span>{/if}
 		{if $item.status == '3'}<span>审核未通过</span>{/if}
-		{if $item.status == '2'}<a href="#">审核通过</a>{/if}
+		{if $item.status == '2'}
+			<a href="javascript:void(0)" class="{$item.id}">审核通过</a>
+			<input type="hidden" value="{$item.id}">
+		{/if}
 	</div>
 	{/if}
 </dd>
