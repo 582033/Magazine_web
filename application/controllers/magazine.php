@@ -301,6 +301,9 @@ class Magazine extends MY_Controller {
 		$page_list = $this->page_model->page_list("/magazine/$id/comments", $limit, $totalResults, $page, 'pagenav');
 		$reverse_cate_mag = array_flip($this->cate_map);
 		$magazine['url'] = '/magazine/detail/' . $magazine['id'];
+
+		$this->load->model('user_info_model');
+		$user_info = $this->user_info_model->get_user($this->session->userdata('id'));
 		$data = array(
 				'navs' => array(
 					array(
@@ -323,6 +326,7 @@ class Magazine extends MY_Controller {
 					'magazine' => $magazine,
 					'comments' => $comment['items'],
 					'page_list' => $page_list,
+					'user_info' => $user_info,
 					);
 		$this->smarty->view('magazine/comment_list.tpl', $data);
 	}//}}}
