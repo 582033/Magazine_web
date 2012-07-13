@@ -287,6 +287,7 @@ class Magazine extends MY_Controller {
 					'comments' => $comment['items'],
 					'hasMoreComments' => $comment['totalResults'] > 5,
 					'curnav' => 'mag',
+					'pageid' => 'mag_detail',
 					);
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}

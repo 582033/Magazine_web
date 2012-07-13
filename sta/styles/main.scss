@@ -403,7 +403,7 @@ body#down { /* {{{ */
 	}
 } /* }}} */
 /*comment*/
-div.main.comment {
+div.main.comment { /* {{{ */
 	width:998px; border:1px solid #e8e8e8; background:#FFF; margin-bottom:30px;
 	.sidebar_left {
 		background:none;
@@ -429,7 +429,7 @@ div.main.comment {
 			height:auto;
 		}
 	}
-}
+} /* }}} */
 
 .main.comment .right_main, .comment_preview { /* {{{ */
 	h3 {
@@ -527,6 +527,15 @@ div.main.comment {
 
 .comment_preview dd .info {
 	padding-bottom:3px;
+}
+
+#mag_detail {
+	div.shareto {
+		line-height: 27px;
+		span.share {
+			float: left;
+		}
+	}
 }
 /*
 vim: fdm=marker

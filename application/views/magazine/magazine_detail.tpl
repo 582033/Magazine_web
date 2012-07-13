@@ -27,7 +27,8 @@
 			<p class="intro_txt" style="height:77px;"><strong>简介：</strong>
 				{$magazine.intro}
 			</p>
-			<div style="height:35px;">
+			<div class="shareto">
+				<span class="share">分享到:</span>
 				<!-- Baidu Button BEGIN -->
 					<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
 						<a class="bds_tsina" style="margin-left:5px;"></a>
