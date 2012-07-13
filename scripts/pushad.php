@@ -44,6 +44,7 @@ foreach($arr_lines as $v){
 				'title'=>$arr_row['3'],
 				'image'=>$arr_row['4'],
 				'text'=>$arr_row['5'],
+				'weight' => $arr_row['6'],
 			     );
 
 	$arr_to_ins[]=$row_db;
@@ -58,6 +59,7 @@ foreach($arr_lines as $v){
 				'url'=>$arr_row['2'],
 				'title'=>$arr_row['3'],
 				'text'=>$arr_row['4'],
+				'weight' => $arr_row['5'],
 			);	
 
 
@@ -74,6 +76,7 @@ foreach($arr_lines as $v){
 				'title'=>$arr_row['3'],
 				'image'=>$arr_row['4'],
 				'resource_id'=>$arr_row['5'],
+				'weight' => $arr_row['6'],
 			);	
 
 
@@ -89,6 +92,7 @@ foreach($arr_lines as $v){
 				'title'=>$arr_row['2'],
 				'text'=>$arr_row['3'],
 				'resource_id' => $arr_row['4'],
+				'weight' => $arr_row['5'],
 			);	
 
 
