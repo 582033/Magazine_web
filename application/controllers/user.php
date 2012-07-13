@@ -161,7 +161,6 @@ class User extends Magazine {
 	}	//}}}
 
 	function bookstore($user_id, $page = '1', $type = 'published'){	//{{{
-		echo $page;
 		$page = $page ? $page : 1;
 		$type = $type ? $type : 'published';
 		if ($user_id == 'me') {
