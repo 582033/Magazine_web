@@ -36,6 +36,9 @@ function cancelLike(type, type_id, where) {
 				$('div.userinfo a.follow').show();
 				$('div.userinfo p.followed').hide();
 			}
+			else if (where  == 'user_center_followee') {
+				window.location.reload();
+			}
 			else { // detail
 				$('a.follow').show();
 				$('a.followed').hide();

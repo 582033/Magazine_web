@@ -7,7 +7,7 @@
 					<dd>
 						<strong><a href="#">{$item.nickname}</a></strong>
 						<p><a href="#">关注</a> | <a href="#">发现</a> | <a href="#">作品{$item.magazines}</a></p>
-						<span><a href="#">取消关注</a></span>
+						<span><a href="javascript:void(0)" onclick="cancelLike('user', '{$item.id}', 'user_center_followee')">取消关注</a></span>
 					</dd>
 				</dl>
 				{/foreach}	
