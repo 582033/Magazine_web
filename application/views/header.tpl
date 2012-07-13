@@ -74,7 +74,11 @@
 								 <a href="/user/me">{$user_info.nickname}<img class="userhead_small" src="{$user_info.image}!50" width="24px" height="24px" /></a> </span> <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
 						 </div>
 						 <div class="clearfix"></div>
-						 <a href="/user/me/messages" class="msg_tip"><span>00</span></a>
+					{if $user_info.unread_msg_num gt 0}
+						 <a href="/user/me/messages" class="msg_tip"><span>{$user_info.unread_msg_num}</span></a>
+					{else}
+
+					{/if}
 						 <ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
 							 <li><a href="/user/me/setting">账号设置</a></li>
 							 <li><a href="/user/me/magazines">喜欢的书</a></li>

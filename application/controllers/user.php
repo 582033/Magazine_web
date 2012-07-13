@@ -330,28 +330,6 @@ class User extends Magazine {
 		$this->_json_output($data);
 	}	//}}}
 	
-	//show all messages
-	function messages($user_id, $p=1) { //{{{
-		$p = $p ? $p : 1;
-		$user_info = $this->_auth_check_web();
-		if ($user_id != 'me' && $user_id != $user_info['id']) {
-			show_error('', 401);
-		}
-		if($p==1){
-			$start=0;
-			$limit=$this->config->item('page_msg_num');
-		}
-		else{
-			$start=$this->config->item('page_msg_num')*($p-1);
-			$limit=$this->config->item('page_msg_num');
-
-		}
-		$res = request($this->api_host."/user/".$user_info['id']."/activities",
-				array('start'=>$start,"limit"=>$limit,"session_id"=>$user_info['session_id']));
-		$arr_totpl=array();
-		$msg_ctt='';
-		$totalnum=$res['data']['totalResults'];
-// join html code with different verb
 	function verb_msg($row){
 		switch($row['verb']){
 			case 'signup':
@@ -374,7 +352,7 @@ class User extends Magazine {
 	}
 
 //join msg  info from db and tpl
-function print_msg($arr_db){
+function print_msg($arr_db,$info){
 	if(count($arr_db) == 0){
 		//no msg ，show message to prompt
 		$ret= '<dl class="clearfix">  <dd> <div align="center"> <p> 目前暂无消息</p> <span></span> </div> </dd> </dl> ';
@@ -384,8 +362,12 @@ function print_msg($arr_db){
 		$ret = '';
 		foreach($arr_db as $v){
 			$ret.= $this->verb_msg($v);
+		$res = request($this->api_host."/activity/".$v['msg_id'].'?session_id='.$info['session_id'],array(),"PUT");
+		var_dump($res);
+			
 		
 		}
+		exit;
 	
 	}
 
@@ -396,13 +378,8 @@ return $ret;
 //show all messages
 function messages($user_id, $p=1) {
 	$p = $p ? $p : 1;
-	$user_info = $this->check_signin();
 	//check login status
-	if($user_info===FALSE){
-		header('HTTP1.1 401');
-		exit();
-
-	}
+	$user_info = $this->_auth_check_web();
 	if ($user_id != 'me' && $user_id != $user_info['id']) {
 		show_error('', 401);
 	}
@@ -421,7 +398,7 @@ function messages($user_id, $p=1) {
 	$msg_ctt='';
 	$totalnum=$res['data']['totalResults'];
 	if(count($res['data']['items'])){
-		$msg_ctt=$this->print_msg($res['data']['items']);
+		$msg_ctt=$this->print_msg($res['data']['items'],$user_info);
 	}
 	$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
 	$data=array();
@@ -435,17 +412,6 @@ function messages($user_id, $p=1) {
 	$this->smarty->view('user/user_center_main.tpl',$data);
 
 			}
-		$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
-		$data=array();
-		$data['msg']=$msg_ctt;
-		$data['love_msg']="true";
-		$data['page_list']=$page_list;
-		$data['msg_page']='msg_page';
-		$data['web_host']='$.getJSON("'.$this->config->item('api_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
-		$data['is_me'] = TRUE;
-		$data['user_id'] = 'me';
-		$this->smarty->view('user/user_center_main.tpl',$data);
-	} //}}}
 	//show all messages
 	function msglist($page){
 		$this->index($page);
