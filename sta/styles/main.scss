@@ -56,24 +56,24 @@
 		}
 	}
 
+	&.reg, &.login {
+		.main form p button {
+			cursor: pointer;
+			display:block;
+			height:42px;
+			background: no-repeat left top;
+			border:none;
+			text-indent:-400px;
+			overflow:hidden;
+		}
+	}
 	&.reg .main form p button {
-		cursor: pointer;
-		display:block;
 		width:249px;
-		height:42px;
-		background:url(/sta/images/btn_dialog_reg.jpg) no-repeat left top;
-		border:none;
-		text-indent:-400px;
-		overflow:hidden;}
+		background-image:url(/sta/images/btn_dialog_reg.jpg);
+	}
 	&.login .main form p button {
-		cursor: pointer;
-		display:block;
 		width:111px;
-		height:42px;
-		background:url(/sta/images/btn_dialog_login.jpg) no-repeat left top;
-		border:none;
-		text-indent:-400px;
-		overflow:hidden;
+		background-image: url(/sta/images/btn_dialog_login.jpg);
 	}
 	&.reg .main dl,&.login .main dl{ float:left; padding-left:40px; padding-top:10px;}
 	&.login .main dd.right{ text-align:right;}
@@ -82,6 +82,23 @@
 	&.reg .main dt{ padding-top:20px; font-size:16px; font-weight:bold;}
 	&.login .main dt{ padding-top:10px; font-size:16px; font-weight:bold;}
 	&.reg .main dd,&.login .main dd{ padding:10px 0;}
+	&.reg .main form {
+		p.agreement {
+			padding: 10px 0 10px 110px;
+			input {
+				width: auto;
+				height: auto;
+				margin-right: 10px;
+			}
+			a {
+				color: #0590B3;
+				font-weight: bold;
+				cursor: pointer;
+				text-decoration: underline;
+				margin-left: 5px;
+			}
+		}
+	}
 
 	&.regok { /* {{{ */
 		top:50%; left:50%; width:736px; height:450px; margin:-225px 0 0 -368px;

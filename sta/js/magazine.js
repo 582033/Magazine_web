@@ -205,6 +205,9 @@ function signup(form) {	// {{{
 	if (passwd != re_passwd) {
 		return error('密码不一致');
 	}
+	if (!$('input.agreement').is(':checked')) {
+		return error('您必须同意1001夜法律声明');
+	}
 
 	var messages = {
 		'USER_EXISTS': '用户名已存在'
