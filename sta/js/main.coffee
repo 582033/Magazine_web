@@ -1,6 +1,6 @@
 g1001 =
   url:
-    userInfo: 'http://ping.api.in1001.com/v1/user/{0}?projection=fuller'
+    userInfo: 'http://api.in1001.com/v1/user/{0}?projection=fuller'
   pageId: $('body').attr('id')
   userId: $.cookie 'uid'
   user: null
