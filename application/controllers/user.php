@@ -1,6 +1,7 @@
 <?php
 include 'magazine.php';
-
+include("PHPMailer/class.phpmailer.php");
+include("PHPMailer/class.smtp.php"); // note, this is optional - gets called from main class if not already loaded
 class User extends Magazine {
 
 	function User () {	//{{{
@@ -234,12 +235,17 @@ class User extends Magazine {
 	} // }}}
 	function set_pwd(){	// {{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$post = array(
-						'old_pwd' => trim($this->input->post('old_pwd')),
-						'new_pwd' => trim($this->input->post('reset_pwd')),
-						);
-			$item = $this->user_info_model->_modify_user_pwd($post);
-			echo json_encode($item);
+			if ($this->input->post('old_pwd') && $this->input->post('reset_pwd')){
+				$post = array(
+							'old_pwd' => trim($this->input->post('old_pwd')),
+							'new_pwd' => trim($this->input->post('reset_pwd')),
+							);
+				$item = $this->user_info_model->_modify_user_pwd($post);
+				$this->_json_output($item);
+			}else{
+				$msg = '未提交密码信息';
+				$this->_json_output($msg);
+			}
 		}else{
 			$data = array(
 					'user_set' => 'set_pwd',
@@ -440,73 +446,70 @@ function messages($user_id, $p=1) {
 		$res = request($this->api_host."/activity/".$msgid,'session_id='.$user_info['session_id'],"DELETE");
 	}
 
-	function reset_password(){
-		$this->smarty->view('user/reset_password.tpl');
+	function reset_pwd($key){
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$account_name = $this->get_redis()->get($key);
+			$new_pwd = trim($this->input->post('reset_pwd'));
+		//	$this->_json_output($data);
+			$result = $this->send_email_model->_update_account_name($account_name, $new_pwd);
+			if ($result == 'true'){
+				$msg = "true";
+				$this->_json_output($msg);
+			}else{
+				$msg = "fail";
+				$this->_json_output($msg);
+			}
+		}else{
+			$msg = "error!";
+			$this->_json_output($msg);
+		}
 	}
+
+	function reset_password_show($key){
+		$data = array('key' => $key);
+		$this->smarty->view('user/reset_password.tpl', $data);
+	}
+
+	 function get_redis () { //{{{
+        $redis = new Redis();
+        $redis->connect($this->config->item('redis_server'));
+        return $redis;
+    }   //}}}
 
 	function forget_password(){
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$email = trim($this->input->post('email'));
-			if (valid_email($email)){
-				$info = $this->send_email_model->_get_username($email);
-				if ($info == 0){
+			$info = $this->send_email_model->_get_username($email);
+			if (!is_array($info)){
+				$msg = 'false';
+				$this->_json_output($msg);
+			}else{
+				$key = random_string('alnum', 8);
+				$this->get_redis()->setex($key, $this->config->item('salt_expires'), $email);
+				$mail             = new PHPMailer();
+				$mail->IsSMTP();
+				$mail->SMTPAuth   = true;                  // enable SMTP authentication
+				$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+				$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+				$mail->Port       = 465;                   // set the SMTP port
+				$mail->Username   = "eee168m@gmail.com";  // GMAIL username
+				$mail->Password   = "eee168mailer";            // GMAIL password
+				$mail->From       = "eee168m@gmail.com";
+				$mail->FromName   = "1001 NIGHT";
+				$mail->Subject = "RESET YOUR PASSWORD";
+				$mail->Body = "http://mtong.a.1001s.cn/user/reset_password_show/$key";
+				$mail->WordWrap   = 80; // set word wrap
+				$mail->AddAddress($email);
+				if(!$mail->Send()) {
 					$msg = 'false';
-					echo json_encode($msg);
+					$this->_json_output($msg);
 				}else{
 					$msg = 'true';
-					echo json_encode($msg);
+					$this->_json_output($msg);
 				}
-			}else{
-					$msg = 'false';
-					echo json_encode($msg);
 			}
 		}else{
 			$this->smarty->view('user/forget_password.tpl');
 		}
-			/*		$email_to = $email;
-					$subject = '1001s重置密码';
-					$content = "<a href='http://mtong.a.1001s.cn/user/reset_password' >http://mtong.a.1001s.cn/user/reset_password</a>";
-					mail($email_to, $subject, $content);
-					echo json_encode($msg);
-					include("class.phpmailer.php");
-					include("class.smtp.php"); // note, this is optional - gets called from main class if not already loaded
-
-					$mail             = new PHPMailer();
-
-					$mail->IsSMTP();
-					$mail->SMTPAuth   = true;                  // enable SMTP authentication
-					$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-					$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-					$mail->Port       = 465;                   // set the SMTP port
-
-					$mail->Username   = "eee168m@gmail.com";  // GMAIL username
-					$mail->Password   = "eee168mailer";            // GMAIL password
-
-					$mail->From       = "eee168m@gmail.com";
-					$mail->FromName   = "Build Daemon";
-					$mail->Subject    = $argv[1];
-					$mail->Body       = $argv[2];
-					$mail->WordWrap   = 80; // set word wrap
-
-					//$mail->AddReplyTo("replyto@yourdomain.com","Webmaster");
-					if ($argc > 3)
-					{
-							$attachment = $argc - 3;
-							while ($attachment > 0)
-							{
-							$mail->AddAddress($argv[2+$attachment]);
-									$attachment = $attachment - 1;
-							}
-					}
-					//$mail->AddAttachment("/path/to/file.zip");             // attachment
-					//$mail->AddAttachment("/path/to/image.jpg", "new.jpg"); // attachment
-
-					if(!$mail->Send()) {
-					  echo "Mailer Error: " . $mail->ErrorInfo;
-					} else {
-					  echo "Message has been sent";
-					}
-			*/
-
 	}
 }

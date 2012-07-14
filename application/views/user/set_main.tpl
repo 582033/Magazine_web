@@ -6,6 +6,9 @@
 			<li class="s_base {if $user_set == 'set_base'}sel{/if}">
 				<a href="set_base">基本资料</a>
 			</li>
+			<li class="s_pwd {if $user_set == 'set_pwd'}sel{/if}">
+				<a href="set_pwd">修改密码</a>
+			</li>
 			<li class="s_pic {if $user_set == 'set_headpic'}sel{/if}">
 				<a href="set_headpic">头像设置</a>
 			</li>
@@ -14,9 +17,6 @@
 			</li>
 			<li class="s_share {if $user_set == 'set_share'}sel{/if}">
 				<a href="set_share">分享管理</a>
-			</li>
-			<li class="s_pwd {if $user_set == 'set_pwd'}sel{/if}">
-				<a href="set_pwd">修改密码</a>
 			</li>
 <!--
 			<li class="s_auther {if $user_set == 'set_auther'}sel{/if}">

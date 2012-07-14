@@ -1,22 +1,21 @@
 <div class="set_main pwd">
-	<div class="occupying_by_20"></div>
 	<div class="modify_password">
-		<div class="occupying_by_30"></div>
 		<div class="container">
-			<div class="title">密码修改</div>
-			<div class="occupying_by_30"></div>
-				<div class="main">
-					<form action="/user/set_pwd" name="modify_pwd" method="post">
-						<div class="old_pwd"><p class="old_pwd">原始密码：</p><input type="password" name="old_pwd" class="old_pwd" /></div>
-						<div class="occupying_by_30"></div>
-						<div class="reset_pwd"><p class="reset_pwd">重置密码：</p><input type="password" name="reset_pwd" class="reset_pwd" /></div>
-						<div class="occupying_by_30"></div>
-						<div class="pwd_sure"><p class="pwd_sure">确认密码：</p><input type="password" name="pwd_sure" class="pwd_sure" /></div>
-						<div class="occupying_by_30"></div>
-						<button class="btn_set submit" disabled="disabled"><span>完成</span></button>
-						<div class="error_msg"></div>
-					</form>
-				</div>
+			<div class="title">修改密码</div>
+			<div class="occupying_by_10"></div>
+			<div class="main">
+				<form action="/user/set_pwd" name="modify_pwd" method="post">
+					<div class="old_pwd"><p class="old_pwd">原始密码：</p><input type="password" name="old_pwd" class="old_pwd" /></div>
+					<div class="occupying_by_20"></div>
+					<div class="reset_pwd"><p class="reset_pwd">重置密码：</p><input type="password" name="reset_pwd" class="reset_pwd" /></div>
+					<div class="occupying_by_20"></div>
+					<div class="pwd_sure"><p class="pwd_sure">确认密码：</p><input type="password" name="pwd_sure" class="pwd_sure" /></div>
+					<div class="occupying_by_20"></div>
+					<button class="btn_set submit" disabled="disabled"><span>完成</span></button>
+					<div class="error_msg"></div>
+					<div class="return_msg"></div>
+				</form>
+			</div>
 		</div>
 	</div>
 	<div class="occupying_by_20"></div>
@@ -39,9 +38,11 @@ function judge($type){
 				var options = {
 					dataType : 'json',
 					success: function(result) {
-						alert(result);
 						if (result == '修改成功'){
+							alert(result);
 							location.reload();
+						}else{
+							$("form[name='modify_pwd'] div.return_msg").text(result);
 						}
 					}
 				};

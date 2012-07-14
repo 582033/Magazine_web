@@ -12,10 +12,10 @@
 					<input type="text" name="email" class="email" />
 					<div class="description">请输入您注册用的邮箱地址，系统会将您重置密码的链接发送到您注册用的邮箱中</div>
 				</div>
-				<div class="occupying_by_30"></div>
+				<div class="occupying_by_20"></div>
 				<button class="find" /><img src="/sta/images/find_password.png"></button>
 				<div class="error_msg"></div>
-				<div class="return_msg"><p></p></div>
+				<div class="return_msg"></div>
 			</form>
 		</div>
 	</div>
@@ -38,9 +38,11 @@ function judge($type){
 					dataType : 'json',
 					success: function(result) {
 						if (result == 'true'){
-							$("form[name='forget_pwd'] div.return_msg p").text('已经向您填写的邮箱中发送确认邮件，请登录邮箱，点击确认链接，完成密码修改');
-						}else{
-							$("form[name='forget_pwd'] div.return_msg p").text('邮箱错误，请检查您填写的邮箱');
+							$("form[name='forget_pwd'] div.return_msg").text('已经向您填写的邮箱中发送确认邮件，请登录邮箱，点击确认链接，完成密码修改');
+						}else if (result == 'false'){
+							$("form[name='forget_pwd'] div.return_msg").text('邮箱错误，请检查您填写的邮箱');
+						}else if (result == 'error'){
+							$("form[name='forget_pwd'] div.return_msg").text('发送失败');
 						}
 					}
 				};

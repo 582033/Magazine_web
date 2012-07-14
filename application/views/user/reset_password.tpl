@@ -6,12 +6,13 @@
 		<div class="title">密码重置</div>
 		<div class="occupying_by_30"></div>
 			<div class="main">
-				<form name="reset_pwd" action="/user/reset_password" method="post">
-					<div class="reset_pwd"><p class="reset_pwd">重置密码：</p><input type="password" name="reset_pwd" class="reset_pwd" /><p class="err_msg"></p></div>
+				<form name="reset_pwd" action="/user/reset_pwd/{$key}" method="post">
+					<div class="reset_pwd"><p class="reset_pwd">重置密码：</p><input type="password" name="reset_pwd" class="reset_pwd" /></div>
 					<div class="occupying_by_30"></div>
-					<div class="pwd_sure"><p class="pwd_sure">确认密码：</p><input type="password" name="pwd_sure" class="pwd_sure" /><p class="err_msg"></p></div>
+					<div class="pwd_sure"><p class="pwd_sure">确认密码：</p><input type="password" name="pwd_sure" class="pwd_sure" /></div>
 					<div class="occupying_by_30"></div>
 					<button class="submit" /><img src="/sta/images/save_settings.png"></button>
+					<div class="error_msg"></div>
 				</form>
 			</div>
 	</div>
@@ -36,8 +37,10 @@ function judge($type){
 				var options = {
 					dataType : 'json',
 					success: function(result) {
-						alert(result);
-						location.reload();
+						if (result == 'true'){
+							alert('重置成功');
+							location.reload();
+						}					
 					}
 				};
 				$("[name='reset_pwd']").ajaxSubmit(options);

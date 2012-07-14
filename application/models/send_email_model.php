@@ -11,10 +11,15 @@ class send_email_model extends CI_Model{
 						->from('account')
 						->where($where)
 						->get()
-						->num_rows();
+						->row_array();
 		return $row;
 	}
 	
-	
+	function _update_account_name($account_name, $new_pwd){
+		$where = array('account_name' => $account_name);
+		$data = array('passwd' => md5($new_pwd));
+		$result = $this->db->update('account', $data, $where);
+		return $result;
+	}
 	
 }
