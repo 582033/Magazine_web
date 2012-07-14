@@ -7,7 +7,7 @@
         <a class="bds_douban"></a>
         <a class="bds_hi"></a>
         <a class="bds_kaixin001"></a>
-        <span class="bds_more">更多</span>
+        <!--<span class="bds_more">更多</span>-->
     </div>
 <script type="text/javascript" id="bdshare_js" data="type=tools&amp;mini=1" ></script>
 <script type="text/javascript" id="bdshell_js"></script>
