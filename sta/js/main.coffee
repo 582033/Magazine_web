@@ -78,3 +78,29 @@ like = (type, type_id, where) ->
           else # detail
             $e.addClass('favorited')
   )
+showMsgbox = (msg, toUrl) ->
+  '
+  toUrl - the url to go when box closes
+    current - reload current page
+    url - redirect to given url
+    null - do nothing
+  '
+  $('#msgbox p').text(msg)
+  $.colorbox
+    overlayClose: true
+    fixed: true
+    opacity: 0.5
+    inline: true
+    href: '#msgbox'
+    open: true
+    width: 350
+    height: 150
+    initialWidth: 350
+    initialHeight: 150
+    onClosed: ->
+      if not toUrl then return
+      if toUrl == 'current'
+        window.location.reload()
+      else
+        window.location.href = toUrl
+

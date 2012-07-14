@@ -231,6 +231,16 @@
 		font-weight: bold;
 	}
 } /* }}} */
+#msgbox {
+	display: block;
+	p {
+		margin-top: 25px;
+		margin-left: 25px;
+		width: 213px;
+		font-size: 14px;
+		line-height: 18px;
+	}
+}
 body#signin,body#signup { // {{{
 	hr {
 		position: relative;

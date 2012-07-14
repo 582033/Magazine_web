@@ -9,5 +9,8 @@
 				<p>©2012　京ICP备09034412号</p>
 			<div>
 		</div>
+		<div id="msgbox">
+			<p></p>
+		</div>
 	</body>
 </html>

@@ -71,7 +71,9 @@ function init_user_center() { //{{{
 } //}}}
 function init_colorbox() { // {{{
 	$(document).on('cbox_closed', function(){
-		window.location.reload();
+		if (!$.colorbox.element().attr('id') == 'msgbox') {
+			window.location.reload();
+		}
 	});
 	var opts = {
 		overlayClose: false,
