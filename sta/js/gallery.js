@@ -1,3 +1,18 @@
+// fadeZoom2 similar to Ken Burns effect in http://tobia.github.com/CrossSlide/
+$.fn.cycle.transitions.fadeZoom2 = function($cont, $slides, opts) {
+	opts.before.push(function(curr, next, opts) {
+		$.fn.cycle.commonReset(curr,next,opts,false,false);
+		opts.cssBefore.left = -next.cycleW/10;
+		opts.cssBefore.top = -next.cycleH/10;
+		opts.cssBefore.width = next.cycleW*1.2;
+		opts.cssBefore.height = next.cycleH*1.2;
+		opts.cssBefore.opacity = 0;
+		$.extend(opts.animIn, { top: -Math.ceil(Math.random()*(next.cycleH*0.1)), left: -Math.ceil(Math.random()*(next.cycleW*0.1)), width: next.cycleW*1.1, height: next.cycleH*1.1,'opacity':1});
+	});
+	opts.animOut.left = 0;
+	opts.animOut.top = 0;
+};
+ 
 function show_slide_text($topic, o) {
 	$topic.find('.slide_text .slide').hide().eq(o.currSlide).show();
 }
@@ -5,7 +20,7 @@ $(function() {
 	$('dd.topic').each(function() {
 		var $me = $(this);
 		$me.find('.slide_pic .slides').cycle({
-			fx: 'scrollHorz',
+			fx: $me.data('fx') || 'scrollHorz',
 			speed:  500,
 			timeout: 4000,
 			next: $me.find('.slide_nav .next'),

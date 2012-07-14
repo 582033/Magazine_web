@@ -1,8 +1,8 @@
-<dd class="topic">
+<dd class="topic"{if isset($fx)} data-fx="{$fx}"{/if}>
 	<div class="slide_pic">
-		<div class="slides">
+		<div class="slides" style="width:{$ad_slot.width}px; height: {$ad_slot.height}px; overflow:hidden">
 			{foreach from=$ad_slot.items item=item key=key}
-			<a href="{$item.url}"><img src="{$item.image.url}" width="{$ad_slot.width}" height="{$ad_slot.height}" alt="{$item.title}" /></a>
+			<a href="{$item.url}"><img {if $fx == "fadeZoom2"}widht="100%" height="100%"{else}width="{$ad_slot.width}" height="{$ad_slot.height}"{/if} src="{$item.image.url}" alt="{$item.title}" /></a>
 			{/foreach}
 		</div>
 		<div class="tab">

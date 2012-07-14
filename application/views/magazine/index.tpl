@@ -4,7 +4,7 @@
 <div class="main">
 	<dl class="mag_list clearfix">
 		<dt><strong>爱阅读</strong> <a href="/mag" class="more">More</a></dt>
-		{include file="magazine/lib/ad-gallery.tpl" container_id="magazine_gallery_container" ad_slot=$ad_slot_indextop}
+		{include file="magazine/lib/ad-gallery.tpl" container_id="magazine_gallery_container" ad_slot=$ad_slot_indextop fx="fadeZoom2"}
 		{foreach from=$mag_list item=item key=key}
 		{include file="magazine/lib/magcover.tpl" cover_show_intro=true}
 		{/foreach}
