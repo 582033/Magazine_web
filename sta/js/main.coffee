@@ -1,11 +1,12 @@
-g1001 =
-  url:
-    userInfo: 'http://api.in1001.com/v1/user/{0}?projection=fuller'
-  pageId: $('body').attr('id')
-  userId: $.cookie 'uid'
-  user: null
-
+g1001 = null
 $ ->
+  window.g1001 =
+    url:
+      userInfo: 'http://api.in1001.com/v1/user/{0}?projection=fuller'
+    pageId: $('body').attr('id') or ''
+    userId: $.cookie 'uid'
+    user: null
+
   $(document).ajaxError (e, jqxhr, settings, exception) ->
     if jqxhr.status == 401 then showSigninBox()
   loadUserInfo initFav
@@ -104,3 +105,31 @@ showMsgbox = (msg, toUrl) ->
       else
         window.location.href = toUrl
 
+signin = (form) ->
+  $form = $(form)
+  error = (msg) ->
+    $('.err_msg', $form).text(msg).show()
+    return false
+  messages =
+    'AUTH_FAIL': '错误的用户名或密码'
+  username = $('input.username', $form).val()
+  if not username then return error('Email不能为空')
+
+  options =
+    dataType : 'json'
+    success: (result) ->
+      if result.status == 'OK'
+        if form.id == 'loginTip' # top right signin area
+          if g1001.pageId.match /^sns-/ # redirect to home for sns login related page
+            window.location.href = '/'
+          else
+            window.location.reload()
+        else if $form.data('return') # single signin page
+          window.location.href = $form.data('return')
+        else # signin popup
+          $.colorbox.close()
+      else
+        error(messages[result.status] or result.status)
+    error: -> error('未知错误')
+  $form.ajaxSubmit options
+  return false

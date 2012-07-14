@@ -112,7 +112,7 @@ class Sns extends MY_Controller {
 						'apptype'=>$apptype,
 						'status'=>Sns_Model::encodeAuthString($data['oauthstring'])
 						);
-				$this->smarty->view('sns/register.tpl',$renderData);
+				$this->_show_signup($renderData);
 			}
 		}
 	} //}}}
@@ -147,7 +147,7 @@ class Sns extends MY_Controller {
 					);
 				if(!$username || !$passwd || !$confirmPasswd || $passwd!=$confirmPasswd) {
 					$renderData['errormessage']='提交数据错误';
-					return $this->smarty->view('sns/register.tpl',$renderData);
+					return $this->_show_signup($renderData);
 				}
 				$params = array(
 						'username'=>$username,
@@ -157,11 +157,11 @@ class Sns extends MY_Controller {
 				//@TODO 获取第三方账号信息更新user info
 				if($result['httpcode']==200 && $result['data']['status']=='USER_EXISTS') {
 					$renderData['errormessage']='用户名已存在';
-					return $this->smarty->view('sns/register.tpl',$renderData);
+					return $this->_show_signup($renderData);
 				}
 				elseif($result['httpcode']!=200 || $result['data']['status']!='OK') {
 					$renderData['errormessage']='注册失败';
-					return $this->smarty->view('sns/register.tpl',$renderData);
+					return $this->_show_signup($renderData);
 				}
 				$sessionData = $result['data'];
 				$bindParams = array(
@@ -184,7 +184,7 @@ class Sns extends MY_Controller {
 						'apptype'=>$apptype,
 						'status'=>$this->input->get_post('status')
 						);
-				return $this->smarty->view('sns/register.tpl',$renderData);
+				return $this->_show_signup($renderData);
 			}
 		} // }}}
 		else { // {{{ 输入已有账号绑定
@@ -199,14 +199,14 @@ class Sns extends MY_Controller {
 						);
 				if(!$username || !$passwd) {
 					$renderData['errormessage']='请输入正确用户名和密码';
-					$this->smarty->view('sns/login.tpl',$renderData);
+					$this->_show_bind($renderData);
 				}
 
 				$this->load->model('login_model');
 				$result = $this->login_model->login($username, $passwd);
 				if (is_string($result)) {
 					$renderData['errormessage'] = "登陆失败: $return";
-					$this->smarty->view('sns/login.tpl',$renderData);
+					$this->_show_bind($renderData);
 					return;
 				}
 
@@ -231,7 +231,7 @@ class Sns extends MY_Controller {
 						'apptype'=>$apptype,
 						'status'=>$this->input->get_post('status')
 				);
-				return $this->smarty->view('sns/login.tpl',$renderData);
+				return $this->_show_bind($renderData);
 			}
 		} // }}}
 	} // }}}
@@ -265,5 +265,13 @@ class Sns extends MY_Controller {
 				exit(0);
 		}
 	} // }}}
+	function _show_signup($data) {
+		$data['pageid'] = 'sns-signup';
+		$this->smarty->view('sns/register.tpl', $data);
+	}
+	function _show_bind($data) {
+		$data['pageid'] = 'sns-bind';
+		$this->smarty->view('sns/login.tpl', $data);
+	}
 }
 

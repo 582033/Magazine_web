@@ -148,45 +148,6 @@ function align_height() { //{{{
 	}
 } //}}}
 
-function signin(form) {	// {{{
-	var $form = $(form);
-	function error(msg) {
-		$('.err_msg', $form).text(msg).show();
-		return false;
-	}
-	var messages = {
-		'AUTH_FAIL': '错误的用户名或密码'
-	};
-	var username = $('input.username', $form).val();
-	if (!username) return error('Email不能为空');
-
-	var options = {
-		dataType : 'json',
-		success: function(result) {
-			if (result.status == 'OK') {
-				if (form.id == 'loginTip') { // top right signin area
-					window.location.reload();
-				}
-				else if ($form.data('return')) { // single signin page
-					window.location.href = $form.data('return');
-				}
-				else { // signin popup
-					$.colorbox.close();
-				}
-			}
-			else {
-				error(messages[result.status] || result.status);
-			}
-		},
-		error: function() {
-				   error('未知错误');
-		}
-
-	};
-	$form.ajaxSubmit(options);
-	return false;
-}	//}}}
-
 function signup(form) {	// {{{
 	var $form = $(form);
 	function error(msg) {
