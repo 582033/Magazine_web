@@ -50,14 +50,13 @@ function cancelLike(type, type_id, where) {
 function like(type, type_id, where) {
 	if (!checkSignedIn()) return;
 	var action = type == 'user' ? 'follow' : 'like';
+	var $e = $("#" + type + "_" + type_id);
 	$.post(getLikeUrl(type, type_id, action),
 			{dataType: 'json'},  function(data) {
 		if ($.inArray(type, ['magazine', 'element']) >= 0) {
 			if (data.likes) {
-				var $e = $("#" + type + "_" + type_id);
-				$e.text(data.likes)
-					.css("background","url('/sta/images/heart.png') no-repeat")
-					.css("background-position","17px 4px");
+				$e.addClass('favorited');
+				$('a.like', $e).text(data.likes);
 			}
 		}
 		else if (type == 'user') {

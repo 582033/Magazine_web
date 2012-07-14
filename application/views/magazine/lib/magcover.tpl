@@ -1,4 +1,4 @@
-<dd{if $dd_class} class="{$dd_class}"{/if}{if $dd_style} style="{$dd_style}"{/if}>
+<dd{if $dd_class} class="{$dd_class}"{/if}{if $dd_style} style="{$dd_style}"{/if} id="magazine_{$item.id}" >
 	<div class="cover">
 		<a href="/magazine/detail/{$item.id}"><img src="{$item.cover}" width='180px' height='276px' alt="{$item.name}" /></a>
 		<div class="mouseover">
@@ -18,7 +18,7 @@
 				<div class="more">
 					<a href="/magazine/{$item.id}/comments" class="comment">评论</a>
 					<a href="javascript:void(0);" class="share" data-type="1" data-title="{$item.name}" data-des="{$item.intro|truncate:30}" data-id="{$item.id}" data-img="{$item.cover}">分享</a>
-					<a href="javascript:void(0);" id="magazine_{$item.id}" onclick="like('magazine','{$item.id}');" class="like">{$item.likes}</a>
+					<a href="javascript:void(0);" onclick="like('magazine','{$item.id}');" class="like">{$item.likes}</a>
 				</div>
 				<div class="shareto">
 					<div class="bg"></div>

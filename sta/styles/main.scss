@@ -663,6 +663,15 @@ div.main.comment { /* {{{ */
 		}
 	}
 } /* }}} */
+
+.element_list, .mag_list {
+	dd.favorited .cover .mouseover .more {
+		a.like, a.like:hover {
+			background-image: url('/sta/images/heart.png');
+			background-position: 17px 4px;
+		}
+	}
+}
 /*
 vim: fdm=marker
 */
