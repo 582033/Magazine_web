@@ -416,9 +416,7 @@ function messages($user_id, $p=1) {
 	$arr_totpl=array();
 	$msg_ctt='';
 	$totalnum=$res['data']['totalResults'];
-	if(count($res['data']['items'])){
 		$msg_ctt=$this->print_msg($res['data']['items'],$user_info);
-	}
 	$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
 	$data=array();
 	$data['msg']=$msg_ctt;
