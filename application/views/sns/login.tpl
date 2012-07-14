@@ -3,7 +3,7 @@
 	<div class="commonform">
 		<div class="title">绑定已有帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
-<form name="form" action="/index.php/sns/bind" method="POST">
+<form class="bind" name="form" action="/index.php/sns/bind" method="POST">
 <p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span></p>
 <p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span></p>
 <input type="hidden" name="new" value="0">
@@ -45,7 +45,7 @@ $(function(){
 		$pwd.next().text('');
 		return true;
 	}
-	$('form').submit(function(){
+	$('form.bind').submit(function(){
 		if(!checkUser()) return false;
 		if(!checkPwd()) return false;
 	});

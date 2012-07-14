@@ -3,7 +3,7 @@
 	<div class="commonform">
 		<div class="title">创建绑定帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
-<form name="form" action="/index.php/sns/bind" method="POST">
+<form class="bind" name="form" action="/index.php/sns/bind" method="POST">
 <p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span><br><span class="description">请输入常用邮箱</span></p>
 <p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span><br><span class="description">密码长度6-16位</span></p>
 <p class="p"><label>确认密码:</label><input class="cpasswd" type="password" name="confirm_passwd"><span class="perror"></span></p>
@@ -52,7 +52,7 @@ $(function(){
 		$pwd.next().text('');
 		return true;
 	}
-	$('form').submit(function(){
+	$('form.bind').submit(function(){
 		if(!checkUser()) return false;
 		if(!checkPwd()) return false;
 	});
