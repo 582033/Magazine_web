@@ -332,38 +332,6 @@ div.current .menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8
 .mag_list_title{ margin-bottom:0; padding:0 9px; border-top:none;}
 
 
-/*magzine preview*/
-.main.mag_preview{ border:1px solid #e8e8e8; background:#fff; margin-bottom:20px;}
-.main .left_main{ float:left; border-right:1px solid #e8e8e8; width:747px;}
-.mag_preview .left_main .cover{ float:left; width:180px; padding:20px;}
-.mag_preview .left_main .intro{ float:left; width:505px; padding:20px; padding-left:0; position:relative;}
-.mag_preview .left_main .intro h2{ font-size:20px; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; padding-bottom:10px;}
-.mag_preview .left_main .intro p{ padding:5px 0;}
-.mag_preview .left_main .intro p.auther a{ font-weight:bold;}
-.mag_preview .left_main .intro p.auther a.follow{ font-weight:normal;}
-.mag_preview .left_main .intro p.auther a.follow img{ display:inline-block; vertical-align:text-bottom;}
-.mag_preview .left_main .intro p.auther a.followed { font-weight:normal;}
-.mag_preview .left_main .intro p.auther a.followed img{ display:inline-block; vertical-align:text-bottom;}
-.mag_preview .left_main .intro p.tag a{ color:#0590b3;}
-.mag_preview .left_main .intro p.tag a:hover{ text-decoration:underline;}
-.mag_preview .left_main .intro p.intro_txt{ position:relative; padding-left:39px; color:#505050;}
-.mag_preview .left_main .intro p.intro_txt strong{ color:#000; position:absolute; left:0; top:5px;}
-.mag_preview .left_main .intro p.shareto { line-height:26px;}
-.mag_preview .left_main .intro p.shareto a{ display:inline-block; width:26px; height:26px; background:url(/sta/images/share_ico.gif) no-repeat left 5px; text-indent:-400px; overflow:hidden;}
-.mag_preview .left_main .intro p.readonline{ padding-left:40px;}
-.mag_preview .left_main .intro p.info{ position:absolute; top:20px; right:20px; width:300px;}
-.mag_preview .left_main .intro p.info span{ display:block; float:right; text-align:center; width:55px; color:#525252;}
-.mag_preview .left_main .intro p.info span a{ display:block; width:38px; height:38px; background:url(/sta/images/ico_magzine_detail.gif) no-repeat left bottom; text-indent:-100px; overflow:hidden; margin:0 auto;}
-.mag_preview .left_main .intro p.info span.like a{ background-position:left top;}
-.mag_preview .left_main .intro p.info span.view a{ background-position: right top; cursor:default;}
-
-.comment_preview,.mag_preview .preview{ width:705px; margin:0 auto; clear:both;}
-.mag_preview .preview dt{height:60px; line-height:60px; font-size:16px; font-weight:bold;}
-.mag_preview .preview dd li{ display:inline; float:left; margin:0 10px; width:106px;}
-.mag_preview .preview dd li img,.mag_preview .preview dd li a img{ display:block; border:1px solid #e8e8e8;}
-.comment_preview p.more_comment { text-align:right; padding-bottom:10px;}
-.comment_preview p.more_comment a{ font-size:14px; color:#0590b3;}
-
 .main .sidebar_right{ float:left; width:250px;}
 .main .sidebar_right .topic{ border-bottom:1px solid #e8e8e8; padding:10px 0; text-align:center;}
 .main .sidebar_right .mag_topic{ clear:both; padding-top:10px;}

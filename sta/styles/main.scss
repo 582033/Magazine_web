@@ -656,10 +656,117 @@ div.main.comment { /* {{{ */
 }
 
 #mag_detail { /* {{{ */
-	div.shareto {
-		line-height: 27px;
-		span.share {
-			float: left;
+	.mag_preview {
+		border:1px solid #e8e8e8; background:#fff; margin-bottom:20px;
+		.preview {
+			dt {
+				height:60px;
+				line-height:60px;
+				font-size:16px;
+				font-weight:bold;
+			}
+			dd li {
+				display:inline; float:left; margin:0 10px; width:106px;
+				img, a img{ display:block; border:1px solid #e8e8e8;}
+			}
+		}
+		.left_main { // {{{
+			float:left;
+			border-right:1px solid #e8e8e8;
+			width:747px;
+			.cover{ float:left; width:180px; padding:20px;}
+			.intro {
+				float:left; width:505px; padding:20px; padding-left:0; position:relative;
+				h2 {
+					font-size:20px;
+					font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium';
+					padding-bottom:10px;
+				}
+				p {
+					padding:5px 0;
+				}
+				p.auther {
+					a {
+						font-weight:bold;
+						&.follow {
+							font-weight:normal;
+							img { display:inline-block; vertical-align:text-bottom;}
+						}
+						&.followed {
+							display: none;
+						}
+					}
+					&.favorited {
+						a.unfollowed {
+							display: none;
+						}
+						a.followed {
+							display: inline;
+						}
+					}
+				}
+				p.tag a {
+					color:#0590b3;
+					&:hover{ text-decoration:underline;}
+				}
+				p.intro_txt {
+					position:relative; padding-left:39px; color:#505050;
+					strong{ color:#000; position:absolute; left:0; top:5px;}
+				}
+				div.shareto {
+					line-height: 27px;
+					span.share {
+						float: left;
+					}
+				}
+				p.readonline { padding-left:40px;}
+				p.info {
+					position:absolute; top:20px; right:20px; width:300px;
+					span {
+						display:block;
+						float:right;
+						text-align:center;
+						width:55px;
+						color:#525252;
+						a {
+							display:block;
+							width:38px;
+							height:38px;
+							background:url(/sta/images/ico_magzine_detail.gif) no-repeat left bottom;
+							text-indent:-100px;
+							overflow:hidden;
+							margin:0 auto;
+						}
+						&.liked {
+							display: none;
+						}
+						&.unliked a {
+							background-position:left top;
+						}
+						&.view a {
+							background-position: right top;
+							cursor:default;
+						}
+					}
+					&.favorited {
+						span.unliked {
+							display: none;
+						}
+						span.liked {
+							display: block;
+						}
+					}
+				}
+			}
+		} // }}}
+	}
+	.comment_preview, .mag_preview .preview{ width:705px; margin:0 auto; clear:both;}
+	.comment_preview p.more_comment {
+		text-align:right;
+		padding-bottom:10px;
+		a {
+			font-size:14px;
+			color:#0590b3;
 		}
 	}
 } /* }}} */

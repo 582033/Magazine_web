@@ -11,13 +11,13 @@
 		</div>
 		<div class="intro">
 			<h2>{$magazine.name}</h2>
-			<p class="auther">
+			<p id="user_{$magazine.author.id}" class="auther">
 				作者：<a href="/user/{$magazine.author.id}">{$magazine.author.nickname}</a>
-				<a  href="javascript:void(0);" class="follow">
+				<a  href="javascript:void(0);" class="follow unfollowed">
 					<img src="/sta/images/ico_plus.gif" alt="加关注" class="fellow_item" onclick="like('user','{$magazine.author.id}');" />
 					&nbsp;<span class="fellow_item" onclick="like('user','{$magazine.author.id}');">加关注</span>
 				</a>
-				<a  href="javascript:void(0);" class="followed" style="display:none">
+				<a  href="javascript:void(0);" class="follow followed">
 					<img src="/sta/images/ico_minus.gif" alt="已关注" class="fellow_item" onclick="cancelLike('user','{$magazine.author.id}');" />
 					&nbsp;<span class="fellow_item" onclick="cancelLike('user','{$magazine.author.id}');">已关注</span>
 				</a>
@@ -57,10 +57,10 @@
 			<p class="readonline">
 				<a href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
 			</p>
-			<p class="info">
+			<p class="info" id="magazine_{$magazine.id}">
 				<span class="view"><a href="javascript:void(0)" title="阅读">阅读</a>{$magazine.views}</span>
-				<span class="like"><a href="javascript:void(0)" id="magazine_{$magazine.id}" onclick="detail_like('{$magazine.id}');" title="喜欢">喜欢</a><span>{$magazine.likes}</span></span>
-				<span class="liked" style="display:none;"><a href="javascript:void(0)" title="已经喜欢" onclick="detail_liked('{$magazine.id}');">已经喜欢</a><span id="new_likes">{$magazine.likes}</span></span>
+				<span class="like unliked"><a href="javascript:void(0)" onclick="like('magazine', '{$magazine.id}')" title="喜欢">喜欢</a><span class="favs">{$magazine.likes}</span></span>
+				<span class="like liked"><a href="javascript:void(0)" title="已经喜欢" onclick="like('magazine', '{$magazine.id}')">已经喜欢</a><span class="favs">{$magazine.likes}</span></span>
 			</p>
 		</div>
 

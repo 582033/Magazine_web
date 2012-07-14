@@ -13,9 +13,9 @@
 		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.cookie.js"></script>
 		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.form.js"></script>
 		<script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.colorbox.js"></script>
+		<script type="text/javascript" src="/sta/js/main.js"></script>
 		<script type="text/javascript" src="/sta/js/magazine.js"></script>
 		<script type="text/javascript" src="/sta/js/check.js"></script>
-		<script type="text/javascript" src="/sta/js/like.js"></script>
 		<script type="text/javascript"
 		  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyClCYHH9Q3VOWt7Iajyx5bKVI4wV7Y189o&sensor=false">
 		</script>

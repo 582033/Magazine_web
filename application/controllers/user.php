@@ -65,6 +65,7 @@ class User extends Magazine {
 	} //}}}
 	function signout() { //{{{
 		$this->session->sess_destroy();
+		delete_cookie('uid');
 		delete_cookie('username');
 		delete_cookie('nickname');
 		delete_cookie('rmsalt');
