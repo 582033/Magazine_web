@@ -304,8 +304,7 @@ class Magazine extends MY_Controller {
 		$reverse_cate_mag = array_flip($this->cate_map);
 		$magazine['url'] = '/magazine/detail/' . $magazine['id'];
 
-		$this->load->model('user_info_model');
-		$user_info = $this->user_info_model->get_user($this->session->userdata('id'));
+		$user_info = $this->_get_current_user();
 		$data = array(
 				'navs' => array(
 					array(
@@ -359,12 +358,7 @@ class Magazine extends MY_Controller {
 				'pageid' => 'down',
 				);
 		if ($type == 'pc') {
-			$this->load->library('session');
-			$user_id = $this->session->userdata('id');
-			if ($user_id) {
-				$this->load->model('user_info_model');
-				$data['user_info'] = $this->user_info_model->get_user($user_id);
-			}
+			$data['user_info'] = $this->_get_current_user();
 		}
 		$this->smarty->view('magazine/down.tpl', $data);
 	}	//}}}
@@ -560,5 +554,15 @@ class Magazine extends MY_Controller {
 				'id' => $user_id,
 				'session_id' => $session_id,
 				);
+	}
+	function _get_current_user() {
+		$user_info = NULL;
+		$this->load->library('session');
+		$user_id = $this->session->userdata('id');
+		if ($user_id) {
+			$this->load->model('user_info_model');
+			$user_info = $this->user_info_model->get_user($user_id);
+		}
+		return $user_info;
 	}
 }
