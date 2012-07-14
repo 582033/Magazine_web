@@ -487,6 +487,11 @@ function messages($user_id, $p=1) {
 				$key = random_string('alnum', 8);
 				$this->get_redis()->setex($key, $this->config->item('salt_expires'), $email);
 				$mail             = new PHPMailer();
+				$body = "Dear user!<br />";
+				$body .= "&nbsp;&nbsp;&nbsp;&nbsp;We have received your password reset request,please click <a href='".$this->config->item('web_host')."/user/reset_password_show/$key'>HERE</a> to complete your request.";
+				$body .= "Thank you for your support!<br />";
+				$body .= "&nbsp;&nbsp;&nbsp;&nbsp;<font style='font-weight:bold;'>1001 NIGHT</font>";
+				$mail->IsHTML(true);
 				$mail->IsSMTP();
 				$mail->SMTPAuth   = true;                  // enable SMTP authentication
 				$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
@@ -497,7 +502,8 @@ function messages($user_id, $p=1) {
 				$mail->From       = "eee168m@gmail.com";
 				$mail->FromName   = "1001 NIGHT";
 				$mail->Subject = "RESET YOUR PASSWORD";
-				$mail->Body = "http://mtong.a.1001s.cn/user/reset_password_show/$key";
+//				$mail->Body = "http://mtong.a.1001s.cn/user/reset_password_show/$key";
+				$mail->Body = $body;
 				$mail->WordWrap   = 80; // set word wrap
 				$mail->AddAddress($email);
 				if(!$mail->Send()) {
