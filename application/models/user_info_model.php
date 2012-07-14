@@ -27,7 +27,7 @@
 	function get_user_tags ($user_id) {
 		$request = request($this->api_host . "/user/$user_id");
 		if ($request['httpcode'] == '200'){
-			$tags = implode(",", $request['data']['tags']);
+			$tags = is_array($request['data']['tags']) ? implode(",", $request['data']['tags']) : $request['data']['tags'];
 			return $tags;
 		}
 	}
