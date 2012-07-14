@@ -539,7 +539,7 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .main .commonform .p {margin:10px auto 10px;}
 .main .commonform .p label {text-align:right;width:80px;float:left;font-size:14px;margin-right:10px;}
 .main .commonform .p input {border:solid 1px #CCC;height:30px;width:300px;}
-.main .commonform .p .subbtn {border:none;width:83px;height:30px;margin:20px 0 0 30px;vertical-align:bottom;background:url('../images/btn_logintip_sub.gif');font-size:14px;font-weight:bold;color:#FFF;}
+.main .commonform .p .subbtn {border:none;width:83px;height:30px;margin:20px 0 0 30px;vertical-align:bottom;background:url('../images/btn_logintip_sub.gif') left no-repeat;font-size:14px;font-weight:bold;color:#FFF;}
 .main .commonform .btnra {margin-left:10px;color:#F9AB05;}
 .main .commonform .error {margin-left:90px;color:red;}
 .main .commonform .p .perror {margin-left:10px;color:red;}

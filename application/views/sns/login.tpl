@@ -52,4 +52,4 @@ $(function(){
 })
 </script>
 {/literal}
-{include file='footer_big.tpl'}
+{include file='footer.tpl'}
