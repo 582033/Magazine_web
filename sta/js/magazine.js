@@ -271,17 +271,18 @@ $(function(){
 		switch ($share.data('type')) {
 		case 1:
 			if (id) url=urlPre+'/magazine/detail/'+id;
-			text = title+' '+des+'......'+url;
+			text = title+' '+des+'......';
 			break;
 		case 2:
 			if (id) url=id;
-			text = title+' （来自 1001夜互动阅读平台）'+'......'+url;
+			text = title+' （来自 1001夜互动阅读平台）'+'......';
 			break;
 		default:
 			return;
 		}
 		window.bds_config.bdText = text;
 		window.bds_config.bdPic = img;
+		$('#bdshare').attr('data','{url:"'+url+'"}');
 		window.bdShare.fn.init();
 	};
 	$(document).on('mouseenter mouseleave', '.element_list dd, .mag_list dd', function(e) {
