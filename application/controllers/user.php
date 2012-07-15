@@ -249,6 +249,7 @@ class User extends Magazine {
 			$data = array(
 					'user_set' => 'set_pwd',
 					'user_set_name' => '修改密码',
+					'pageid' => 'change-password',
 					);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}

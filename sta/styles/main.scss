@@ -231,8 +231,8 @@
 		font-weight: bold;
 	}
 } /* }}} */
-#msgbox {
-	display: block;
+#msgbox { // {{{
+	display: none;
 	p {
 		margin-top: 25px;
 		margin-left: 25px;
@@ -240,7 +240,7 @@
 		font-size: 14px;
 		line-height: 18px;
 	}
-}
+} // }}}
 body#signin,body#signup { // {{{
 	hr {
 		position: relative;
@@ -786,6 +786,46 @@ div.main.comment { /* {{{ */
 		a.like, a.like:hover {
 			background-image: url('/sta/images/heart.png');
 			background-position: 17px 4px;
+		}
+	}
+}
+
+body#change-password {
+	.set_menu {
+		height: 460px;
+	}
+	.set_main {
+		height: 450px;
+	}
+	.modify_password {
+		width: 100%;
+		height: 100%;
+		text-align: left;
+		.container {
+			.title {
+				font-size: 14px;
+				font-weight: bold;
+			}
+			.main {
+				width: 400px;
+				margin: 0;
+			}
+			p {
+				font-size: 12px;
+				line-height: 30px;
+				margin: 5px 0;
+				input {
+					width:200px;
+					height:20px;
+				}
+				&.error_msg {
+					color: red;
+				}
+			}
+			button.submit{
+				width: 100px;
+				margin: 30px 0 0 58px;
+			}
 		}
 	}
 }

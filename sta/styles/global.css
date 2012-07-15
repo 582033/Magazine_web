@@ -492,7 +492,9 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .forget_password .container .main div.main_body .description{font-size:16px;color:#A2A2A2;width:350px;margin-top:5px;text-align:left;}
 .reset_password .container .main input.submit{width:130px;height:55px;}
 .reset_password .container .main div.reset_pwd, .forget_password .container .main div.reset_pwd{height:50px;}
+/*
 .container .main .submit{width:90px; height:33px; padding:0 5px 0 0; margin:0; background:url(/sta/images/btn_set.gif) no-repeat right -32px; border:none; overflow:visible; color:#FFF;}
+*/
 .reset_password .container .main button.submit{border:0px;width:125px;height:42px;padding:0px;}
 .container .main button.submit span{font-size:16px;}
 .forget_password .container .main button.submit{margin-left:40px;}
@@ -500,15 +502,6 @@ div.set_main.tag dd a{ float:left; display:inline; padding:5px 10px; background:
 .container .main button.find{border:0px;background-color:#F1F1F1;width:135px;height:42px;padding:0px;margin-left:50px;}
 .reset_password .container .main div.return_msg, .forget_password .container .main div.return_msg{font-size:16px;margin-left:100px;width:350px;padding:0px;}
 
-.modify_password{width:100%;height:800px;}
-.modify_password .container .main{width:400px;margin:0px;text-align:center;}
-.modify_password .container .main p.old_pwd, .modify_password .container .main p.reset_pwd, .modify_password .container .main p.pwd_sure{font-size:16px;float:left;width:90px;height:20px;padding-top:8px;}
-.modify_password .container .title{font-size:14px;font-weight:bold;}
-.modify_password .container input{width:250px;height:30px;float:left;font-size:16px;}
-.modify_password .container button.submit{margin-left:30px;}
-.modify_password .container .main div.error_msg{margin-left:90px;font-size:16px;color:#FF0000;width:250px;margin-top:10px;text-align:center;}
-.modify_password .container .main div.return_msg{margin-left:90px;font-size:16px;width:250px;margin-top:10px;text-align:center;}
-/* end 用户密码操作 */
 /**zshen**/
 .main .commonform {width:100%;background:#FFFFFF;padding:30px 30px 30px 30px;}
 .main .commonform .title{font-size:20px;font-weight:bold;margin:0 0 30px 0;}

@@ -10,6 +10,33 @@ $ ->
   $(document).ajaxError (e, jqxhr, settings, exception) ->
     if jqxhr.status == 401 then showSigninBox()
   loadUserInfo initFav
+  switch g1001.pageId
+    when 'change-password' then initChangePassword()
+
+initChangePassword = ->
+changePassword = (form) ->
+  $form = $(form)
+  $errmsg = $('p.error_msg', $form)
+  error = (msg) ->
+    $errmsg.text(msg).show()
+    return false
+  
+  if not $form.find("input").val()
+    return error '密码不能为空'
+  else if $("input[name='reset_pwd']").val() != $("input[name='pwd_sure']").val()
+    return error '两次输入的密码不一致'
+
+  options =
+    dataType : 'json',
+    success: (result) ->
+      if result == '修改成功'
+        showMsgbox '密码修改成功'
+        $form.clearForm()
+        $errmsg.hide()
+      else
+        error result
+  $form.ajaxSubmit options
+  return false
 
 loadUserInfo = (callback) ->
   callback or= initFav
@@ -86,6 +113,7 @@ showMsgbox = (msg, toUrl) ->
     url - redirect to given url
     null - do nothing
   '
+  $('#msgbox').show()
   $('#msgbox p').text(msg)
   $.colorbox
     overlayClose: true
@@ -99,6 +127,7 @@ showMsgbox = (msg, toUrl) ->
     initialWidth: 350
     initialHeight: 150
     onClosed: ->
+      $('#msgbox').hide()
       if not toUrl then return
       if toUrl == 'current'
         window.location.reload()
