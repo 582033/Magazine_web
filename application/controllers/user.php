@@ -65,10 +65,7 @@ class User extends Magazine {
 	} //}}}
 	function signout() { //{{{
 		$this->session->sess_destroy();
-		delete_cookie('uid');
-		delete_cookie('username');
-		delete_cookie('nickname');
-		delete_cookie('rmsalt');
+		$this->_delete_signin_cookies();
 		redirect_to_referer();
 	} //}}}
 
@@ -207,6 +204,7 @@ class User extends Magazine {
 
 	function set_base () {	//设置个人信息{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$this->_auth_check_api();
 			$data = array(
 					'nickname' => $this->input->post('nickname'),
 					'gender' => $this->input->post('gender'),
@@ -218,6 +216,7 @@ class User extends Magazine {
 			echo json_encode($return);
 		}
 		else {
+			$this->_auth_check_web();
 			$data = array(
 					'user_set' => 'set_base',
 					'user_set_name' => '基本资料',
@@ -257,6 +256,7 @@ class User extends Magazine {
 	
 	function set_tag () { //个人标签{{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$this->_auth_check_api();
 			$data = array(
 					'tags' => $this->input->post('tags'),
 					);
@@ -264,6 +264,7 @@ class User extends Magazine {
 			echo json_encode($return);
 		}
 		else {
+			$this->_auth_check_web();
 			$tags = $this->user_info_model->get_user_tags($this->session->userdata('id'));
 			$data = array(
 					'user_set' => 'set_tag',
@@ -275,6 +276,7 @@ class User extends Magazine {
 	} // }}}
 
 	function set_auther () {	//作者信息设置{{{
+		$this->_auth_check_web();
 		$data = array(
 				'user_set' => 'set_auther',
 				'user_set_name' => '作者信息设置',
@@ -292,14 +294,19 @@ class User extends Magazine {
 	}	//}}}
 	
 	public function set_share() {	//绑定第三方帐号{{{
+		$this->_auth_check_web();
 		$data = array();
 		$session_id = $this->session->userdata('session_id');
 		$this->load->model('Sns_Model');
 		$unbind = Sns_Model::getAllSns();
-		if(!$session_id) return;
 
 		$result = request($this->api_host.'/sns/bindinfo',array('session_id'=>$session_id),'GET');
-		if($result['httpcode']!=200) return;
+		if ($result['httpcode'] >= 500) {
+			show_error($result['data'], $result['httpcode']);
+		}
+		elseif ($result['httpcode'] >= 400) {
+			$this->_to_signin_page();
+		}
 		foreach ($result['data'] AS $v) {
 			$data['bindinfo'][$v['snsid']] = $v;
 			unset($unbind[$v['snsid']]);

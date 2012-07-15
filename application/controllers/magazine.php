@@ -530,11 +530,23 @@ class Magazine extends MY_Controller {
 		return $return;
 	}
 
+	function _delete_signin_cookies() {
+		delete_cookie('uid');
+		delete_cookie('username');
+		delete_cookie('nickname');
+		delete_cookie('rmsalt');
+	}
+	function _to_signin_page() {
+		$this->load->library('session');
+		$this->session->sess_destroy();
+		$this->_delete_signin_cookies();
+		redirect('/user/signin?return=' . current_url());
+		exit;
+	}
 	function _auth_check_web () {
 		$this->load->model('auth');
 		if (!$this->auth->is_logged_in()) {
-			redirect('/user/signin?return=' . current_url());
-			exit;
+			$this->_to_signin_page();
 		}
 		$session_id = $this->session->userdata('session_id');
 		$user_id = $this->session->userdata('id');
