@@ -2,7 +2,7 @@
 		<h2>个人标签</h2>
 		<p>添加描述自己职业、兴趣爱好等方面的词语，让更多人找到你，让你找到更多同类</p>
 		<form name="tags_form" action="/user/me/set_tag" method="post">
-			<input name="tags" type="text" value="{$tags}"/><button type="submit" class="btn_set"><span>添加</span></button>
+			<input name="tags" type="text" value="{$tags}"/><button type="submit" class="btn_set"><span>保存</span></button>
 		</form>
 		
 		<dl class="clearfix">
