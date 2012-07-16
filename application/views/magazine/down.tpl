@@ -22,10 +22,10 @@ $(function(){
  			<div class="intro">
 				<div class="intro_text">
 					<p>
-						"1001+"由"1001夜"出品，是一款令人惊奇的数字多媒体制作工具。任何人都能用它快速制作数字杂志、书籍、图册、宣传物等个性化数字读物。革命性颠覆在于：无需编程，即可产出适用于iOS、Android等移动智能系统的数字读物APPS。
+						“1001+”是一款令人惊奇的数字多媒体制作工具，无需编程、无使用门槛，快速制作数字杂志、书籍、图册、宣传物等个性化数字读物，并自动生成iOS、Android等移动设备应用，广泛适用于企业、机构、个人。
 					</p>
 					<p>
-						你需要拥有邀请码，且完成登陆后，才可以下载试用。
+						你需要拥有<font style="color:red;font-weight:bold;">邀请码</font>，且完成<font style="color:red;font-weight:bold;">登陆</font>后，才可以下载试用。
 					</p>
 				</div>
 				{if isset($user_info) && $user_info.role == 1}
@@ -36,20 +36,20 @@ $(function(){
  			</div>
  			<ul>
  				<li class="n1">
- 					<strong>富媒体表现力</strong>
- 					精彩模版，支持文字、图片、链接、音乐、视频、动画…… 等富媒体表现形式。
+ 					<strong>多媒体互动</strong>
+ 					丰富模板；支持文字、图片、链接、音乐、视频、动画…等多媒体互动表现形式。
  				</li>
  				<li class="n2">
- 					<strong>一站式多平台</strong>
- 					一次制作，覆盖多平台（Web/IOS/Android）与多终端（PC/平板电脑/手机）。
+ 					<strong>一站式&nbsp;多平台</strong>
+ 					一次制作，完美适配主流系统（Web/iOS/Android），全面覆盖用户终端（PC/平板电脑/手机、SmartTV）。
  				</li>
  				<li class="n3">
- 					<strong>卓越用户体验</strong>
- 					可触摸、可倾听、可观看。享受栩栩如生的制作乐趣。
+ 					<strong>卓可视化制作，所见即所得</strong>
+ 					图文自动绕排、画廊、独有360全角度图片展示、多图触摸滚动、音视频自由插入，拖放间，轻松成就精彩。
  				</li>
  				<li class="n4">
  					<strong>发布共享</strong>
- 					如果您制作完毕并准备发布，"1001夜数字阅读平台"将协助推广个人作品，与更多人分享。
+ 					 1001夜平台为精彩作品提供全方位的传播和推广。
  				</li>
  			</ul>
  		</dd>
@@ -59,7 +59,7 @@ $(function(){
  		<dd class="android" style="display:block">
  			<div class="intro">
 				<div class="intro_text">
-					<p>我们致力提供免费的“品质阅读”与“即时分享”。也在试图传递一种阅读新理念——不止满足于观看，更结合了倾听、触摸，将感性阅读与最佳的数字化结合。</p>
+					<p>云中漫步，云同步手机、平板、PC电脑的阅读记录、个人信息，移动随心，支持在线浏览和下载阅读。</p>
 				</div>
 
 				<a href="http://d.in1001.com/apk/magazine_bookshelf.apk" class="downbtn">下载Android客户端</a>

@@ -38,8 +38,7 @@ function judge($type){
 					dataType : 'json',
 					success: function(result) {
 						if (result == 'true'){
-							alert('重置成功');
-							location.reload();
+							showMsgbox('重置成功', 'current');
 						}					
 					}
 				};

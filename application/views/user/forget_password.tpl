@@ -24,7 +24,7 @@
 {include file="footer.tpl"}
 {literal}
 <script>
-function judge($type){
+function send_email($type){
 		if ($("form[name='forget_pwd']").find("input").val().length == 0){
 			$("form[name='forget_pwd'] div.error_msg").text('邮箱不能为空');
 		}
@@ -38,7 +38,7 @@ function judge($type){
 					dataType : 'json',
 					success: function(result) {
 						if (result == 'true'){
-							$("form[name='forget_pwd'] div.return_msg").text('已经向您填写的邮箱中发送确认邮件，请登录邮箱，点击确认链接，完成密码修改');
+							showMsgbox('已经向您填写的邮箱中发送确认邮件，请登录邮箱，点击确认链接，完成密码修改', 'current');
 						}else if (result == 'false'){
 							$("form[name='forget_pwd'] div.return_msg").text('邮箱错误，请检查您填写的邮箱');
 						}else if (result == 'error'){
@@ -52,13 +52,13 @@ function judge($type){
 }
 $(function(){
 	$("form[name='forget_pwd']").find(":input").focusout(function(){
-		judge("focusout");
+		send_email("focusout");
 	});
 	$("form[name='forget_pwd']").find(":input").focus(function(){
 		$("form[name='forget_pwd'] div.return_msg p").text('');
 	});
 	$("button.find").click(function(){
-		judge("click");
+		send_email("click");
 		return false;
 	});
 });
