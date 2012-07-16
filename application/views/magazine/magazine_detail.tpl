@@ -30,7 +30,7 @@
 			<div class="shareto">
 				<span class="share">分享到:</span>
 				<!-- Baidu Button BEGIN -->
-					<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+					<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" data="{literal}{url:'http://www.in1001.com/magazine/detail/{/literal}{$magazine.id}'{literal}}{/literal}">
 						<a class="bds_tsina" style="margin-left:5px;"></a>
 						<a class="bds_renren" style="margin-left:10px;"></a>
 						<a class="bds_tqq" style="margin-left:10px;"></a>
@@ -44,7 +44,7 @@
 					<script type="text/javascript">
 						var bds_config = {
 							'bdDes':'',
-							'bdText':'{$magazine.name} {$magazine.intro|truncate:30|escape}......http://www.in1001.com/magazine/detail/{$magazine.id}',
+							'bdText':'{$magazine.name} {$magazine.intro|truncate:30|escape}......',
 							'bdPopTitle':'',
 							'bdPic':'{$magazine.cover}',
 							'searchPic':0,//'0为抓取，1为不抓取，默认为0，目前只针对新浪微博'
