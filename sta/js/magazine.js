@@ -146,6 +146,12 @@ function align_height() { //{{{
 	if ($(".right_main").height() < pageh){
 		$(".mag_list").height(pageh);
 	}
+
+	page_height = $(".set_main").innerHeight(true);
+	if ($(".set_menu").height() < page_height) {
+		$(".set_menu").css("height", page_height+"px");
+	}
+
 } //}}}
 
 function signup(form) {	// {{{
