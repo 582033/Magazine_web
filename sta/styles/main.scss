@@ -319,6 +319,7 @@ body#signin,body#signup { // {{{
 			background-position:left -30px;
 		}
 		p.followed {
+			display: none;
 			width: auto;
 			height: 26px;
 			line-height: 26px;
@@ -337,6 +338,14 @@ body#signin,body#signup { // {{{
 				background-position: no-repeat left top;
 				text-indent:-300px;
 				overflow:hidden;
+			}
+		}
+		&.favorited {
+			a.follow {
+				display: none;
+			}
+			p.followed {
+				display: block;
 			}
 		}
 		.bottombg{ display:block; width:198px; margin:10px auto 0 auto; height:15px; margin:0; background:url(/sta/images/ico_setting.png) repeat-x left -25px; padding:0;}

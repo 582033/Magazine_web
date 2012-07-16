@@ -77,12 +77,9 @@ cancelLike = (type, type_id, where) ->
       if $.inArray(type, ['magazine', 'element']) >= 0
         window.location.reload()
       else if type == 'user'
-        if where == 'user_center'
-          $('div.userinfo a.follow').show()
-          $('div.userinfo p.followed').hide()
-        else if where  == 'user_center_followee'
+        if where  == 'user_center_followee'
           window.location.reload()
-        else # detail
+        else # detail, user center left
           $e.removeClass('favorited')
   )
 like = (type, type_id, where) ->
@@ -98,13 +95,9 @@ like = (type, type_id, where) ->
           $e.addClass('favorited')
           $('a.like', $e).text data.likes
           $('span.favs', $e).text data.likes
-      else if type == 'user'
+      else if type == 'user' # detail, user center left
         if data.status == 'success'
-          if where == 'user_center'
-            $('div.userinfo a.follow').hide()
-            $('div.userinfo p.followed').show()
-          else # detail
-            $e.addClass('favorited')
+          $e.addClass('favorited')
   )
 showMsgbox = (msg, toUrl) ->
   '
