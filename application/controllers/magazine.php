@@ -351,7 +351,7 @@ class Magazine extends MY_Controller {
 		$this->_json_output($result);
 	}//}}}
 
-	function soft ($type='pc') {	//{{{
+	function soft ($type='android') {	//{{{
 		$data = array(
 				'type' => $type,
 				'curnav' => 'soft',

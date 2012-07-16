@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="/sta/styles/foot.css"/>
 <div class="foot_container">
 	<div class="about_us_container">
+		<div class="occupying_by_10"></div>
 		<div class="about_1001"><!-- 关于1001夜 -->
 			<div class="title_b">关于&nbsp;"1001夜"</div>
 			<div class="content"><!-- 内容 -->

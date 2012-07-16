@@ -16,7 +16,7 @@ $(function(){
 </script>
  <div class="down">
  	<dl class="client_down">
- 		<dt {if $type == 'pc'}class="sel"{else} onclick="location.href='/soft/pc'" onmouseover="this.style.cursor='hand'"{/if}>PC工具下载</dt>
+ 		<dt {if $type == 'pc'}class="sel"{else} onclick="location.href='/soft/pc'" onmouseover="this.style.cursor='hand'"{/if}>1001+制作工具下载</dt>
 		{if $type == 'pc'}
  		<dd class="pc">
  			<div class="intro">
@@ -29,9 +29,9 @@ $(function(){
 					</p>
 				</div>
 				{if isset($user_info) && $user_info.role == 1}
-				<a class="downbtn" href="http://58.30.78.70:84/LetouMagazine_20120709.rar">下载</a>
+				<a class="downbtn" href="http://58.30.78.70:84/LetouMagazine_20120709.rar" style="display:none;">下载</a>
 				{else}
- 				<a class="downbtn thickbox" href="/user/applyAuthor/invitation">下载</a>
+ 				<a class="downbtn thickbox" href="/user/applyAuthor/invitation" style="display:none;">下载</a>
 				{/if}
  			</div>
  			<ul>
@@ -44,7 +44,7 @@ $(function(){
  					一次制作，完美适配主流系统（Web/iOS/Android），全面覆盖用户终端（PC/平板电脑/手机、SmartTV）。
  				</li>
  				<li class="n3">
- 					<strong>卓可视化制作，所见即所得</strong>
+ 					<strong>可视化制作，所见即所得</strong>
  					图文自动绕排、画廊、独有360全角度图片展示、多图触摸滚动、音视频自由插入，拖放间，轻松成就精彩。
  				</li>
  				<li class="n4">

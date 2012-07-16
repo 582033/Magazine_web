@@ -38,8 +38,10 @@ function judge($type){
 					dataType : 'json',
 					success: function(result) {
 						if (result == 'true'){
-							showMsgbox('重置成功', 'current');
-						}					
+							showMsgbox('重置成功', '/');
+						}else{
+							showMsgbox('重置失败，请稍后重试', 'current');
+						}
 					}
 				};
 				$("[name='reset_pwd']").ajaxSubmit(options);
