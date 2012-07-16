@@ -272,8 +272,13 @@ class User extends Magazine {
 		}
 	}	//}}}
 
+	function cut () {
+		$this->smarty->view('image_cropping/frame.tpl');
+	}
 	function set_headpic () {	//头像设置{{{
+		$get_user_info = $this->user_info_model->get_user($this->session->userdata('id'));
 		$data = array(
+				'image' => $get_user_info['image'],
 				'user_set' => 'set_headpic',
 				'user_set_name' => '头像设置',
 				);
