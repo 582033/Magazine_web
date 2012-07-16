@@ -154,54 +154,6 @@ function align_height() { //{{{
 
 } //}}}
 
-function signup(form) {	// {{{
-	var $form = $(form);
-	function error(msg) {
-		$('p.err_msg', $form).text(msg).show();
-		return false;
-	}
-	var email = $('input.username', $form).val();
-	var passwd = $('input.passwd', $form).val();
-	var re_passwd = $('input.re_passwd', $form).val();
-	if (!email) {
-		return error('Email不能为空');
-	}
-	if (!checkEmail(email)) {
-		return error('Email格式不正确');
-	}
-	if (!passwd) {
-		return error('密码不能为空');
-	}
-	if (passwd != re_passwd) {
-		return error('密码不一致');
-	}
-	if (!$('input.agreement').is(':checked')) {
-		return error('您必须同意1001夜法律声明');
-	}
-
-	var messages = {
-		'USER_EXISTS': '用户名已存在'
-	};
-	var options = {
-		dataType : 'json',
-		success: function(result) {
-			if (result.status == 'OK') {
-				if ($form.data('return')) { // single signin page
-					window.location.href = $form.data('return');
-				}
-				else { // signin popup
-					$.colorbox.close();
-				}
-			}
-			else {
-				error(messages[result.status] || result.status);
-			}
-		}
-	};
-
-	$form.ajaxSubmit(options);
-	return false;
-} //}}}
 function applyAuthor(form){	// {{{ 申请成为作者
 	var $form = $(form);
 	if (! $('input.code', $form).val()) {

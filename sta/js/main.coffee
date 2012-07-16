@@ -127,6 +127,13 @@ showMsgbox = (msg, toUrl) ->
       else
         window.location.href = toUrl
 
+handleSigninOk = ($form) ->
+  if $form.data('return') # single signin page
+    window.location.href = $form.data('return')
+  else if g1001.pageId.match /^sns-|^sign(in|up)$/ # redirect to home for sns login related page and single signin/signup page
+    window.location.href = '/'
+  else
+    window.location.reload()
 signin = (form) ->
   $form = $(form)
   error = (msg) ->
@@ -141,17 +148,40 @@ signin = (form) ->
     dataType : 'json'
     success: (result) ->
       if result.status == 'OK'
-        if form.id == 'loginTip' # top right signin area
-          if g1001.pageId.match /^sns-|^sign(in|up)$/ # redirect to home for sns login related page
-            window.location.href = '/'
-          else
-            window.location.reload()
-        else if $form.data('return') # single signin page
-          window.location.href = $form.data('return')
-        else # signin popup
-          $.colorbox.close()
+        handleSigninOk($form)
       else
         error(messages[result.status] or result.status)
     error: -> error('未知错误')
   $form.ajaxSubmit options
+  return false
+signup = (form) ->
+  $form = $(form)
+  error = (msg) ->
+    $('p.err_msg', $form).text(msg).show()
+    return false
+  email = $('input.username', $form).val()
+  passwd = $('input.passwd', $form).val()
+  re_passwd = $('input.re_passwd', $form).val()
+  if not email
+    return error('Email不能为空')
+  if not checkEmail(email)
+    return error('Email格式不正确')
+  if not passwd
+    return error '密码不能为空'
+  if passwd != re_passwd
+    return error('密码不一致')
+  if not $('input.agreement').is(':checked')
+    return error('您必须同意1001夜法律声明')
+
+  messages =
+    'USER_EXISTS': '用户名已存在'
+  options =
+    dataType : 'json'
+    success: (result) ->
+      if result.status == 'OK'
+        handleSigninOk $form
+      else
+        error(messages[result.status] || result.status)
+
+  $form.ajaxSubmit(options)
   return false
