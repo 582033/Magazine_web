@@ -73,15 +73,15 @@
 							 <button type="submit">搜索</button>
 						 </form>
 					 </div>
-					 {if isset($user_info.id)}
+					 {if isset($myinfo.id)}
 					 <div class="self_info">
 						 <div class="user_info">
 							 <span>
-								 <a href="/user/me">{$user_info.nickname}<img class="userhead_small" src="{$user_info.image}!50" width="24px" height="24px" /></a> </span> <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
+								 <a href="/user/me">{$myinfo.nickname}<img class="userhead_small" src="{$myinfo.image}!50" width="24px" height="24px" /></a> </span> <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
 						 </div>
 						 <div class="clearfix"></div>
-					{if $user_info.unread_msg_num gt 0}
-						 <a href="/user/me/messages" class="msg_tip"><span>{$user_info.unread_msg_num}</span></a>
+					{if $myinfo.unread_msg_num gt 0}
+						 <a href="/user/me/messages" class="msg_tip"><span>{$myinfo.unread_msg_num}</span></a>
 					{else}
 
 					{/if}

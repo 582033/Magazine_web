@@ -35,7 +35,7 @@
 				$user_info['data']['image'] =  $user_info['data']['image'] ? $user_info['data']['image'] : "/sta/images/userhead/50.jpg";
 				$msg_data = request($this->api_host.'/user/'.$this->user_id.'/activities',array('session_id'=>$this->session_id),'GET');
 				$user_info['data']['unread_msg_num']= $msg_data['data']['unreadmsgnum'];
-				$data = array('user_info' => $user_info['data']);
+				$data = array('user_info' => $user_info['data'], 'myinfo' => $user_info['data']);
 				$this->smarty->assign($data);
 			}
 		}

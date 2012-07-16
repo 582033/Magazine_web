@@ -122,12 +122,23 @@ class User extends Magazine {
 			$page_style = TRUE;
 		}
 		$this->load->model('user_info_model');
+		$user_info = $this->user_info_model->get_user($user_id);
 		$data = array(
+				'navs' => array(
+					array(
+						'name' => '首页',
+						'url' => '/',
+						),
+					array(
+						'name' => $is_me ? '我的主页' : "$user_info[nickname]的主页",
+						'current' => TRUE,
+						),
+					),
 				'loved_author' => $loved_author,
 				$type => $loved_ob,
 				'is_me' => $is_me,
 				'user_id' => $is_me ? 'me' : $user_id,
-				'user_info' => $this->user_info_model->get_user($user_id),
+				'user_info' => $user_info,
 				);
 		if ($type == 'element') {
 			$total = $loved_ob['totalResults'];
@@ -141,7 +152,7 @@ class User extends Magazine {
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
-	function index($user_id) {
+	function index($user_id) { // {{{
 		$user_id0 = $user_id;
 		if ($user_id == 'me') {
 			$this->_auth_check_web();
@@ -157,7 +168,7 @@ class User extends Magazine {
 		else {
 			redirect("/user/$user_id0/bookstore");
 		}
-	}
+	} //}}}
 	function magazines($user_id, $page = '1'){	//喜欢的杂志列表{{{
 		$page_url = "/user/$user_id/magazines"; 
 		$this->_get_loved($user_id, $page, 'magazine', $page_url);
@@ -200,7 +211,19 @@ class User extends Magazine {
 				$page_list = $this->page_model->page_list("/user/$user_id/bookstore", $this->limit, $books['data']['totalResults'], $page);
 			}
 		}
+		$this->load->model('user_info_model');
+		$user_info = $this->user_info_model->get_user($user_id);
 		$data = array(
+				'navs' => array(
+					array(
+						'name' => '首页',
+						'url' => '/',
+						),
+					array(
+						'name' => $is_me ? '我的主页' : "$user_info[nickname]的主页",
+						'current' => TRUE,
+						),
+					),
 				'page_list' => $page_list,
 				'loved_author' => $loved_author,
 				'bookstore' => $books['data'],
