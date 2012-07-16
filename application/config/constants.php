@@ -73,6 +73,11 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 */
 define('SHOW_DEBUG_BACKTRACE', TRUE);
 
+define('ROLE_READER', 0);
+define('ROLE_AUTHOR', 1);
+define('ROLE_VIP', 2);
+define('ROLE_ADMIN', 3);
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

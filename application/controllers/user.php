@@ -141,6 +141,23 @@ class User extends Magazine {
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
+	function index($user_id) {
+		$user_id0 = $user_id;
+		if ($user_id == 'me') {
+			$this->_auth_check_web();
+			$user_id = $this->session->userdata('id');
+		}
+		$is_me = $user_id == $this->session->userdata('id');
+		if ($is_me) $user_id0 = 'me';
+		$this->load->model('user_info_model');
+		$user_info = $this->user_info_model->get_user_info($user_id);
+		if ($user_info['role']  == ROLE_READER) {
+			redirect("/user/$user_id0/magazines");
+		}
+		else {
+			redirect("/user/$user_id0/bookstore");
+		}
+	}
 	function magazines($user_id, $page = '1'){	//喜欢的杂志列表{{{
 		$page_url = "/user/$user_id/magazines"; 
 		$this->_get_loved($user_id, $page, 'magazine', $page_url);

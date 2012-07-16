@@ -90,11 +90,11 @@ $route['(magazine|element)/(:num)/(like|cancelLike)'] = '/magazine/like/$1/$2/$3
 $route['user/(:num)/(follow|unfollow)'] = '/magazine/like/user/$1/$2';
 # user/me/elements -> user/elements/me, user/me/elements/p/2 -> user/elements/me/2
 $route['user/(:any)/(bookstore|magazines|elements|followees|messages)(/p/(:num))?'] = '/user/$2/$1/$4';
-$route['user/me'] = 'user/bookstore/me';
+$route['user/me'] = 'user/index/me';
+$route['user/(:num)'] = 'user/index/$1';
 $route['user/me/(published|unpublished)(/p/(:num))?'] = 'user/bookstore/me/$4/$1';
 $route['user/me/setting'] = 'user/set_base';
 $route['user/me/(.*)'] = 'user/$1';
-$route['user/(:num)'] = 'user/magazines/$1';
 $route['message/del/(:num)'] = 'user/del_msg/$1';
 
 $route['user/reset_pwd_action/(.*)'] = 'user/reset_pwd_action/$1';
