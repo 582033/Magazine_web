@@ -13,9 +13,8 @@
 					<img src="{$user_info.image}!180" width="180px" height="180px" class="userhead" alt="1{$user_info.nickname}" />
  				</a>
  				<ul class="clearfix">
- 					<li><a href="#">关注<span>{$user_info.followers}</span></a></li>
- 					<li><a href="#">粉丝<span>{$user_info.followers}</span></a></li>
- 					<li class="last"><a href="#">杂志<span>{$user_info.magazines}</span></a></li>
+					<li><a href="/user/{$user_id}/followees">关注<span>{$user_info.followees}</span></a></li>
+					<li class="last"><a href="/user/{$user_id}/followers">粉丝<span>{$user_info.followers}</span></a></li>
  				</ul>
  			</div>
 			{if $is_me}
@@ -25,9 +24,9 @@
  			<a href="javascript:void(0)" class="applyauthor alreadyauthor">认证作者</a>
 			{/if}
 			{else}
- 			<a class="follow" href="javascript:void(0)" onclick="like('user', '{$user_id}', 'user_center')">关注作者</a>
+			<a class="follow" href="javascript:void(0)" onclick="like('user', '{$user_id}', 'user_center')">加关注</a>
  			<p class="followed" style="display: none">
-				<a class="followed" href="javascript:void(0)" onclick="like('user', '{$user_id}', 'user_center')">已关注作者</a>
+				<a class="followed" href="javascript:void(0)" onclick="like('user', '{$user_id}', 'user_center')">已关注</a>
 				<a class="cancel" href="javascript:void(0)" onclick="cancelLike('user', '{$user_id}', 'user_center')">取消</a>
 			</p>
 			{/if}
@@ -35,20 +34,20 @@
  		</div>
  		
  		<dl class="tag">
- 			<dt>我的标签  <a href="/user/me/set_tag" class="edit">修改</a></dt>
+			<dt>{if $is_me}我{else}TA{/if}的标签  {if $is_me}<a href="/user/me/set_tag" class="edit">修改</a></dt>{/if}
  			<dd>
 				{if $user_info.tags}
 					{foreach $user_info.tags as $item}
 					<a href="#" class="{cycle values="tag01,tag02"}">{$item}</a>
 					{/foreach}
 				{else}
-					&nbsp;&nbsp;您还没有设置标签
+					&nbsp;&nbsp;{if $is_me}您{else}TA{/if}还没有设置标签
 				{/if}
  			</dd>
  		</dl>
  		
  		<dl class="follows">
- 			<dt>我关注的作者</dt>
+			<dt>{if $is_me}我{else}TA{/if}的关注</dt>
  			<dd>
  				<div class="clearfix">
 					{foreach from=$loved_author.items item=item}

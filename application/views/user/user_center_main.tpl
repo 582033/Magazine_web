@@ -6,7 +6,8 @@
 			{if $is_me}
 			<li><a href="/user/{$user_id}/messages"{if $love_msg}class="sel"{/if}>消息中心</a></li>
 			{/if}
-			<li><a href="/user/{$user_id}/followees" {if $followees}class="sel"{/if}>关注的作者</a></li>
+			<li><a href="/user/{$user_id}/followees" {if $followees}class="sel"{/if}>关注</a></li>
+			<li><a href="/user/{$user_id}/followers" {if $followers}class="sel"{/if}>粉丝</a></li>
 			<li><a href="/user/{$user_id}/elements" {if $element}class="sel"{/if}>喜欢的发现</a></li>
 			<li><a href="/user/{$user_id}/magazines" {if $magazine}class="sel"{/if}>喜欢的阅读</a></li>
 			{if $user_info.role != 0}
@@ -30,7 +31,10 @@
 	    {include file='user/show.tpl'}
         {/if}
         {if $followees}
-	    {include file='user/followees.tpl'}
+	    {include file='user/followees.tpl' follows=$followees follow_type='followee'}
+        {/if}
+        {if $followers}
+	    {include file='user/followees.tpl' follows=$followers follow_type='follower'}
         {/if}
 
     </div>

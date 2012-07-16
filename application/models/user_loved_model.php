@@ -11,8 +11,11 @@ class user_loved_model extends CI_Model {
 
 	function get_loved ($user_id, $url_data, $type, $mag_category = null) {	//{{{
 		switch ($type) {
-			case 'author':
+			case 'followees':
 				$uri = "followees";
+				break;
+			case 'followers':
+				$uri = "followers";
 				break;
 			case 'element':
 				$uri = "elements/like";

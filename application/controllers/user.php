@@ -98,6 +98,9 @@ class User extends Magazine {
 	}	//}}}
 
 	function _get_loved ($user_id, $page, $type, $page_url) {	//获取用户喜欢的(杂志|元素|作者){{{
+		/**
+		 * type - magazine/element/followees/followers
+		 */
 		$page = $page ? $page : 1;
 		if ($user_id == 'me') {
 			$this->_auth_check_web();
@@ -109,7 +112,7 @@ class User extends Magazine {
 				'start' => ($page-1)*($this->limit),
 				'limit' => $this->limit,
 				);
-		$loved_author = $this->user_loved_model->get_loved($user_id, $url_data, 'author');
+		$loved_author = $this->user_loved_model->get_loved($user_id, $url_data, 'followees');
 		if ($type != 'followees') {
 			$loved_ob = $this->user_loved_model->get_loved($user_id, $url_data, $type);
 			if ($type == 'element') {
@@ -184,6 +187,10 @@ class User extends Magazine {
 		$page_url = "/user/$user_id/followees"; 
 		$this->_get_loved($user_id, $page, 'followees', $page_url);
 	}	//}}}
+	function followers($user_id, $page = '1') {	// 粉丝
+		$page_url = "/user/$user_id/followers";
+		$this->_get_loved($user_id, $page, 'followers', $page_url);
+	}	//}}}
 
 	function bookstore($user_id, $page = '1', $type = 'published'){	//{{{
 		$page = $page ? $page : 1;
@@ -199,7 +206,7 @@ class User extends Magazine {
 				'limit' => $this->limit,
 				);
 		$books = $this->user_loved_model->my_magazines($user_id, $url_data, $type);
-		$loved_author = $this->user_loved_model->get_loved($user_id, $url_data, 'author');
+		$loved_author = $this->user_loved_model->get_loved($user_id, $url_data, 'followees');
 		if ($type == 'unpublished') {
 			$page_list = $this->page_model->page_list("/user/me/unpublished", $this->limit, $books['data']['totalResults'], $page);
 		}
