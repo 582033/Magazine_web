@@ -236,6 +236,7 @@ class User extends Magazine {
 				'bookstore' => $books['data'],
 				'is_me' => $is_me,
 				'user_id' => $is_me ? 'me' : $user_id,
+				'user_info' => $user_info,
 				'type' => $type,
 			);
 		$this->smarty->view('user/user_center_main.tpl', $data);
