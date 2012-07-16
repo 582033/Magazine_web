@@ -71,7 +71,7 @@ function init_user_center() { //{{{
 } //}}}
 function init_colorbox() { // {{{
 	$(document).on('cbox_closed', function(){
-		if (!$.colorbox.element().attr('id') == 'msgbox') {
+		if ($.colorbox.element().attr('id') != 'msgbox') {
 			window.location.reload();
 		}
 	});
