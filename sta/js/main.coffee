@@ -149,7 +149,7 @@ signin = (form) ->
     success: (result) ->
       if result.status == 'OK'
         if form.id == 'loginTip' # top right signin area
-          if g1001.pageId.match /^sns-/ # redirect to home for sns login related page
+          if g1001.pageId.match /^sns-|^sign(in|up)$/ # redirect to home for sns login related page
             window.location.href = '/'
           else
             window.location.reload()
