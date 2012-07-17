@@ -114,7 +114,7 @@ class Mag_Model extends CI_Model {
 	
 	function _get_recommend_bycat($catid){		//获得推荐杂志列表,仅用于商品详情页的推荐的杂志部分{{{
 		$mag_rec = request($this->api_host. "/ltapp/ads/maga/guessulove?limit=20");
-		if(count($msg_rec['data']['items'])>6){
+		if(count($mag_rec['data']['items'])>6){
 			shuffle($mag_rec['data']['items']);
 			foreach($mag_rec['data']['items'] as $k =>$v){
 				if($k>5){
