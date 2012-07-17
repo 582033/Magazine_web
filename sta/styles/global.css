@@ -59,7 +59,7 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .header .log_reg form span{ display:block; height:31px; color:#0590B3; background:#EDEDED; line-height:31px; text-align:center;}
 .header .log_reg form button{ display:block; float:right; clear:both; margin-top:5px; width:82px; height:30px; background:url(/sta/images/btn_logintip_sub.gif) no-repeat left top; border:none; line-height:28px; font-size:14px; color:#FFF; cursor:pointer;}
 
-.header .self_info{ float:right; width:160px; padding-left:26px; position:relative;}
+.header .self_info{ float:right; width:160px; padding-left:26px; position:relative;z-index:1000;}
 .header .self_info .user_info{ float:right; display:block; height:31px; padding-right:24px; background:url(/sta/images/bg_userinfobar.gif) no-repeat right -31px;}
 .header .self_info .user_info span{ float:right; display:block; max-width:100px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden; height:25px; padding:3px 45px 3px 14px; background:url(/sta/images/bg_userinfobar.gif) no-repeat left top; word-break:keep-all; position:relative; }
 .header .self_info .user_info span a{ line-height:25px; font-size:12px; color:#0590B3;}
