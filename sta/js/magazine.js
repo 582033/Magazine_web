@@ -18,7 +18,6 @@ $.format = function (source, params) { //{{{
  }; //}}}
  
 $(function() {
-		detail_resize();
 		init_search();
 		init_goto_page();
 		init_comment();
@@ -123,19 +122,6 @@ function init_goto_page() { // {{{
 			window.location.href = this.action + '/p/' + gotop;
 			return false;
 			});
-} //}}}
-
-function detail_resize(){ //{{{
-	page_height = $(".main").height();
-	if ($(".left_main").height()<page_height){
-		$(".left_main").css("height",page_height+"px");
-	}
-	$(".scrollbar ul").css("width",$(".scrollbar li").outerWidth(true)*$(".scrollbar li").size()+"px");
-	$(function(){
-		$('.scrollbar').jScrollPane({
-				autoReinitialise: true
-			});
-	})
 } //}}}
 
 function align_height() { //{{{

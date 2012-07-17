@@ -12,6 +12,15 @@ $ ->
   loadUserInfo initFav
   switch g1001.pageId
     when 'change-password' then initChangePassword()
+    when 'mag_detail' then init_detail()
+
+init_detail = ->
+  page_height = $(".main").height()
+  if $(".left_main").height() < page_height
+    $(".left_main").css "height", page_height + "px"
+  $li = $('.scrollbar li')
+  $(".scrollbar ul").css("width", $li.outerWidth(true) * $li.size() + "px")
+  $('.scrollbar').jScrollPane autoReinitialise: true
 
 initChangePassword = ->
 changePassword = (form) ->
