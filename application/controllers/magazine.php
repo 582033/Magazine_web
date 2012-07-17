@@ -106,6 +106,12 @@ class Magazine extends MY_Controller {
 		$index_infotpl['elm_4'] = $index_info['elm_4'];
 
 		$index_infotpl['curnav'] = 'home';
+		foreach($index_infotpl['ad_slot_indexbottom']['items'] as $k => $v){
+			$index_infotpl['ad_slot_indexbottom']['items'][$k]['image'] = $v['image']['url'];
+		}
+		foreach($index_infotpl['ad_slot_indextop']['items'] as $k => $v){
+			$index_infotpl['ad_slot_indextop']['items'][$k]['image'] = $v['image']['url'];
+		}
 		$this->smarty->view('magazine/index.tpl', $index_infotpl);
 	}//}}}
 
@@ -191,6 +197,9 @@ class Magazine extends MY_Controller {
 		$mag_middle=$this->mag_model->_get_mag_middle();
 
 		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery, $id);
+		foreach($mag_recommend['data']['items'] as $k =>$v){
+			$mag_recommend['data']['items'][$k]['image']=$v['image']['url'];
+		}
 
 		$cate_magazines = array();
 		foreach ($this->cate_map as $cid => $cname) {
