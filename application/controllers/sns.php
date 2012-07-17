@@ -167,7 +167,8 @@ class Sns extends MY_Controller {
 				$bindParams = array(
 						'session_id'=>$sessionData['session_id'],
 						'snsid'=>$snsid,
-						'authstring'=>Sns_Model::decodeAuthString($status)
+						'authstring'=>Sns_Model::decodeAuthString($status),
+						'do'=>'FETCH'
 						);
 				$result = request($this->apiHost.'/sns/bind',$bindParams,'GET');
 				if($result['httpcode']!=200) {
