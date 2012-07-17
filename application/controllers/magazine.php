@@ -511,7 +511,7 @@ class Magazine extends MY_Controller {
 		$magazine = $this->mag_model->_get_magazine_by_id($id);
 		$catid=0;
 		$all_recommendation = $this->mag_model->_get_recommend_bycat($catid);
-		$recommendation=$all_recommendation['data']['items']; 
+		$recommendation=array_slice($all_recommendation['data']['items'],0,5);
 		$data = array(
 				'author'=>$magazine['author'],
 				'recommend'=>$recommendation
