@@ -20,7 +20,7 @@
 			<h2><a href="{$item.url}">{$item.title}</a></h2>
 			{if $ad_slot.show_text}
 			<p>
-				<span>{$item.text|truncate:50}</span>
+				<span>{$item.text|mbtruncate:100}</span>
 				<a href="{$item.url}" class="readmore">阅读+</a>
 			</p>
 			{/if}
