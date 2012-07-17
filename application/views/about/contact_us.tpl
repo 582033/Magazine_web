@@ -2,7 +2,8 @@
 <style type="text/css">
   #map_canvas { height: 600px; width:100%; }
 </style>
-
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyClCYHH9Q3VOWt7Iajyx5bKVI4wV7Y189o&sensor=false"></script>
+<script type="text/javascript" src="/sta/js/google_map.js"></script>
 <link rel="stylesheet" type="text/css" href="/sta/styles/foot.css"/>
 <div class="foot_container">
 	<div class="contact_us_container"><!-- 联系我们 -->

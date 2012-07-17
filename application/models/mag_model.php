@@ -166,4 +166,9 @@ class Mag_Model extends CI_Model {
 			return $mag_category;
 		}
 	}	//}}}
+	
+	function _get_topic_magazine($limit){
+		$mag_list = request($this->api_host . "/ltapp/ads/magazine/ztmag?limit=$limit");
+		return $mag_list;
+	}
 }

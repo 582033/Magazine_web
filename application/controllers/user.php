@@ -519,6 +519,7 @@ class User extends Magazine {
 			$result = $this->send_email_model->_update_account_name($account_name, $new_pwd);
 			if ($result == 'true'){
 				$msg = "true";
+				$this->get_redis()->delete($key);
 				$this->_json_output($msg);
 			}else{
 				$msg = "fail";

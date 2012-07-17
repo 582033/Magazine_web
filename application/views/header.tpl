@@ -6,6 +6,7 @@
 		<meta name="msapplication-window" content="width=1550;height=768" />
 		<link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
+		<link rel="stylesheet" type="text/css" href="/sta/styles/topic.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/main.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/colorbox/colorbox.css"/>
 		<title>{$title}</title>
@@ -16,26 +17,6 @@
 		<script type="text/javascript" src="/sta/js/main.js"></script>
 		<script type="text/javascript" src="/sta/js/magazine.js"></script>
 		<script type="text/javascript" src="/sta/js/check.js"></script>
-		<script type="text/javascript"
-		  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyClCYHH9Q3VOWt7Iajyx5bKVI4wV7Y189o&sensor=false">
-		</script>
-		<script type="text/javascript">
-		  function initialize() {
-			var myLatlng = new google.maps.LatLng(39.983598, 116.414880);
-			var myOptions = {
-			  center: myLatlng,
-			  zoom: 18,
-			  mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-			var map = new google.maps.Map(document.getElementById("map_canvas"),
-				myOptions);
-			var marker = new google.maps.Marker({
-			  position: myLatlng,
-			  title:"乐投信息"
-			});
-			marker.setMap(map);  
-		  }
-		</script>
 		<!--[if IE 6]>
 		<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
 		<script type="text/javascript">

@@ -304,6 +304,14 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
 
+	function topic(){		//专题{{{
+		$limit = 8;
+		$result = $this->mag_model->_get_topic_magazine($limit);
+		$mag_recommend = $result['data']['items'];
+		$data = array('mag_recommend' => $mag_recommend);
+		$this->smarty->view('magazine/topic.tpl', $data);
+	}//}}}
+
 	function comment_list($id, $page="1"){		//杂志评论页面{{{
 		$page = $page ? $page : 1;
 		$limit = 10;
