@@ -8,11 +8,11 @@ img { border:none; }
 /*关于图片样式*/
 #sourceimg { position:absolute; left:0; top:0; z-index:900; }
 #picViewOuter { position:relative; width:300px; height:225px; overflow:hidden;text-align:left; }
-#sliderOuter { width:292px; padding-left:8px; height:25px; margin-top:5px; background:url(../images/image_cropping.gif) 0 11px no-repeat; }
+#sliderOuter { width:292px; padding-left:8px; height:25px; margin-top:5px; background:url(/sta/images/image_cropping.gif) 0 11px no-repeat; }
 #slider { position:relative; margin:auto; float:left; width:124px; height:25px; }
-#sliderBlock { width:24px; height:25px; position:absolute; top:0px; left:50px; cursor:pointer; font-size:10px; font-family:"Times New Roman"; text-align:center; background:url(../images/image_cropping.gif) 0px -9px no-repeat; overflow:hidden; }
+#sliderBlock { width:24px; height:25px; position:absolute; top:0px; left:50px; cursor:pointer; font-size:10px; font-family:"Times New Roman"; text-align:center; background:url(/sta/images/image_cropping.gif) 0px -9px no-repeat; overflow:hidden; }
 #run { width:150px; height:23px; margin-top:2px; float:right; overflow:hidden; }
-#run a { float:right; margin-left:5px; font-size:12px; font-family:"宋体"; font-weight:bold; width:70px; height:23px; line-height:23px; overflow:hidden; background:url(../images/image_cropping.gif) -24px -15px no-repeat; background-color:#DDDDDD; color:#1E90FF; text-decoration:none;text-align:center}
+#run a { float:right; margin-left:5px; font-size:12px; font-family:"宋体"; font-weight:bold; width:70px; height:23px; line-height:23px; overflow:hidden; background:url(/sta/images/image_cropping.gif) -24px -15px no-repeat; background-color:#DDDDDD; color:#1E90FF; text-decoration:none;text-align:center}
 #run a:hover { background-color:#FFFF00; }
 
 /*关于蒙板样式*/
