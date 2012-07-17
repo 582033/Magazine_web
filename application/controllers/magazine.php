@@ -116,7 +116,7 @@ class Magazine extends MY_Controller {
 		$start = ($page-1) * $limit;
 		$element = $this->mag_model->_get_element_list($limit, $start);
 		$page_list = $this->page_model->page_list("/find", $limit, $element['data']['totalResults'], $page);
-		$elem_ad = request($this->config->item('api_host').'/ltapp/ads/elem/findpage?limit=8');
+		$elem_ad = request($this->config->item('api_host').'/ltapp/ads/element/findpage?limit=8');
 		$arr_elem_ad = $elem_ad['data']['items'];
 		$elements = $this->display_model->process_elements($element['data']['items']);
 		$total = $element['data']['totalResults'];

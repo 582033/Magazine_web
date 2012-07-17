@@ -54,7 +54,7 @@ class Mag_Model extends CI_Model {
 	
 	//mag page ,middle magazine ,2  个	
  	function _get_mag_middle()	{
-		$mag_result = request($this->api_host . "/ltapp/ads/maga/magmiddle?limit=2");
+		$mag_result = request($this->api_host . "/ltapp/ads/magazine/magmiddle?limit=2");
 	
 		$mag_item = $mag_result['data']['items'];
 	
@@ -66,7 +66,7 @@ class Mag_Model extends CI_Model {
 	function _get_index_info(){		//首页杂志信息{{{
 		//右上及中部的9本杂志
 		//$mag_result = request($this->api_host . "/magazines?limit=9&start=0");
-		$mag_result = request($this->api_host . "/ltapp/ads/maga/indextop?limit=9");
+		$mag_result = request($this->api_host . "/ltapp/ads/magazine/indextop?limit=9");
 		//顶部幻灯片，最多5张
 		$mag_resultad = request($this->api_host."/ltapp/ads/image/indextop?limit=5");
 		$mag_itemad = $mag_resultad['data']['items'];
@@ -85,7 +85,7 @@ class Mag_Model extends CI_Model {
 		}
 
 		//elem list4
-		$elem_list_result= request($this->api_host."/ltapp/ads/elem/indexelem4?limit=9");
+		$elem_list_result= request($this->api_host."/ltapp/ads/element/indexelem4?limit=9");
 		$elem_item = $elem_list_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 				array_push($elem_list4, $elem_item[$j]);
@@ -113,7 +113,7 @@ class Mag_Model extends CI_Model {
 	}//}}}
 	
 	function _get_recommend_bycat($catid){		//获得推荐杂志列表,仅用于商品详情页的推荐的杂志部分{{{
-		$mag_rec = request($this->api_host. "/ltapp/ads/maga/guessulove?limit=20");
+		$mag_rec = request($this->api_host. "/ltapp/ads/magazine/guessulove?limit=20");
 		if(count($mag_rec['data']['items'])>6){
 			shuffle($mag_rec['data']['items']);
 			foreach($mag_rec['data']['items'] as $k =>$v){
