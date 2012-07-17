@@ -170,7 +170,8 @@ class Sns extends MY_Controller {
 						'authstring'=>Sns_Model::decodeAuthString($status),
 						'do'=>'FETCH'
 						);
-				$result = request($this->apiHost.'/sns/bind',$bindParams,'GET');
+				set_time_limit(100);//获取图片
+				$result = request($this->apiHost.'/sns/bind',$bindParams,'GET',true,array(),null);
 				if($result['httpcode']!=200) {
 					return  show_error('绑定失败',500);
 				}
