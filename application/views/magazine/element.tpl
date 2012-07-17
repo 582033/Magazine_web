@@ -5,6 +5,9 @@
 			<strong>爱发现</strong>
 		</dt>
 		<div id="container">
+			{foreach from=$element_ad item=item key=key}
+			{include file="magazine/lib/elemcover.tpl"}
+			{/foreach}
 			{foreach from=$element_list item=item key=key}
 			{include file="magazine/lib/elemcover.tpl"}
 			{/foreach}
