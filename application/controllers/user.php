@@ -164,7 +164,7 @@ class User extends Magazine {
 		$is_me = $user_id == $this->session->userdata('id');
 		if ($is_me) $user_id0 = 'me';
 		$this->load->model('user_info_model');
-		$user_info = $this->user_info_model->get_user_info($user_id);
+		$user_info = $this->user_info_model->get_user($user_id);
 		if ($user_info['role']  == ROLE_READER) {
 			redirect("/user/$user_id0/magazines");
 		}
