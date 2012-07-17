@@ -5,7 +5,9 @@
 			{if $is_me}
 			<a href="/user/me/setting" class="edit">修改</a>
 			{else}
+			{if $user_info.role > 0}
 			<a href="javascript:void(0)" class="auther">认证作者</a>
+			{/if}
 			{/if}
 		</p>
 		<div class="user_info">
