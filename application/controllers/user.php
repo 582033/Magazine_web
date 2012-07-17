@@ -535,13 +535,14 @@ class User extends Magazine {
 		$this->smarty->view('user/reset_password.tpl', $data);
 	}
 
-	 function get_redis () { //{{{
+	function get_redis () { //{{{
         $redis = new Redis();
         $redis->connect($this->config->item('redis_server'));
         return $redis;
     }   //}}}
-
+	
 	function forget_password(){
+		$this->load->model('msgbroker');
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$email = trim($this->input->post('email'));
 			$info = $this->send_email_model->_get_username($email);
@@ -550,36 +551,15 @@ class User extends Magazine {
 				$this->_json_output($msg);
 			}else{
 				$key = random_string('alnum', 8);
-				$this->get_redis()->setex($key, $this->config->item('salt_expires'), $email);
+				$this->get_redis()->setex($key, $this->config->item('last_time'), $email);
 				$nickname = $this->send_email_model->_get_nickname($info['account_id']);
-				$mail             = new PHPMailer();
-				$body = "亲爱的".$nickname."：<br />";
-				$body .= "<span style='margin-left:100px;'></span>您好！<br />";
-				$body .= "<span style='margin-left:100px;'></span>非常感谢您使用１００１夜互动阅读平台！<br />";
-				$body .= "<span style='margin-left:100px;'></span>请点击该链接，重新设置您的密码（<a href='".$this->config->item('web_host')."/user/reset_password_show/$key'>HERE</a>）<br />";
-				$body .= "<span style='margin-left:100px;'></span>希望您能使用愉快，如果仍有问题，请联系我们  @1001夜互动阅读平台<a href='http://e.weibo.com/u/2804435152'>http://e.weibo.com/u/2804435152</a><br />";
-				$body .= "1001夜互动阅读平台团队<br />";
-				$body .= "（本邮件自动发出，请勿回复）<br />";
-				$mail->IsHTML(true);
-				$mail->IsSMTP();
-				$mail->SMTPAuth   = true;                  // enable SMTP authentication
-				$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
-				$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
-				$mail->Port       = 465;                   // set the SMTP port
-				$mail->Username   = "eee168m@gmail.com";  // GMAIL username
-				$mail->Password   = "eee168mailer";            // GMAIL password
-				$mail->From       = "eee168m@gmail.com";
-				$mail->FromName   = "1001 NIGHT";
-				$mail->Subject = "RESET YOUR PASSWORD";
-//				$mail->Body = "http://mtong.a.1001s.cn/user/reset_password_show/$key";
-				$mail->Body = $body;
-				$mail->WordWrap   = 80; // set word wrap
-				$mail->AddAddress($email);
-				if(!$mail->Send()) {
-					$msg = 'error';
+				$url = $this->config->item('web_host')."/user/reset_password_show/$key";
+				$result = $this->msgbroker->find_pwd_mail($email, $nickname, $url);
+				if ($result['status'] == 'ok'){
+					$msg = 'true';
 					$this->_json_output($msg);
 				}else{
-					$msg = 'true';
+					$msg = 'false';
 					$this->_json_output($msg);
 				}
 			}

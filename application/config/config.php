@@ -409,6 +409,7 @@ $config['cookie_expire'] = '1209600';//cookie缓存时间,14天
 
 $config['redis_server'] = "tcp://redishost:6379";
 $config['salt_expires'] = 300;
+$config['last_time'] = 86400;
 
 $config['upload_img_dir'] = '/mnt/mag/img/avatar';
 $config['upload_img_host'] = 'http://img.in1001.com/avatar';
