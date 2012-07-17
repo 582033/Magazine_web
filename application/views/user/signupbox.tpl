@@ -5,12 +5,12 @@
 			<fieldset>
  			<legend>注册1001夜账号</legend>
 			<p class="err_msg" style="display:none"></p>
-			<p>
+			<p class="input">
 				<label for="dialog_reg_Email">Email地址</label><input type="text" name="username" class="username" id="dialog_reg_Email" />
 				<span><!--class正确为right，错误为error-->请输入您的常用Email地址</span>
 			</p>
-			<p><label for="dialog_reg_Pass">设置密码</label><input type="password" name="passwd" class="passwd" id="dialog_reg_Pass" /></p>
-			<p><label for="dialog_reg_RePass">重复密码</label><input type="password" name="re_passwd" class="re_passwd" id="dialog_reg_RePass" /></p>
+			<p class="input"><label for="dialog_reg_Pass">设置密码</label><input type="password" name="passwd" class="passwd" id="dialog_reg_Pass" /></p>
+			<p class="input"><label for="dialog_reg_RePass">重复密码</label><input type="password" name="re_passwd" class="re_passwd" id="dialog_reg_RePass" /></p>
 			<p class="agreement"><input type="checkbox" class="agreement" />我已阅读并同意<a href="/legal_statement" target="_BLANK">1001夜法律声明</a></p>
 			<p><button type="submit">马上注册成为会员</button></p>
 			</fieldset>

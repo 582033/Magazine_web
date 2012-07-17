@@ -17,7 +17,7 @@
 					font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium';
 				}
 				p {
-					width:330px; padding:22px 0; padding-left:110px; position:relative;
+					width:330px; padding:18px 0; padding-left:110px; position:relative;
 				}
 				p.err_msg {
 					padding: 10px 0 0 33px;
@@ -35,7 +35,7 @@
 		}
 	}
 	&.reg, &.login, &.bundle {
-		.main form p input {
+		.main form p.input input {
 			width:228px;
 			height:40px;
 			padding:0 10px;
@@ -48,7 +48,7 @@
 		.main form p span {
 			position:absolute;
 			left:110px;
-			top:66px;
+			top:60px;
 			font-size:12px;
 			color:#C4C4C4;
 			&.error { color:#C00;}
@@ -84,7 +84,7 @@
 	&.reg .main dd,&.login .main dd{ padding:10px 0;}
 	&.reg .main form {
 		p {
-			padding: 18px 0;
+			padding: 15px 0;
 			padding-left: 110px;
 		}
 		p.agreement {
