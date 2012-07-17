@@ -12,7 +12,7 @@ class search extends Magazine{
 		if ($type && !in_array($type, array('all', 'magazine', 'author'))) {
 			show_error("Bad type $type", 400);
 		}
-		if (!$keyword) {
+		if ($keyword === '') {
 			show_error("Empty keyword", 400);
 		}
 		$page = $page ? $page : 1;
