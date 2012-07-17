@@ -274,9 +274,11 @@ class User extends Magazine {
 	}	//}}}
 
 	function cut () {
+		$this->_auth_check_web();
 		$this->smarty->view('image_cropping/frame.tpl');
 	}
 	function set_headpic () {	//头像设置{{{
+		$this->_auth_check_web();
 		$get_user_info = $this->user_info_model->get_user($this->session->userdata('id'));
 		$data = array(
 				'image' => $get_user_info['image'],
@@ -299,6 +301,7 @@ class User extends Magazine {
 				$this->_json_output($msg);
 			}
 		}else{
+			$this->_auth_check_web();
 			$data = array(
 					'user_set' => 'set_pwd',
 					'user_set_name' => '修改密码',
@@ -444,59 +447,59 @@ class User extends Magazine {
 		return $ret_verb;
 	}
 
-//join msg  info from db and tpl
-function print_msg($arr_db,$info){
-	if(count($arr_db) == 0){
-		//no msg ，show message to prompt
-		$ret= '<dl class="clearfix">  <dd> <div align="center"> <p> 目前暂无消息</p> <span></span> </div> </dd> </dl> ';
-	}
-	else{
-		$ret = '';
-		foreach($arr_db as $v){
-			$ret.= $this->verb_msg($v);
-			//update message status
-		 request($this->api_host."/activity/".$v['msg_id'].'?session_id='.$info['session_id'],json_encode(array()),"PUT");
+	//join msg  info from db and tpl
+	function print_msg($arr_db,$info){
+		if(count($arr_db) == 0){
+			//no msg ，show message to prompt
+			$ret= '<dl class="clearfix">  <dd> <div align="center"> <p> 目前暂无消息</p> <span></span> </div> </dd> </dl> ';
 		}
-	}
-return $ret;	
-
-}
-	
-//show all messages
-function messages($user_id, $p=1) {
-	$p = $p ? $p : 1;
-	//check login status
-	$user_info = $this->_auth_check_web();
-	if ($user_id != 'me' && $user_id != $user_info['id']) {
-		show_error('', 401);
-	}
-	if($p==1){
-		$start=0;
-		$limit=$this->config->item('page_msg_num');
-	}
-	else{
-		$start=$this->config->item('page_msg_num')*($p-1);
-		$limit=$this->config->item('page_msg_num');
-
-	}
-	$res = request($this->api_host."/user/".$user_info['id']."/activities",
-			array('start'=>$start,"limit"=>$limit,"session_id"=>$user_info['session_id']));
-	$arr_totpl=array();
-	$msg_ctt='';
-	$totalnum=$res['data']['totalResults'];
-		$msg_ctt=$this->print_msg($res['data']['items'],$user_info);
-	$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
-	$data=array();
-	$data['msg']=$msg_ctt;
-	$data['love_msg']="true";
-	$data['page_list']=$page_list;
-	$data['msg_page']='msg_page';
-	$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
-	$data['is_me'] = TRUE;
-	$data['user_id'] = 'me';
-	$this->smarty->view('user/user_center_main.tpl',$data);
-
+		else{
+			$ret = '';
+			foreach($arr_db as $v){
+				$ret.= $this->verb_msg($v);
+				//update message status
+			 request($this->api_host."/activity/".$v['msg_id'].'?session_id='.$info['session_id'],json_encode(array()),"PUT");
 			}
+		}
+	return $ret;	
+
+	}
+	
+	//show all messages
+	function messages($user_id, $p=1) {
+		$p = $p ? $p : 1;
+		//check login status
+		$user_info = $this->_auth_check_web();
+		if ($user_id != 'me' && $user_id != $user_info['id']) {
+			show_error('', 401);
+		}
+		if($p==1){
+			$start=0;
+			$limit=$this->config->item('page_msg_num');
+		}
+		else{
+			$start=$this->config->item('page_msg_num')*($p-1);
+			$limit=$this->config->item('page_msg_num');
+
+		}
+		$res = request($this->api_host."/user/".$user_info['id']."/activities",
+				array('start'=>$start,"limit"=>$limit,"session_id"=>$user_info['session_id']));
+		$arr_totpl=array();
+		$msg_ctt='';
+		$totalnum=$res['data']['totalResults'];
+			$msg_ctt=$this->print_msg($res['data']['items'],$user_info);
+		$page_list = $this->page_model->page_list("/user/me/messages", $this->config->item('page_msg_num'), $totalnum, $p,'msg');
+		$data=array();
+		$data['msg']=$msg_ctt;
+		$data['love_msg']="true";
+		$data['page_list']=$page_list;
+		$data['msg_page']='msg_page';
+		$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
+		$data['is_me'] = TRUE;
+		$data['user_id'] = 'me';
+		$this->smarty->view('user/user_center_main.tpl',$data);
+
+	}
 	//show all messages
 	function msglist($page){
 		$this->index($page);
