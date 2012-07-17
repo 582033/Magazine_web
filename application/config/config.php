@@ -300,7 +300,7 @@ $config['sess_time_to_update']	= 7200;
 |
 */
 $config['cookie_prefix']	= "";
-$config['cookie_domain']	= "";
+$config['cookie_domain']	= "www.in1001.com";
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= FALSE;
 

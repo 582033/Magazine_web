@@ -82,7 +82,7 @@
 							 <form name="form" id="loginTip" class="clearfix"
 								 onmouseover="this.style.display='block'" onmouseout="this.style.display='none'"
 								 onsubmit="return signin(this)"
-								 action="/user/signin" method="post" enctype="multipart/form-data">
+								 action="/user/signin" method="POST">
 								 <p><input type="text" name="username" class="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
 								 <p><input type="password" name="passwd" class="passwd" value="" /></p>
 								 <p><a href="/user/forget_password" class="findpass">忘记密码？</a>
