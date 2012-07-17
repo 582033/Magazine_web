@@ -403,12 +403,12 @@ class User extends Magazine {
 
 	function pub_mag (){	//发布杂志{{{
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$this->auth->check();
+			$this->_auth_check_web();
 			$request = $this->user_loved_model->pub_mag();
 			echo $request;
 		}
 		else {
-			$this->auth->check();
+			$this->_auth_check_web();
 			$mag_id = $this->input->get('mag_id');	
 			$mag_info = $this->mag_model->_get_magazine_by_id($mag_id);
 			$mag_info['tag'] = implode(",", $mag_info['tag']);
