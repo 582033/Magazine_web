@@ -2,12 +2,12 @@
 $.fn.cycle.transitions.fadeZoom2 = function($cont, $slides, opts) {
 	opts.before.push(function(curr, next, opts) {
 		$.fn.cycle.commonReset(curr,next,opts,false,false);
-		opts.cssBefore.left = -next.cycleW/10;
-		opts.cssBefore.top = -next.cycleH/10;
-		opts.cssBefore.width = next.cycleW*1.2;
-		opts.cssBefore.height = next.cycleH*1.2;
+		opts.cssBefore.left = -Math.ceil(Math.random()*(next.cycleH*0.1));
+		opts.cssBefore.top = -Math.ceil(Math.random()*(next.cycleW*0.1));
+		opts.cssBefore.width = next.cycleW*1.1;
+		opts.cssBefore.height = next.cycleH*1.1;
 		opts.cssBefore.opacity = 0;
-		$.extend(opts.animIn, { top: -Math.ceil(Math.random()*(next.cycleH*0.1)), left: -Math.ceil(Math.random()*(next.cycleW*0.1)), width: next.cycleW*1.1, height: next.cycleH*1.1,'opacity':1});
+		$.extend(opts.animIn, { top: 0, left: 0, width: next.cycleW, height: next.cycleH,'opacity':1});
 	});
 	opts.animOut.left = 0;
 	opts.animOut.top = 0;
@@ -43,3 +43,4 @@ $(function() {
 		});
 	});
 });
+
