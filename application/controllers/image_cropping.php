@@ -147,7 +147,7 @@ class Image_cropping extends MY_Controller {
 		$cimg_s=$this->web['img_up_dir'].'/'.$this->web['cut_image_name'].'.'.$this->web['img_up_format']; //缩略图180x180
 		if($this->_run_img_resize($convert_source,$cimg_m,0,0,$_POST['noww'],$_POST['nowh'],false,false,$this->web['img_up_quality']) && 
 		$this->_run_img_resize($cimg_m,$cimg_s,$_POST['px'],$_POST['py'],$_POST['pw'],$_POST['ph'],$_POST['pw'],$_POST['ph'],$this->web['img_up_quality'])){
-			$return_path=$this->config->item('upload_img_host').'/'.$this->session->userdata('id').'/'.$this->web['cut_image_name'].'.'.$this->web['img_up_format'];	
+			$return_path = $this->web['img_up_dir'].'/'.$this->web['cut_image_name'].'.'.$this->web['img_up_format']; //缩略图80x80
 			$img_80=$this->web['img_up_dir'].'/'.$this->web['cut_image_name_80'].'.'.$this->web['img_up_format']; //缩略图80x80
 			$img_50=$this->web['img_up_dir'].'/'.$this->web['cut_image_name_50'].'.'.$this->web['img_up_format']; //缩略图50x50
 			image_thumb($return_path, $img_80, 80, 80, false);
