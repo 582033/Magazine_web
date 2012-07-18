@@ -112,6 +112,7 @@ class Magazine extends MY_Controller {
 		foreach($index_infotpl['ad_slot_indextop']['items'] as $k => $v){
 			$index_infotpl['ad_slot_indextop']['items'][$k]['image'] = $v['image']['url'];
 		}
+		$this->smarty->assign('title', '1001夜互动阅读平台');
 		$this->smarty->view('magazine/index.tpl', $index_infotpl);
 	}//}}}
 
