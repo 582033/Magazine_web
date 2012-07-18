@@ -6,7 +6,7 @@
 		<input type="hidden" name="parent_id" />
 	</div>
 	<img src="{if $user_info}{$user_info.image}!50{else}/sta/images/userhear_def.gif{/if}" alt="{$user_info.nickname|default:'用户'}" />
-	<textarea class="text" name="conment"></textarea>
+	<textarea class="text" name="comment"></textarea>
 	<button type="button" id="add">发布</button>
 </form>
 {include file="magazine/lib/comments.tpl"}

@@ -2,7 +2,6 @@
 class Magazine extends MY_Controller {
 
 	var $api_host;
-	var $current_url;
 	var $limit;
 	var $cate_map = array(
 			'tour_recommendation' => '目的地推荐',
@@ -15,28 +14,15 @@ class Magazine extends MY_Controller {
 		$this->load->helper('api');
 		$this->api_host = $this->config->item('api_host');
 		$this->load->model('api_model');
-		$this->load->model('Login_Model');
 		$this->load->model('mag_model');
-		$this->load->model('love_model');
-		$this->load->model('ads_model');
-		$this->load->model('mag_element_model');
-		$this->load->model('reg_model');
 		$this->load->model('comment_model');
 		$this->load->model('page_model');
 		$this->load->library('session');
 		$this->load->helper('url');
 		$this->_get_title();
 		$this->limit = '20';
-		/*
-		 *		验证登录状态
-		 */
 		$this->load->model('auth');
 		$this->auth->auth_user();
-		/*
-		 *		传递当前浏览页,使其登录后可以跳转到登录前的页面
-		 */
-		$this->load->helper('url');
-		//$this->current_url = current_url();
 		$this->smarty->assign('pub_host', $this->config->item('pub_host'));
 	}
 	function _get_title(){
@@ -58,22 +44,6 @@ class Magazine extends MY_Controller {
 		}	
 		if($title)$this->smarty->assign('title', $title);
 	}
-
-	function _get_more ($keys, $input){	//{{{
-		$return = array();
-		foreach ($keys as $key){
-			$return[$key] =	$this->input->$input($key);
-		}
-		return $return;
-	}	//}}}
-
-	function _get_more_non_empty($more) {	//{{{
-		$return = array();
-		foreach ($more as $item) {
-			$return[$item] = $this->_get_non_empty($item);
-		}
-		return $return;
-	}	//}}}
 
 	function index(){		//首页显示{{{
 		$index_info = $this->mag_model->_get_index_info();
@@ -210,7 +180,6 @@ class Magazine extends MY_Controller {
 				);
 		$this->smarty->view('magazine/magazines.tpl', $data);
 	}//}}}
-
 	function magazine_home(){		//杂志二级列表页面{{{
 		$limit_gallery = 4;
 		$start_gallery = 0;
@@ -283,7 +252,6 @@ class Magazine extends MY_Controller {
 		$data['mag_mid']=$mag_middle;
 		$this->smarty->view('magazine/magazine_home.tpl', $data);
 	}//}}}
-
 	function magazine_detail($id){		//杂志详情页面{{{
 		$magazine_id = $id;
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
@@ -326,7 +294,6 @@ class Magazine extends MY_Controller {
 		$this->smarty->assign('title', "1001夜、数字杂志-《".$magazine['name']."》");
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
-
 	function comment_list($id, $page="1"){		//杂志评论页面{{{
 		$page = $page ? $page : 1;
 		$limit = 10;
@@ -398,109 +365,16 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/down.tpl', $data);
 	}	//}}}
 	
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-	function mag_list (){	//杂志列表{{{
-		$keys = array('start', 'limit', 'status');
-		$gets = $this->_get_more_non_empty($keys);
-		$type = $this->input->get('type');
-		$mag_list = $this->mag_model->_get_mag_list($gets, $type);
-		$this->_json_output($mag_list);
-		//$this->smarty->view('index.tpl');
-	}	//}}}
-
-	function comment (){	//评论{{{
-		$sid = $this->session->userdata('sid');
-		echo $type = $this->_get_non_empty('type');
-		echo $object_id = $this->_get_non_empty('object_id');
-		$start = $this->_get_non_empty('start');
-		$limit = $this->_get_non_empty('limit');
-		$comment = $this->comment_model->comment_list($type, $object_id, $start, $limit);
-		$data = array(
-				'sid' => $sid,
-				'api_host' => $this->api_host,
-				'comment' => $comment,
-				);
-//		$this->smarty->view('magazine/comment.html', $data);
-	}	//}}}
-
 	function refresh_comment(){	//{{{
 		$this->_auth_check_api();
 		$type = $this->input->get('type');
 		$object_id = $this->input->get('object_id');
-		$comment = $this->input->post('conment');
+		$comment = $this->input->post('comment');
 		$parent_id = $this->input->post('parent_id');
 		$start = $this->input->get('start');
 		$limit = $this->input->get('limit');
 		$data = $this->comment_model->refresh_comment($type, $object_id, $parent_id, $comment, $start, $limit);
 		$this->smarty->view('magazine/lib/comments.tpl', array('comments' => $data['items'], 'totalComments' => $data['totalResults']));
-	}	//}}}
-
-	function get_same_author_mag(){		//获取该作者的其他杂志{{{
-		$keys = array('mag_id', 'limit', 'start');
-		$status = $this->input->get('status');
-		$gets = $this->_get_more_non_empty($keys);
-		$gets['status'] = $status;
-		$mag_list = $this->mag_model->_get_same_author_mag($gets);
-		$this->_json_output($mag_list);
-	}	//}}}
-
-	function get_same_category_mag(){		//获取同类型杂志{{{
-		$keys = array('mag_id', 'limit', 'start');
-		$status = $this->input->get('status');
-		$gets = $this->_get_more_non_empty($keys);
-		$gets['status'] = $status;
-		$mag_list = $this->mag_model->_get_same_category_mag($gets);
-		$this->_json_output($mag_list);
-	}	//}}}
-
-	function loved_num(){		//喜欢数量{{{
-		$loved_num = $this->love_model->_get_user_loved_nums();
-		$this->_json_output($loved_num);
-	}	//}}}
-
-	function loved_data(){		//喜欢数据{{{
-		$keys = array('start', 'limit');
-		$gets = $this->_get_more_non_empty($keys);
-		$type = $this->input->get('type');
-		$loved_data = $this->love_model->_get_loved_data($gets, $type);
-		$this->_json_output($loved_data);
-	}	//}}}
-
-	function user_comment(){		//获得评论{{{
-		$keys = array('start', 'limit');
-		$gets = $this->_get_more_non_empty($keys);
-		$magazine_id = $this->input->get('magazine_id');
-		$user_comment = api($this->api_host."/magazine/get_user_comment?limit=".$gets['limit']."&start=".$gets['start']."&magazine_id=".$magazine_id);
-		$this->_json_output($user_comment['data']);
-	}	//}}}
-
-	function mag_element(){			//杂志元素{{{
-		$keys = array('for', 'start', 'limit');
-		$gets = $this->_get_more_non_empty($keys);
-		$type = $this->input->get('type');
-		$mag_element = $this->mag_element_model->_get_mag_element($gets, $type);
-		$this->_json_output($mag_element);
-	}	//}}}
-
-	function category(){		//杂志分类{{{
-		$cat_info = $this->mag_model->_get_category();
-		$this->_json_output($cat_info['data']);
-	}	//}}}
-
-	function ads(){		//广告{{{
-		$keys = array('limit', 'start');
-		$position = $this->input->get('position');
-		$gets = $this->_get_more_non_empty($keys);
-		$ads = $this->ads_model->_get_list($gets, $position);
-		$this->_json_output($ads);
-	}	//}}}
-
-	function nums_of_loved(){		//获取对象(杂志，元素，作者)被喜欢的次数{{{
-		$keys = array('loved_id', 'loved_type');
-		$gets = $this->_get_more_non_empty($keys);
-		$nums = $this->love_model->_get_nums_of_loved($gets);
-		$this->_json_output($nums);
 	}	//}}}
 
 	function _get_download_url(){		//获取杂志下载地址{{{

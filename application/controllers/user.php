@@ -6,6 +6,7 @@ class User extends Magazine {
 
 	function User () {	//{{{
 		parent::__construct();
+		$this->load->model('Login_Model');
 		$this->load->model('user_loved_model');
 		$this->load->model('user_info_model');
 		$this->load->model('send_email_model');

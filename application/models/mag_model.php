@@ -1,66 +1,21 @@
 <?php
 class Mag_Model extends CI_Model {
-	function Mag_Model (){
+	function __construct (){
 		parent::__construct();
 		$this->api_host = $this->config->item('api_host');
 		$this->load->helper('api');
 	}
 
-
-	function _get_category(){		//杂志分类
-		$cat_info = api($this->api_host."/magazine/category");
-		return $cat_info;
-	}
-
-	function _get_mag_list($gets, $type){
-		$mag_list = api($this->api_host . "/magazine/mag_list?start=".$gets['start']."&limit=".$gets['limit']."&type=".$type."&status=".$gets['status']);
-		return $mag_list['data'];
-	}
-
-	function _get_same_author_mag($gets){		//获取该作者的其他杂志{{{
-		if($gets['status'] == ''){
-			$list = api($this->api_host . "/magazine/get_same_author_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']);
-		}else{
-			$list = api($this->api_host . "/magazine/get_same_author_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']."&status=".$gets['status']);
-		}
-		return $list['data'];
-	}//}}}
-	
-	function _get_same_category_mag($gets){		//获取同类型杂志{{{
-		if($gets['status'] == ''){
-			$list = api($this->api_host . "/magazine/get_same_category_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']);
-		}else{
-			$list = api($this->api_host . "/magazine/get_same_category_mag?mag_id=".$gets['mag_id']."&limit=".$gets['limit']."&start=".$gets['start']."&status=".$gets['status']);
-		}		return $list['data'];
-	}//}}}
-	
-	function _get_mag_for_list($gets){		//获取杂志列表页 杂志列表{{{
-			$list = api($this->api_host . "/magazine/get_mag_for_list?mag_category=".$gets['mag_category']."&status=".$gets['status']."&limit=".$gets['limit']."&start=".$gets['start']."&tag=".$gets['tag']);
-			return $list['data'];
-	}//}}}
-	
-	
-	
-	
-	
-	
 	function _get_mag_text($limit)	{
 		$mag_text  = request($this->api_host . "/ltapp/ads/text/magmiddle?limit=" .$limit);
-	
 		return $mag_text;
-	
-	
 	}
 	
 	//mag page ,middle magazine ,2  个	
  	function _get_mag_middle()	{
 		$mag_result = request($this->api_host . "/ltapp/ads/magazine/magmiddle?limit=2");
-	
 		$mag_item = $mag_result['data']['items'];
-	
 		return $mag_item;
-	
-	
 	}
 	
 	function _get_index_info(){		//首页杂志信息{{{
@@ -123,8 +78,7 @@ class Mag_Model extends CI_Model {
 			}
 		}
 		return $mag_rec;
-
-	}
+	} // }}}
 	function _get_recommendation_mag($limit, $start, $id){		//获得推荐杂志列表{{{
 		$mag_resultad = request($this->api_host."/ltapp/ads/image/magtop");
 		return $mag_resultad;
@@ -135,11 +89,6 @@ class Mag_Model extends CI_Model {
 	function _get_maylike_mag($limit, $start, $id){		//获得猜你喜欢的杂志列表{{{
 		$maylike = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start&id=$id");
 		return $maylike['data']['items'];
-	}//}}}
-	
-	function _get_detail_comment_data($type, $object_id){		//获得详情页面评论信息{{{
-		$comment = request($this->api_host . "/magazine/223/comments?type=magazine&object_id=$object_id&limit=5&start=0");
-		return $comment;
 	}//}}}
 	
 	function _get_element_list($limit, $start){		//获取元素列表{{{
