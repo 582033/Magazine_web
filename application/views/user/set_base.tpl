@@ -19,7 +19,7 @@
 				<select name="month">
 					{$i=1}
 					{section name="a" loop=12}
-					<option selected="selected" value="{$i}">{$i++}</option>
+					<option selected="selected" value="{if $i < 10}0{/if}{$i}">{$i++}</option>
 					{/section}
 				</select>月
 				<select name="day">
