@@ -21,7 +21,8 @@
 		<script src="/sta/js/belatedPNG_0.0.8a-min.js"></script>
 		<script type="text/javascript">
 			DD_belatedPNG.fix('.read,.more a,.userinfo p a,.edit');
-			</script>
+			DD_belatedPNG.fix('.light,.downbtn'); // for soft page
+		</script>
 		<![endif]-->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];

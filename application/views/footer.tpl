@@ -12,5 +12,36 @@
 		<div id="msgbox">
 			<p></p>
 		</div>
+		<!--[if IE 6]>
+		<script type="text/javascript">
+		var getElementsByClassName = function(searchClass,node,tag) {
+			if(document.getElementsByClassName){
+				return  document.getElementsByClassName(searchClass)
+			}else{    
+				node = node || document;
+				tag = tag || '*';
+				var returnElements = []
+				var els =  (tag === "*" && node.all)? node.all : node.getElementsByTagName(tag);
+				var i = els.length;
+				searchClass = searchClass.replace(/\-/g, "\\-");
+				var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+				while(--i >= 0){
+					if (pattern.test(els[i].className) ) {
+						returnElements.push(els[i]);
+					}
+				}
+				return returnElements;
+			}
+		}
+
+		var cover = getElementsByClassName('cover');
+
+		for (i=0; i<cover.length; i++){
+			cover[i].getElementsByTagName('div')[0].style.width = cover[i].getElementsByTagName('img')[0].width + 'px';
+			cover[i].getElementsByTagName('div')[0].style.height = cover[i].getElementsByTagName('img')[0].height + 'px';
+		}
+
+		</script>
+		<![endif]-->
 	</body>
 </html>
