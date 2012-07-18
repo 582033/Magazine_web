@@ -76,6 +76,7 @@ showSigninBox = ->
         overlayClose: false
         fixed: true
         opacity: 0.5
+        scrolling: false
         href: '/user/signinbox'
 checkSignedIn = ->
   if $.cookie('nickname') then return true
@@ -136,6 +137,7 @@ showMsgbox = (msg, toUrl) ->
     height: 150
     initialWidth: 350
     initialHeight: 150
+    scrolling: false
     onClosed: ->
       $('#msgbox').hide()
       if not toUrl then return

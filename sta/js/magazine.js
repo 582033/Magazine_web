@@ -77,6 +77,7 @@ function init_colorbox() { // {{{
 	var opts = {
 		overlayClose: false,
 		fixed: true,
+        scrolling: false,
 		opacity: 0.5
 	};
 	$(document).on('click', 'a.thickbox', function() {
