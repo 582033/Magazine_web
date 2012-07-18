@@ -254,8 +254,14 @@ class Sns extends MY_Controller {
 				$this->session->set_userdata($sessionData);
 				$this->login_model->set_signin_cookie($data['id'], $data['nickname']);
 				$u = '/';
-				if(isset($status['state']['refer']) && isset($status['state']['refer'])) {
+				if(isset($status['state']['refer']) && $status['state']['refer']) {
+					$filters = array('sns/callback','sns/bind','signin','signup');
 					$u = $status['state']['refer'];
+					foreach ($filters AS $v) {
+						if (false !== strpos($status['state']['refer'],$v)) {
+							$u = '/';break;
+						}
+					}
 				}
 				redirect($u);
 				break;
