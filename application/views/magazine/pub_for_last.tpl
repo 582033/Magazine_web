@@ -24,7 +24,7 @@ img {
 	position:relative;
 	padding:20px;
 	width:650px;
-	height:576px;
+	/*height:576px;*/
 	background:#FFF;
 }
 .head {
@@ -32,7 +32,7 @@ img {
 	font-family:"黑体";
 }
 .author {
-	margin:10px 0 0 0;
+	margin:0 0 0 0;
 	border-top:dashed 1px #666;
 	padding:10px 0 10px;
 }
@@ -55,14 +55,10 @@ img {
 	font-weight:bold;
 	font-size:20px;
 }
-.ad {
-	width:100%;
-	height:100px;
-	background:#CCC;
-}
 .like-header {
 	margin-top:10px;
 	height: 43px;
+	overflow:hidden;
 }
 .like-header h3 {
 	width:200px;
@@ -101,6 +97,10 @@ img {
 	padding:0 12px 0 12px;
 	width:105px;
 	height:162px;
+}
+.may-like ul li a div{ 
+	font-size:13px;
+	padding:5px 0 5px 0;
 }
 </style>
 {/literal}
