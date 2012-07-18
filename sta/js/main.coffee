@@ -9,12 +9,20 @@ $ ->
 
   $(document).ajaxError (e, jqxhr, settings, exception) ->
     if jqxhr.status == 401 then showSigninBox()
+  initHeader()
   loadUserInfo initFav
   switch g1001.pageId
     when 'change-password' then initChangePassword()
-    when 'mag_detail' then init_detail()
+    when 'mag_detail' then initDetail()
 
-init_detail = ->
+initHeader = ->
+  $('div.log_reg a.login').click (ev) ->
+    $('#loginTip').toggle()
+    ev.stopPropagation()
+  $('#loginTip').click (ev) -> ev.stopPropagation()
+  $(document).click (ev) ->
+    $('#loginTip').hide()
+initDetail = ->
   page_height = $(".main").height()
   if $(".left_main").height() < page_height
     $(".left_main").css "height", page_height + "px"

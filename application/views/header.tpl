@@ -78,9 +78,8 @@
 					 <div class="self_info">
 						 <div class="log_reg">
 							 <a href="/user/signupbox" class="thickbox signup">注册</a>
-							 <a href="javascript:void(0)" class="login" onmouseover="$('#loginTip').show()" onmouseout="$('#loginTip').hide()">登录</a>
+							 <a href="javascript:void(0)" class="login">登录</a>
 							 <form name="form" id="loginTip" class="clearfix"
-								 onmouseover="this.style.display='block'" onmouseout="this.style.display='none'"
 								 onsubmit="return signin(this)"
 								 action="/user/signin" method="POST">
 								 <p><input type="text" name="username" class="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>

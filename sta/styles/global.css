@@ -45,7 +45,6 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .header .log_reg a{ font-size:14px; color:#FFF;}
 .header .log_reg .signup { display:block; float:left; padding-top:5px;}
 .header .log_reg .login{
-	cursor: default;
 	display:block; float:right; width:70px; height:25px; padding:6px 0 0 11px; background:url(/sta/images/bg_top_login.gif) no-repeat left top; position:relative;}
 .header .log_reg form { position:absolute;
 	z-index: 1000;
