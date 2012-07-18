@@ -12,6 +12,7 @@
 						<li>——每个人都可以用全新方式去讲述自己的故事</li>
 					</ul>
 				</div>
+				<div class="occupying_by_20"></div>
 				<div class="about_1001_second">
 					<div class="little_title"><span>●</span> 灵动阅读</div>
 					<ul>
@@ -19,6 +20,7 @@
 						<li>我们更在乎为您提供随时随地的阅读体验</li>
 					</ul>
 				</div>
+				<div class="occupying_by_20"></div>
 				<div class="about_1001_third">
 					<div class="little_title"><span>●</span> 轻松制作</div>
 					<ul>
@@ -26,6 +28,7 @@
 						<li> 记录自己的生活、旅程，让创作变得富有乐趣</li>
 					</ul>
 				</div>
+				<div class="occupying_by_20"></div>
 				<div class="about_1001_fourth">
 					<div class="little_title"><span>●</span> 随心分享</div>
 					<ul>
