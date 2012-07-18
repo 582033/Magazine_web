@@ -64,8 +64,8 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 
 .main_body div.bottom{margin-top:5px;width:100%;height:330px;}
 div.bottom div.piece_1, div.bottom div.piece_2, div.bottom div.piece_3{width:305px;margin-left:23px;float:left;}
-div.bottom div.piece_1 ul li p, div.bottom div.piece_2 ul li p, div.bottom div.piece_3 ul li p{font-size:12px;font-family:'宋体';}
-div.bottom div.piece_1 ul li.title, div.bottom div.piece_2 ul li.title, div.bottom div.piece_3 ul li.title{font-size:24px;}
+.main_body div.bottom ul li p{font-size:12px;font-family:'宋体';line-height:18px}
+div.bottom div ul li.title{font-size:24px;}
 @-moz-document url-prefix() {
   .btn_set {
 	  background-position:right -31px;

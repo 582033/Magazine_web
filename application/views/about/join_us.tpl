@@ -3,9 +3,7 @@
 <div class="foot_container">
 	<div class="join_us_container">
 		<div class="title_l">求贤</div>
-		<div class="occupying_by_20"></div>
 		<div class="subtitle">你最好喜欢阅读, 必须喜欢朋友, 善于和勤于设计生活</div>
-		<div class="occupying_by_10"></div>
 		<div class="content">
 			<div class="position">招聘职位：iOS开发工程师</div>
 			<div class="persons">招聘人数：1人</div>
@@ -25,7 +23,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="occupying_by_20"></div>
 		<div class="content">
 			<div class="position">招聘职位：高级工程师（PHP/python）</div>
 			<div class="persons">招聘人数：2人</div>
@@ -52,7 +49,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="occupying_by_20"></div>
 		<div class="content">
 			<div class="position">招聘职位：初级工程师（PHP）</div>
 			<div class="persons">招聘人数：2人</div>
@@ -78,7 +74,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="occupying_by_20"></div>
 		<div class="content">
 			<div class="position">招聘职位：电子杂志资深编辑</div>
 			<div class="persons">招聘人数：1人</div>
@@ -105,7 +100,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="occupying_by_20"></div>
 		<div class="content">
 			<div class="department">招聘部门：Innovation Design Department</div>
 			<div class="position">招聘职位：GUI图形设计师</div>
@@ -138,7 +132,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="occupying_by_20"></div>
 		<div class="content">
 			<div class="position">自动化测试工程师</div>
 			<div class="persons">招聘人数：1人</div>
@@ -167,10 +160,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="occupying_by_20"></div>
 		<div class="summary">如果以上职位打动了你，请将您的简历发送至 hr@letouinfo.com，并在邮件标题注明 “应聘职位”。</div>
 	</div>
-	<div class="occupying_by_30"></div>
 </div>
-<div class="occupying_by_30"></div>
 {include file="footer.tpl"}

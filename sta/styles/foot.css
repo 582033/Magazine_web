@@ -3,7 +3,7 @@
 	padding:0px;
 	font-size:16px;
 }
-.foot_container{border:1px solid #CCCCCC;width:1000px;margin:auto;margin-top:20px;background-color:white;}
+.foot_container{border:1px solid #CCCCCC;width:1000px;margin:auto;margin-top:20px;background-color:white;margin-bottom:30px;padding-bottom:20px;}
 .title_l{margin-top:10px;width:120px;height:30px;background-color:black;color:white;font-weight:bold;font-size:22px;text-align:center;padding-top:6px;}
 .title_m{margin-top:10px;width:160px;height:30px;background-color:black;text-align:center;padding-top:6px;}
 .title_m a{color:white;font-weight:bold;font-size:22px;}
@@ -17,7 +17,7 @@
 .about_us_container,.contact_us_container,.join_us_container,.legal_statement_container{margin-left:10px;width:98%;margin:auto;}
 
 /* about_us */
-.about_us_container .about_1001{width:100%;}
+.about_us_container .about_1001{width:100%;margin-top:10px;}
 .about_1001 .content{width:100%;margin-top:5px;}
 .about_1001 .content ul{list-style:none;}
 .about_1001 .content ul li{margin-top:10px;}
@@ -30,45 +30,54 @@
 .about_us_container .about_letou{width:100%;margin-top:30px;}
 .about_letou .content{width:100%;margin-top:10px;}
 .about_letou .content p{text-indent:2em;line-height:35px;}
+.about_1001_second, .about_1001_third, .about_1001_fourth{margin-top:30px;}
 
 /* join_us */
-.join_us_container .subtitle{margin-top:10px;font-size:18px;font-weight:bold;line-height:25px;}
+.join_us_container .subtitle{margin-top:30px;font-size:18px;font-weight:bold;line-height:25px;}
+.join_us_container div.content{margin-top:30px;}
 .join_us_container div.content div{margin-top:5px;line-height:25px;}
 .join_us_container .content div.position{font-weight:bold;line-height:25px;}
 .join_us_container .content .department{font-weight:bold;line-height:25px;}
 .join_us_container .job_description .description{text-indent:2em;line-height:25px;}
 .join_us_container .job_requirements ul{margin-left:30px;margin-top:5px;line-height:25px;}
-.join_us_container .summary{font-weight:bold;font-size:18px;line-height:25px;}
+.join_us_container .summary{font-weight:bold;font-size:18px;line-height:25px;margin-top:20px;}
 
 /* contact_us */
-.contact_us_container .subtitle{margin-top:10px;font-size:20px;font-weight:bold;}
+
+.contact_us_container .subtitle{margin-top:30px;font-size:20px;font-weight:bold;}
 .contact_us_container .little_title{font-size:18px;font-weight:bold;}
-.contact_us_container ul li{line-height:30px;}
-.contact_us_container .contact{width:100%;height:100px;}
+.contact_us_container ul li{line-height:25px;}
+.contact_us_container .contact{width:100%;height:120px;margin-top:20px;}
 .contact_us_container .contact .left{width:50%;float:left;}
 .contact_us_container .contact .right{width:50%;float:left;}
 .contact_us_container .contact ul li{font-size:16px;width:470px;line-height:25px;}
 .contact_us_container .contact .bold{font-size:16px;font-weight:bold;}
+.contact_us_container ul.info{margin-top:5px;}
+.contact_us_container ul.line{margin-top:5px;}
+.contact_us_container .traffic_line{margin-top:30px;}
+#map_canvas{margin-top:10px;}
+
 
 
 
 
 /* legal_statement */
 .legal_statement_container .legal_container{width:100%;}
-.legal_statement_container .little_title{font-size:20px;font-weight:bold;line-height:30px;}
+.legal_statement_container .little_title{font-size:20px;font-weight:bold;line-height:30px;margin-top:30px;}
+.legal_statement_container .content_total{margin-top:10px;}
 .legal_statement_container ul li{margin-top:2px;line-height:30px;}
 .legal_container p.intro{line-height:30px;}
 .legal_container ul li span.front_title{width:32px;float:left;line-height:30px;}
 .legal_container ul li span.content{width:945px;float:left;line-height:30px;}
 .legal_container ul li span.front_title_s{width:42px;float:left;line-height:30px;}
 .legal_container ul li span.content_s{width:935px;float:left;line-height:30px;}
-.legal_statement_container .privacy_policy{width:100%;}
+.legal_statement_container .privacy_policy{width:100%;margin-top:30px;}
 .privacy_policy .title_big{margin-top:10px;width:200px;height:24px;background-color:black;color:white;font-weight:bold;font-size:22px;text-align:center;padding-top:4px;}
 .privacy_policy ul li span.front_title{width:32px;float:left;line-height:30px;}
 .privacy_policy ul li span.content{width:945px;float:left;line-height:30px;}
 .privacy_policy ul li span.front_title_s{width:42px;float:left;line-height:30px;}
 .privacy_policy ul li span.content_s{width:935px;float:left;line-height:30px;}
 .privacy_policy ul li p.second_content{margin-left:32px;line-height:30px;}
-.privacy_policy .simple_intro{line-height:30px;}
+.privacy_policy .simple_intro{line-height:30px;margin-top:10px;}
 .privacy_policy p.intro{text-indent:32px;line-height:30px;}
 
