@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		<meta property="wb:webmaster" content="1c5a1d0fe7c84888" />
 		<meta name="msapplication-window" content="width=1550;height=768" />
 		<link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
