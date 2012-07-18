@@ -1,4 +1,7 @@
 <?php
+header("Location: /", TRUE, 302);
+exit;
+
 /**
  * CodeIgniter
  *
@@ -84,6 +87,7 @@ p {
 </head>
 <body>
 	<div id="container">
+adsfdsaf
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
 	</div>

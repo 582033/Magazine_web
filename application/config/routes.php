@@ -65,7 +65,7 @@
 */
 
 $route['default_controller'] = "magazine";
-$route['404_override'] = '';
+$route['404_override'] = 'notfound';
 
 
 $route['mag_list/tag/(:any)(/p/(:num))?'] = 'magazine/magazines_tag/$1/$3';
