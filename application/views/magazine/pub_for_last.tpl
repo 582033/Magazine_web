@@ -87,6 +87,7 @@ img {
 	width:100%;
 }
 .may-like ul li{
+	margin:0 0 10px 0;
 	overflow:hidden;
 	width:20%;
 	float:left;
