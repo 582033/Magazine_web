@@ -28,10 +28,10 @@
 	<div class="warp">
 		<img src="/sta/images/topic/jiang.jpg" alt="" border="0" usemap="#Map2" />
 		<map name="Map2" id="Map2">
-			<area shape="rect" coords="738,50,891,238" href="#" />
-			<area shape="rect" coords="563,50,716,238" href="#" />
-			<area shape="rect" coords="380,51,533,239" href="#" />
-			<area shape="rect" coords="49,53,351,241" href="#" />
+			<area shape="rect" coords="738,50,891,238" />
+			<area shape="rect" coords="563,50,716,238" />
+			<area shape="rect" coords="380,51,533,239" />
+			<area shape="rect" coords="49,53,351,241" />
 		</map>
 	</div>
 
