@@ -18,7 +18,7 @@
 		<script type="text/javascript" src="/sta/js/magazine.js"></script>
 		<script type="text/javascript" src="/sta/js/check.js"></script>
 		<!--[if IE 6]>
-		<script src="/sta/j/belatedPNG_0.0.8a-min.js"></script>
+		<script src="/sta/js/belatedPNG_0.0.8a-min.js"></script>
 		<script type="text/javascript">
 			DD_belatedPNG.fix('.read,.more a,.userinfo p a,.edit');
 			</script>
