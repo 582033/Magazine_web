@@ -15,6 +15,8 @@ class About extends MY_Controller {
 			$this->smarty->view('about/contact_us.tpl');
 		}else if ($link == 'join_us'){
 			$this->smarty->view('about/join_us.tpl');
+		}else if ($link == 'legal_statement'){
+			$this->smarty->view('about/legal_statement.tpl');
 		}		
 	}//}}}
 }
