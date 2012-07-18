@@ -90,6 +90,8 @@ img {
 	overflow:hidden;
 	width:20%;
 	float:left;
+	height:198px;
+	overflow:hidden;
 	text-align:center;
 }
 .may-like ul li a img{
@@ -111,9 +113,6 @@ img {
 			</ul>
 			<div style="clear:both;"></div>
 		</div>
-		<div class="ad">
-		
-		</div>
 		<div class="like-header">
 			<h3>您可能还会喜欢</h3>
 			<a class="more" href="/mag" target="_blank"></a>
@@ -122,7 +121,7 @@ img {
 		<div class="may-like">
 			<ul>
 			{foreach from=$recommend item=item key=key}
-				<li><a href="/magazine/detail/{$item.id}" target="_blank"><img src="{$item.cover}" /><div>{$item.name}</div></a></li>
+				<li><a href="/magazine/detail/{$item.id}" target="_blank"><img src="{$item.cover}" /><div title="{$item.name}">{$item.name|truncate:28}</div></a></li>
 			{/foreach}
 			</ul>
 			<div class="clear:both"></div>
