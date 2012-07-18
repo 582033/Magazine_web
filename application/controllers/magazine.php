@@ -25,6 +25,7 @@ class Magazine extends MY_Controller {
 		$this->load->model('page_model');
 		$this->load->library('session');
 		$this->load->helper('url');
+		$this->_get_title();
 		$this->limit = '20';
 		/*
 		 *		验证登录状态
@@ -37,6 +38,25 @@ class Magazine extends MY_Controller {
 		$this->load->helper('url');
 		//$this->current_url = current_url();
 		$this->smarty->assign('pub_host', $this->config->item('pub_host'));
+	}
+	function _get_title(){
+		$url = $this->uri->segment(1);
+		$title= "";
+		switch($url){
+			case 'mag':
+				$title = "免费杂志、数字杂志、旅游攻略、游记攻略、旅行攻略、蜜月旅行";	
+				break;
+			case 'find':	
+				$title = "数字杂志、旅游攻略、游记";
+				break;
+			case 'soft':                             
+                $title = "数字杂志、移动阅读、安卓阅读、IOS阅读、杂志制作、杂志工具";
+                break;
+            case '':                             
+                $title = "1001夜互动阅读平台、电子杂志、数字杂志、云阅读、在线阅读、免费阅读、旅游攻略、游记";
+                break;
+		}	
+		if($title)$this->smarty->assign('title', $title);
 	}
 
 	function _get_more ($keys, $input){	//{{{
@@ -112,7 +132,6 @@ class Magazine extends MY_Controller {
 		foreach($index_infotpl['ad_slot_indextop']['items'] as $k => $v){
 			$index_infotpl['ad_slot_indextop']['items'][$k]['image'] = $v['image']['url'];
 		}
-		$this->smarty->assign('title', '1001夜互动阅读平台');
 		$this->smarty->view('magazine/index.tpl', $index_infotpl);
 	}//}}}
 
@@ -304,6 +323,7 @@ class Magazine extends MY_Controller {
 					'curnav' => 'mag',
 					'pageid' => 'mag_detail',
 					);
+		$this->smarty->assign('title', "1001夜、数字杂志-《".$magazine['name']."》");
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
 

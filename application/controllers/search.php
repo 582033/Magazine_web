@@ -65,6 +65,7 @@ class search extends Magazine{
 			$extra['page_list'] = $this->page_model->page_list("/search/$type/" . urlencode($keyword),
 					$limit, $results[$type."s"]['totalResults'], $page);
 		}
+		$this->smarty->assign('title', $keyword."-1001夜互动阅读平台");
 		$this->smarty->view('search.tpl', array_merge($results, $extra));
 	}	//}}}
 }
