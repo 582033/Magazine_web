@@ -75,23 +75,21 @@
 						 </ul>
 					 </div>
 					 {else}
-					 <div class="self_info">
-						 <div class="log_reg">
-							 <a href="/user/signupbox" class="thickbox signup">注册</a>
-							 <a href="javascript:void(0)" class="login">登录</a>
-							 <form name="form" id="loginTip" class="clearfix"
-								 onsubmit="return signin(this)"
-								 action="/user/signin" method="POST">
-								 <p><input type="text" name="username" class="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
-								 <p><input type="password" name="passwd" class="passwd" value="" /></p>
-								 <p><a href="/user/forget_password" class="findpass">忘记密码？</a>
-									 <input type="checkbox" name="need_remember" id="rem_me" class="clear" value="1" /><label for="rem_me">下次自动登录</label></p>
-								 <p class="err_msg"></p>
-								 <p><button type="submit">立即登录</button></p>
-								 <p>其他帐号登录：</p>
-								 <p><span><a href="/sns/redirect?snsid=sina&apptype=web&op=1">新浪微博账号登录</a> | <a href="/sns/redirect?snsid=qq&apptype=web&op=1">QQ账号登录</a></span></p>
-							 </form>
-						 </div>
+					 <div class="log_reg">
+						 <a href="/user/signupbox" class="thickbox signup">注册</a>
+						 <a href="javascript:void(0)" class="login">登录</a>
+						 <form name="form" id="loginTip" class="clearfix"
+							 onsubmit="return signin(this)"
+							 action="/user/signin" method="POST">
+							 <p><input type="text" name="username" class="username" value="Email地址" onfocus="if(this.value=='Email地址')this.value='';" onblur="if(this.value=='')this.value='Email地址'"/></p>
+							 <p><input type="password" name="passwd" class="passwd" value="" /></p>
+							 <p><a href="/user/forget_password" class="findpass">忘记密码？</a>
+								 <input type="checkbox" name="need_remember" id="rem_me" class="clear" value="1" /><label for="rem_me">下次自动登录</label></p>
+							 <p class="err_msg"></p>
+							 <p><button type="submit">立即登录</button></p>
+							 <p>其他帐号登录：</p>
+							 <p><span><a href="/sns/redirect?snsid=sina&apptype=web&op=1">新浪微博账号登录</a> | <a href="/sns/redirect?snsid=qq&apptype=web&op=1">QQ账号登录</a></span></p>
+						 </form>
 					 </div>
 					 {/if}
 				 </div>
