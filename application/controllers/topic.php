@@ -13,7 +13,11 @@ class Topic extends MY_Controller {
 		$result = $this->mag_model->_get_topic_magazine($limit);
 		$mag_recommend = $result['data']['items'];
 		$data = array('mag_recommend' => $mag_recommend);
-		$this->smarty->view('topic/topic.tpl', $data);
+		$this->smarty->view('topic/self_tour.tpl', $data);
+	}//}}}
+	
+	function on_line(){		//上线专题{{{
+		$this->smarty->view('topic/on_line.tpl');
 	}//}}}
 }
 ?>

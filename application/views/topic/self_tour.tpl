@@ -1,4 +1,5 @@
 {include file="header.tpl"}
+<link rel="stylesheet" type="text/css" href="/sta/styles/topic.css"/>
 <div class="main_body">
 	<img src="/sta/images/topic/heaser.jpg" class="banner" alt="" />
 	<dl class="mag clearfix">

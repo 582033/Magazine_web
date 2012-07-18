@@ -6,7 +6,6 @@
 		<meta name="msapplication-window" content="width=1550;height=768" />
 		<link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
-		<link rel="stylesheet" type="text/css" href="/sta/styles/topic.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/main.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/colorbox/colorbox.css"/>
 		<title>{$title}</title>
