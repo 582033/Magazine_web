@@ -47,7 +47,7 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .btn_set span{ display:block; position:relative; height:31px; padding:0 0 0 5px; margin:0; line-height:28px; background:url(/sta/images/btn_set.gif) no-repeat left top; font-size:14px; word-break:keep-all; font-weight:bold;}
 
 
-.main_body{ background:#FFF; width:1000px; padding:10px 0; border:1px solid #e7e7e7; margin:20px auto;}
+.main_body{ background:#FFF; width:1000px; padding:0px; border:1px solid #e7e7e7; margin:20px auto;}
 
 .main_body img.banner { clear:both; display:block; margin:0 auto;}
 
@@ -64,7 +64,7 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 
 .main_body div.bottom{margin-top:5px;width:100%;}
 div.bottom div.piece_1, div.bottom div.piece_2, div.bottom div.piece_3{width:305px;margin-left:23px;float:left;}
-div.bottom div.piece_1 ul li.title, div.bottom div.piece_2 ul li.title, div.bottom div.piece_3 ul li.title{font-size:24px;font-weight:bold;}
+div.bottom div.piece_1 ul li.title, div.bottom div.piece_2 ul li.title, div.bottom div.piece_3 ul li.title{font-size:24px;}
 @-moz-document url-prefix() {
   .btn_set {
 	  background-position:right -31px;
