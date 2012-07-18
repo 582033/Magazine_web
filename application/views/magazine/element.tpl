@@ -5,9 +5,11 @@
 			<strong>爱发现</strong>
 		</dt>
 		<div id="container">
+			{if isset($element_ad)}
 			{foreach from=$element_ad item=item key=key}
 			{include file="magazine/lib/elemcover.tpl"}
 			{/foreach}
+			{/if}
 			{foreach from=$element_list item=item key=key}
 			{include file="magazine/lib/elemcover.tpl"}
 			{/foreach}

@@ -122,16 +122,18 @@ class Magazine extends MY_Controller {
 		$start = ($page-1) * $limit;
 		$element = $this->mag_model->_get_element_list($limit, $start);
 		$page_list = $this->page_model->page_list("/find", $limit, $element['data']['totalResults'], $page);
-		$elem_ad = request($this->config->item('api_host').'/ltapp/ads/element/findpage?limit=8');
-		$arr_elem_ad = $elem_ad['data']['items'];
 		$elements = $this->display_model->process_elements($element['data']['items']);
 		$total = $element['data']['totalResults'];
 		$data = array(
-					'element_ad' => $arr_elem_ad,
 					'element_list' => $elements,
 					'page_list' => $page_list,
 					'curnav' => 'find',
 					);
+		if($page == '1'){
+		$elem_ad = request($this->config->item('api_host').'/ltapp/ads/element/findpage?limit=8');
+		$arr_elem_ad = $elem_ad['data']['items'];
+		$data['element_ad'] = $arr_elem_ad;
+		}
 		if ($total > $start + $limit) {
 			$data['nextpage'] = '/find/p/' . ($page + 1);
 		}
