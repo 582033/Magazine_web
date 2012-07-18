@@ -87,7 +87,7 @@
 			var options = {
 				dataType : 'json',
 				success:    function(result) {
-					alert(result);
+					showMsgbox(result);
 					get_user_info();
 				},
 			};

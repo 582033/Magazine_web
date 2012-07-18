@@ -28,7 +28,7 @@ $(function(){
 		var options = {
 			dataType : 'json',
 			success : function(result){
-				alert(result);	
+				showMsgbox(result);	
 			}
 		}
 		$("[name='tags_form']").ajaxSubmit(options);
