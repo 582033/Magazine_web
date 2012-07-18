@@ -20,9 +20,9 @@
 	<div class="warp">
 		<img src="/sta/images/topic/step.jpg" alt="" border="0" usemap="#Map" />
 		<map name="Map" id="Map">
-			<area shape="rect" coords="674,46,971,223" href="#" />
-			<area shape="rect" coords="338,46,635,223" href="#" />
-			<area shape="rect" coords="2,45,299,222" href="#" />
+			<area shape="rect" coords="674,46,971,223"  />
+			<area shape="rect" coords="338,46,635,223" />
+			<area shape="rect" coords="2,45,299,222" />
 		</map>
 	</div>
 	<div class="warp">
