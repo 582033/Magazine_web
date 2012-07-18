@@ -12,68 +12,6 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
   }
 }
 
-.header{ width:100%; background:url(/sta/images/bg_header.png) repeat-x left top; clear:both; }
-.header .container{ width:1000px; height:75px; margin:0 auto; background:url(/sta/images/bg_header.png) repeat-x left top; clear:both; }
-
-.header .logo{ float:left; display:block; padding-top:5px; margin-right:50px;}
-.header .menu{ float:left; height:68px; border-left:1px solid #1B1B1B;}
-.header .menu li{ float:left; border-right:1px solid #1B1B1B;}
-.header .menu li a{ display:block; width:70px; height:68px; background:url(/sta/images/menu_item.gif) no-repeat; text-indent:-60px; overflow:hidden;}
-.header .menu li.home a{ background-position:left top;}
-.header .menu li.home a:hover{ background-position:right top;}
-.header .menu li.home a.sel,
-.header .menu li.home a.sel:hover{ background-position:-70px top;}
-.header .menu li.mag a{ background-position:left -70px;}
-.header .menu li.mag a:hover{ background-position:right -70px;}
-.header .menu li.mag a.sel,
-.header .menu li.mag a.sel:hover{ background-position:-70px -70px;}
-.header .menu li.find a{ background-position:left -140px;}
-.header .menu li.find a:hover{ background-position:right -140px;}
-.header .menu li.find a.sel,
-.header .menu li.find a.sel:hover{ background-position:-70px -140px;}
-.header .menu li.soft a{ background-position:left -210px;}
-.header .menu li.soft a:hover{ background-position:right -210px;}
-.header .menu li.soft a.sel,
-.header .menu li.soft a.sel:hover{ background-position:-70px -210px;}
-
-.header .rightcon{ float:right; width:470px; padding-top:20px;}
-.header .rightcon .search{ display:block; float:left; width:282px; height:29px; background:url(/sta/images/bg_search.gif) no-repeat left top;}
-.header .rightcon .search input{ float:left; width:252px; height:29px; line-height:29px; padding-left:10px; background:transparent; border:none; font-size:14px;}
-.header .rightcon .search button{ display:block; float:left; border:none; background:url(/sta/images/ico_top_search.gif) no-repeat left top; width:16px; height:16px; margin-top:5px; text-indent:-60px; overflow:hidden;}
-
-.header .log_reg{ float:left; width:130px; padding-left:56px; position:relative;z-index:1;}
-.header .log_reg a{ font-size:14px; color:#FFF;}
-.header .log_reg .signup { display:block; float:left; padding-top:5px;}
-.header .log_reg .login{
-	display:block; float:right; width:70px; height:25px; padding:6px 0 0 11px; background:url(/sta/images/bg_top_login.gif) no-repeat left top; position:relative;}
-.header .log_reg form { position:absolute;
-	z-index: 1000;
-	display:none; width:220px; padding:5px 19px; border:1px solid #DC7B09; background:#FFF; top:28px; right:0; font-size:12px;}
-.header .log_reg form a{ color:#0590B3; font-size:12px;}
-.header .log_reg form a:hover{ text-decoration:underline;}
-.header .log_reg form p{ padding:5px 0; clear:both;}
-.header .log_reg form input{ width:210px; height:30px; padding-left:10px; background:url(/sta/images/bg_longintip_input.gif) no-repeat left top; border:none; line-height:30px; vertical-align:text-top;}
-.header .log_reg form input.clear{ width:auto; height:auto; background:none;}
-.header .log_reg form .findpass{ float:right;}
-.header .log_reg form span{ display:block; height:31px; color:#0590B3; background:#EDEDED; line-height:31px; text-align:center;}
-.header .log_reg form button{ display:block; float:right; clear:both; margin-top:5px; width:82px; height:30px; background:url(/sta/images/btn_logintip_sub.gif) no-repeat left top; border:none; line-height:28px; font-size:14px; color:#FFF; cursor:pointer;}
-
-.header .self_info{ float:right; width:160px; padding-left:26px; position:relative;z-index:1000;}
-.header .self_info .user_info{ float:right; display:block; height:31px; padding-right:24px; background:url(/sta/images/bg_userinfobar.gif) no-repeat right -31px;}
-.header .self_info .user_info span{ float:right; display:block; max-width:100px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden; height:25px; padding:3px 45px 3px 14px; background:url(/sta/images/bg_userinfobar.gif) no-repeat left top; word-break:keep-all; position:relative; }
-.header .self_info .user_info span a{ line-height:25px; font-size:12px; color:#0590B3;}
-.header .self_info .user_info span .userhead_small{ position:absolute; right:10px; top:3px;}
-.header .self_info .user_info span img{ vertical-align:middle; border:1px solid #282328;}
-.header .self_info .user_info div{ position:absolute; right:0; top:0; height:31px; width:24px;}
-
-
-.header .self_info .msg_tip{ display:block; padding-right:4px; background:url(/sta/images/bg_msg_tip.gif) no-repeat right -17px; position:absolute; right:66px; top:-8px;}
-.header .self_info .msg_tip span{ display:block; float:right; height:17px; padding-left:3px; background:url(/sta/images/bg_msg_tip.gif) no-repeat left top; font-size:12px; line-height:17px; color:#36312C; }
-
-.header .self_info ul{ display:none; width:85px; background:#312B31; border:1px solid #121113; border-bottom:none; position:absolute; right:0px; top:28px; zoom:1; z-index:1000;}
-.header .self_info ul li{ text-align:center; height:24px; line-height:24px; border-bottom:1px solid #121113;}
-.header .self_info ul li a{ font-size:12px; color:#FFF;}
-
 /*index*/
 .main,.down{ width:1000px; margin:0 auto; font-size:12px;}
 .mag_list,.element_list{ position:relative; width:1000px; margin:10px auto; background:#FFF url(/sta/images/line.gif) repeat-y left top;}

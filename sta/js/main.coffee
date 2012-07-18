@@ -22,6 +22,14 @@ initHeader = ->
   $('#loginTip').click (ev) -> ev.stopPropagation()
   $(document).click (ev) ->
     $('#loginTip').hide()
+
+  nickname = $.cookie 'nickname'
+  avatar = $.cookie 'avatar'
+  if nickname
+    $('div.self_info').show()
+    $('div.log_reg').hide()
+    $('div.self_info .user_info span.nickname').text nickname
+    $('div.self_info .user_info img').attr 'src', avatar
 initDetail = ->
   page_height = $(".main").height()
   if $(".left_main").height() < page_height

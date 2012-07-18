@@ -55,18 +55,15 @@
 							 <button type="submit">搜索</button>
 						 </form>
 					 </div>
-					 {if isset($myinfo.id)}
 					 <div class="self_info">
 						 <div class="user_info">
-							 <span>
-								 <a href="/user/me">{$myinfo.nickname}<img class="userhead_small" src="{$myinfo.image}!50" width="24px" height="24px" /></a> </span> <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
+							 <span class="user">
+								 <a href="/user/me"><span class="nickname">nickname</span><img class="userhead_small" src="/sta/images/userhear_def.gif" width="24px" height="24px" /></a>
+							 </span>
+							 <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
 						 </div>
 						 <div class="clearfix"></div>
-					{if $myinfo.unread_msg_num gt 0}
-						 <a href="/user/me/messages" class="msg_tip"><span>{$myinfo.unread_msg_num}</span></a>
-					{else}
-
-					{/if}
+						 <a href="/user/me/messages" class="msg_tip"><span>0</span></a>
 						 <ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
 							 <li><a href="/user/me/setting">账号设置</a></li>
 							 <li><a href="/user/me/magazines">喜欢的阅读</a></li>
@@ -75,7 +72,6 @@
 							 <li><a href="/user/signout">退出账号</a></li>
 						 </ul>
 					 </div>
-					 {else}
 					 <div class="log_reg">
 						 <a href="/user/signupbox" class="thickbox signup">注册</a>
 						 <a href="javascript:void(0)" class="login">登录</a>
@@ -92,7 +88,6 @@
 							 <p><span><a href="/sns/redirect?snsid=sina&apptype=web&op=1">新浪微博账号登录</a> | <a href="/sns/redirect?snsid=qq&apptype=web&op=1">QQ账号登录</a></span></p>
 						 </form>
 					 </div>
-					 {/if}
 				 </div>
 			 </div>
 		 </div>
