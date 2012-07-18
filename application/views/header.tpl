@@ -35,7 +35,7 @@
 
 		</script>
 	</head>
-	<body{if isset($pageid)} id="{$pageid}"{/if} onload="initialize()">
+	<body{if isset($pageid)} id="{$pageid}"{/if}>
 		 <div class="header">
 			 <div class="container clearfix">
 				 <a href="/" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>
