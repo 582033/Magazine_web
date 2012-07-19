@@ -4,8 +4,8 @@
 		<div class="title">绑定已有帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
 <form class="bind" name="form" action="/index.php/sns/bind" method="POST">
-<p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span></p>
-<p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span></p>
+<p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span><br><span class="description">&nbsp;</span></p>
+<p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span><br><span class="description"></span></p>
 <input type="hidden" name="new" value="0">
 <input type="hidden" name="snsid" value="{$snsid}">
 <input type="hidden" name="apptype" value="{$apptype}">
