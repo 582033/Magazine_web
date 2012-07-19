@@ -502,6 +502,17 @@ class User extends Magazine {
 		$data['is_me'] = TRUE;
 		$data['user_id'] = 'me';
 		$data['user_info'] = $this->_get_current_user();
+				$data['navs'] = array(
+					array(
+						'name' => '首页',
+						'url' => '/',
+						),
+					array(
+						'name' =>'我的主页',
+						'current' => TRUE,
+						),
+					);
+
 		$this->smarty->view('user/user_center_main.tpl',$data);
 
 	}
