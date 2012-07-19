@@ -120,6 +120,9 @@ class MY_Session {
 	{
 		// Fetch the cookie
 		$url_session_id = $this->CI->input->get($this->sess_url_name);
+		if (!$url_session_id) {
+			$url_session_id = $this->CI->input->cookie($this->sess_url_name);
+		}
 
 		// No url key ?  Goodbye cruel world!...
 		if ($url_session_id === FALSE)

@@ -287,6 +287,7 @@ $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= FALSE;
 $config['sess_time_to_update']	= 7200;
+$config['sess_url_name'] = 'session_id';
 
 /*
 |--------------------------------------------------------------------------
