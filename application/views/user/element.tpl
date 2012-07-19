@@ -1,12 +1,12 @@
 <div class="right_main">
-	<dl class="element_list clearfix">
-		<dt style="display:none;"><a href="#" class="sel">全部发现<span>(12)</span></a>　|　<a href="#">发现的美图<span>(12)</span></a>　|　<a href="#">发现的视频<span>(12)</span></a></dt>
-		<div id="container">
+	<div class="element_list clearfix">
+		<h3 style="display:none;"><a href="#" class="sel">全部发现<span>(12)</span></a>　|　<a href="#">发现的美图<span>(12)</span></a>　|　<a href="#">发现的视频<span>(12)</span></a></h3>
+		<dl id="container">
 			{foreach from=$element['items'] item=item}
 			{include file="magazine/lib/elemcover.tpl" cover_show_del=$is_me favorited=true}
 			{/foreach}
-		</div>
-	</dl>
+		</dl>
+	</div>
 	{if isset($nextpage)}
 	<div id="pagenav" style="display:none">
 		<a href="{$nextpage}"></a>

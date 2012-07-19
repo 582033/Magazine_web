@@ -1,10 +1,8 @@
 {include file="header.tpl"}
 <div class="main">
-	<dl class="element_list e_index clearfix">
-		<dt>
-			<strong>爱发现</strong>
-		</dt>
-		<div id="container">
+	<div class="element_list e_index clearfix">
+		<h3><span>爱发现</span></h3>
+		<dl id="container">
 			{if isset($element_ad)}
 			{foreach from=$element_ad item=item key=key}
 			{include file="magazine/lib/elemcover.tpl"}
@@ -13,8 +11,8 @@
 			{foreach from=$element_list item=item key=key}
 			{include file="magazine/lib/elemcover.tpl"}
 			{/foreach}
-		</div>
-	</dl>
+		</dl>
+	</div>
 	{if isset($nextpage)}
 	<div id="pagenav" style="display:none">
 		<a href="{$nextpage}"></a>
