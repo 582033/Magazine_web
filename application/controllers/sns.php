@@ -280,6 +280,9 @@ class Sns extends MY_Controller {
 			case 'android':
 				break;
 			case 'ios':
+				echo '你在IOS登陆了!FK!你的sessionid是:'.$signdata['session_id'],"<br>\n";
+				print_r($signdata);
+				die;
 				break;
 			default:
 				exit(0);
