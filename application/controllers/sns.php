@@ -112,7 +112,7 @@ class Sns extends MY_Controller {
 						'apptype'=>$apptype,
 						'status'=>Sns_Model::encodeAuthString($data['oauthstring']),
 						'snsnickname'=>isset($data['nickname'])?$data['nickname']:'',
-						'avatar'=>isset($data['avatar'])?$data['avatar']:''
+						'avatar'=>isset($data['avatar'])?$data['avatar']:'http://img.in1001.com/avatar/0/default.jpg!50'
 						);
 				$this->_show_signup($renderData);
 			}
