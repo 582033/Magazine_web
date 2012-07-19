@@ -53,7 +53,7 @@
  			<dd>
  				<div class="clearfix">
 					{foreach from=$loved_author.items item=item}
-						<a href="/user/{$user_id}"><img src="{$item.image}!50" width="50" height="50" alt="{$item.nickname}" /><span>{$item.nickname}</span></a>
+						<a href="/user/{$item.id}"><img src="{$item.image}!50" width="50" height="50" alt="{$item.nickname}" /><span>{$item.nickname}</span></a>
 					{/foreach}
 					<span class="curnick"></span>
  					<span class="gray"></span>

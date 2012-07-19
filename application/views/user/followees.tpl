@@ -3,7 +3,7 @@
 			<div class="my_follow_list">
 				{foreach from=$follows['items'] item=item}
 				<dl class="clearfix">
-					<dt><a href="#"><img src="{$item.image}!50" alt="{$item.nickname}" /></a></dt>
+					<dt><a href="/user/{$item.id}"><img src="{$item.image}!50" alt="{$item.nickname}" /></a></dt>
 					<dd>
 						<strong><a href="/user/{$item.id}">{$item.nickname}</a></strong>
 <!--
