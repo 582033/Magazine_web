@@ -89,6 +89,7 @@ function init_search() { // {{{
 			});
 		$(this).submit(function() {
 			if ($q.val() == '' || $q.val() == '请输入关键字') return false;
+			
 			var regexp = /[^a-zA-Z0-9-_\u4e00-\u9fa5]/g;
 			$q.val($q.val().replace(regexp,""));
 			window.location.href = this.action + '/' + encodeURI($q.val());
