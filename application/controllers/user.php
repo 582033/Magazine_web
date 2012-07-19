@@ -515,47 +515,45 @@ class User extends Magazine {
 		$this->_auth_check_api();
 		$res = request($this->api_host."/activity/".$msgid, 'session_id=' . $this->session->get_session_id(), "DELETE");
 	}
-
-	function reset_pwd($key){
+	
+	function check_redis_key($key){
 		if ($this->get_redis()->get($key) !== false){
-			if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-				$account_name = $this->get_redis()->get($key);
-				$new_pwd = trim($this->input->post('reset_pwd'));
-			//	$this->_json_output($data);
-				$result = $this->send_email_model->_update_account_pwd($account_name, $new_pwd);
-				if ($result == 'true'){
-					$msg = "true";
-					$redis = $this->get_redis();
-					$redis->delete($key);
-					$this->_json_output($msg);
-				}else{
-					$msg = "fail";
-					$this->_json_output($msg);
-				}
+			return true;
+		}
+		$data = array(
+					'error_code' => 200,
+					'error_msg' => "抱歉，您的验证链接已失效，请重新获取邮件<a href='" . $this->config->item('web_host') . "/user/forget_password' >找回密码</a>",
+					);
+		$this->smarty->view('about/error_us.tpl', $data);
+		return false;
+	}
+	
+	function reset_pwd($key){
+		if (!$this->check_redis_key($key)) return false;
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$account_name = $this->get_redis()->get($key);
+			$new_pwd = trim($this->input->post('reset_pwd'));
+		//	$this->_json_output($data);
+			$result = $this->send_email_model->_update_account_pwd($account_name, $new_pwd);
+			if ($result == 'true'){
+				$msg = "true";
+				$redis = $this->get_redis();
+				$redis->delete($key);
+				$this->_json_output($msg);
 			}else{
-				$msg = "error!";
+				$msg = "fail";
 				$this->_json_output($msg);
 			}
 		}else{
-			$data = array(
-						'error_code' => 200,
-						'error_msg' => "抱歉，您的验证链接已失效，请重新获取邮件<a href='" . $this->config->item('web_host') . "/user/forget_password' >找回密码</a>",
-						);
-			$this->smarty->view('about/error_us.tpl', $data);
+			$msg = "error!";
+			$this->_json_output($msg);
 		}
 	}
 
 	function reset_password_show($key){
-		if ($this->get_redis()->get($key) !== false){
-			$data = array('key' => $key);
-			$this->smarty->view('user/reset_password.tpl', $data);
-		}else{
-			$data = array(
-						'error_code' => 200,
-						'error_msg' => "抱歉，您的验证链接已失效，请重新获取邮件<a href='" . $this->config->item('web_host') . "/user/forget_password' >找回密码</a>",
-		);
-			$this->smarty->view('about/error_us.tpl', $data);
-		}
+		if (!$this->check_redis_key($key)) return false;
+		$data = array('key' => $key);
+		$this->smarty->view('user/reset_password.tpl', $data);
 	}
 
 	function get_redis () { //{{{
