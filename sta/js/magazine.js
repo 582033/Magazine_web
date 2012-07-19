@@ -111,6 +111,7 @@ function init_goto_page() { // {{{
 
 function align_height() { //{{{
 	var pageh = $(".main_left_line").height();
+	pageh = Math.max(800, pageh);
 	if ($(".sidebar_left").height() < pageh){
 		$(".sidebar_left").height(pageh - 1);
 	}
@@ -214,5 +215,4 @@ function init_comment() { //{{{
 		$replyc.show();
 	});
 } //}}}
-
 // vim: fdm=marker
