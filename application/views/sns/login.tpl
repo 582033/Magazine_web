@@ -4,13 +4,16 @@
 		<div class="title">绑定已有帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
 <form class="bind" name="form" action="/index.php/sns/bind" method="POST">
+{if $avatar}<p class="p"><label>&nbsp;</label><img src="{$avatar}" style="width:50px;height:50px"/></p>{/if}
 <p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span></p>
 <p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span></p>
 <input type="hidden" name="new" value="0">
 <input type="hidden" name="snsid" value="{$snsid}">
 <input type="hidden" name="apptype" value="{$apptype}">
 <input type="hidden" name="status" value="{$status}">
-<p class="p"><label>&nbsp;</label><input class="subbtn" type="submit" value="绑 定"> <a class="btnra" href="/index.php/sns/bind?new=1&snsid={$snsid}&apptype={$apptype}&status={$status}">绑定新账号</a></p>
+<input type="hidden" name="avatar" value="{$avatar}">
+<input type="hidden" name="snsnickname" value="{$snsnickname}">
+<p class="p"><label>&nbsp;</label><input class="subbtn" type="submit" value="绑 定"> <a class="btnra" href="/index.php/sns/bind?new=1&snsid={$snsid}&apptype={$apptype}&status={$status}&snsnickname={$snsnickname}&avatar={$avatar}">绑定新账号</a></p>
 </form>
 	</div>
 </div>

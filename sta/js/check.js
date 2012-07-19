@@ -6,6 +6,7 @@ function isEmpty(str) {
 	return $.trim(str) == '';
 }
 var errMessage = {
+	nicknameempty:'用户昵称不能为空',
 	userempty:'邮箱不能为空',
 	pwdlength:'密码长度大于6位小于16位',
 	pwdempty:'密码不能为空',

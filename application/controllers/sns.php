@@ -86,7 +86,7 @@ class Sns extends MY_Controller {
 		if(isset($state['session_id']) && $state['op']==2) {
 			$sessionid = $params['session_id'] = $state['session_id'];
 		}
-		$result = request($this->apiHost.'/sns/callback',$params);
+		$result = request($this->apiHost.'/sns/callback',$params,'GET');
 		if($result['httpcode'] != 200) {
 			return  show_error('参数错误',500);
 		}
@@ -110,7 +110,9 @@ class Sns extends MY_Controller {
 				$renderData = array(
 						'snsid'=>$data['snsid'],
 						'apptype'=>$apptype,
-						'status'=>Sns_Model::encodeAuthString($data['oauthstring'])
+						'status'=>Sns_Model::encodeAuthString($data['oauthstring']),
+						'snsnickname'=>isset($data['nickname'])?$data['nickname']:'',
+						'avatar'=>isset($data['avatar'])?$data['avatar']:''
 						);
 				$this->_show_signup($renderData);
 			}
@@ -130,6 +132,8 @@ class Sns extends MY_Controller {
 		$snsid = (string)$this->input->get_post('snsid');
 		$apptype = (string)$this->input->get_post('apptype');
 		$status = (string)$this->input->get_post('status');
+		$snsnickname = (string)$this->input->get_post('snsnickname');
+		$avatar = (string)$this->input->get_post('avatar');
 		if(!$snsid || !$apptype || !$status) {
 			return  show_error('参数错误',500);
 		}
@@ -139,11 +143,14 @@ class Sns extends MY_Controller {
 				$username = $this->input->post('username');
 				$passwd = $this->input->post('passwd');
 				$confirmPasswd = $this->input->post('confirm_passwd');
+				$nickname = $this->input->post('nickname');
 				$renderData = array(
 						'snsid'=>$snsid,
 						'apptype'=>$apptype,
 						'status'=>$status,
-						'username'=>$username
+						'username'=>$username,
+						'snsnickname'=>$snsnickname,
+						'avatar'=>$avatar
 					);
 				if(!$username || !$passwd || !$confirmPasswd || $passwd!=$confirmPasswd) {
 					$renderData['errormessage']='提交数据错误';
@@ -151,7 +158,8 @@ class Sns extends MY_Controller {
 				}
 				$params = array(
 						'username'=>$username,
-						'passwd'=>$passwd
+						'passwd'=>$passwd,
+						'nickname'=>$nickname
 						);
 				$result = request($this->apiHost.'/auth/signup',$params,'POST');
 				//@TODO 获取第三方账号信息更新user info
@@ -184,7 +192,9 @@ class Sns extends MY_Controller {
 				$renderData = array(
 						'snsid'=>$snsid,
 						'apptype'=>$apptype,
-						'status'=>$this->input->get_post('status')
+						'status'=>$this->input->get_post('status'),
+						'snsnickname'=>$snsnickname,
+						'avatar'=>$avatar
 						);
 				return $this->_show_signup($renderData);
 			}
@@ -197,7 +207,9 @@ class Sns extends MY_Controller {
 						'snsid'=>$snsid,
 						'apptype'=>$apptype,
 						'status'=>$this->input->get_post('status'),
-						'username'=>$username
+						'username'=>$username,
+						'snsnickname'=>$snsnickname,
+						'avatar'=>$avatar
 						);
 				if(!$username || !$passwd) {
 					$renderData['errormessage']='请输入正确用户名和密码';
@@ -231,7 +243,9 @@ class Sns extends MY_Controller {
 				$renderData = array(
 						'snsid'=>$snsid,
 						'apptype'=>$apptype,
-						'status'=>$this->input->get_post('status')
+						'status'=>$this->input->get_post('status'),
+						'snsnickname'=>$snsnickname,
+						'avatar'=>$avatar
 				);
 				return $this->_show_bind($renderData);
 			}
