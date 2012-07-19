@@ -34,5 +34,4 @@
 		</ul>
 	</div>
 </div>
-<div class="occupying_by_30"></div>
 {include file="footer.tpl"}

@@ -6,7 +6,7 @@
 					<li><a href="/join_us">加入我们</a></li>
 					<li><a href="/legal_statement">法律声明</a></li>
 				</ul>
-				<p>©2012　京ICP备09034412号</p>
+				<p>©2012&nbsp;&nbsp;京ICP备09034412号&nbsp;&nbsp;&nbsp;&nbsp;建议使用IE7及以上浏览器浏览本网站</p>
 			<div>
 		</div>
 		<div id="msgbox">
