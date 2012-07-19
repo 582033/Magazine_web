@@ -13,7 +13,7 @@ $(function(){
 		  loading: {
 			  finishedMsg: '最后一页了',
 			  img: 'http://i.imgur.com/6RMhx.gif'
-			},
+			}
 		},
       // trigger Masonry as a callback
       function(newElements) {
