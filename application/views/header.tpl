@@ -85,7 +85,7 @@
 							 <p class="err_msg"></p>
 							 <p><button type="submit">立即登录</button></p>
 							 <p>其他帐号登录：</p>
-							 <p><span><a href="/sns/redirect?snsid=sina&apptype=web&op=1">新浪微博账号登录</a> | <a href="/sns/redirect?snsid=qq&apptype=web&op=1">QQ账号登录</a></span></p>
+							 <p><span><a href="/sns/redirect?snsid=sina&apptype=web&op=1">新浪微博账号登录</a> | <a href="/sns/redirect?snsid=qq&apptype=web&op=1">腾讯微博账号登录</a></span></p>
 						 </form>
 					 </div>
 				 </div>
