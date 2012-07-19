@@ -1,5 +1,5 @@
 {include file='header.tpl'}
-<div class="current"><a href="/user/me">首页</a> &gt; <a href="/user/me/{$user_set}" class="cur">{$user_set_name}</a></div>
+<div class="current"><a href="/">首页</a> &gt; <a href="/user/me">个人中心</a> &gt; <a href="/user/me/{$user_set}" class="cur">{$user_set_name}</a></div>
 <div class="main setting clearfix">
 	<div class="set_menu">
 		<ul>
