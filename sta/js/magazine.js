@@ -21,7 +21,6 @@ $(function() {
 		init_search();
 		init_goto_page();
 		init_comment();
-		init_colorbox();
 		init_user_center();
 		switch ($('body').attr('id')) {
 		case 'magazine_home':
@@ -68,24 +67,6 @@ function init_user_center() { //{{{
 			$(this).css("z-index","0");
 		});
 } //}}}
-function init_colorbox() { // {{{
-	$(document).on('cbox_closed', function(){
-		if ($.colorbox.element().attr('id') != 'msgbox') {
-			window.location.reload();
-		}
-	});
-	var opts = {
-		overlayClose: false,
-		fixed: true,
-        scrolling: false,
-		opacity: 0.5
-	};
-	$(document).on('click', 'a.thickbox', function() {
-		$(this).colorbox($.extend({}, opts, {open: true}));
-		return false;
-	});
-} // }}}
-
 function init_magazine_home() { //{{{
 	var $mags = $('dl.mag_list');
 	$('dd.menu a', $mags).click(function() {
@@ -150,31 +131,6 @@ function align_height() { //{{{
 		$(".set_menu").css("height", page_height+"px");
 	}
 
-} //}}}
-
-function applyAuthor(form){	// {{{ 申请成为作者
-	var $form = $(form);
-	if (! $('input.code', $form).val()) {
-		$('p.err_msg', $form).text('请输入邀请码');
-		return false;
-	}
-
-	var options = {
-		dataType : 'json',
-		success: function(result) {
-			if (result.status == 'OK') {
-				$('#apply_author div.main').hide();
-				$('#apply_author div.apply_ok').show();
-				setTimeout(function() {$.colorbox.close()}, 3000);
-			}
-			else {
-				$(".err_msg").html(result.message);
-			}
-		}
-	};
-
-	$form.ajaxSubmit(options);
-	return false;
 } //}}}
 
 $(function(){

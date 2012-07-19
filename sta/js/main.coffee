@@ -10,6 +10,7 @@ $ ->
   $(document).ajaxError (e, jqxhr, settings, exception) ->
     if jqxhr.status == 401 then showSigninBox()
   initHeader()
+  initColorbox()
   loadUserInfo initUserInfo
   switch g1001.pageId
     when 'change-password' then initChangePassword()
@@ -28,6 +29,21 @@ initHeader = ->
     initUserInfo
         nickname: nickname
         image: $.cookie 'avatar'
+initColorbox = ->
+  opts =
+    overlayClose: false
+    fixed: true
+    scrolling: false
+    opacity: 0.5
+    onCleanup: ->
+      $e = $.colorbox.element()
+      if $e.attr('href').match(/applyAuthor/) and $('#apply_author div.apply_ok').is(':visible')
+        window.location.reload()
+
+  $(document).on('click', 'a.thickbox', ->
+    $(this).colorbox $.extend({}, opts, {open: true})
+    return false
+  )
 
 initUserInfo = (user) ->
     avatar = user.image + '!50'
@@ -95,11 +111,11 @@ initFav = (user) ->
 
 showSigninBox = ->
   $.colorbox
-        overlayClose: false
-        fixed: true
-        opacity: 0.5
-        scrolling: false
-        href: '/user/signinbox'
+    overlayClose: false
+    fixed: true
+    opacity: 0.5
+    scrolling: false
+    href: '/user/signinbox'
 checkSignedIn = ->
   if $.cookie('nickname') then return true
   else
@@ -226,3 +242,22 @@ signup = (form) ->
 
   $form.ajaxSubmit(options)
   return false
+applyAuthor = (form) -> # 申请成为作者
+  $form = $(form)
+  if not $('input.code', $form).val()
+    $('p.err_msg', $form).text('请输入邀请码')
+    return false
+
+  options =
+    dataType : 'json',
+    success: (result) ->
+      if result.status == 'OK'
+        $('#apply_author div.main').hide()
+        $('#apply_author div.apply_ok').show()
+        setTimeout  (-> $.colorbox.close()), 3000
+      else
+        $(".err_msg").html(result.message)
+
+  $form.ajaxSubmit(options)
+  return false
+
