@@ -108,7 +108,11 @@ function init_search() { // {{{
 			});
 		$(this).submit(function() {
 			if ($q.val() == '' || $q.val() == '请输入关键字') return false;
-			$q.val() = $q.val().replace(/=/g,"%3D").replace(/\*/g,"");
+			 $q.val($q.val().replace(/=/g,"").replace(/\*/g,""));
+			 $q.val($q.val().replace(/\//g,"").replace(/\./g,""));
+			 $q.val($q.val().replace(/\\/g,"").replace(/\?/g,""));
+			 $q.val($q.val().replace(/\//g,"").replace(/\&/g,""));
+			 $q.val($q.val().replace(/\+/g,"").replace(/\-/g,""));
 			window.location.href = this.action + '/' + encodeURI($q.val());
 			return false;
 			});
