@@ -63,7 +63,7 @@
 							 <div onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'"></div>
 						 </div>
 						 <div class="clearfix"></div>
-						 <a href="/user/me/messages" class="msg_tip"><span>0</span></a>
+						 <a href="/user/me/messages" class="msg_tip" style="display:none"><span>0</span></a>
 						 <ul id="userMenu" onmouseover="document.getElementById('userMenu').style.display='block'" onmouseout="document.getElementById('userMenu').style.display='none'">
 							 <li><a href="/user/me/setting">账号设置</a></li>
 							 <li><a href="/user/me/magazines">喜欢的阅读</a></li>

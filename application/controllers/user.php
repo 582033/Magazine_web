@@ -11,13 +11,6 @@ class User extends Magazine {
 		$this->load->model('user_info_model');
 		$this->load->model('send_email_model');
 		$this->load->helper('email');
-
-/*
- *		验证登录状态
- */
-		$this->load->model('auth');
-		$this->auth->auth_user();
-
 		$this->load->helper('api');
 		$this->load->library('session');
 	}	//}}}
@@ -41,10 +34,11 @@ class User extends Magazine {
 			$username = $this->input->post('username');
 			$passwd = $this->input->post('passwd');
 			$return = $this->_api_post('/auth/signup', array('username' => $username, 'passwd' => $passwd));
-			if ($return['data']['status'] == 'OK') {
-				$this->Login_Model->set_signin_session_cookie($return['data']);
+			$signup_data = $return['data'];
+			if ($signup_data['status'] == 'OK') {
+				$this->Login_Model->set_signin_cookie($signup_data);
 			}
-			$this->_json_output($return['data']);
+			$this->_json_output($signup_data);
 		}
 		else {
 			$return = $this->_get('return');
@@ -72,7 +66,9 @@ class User extends Magazine {
 
 	function applyAuthor($stage){	//{{{
 		if ($stage == 'invitation') {
-			$user_id = $this->session->userdata('id');
+			$this->load->library('session');
+			$this->session->checkAndRead();
+			$user_id = $this->session->userdata('user_id');
 			if (!$user_id) {
 				header('Location: /user/signinbox', TRUE, 302);
 				return;
@@ -80,6 +76,7 @@ class User extends Magazine {
 			$this->smarty->view('user/invitation_code.tpl');
 		}
 		elseif ($stage == 'apply') {
+			$this->_auth_check_api();
 			$status2msg = array(
 					'OK' => '成功',
 					'INVALID_CODE' => '错误的邀请码',
@@ -105,9 +102,9 @@ class User extends Magazine {
 		$page = $page ? $page : 1;
 		if ($user_id == 'me') {
 			$this->_auth_check_web();
-			$user_id = $this->session->userdata('id');
+			$user_id = $this->session->userdata('user_id');
 		}
-		$is_me = $user_id == $this->session->userdata('id');
+		$is_me = $user_id == $this->session->userdata('user_id');
 		$this->load->model('display_model');
 		$url_data = array(
 				'start' => ($page-1)*($this->limit),
@@ -160,9 +157,9 @@ class User extends Magazine {
 		$user_id0 = $user_id;
 		if ($user_id == 'me') {
 			$this->_auth_check_web();
-			$user_id = $this->session->userdata('id');
+			$user_id = $this->session->userdata('user_id');
 		}
-		$is_me = $user_id == $this->session->userdata('id');
+		$is_me = $user_id == $this->session->userdata('user_id');
 		if ($is_me) $user_id0 = 'me';
 		$this->load->model('user_info_model');
 		$user_info = $this->user_info_model->get_user($user_id);
@@ -177,30 +174,27 @@ class User extends Magazine {
 		$page_url = "/user/$user_id/magazines"; 
 		$this->_get_loved($user_id, $page, 'magazine', $page_url);
 	}	//}}}
-
 	function elements($user_id, $page = '1'){	//喜欢的元素列表{{{
 		$page_url = "/user/$user_id/elements"; 
 		$this->_get_loved($user_id, $page, 'element', $page_url);
 		$this->_auth_check_web();
 	}	//}}}
-
 	function followees($user_id, $page = '1') {	//关注的作者{{{
 		$page_url = "/user/$user_id/followees"; 
 		$this->_get_loved($user_id, $page, 'followees', $page_url);
 	}	//}}}
-	function followers($user_id, $page = '1') {	// 粉丝
+	function followers($user_id, $page = '1') {	// 粉丝 {{{
 		$page_url = "/user/$user_id/followers";
 		$this->_get_loved($user_id, $page, 'followers', $page_url);
 	}	//}}}
-
 	function bookstore($user_id, $page = '1', $type = 'published'){	//{{{
 		$page = $page ? $page : 1;
 		$type = $type ? $type : 'published';
 		if ($user_id == 'me') {
 			$this->_auth_check_web();
-			$user_id = $this->session->userdata('id');
+			$user_id = $this->session->userdata('user_id');
 		}
-		$is_me = $user_id == $this->session->userdata('id');
+		$is_me = $user_id == $this->session->userdata('user_id');
 
 		$url_data = array(
 				'start' => ($page-1)*($this->limit),
@@ -244,6 +238,7 @@ class User extends Magazine {
 	}	//}}}
 
 	function get_user_info () {	//{{{
+		$this->_auth_check_api();
 		$this->_json_output($this->user_info_model->get_user_info());
 	}	//}}}
 
@@ -269,6 +264,7 @@ class User extends Magazine {
 			$data = array(
 					'user_set' => 'set_base',
 					'user_set_name' => '基本资料',
+					'user_info' => $this->_get_current_user(),
 					);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}
@@ -280,16 +276,18 @@ class User extends Magazine {
 	}
 	function set_headpic () {	//头像设置{{{
 		$this->_auth_check_web();
-		$get_user_info = $this->user_info_model->get_user($this->session->userdata('id'));
+		$get_user_info = $this->user_info_model->get_user($this->session->userdata('user_id'));
 		$data = array(
 				'image' => $get_user_info['image'],
 				'user_set' => 'set_headpic',
 				'user_set_name' => '头像设置',
+				'user_info' => $this->_get_current_user(),
 				);
 		$this->smarty->view('user/set_main.tpl', $data);
 	} // }}}
 	function set_pwd(){	// {{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$this->_auth_check_api();
 			if ($this->input->post('old_pwd') && $this->input->post('reset_pwd')){
 				$post = array(
 							'old_pwd' => trim($this->input->post('old_pwd')),
@@ -306,6 +304,7 @@ class User extends Magazine {
 			$data = array(
 					'user_set' => 'set_pwd',
 					'user_set_name' => '修改密码',
+					'user_info' => $this->_get_current_user(),
 					'pageid' => 'change-password',
 					);
 			$this->smarty->view('user/set_main.tpl', $data);
@@ -323,11 +322,12 @@ class User extends Magazine {
 		}
 		else {
 			$this->_auth_check_web();
-			$tags = $this->user_info_model->get_user_tags($this->session->userdata('id'));
+			$tags = $this->user_info_model->get_user_tags($this->session->userdata('user_id'));
 			$data = array(
 					'user_set' => 'set_tag',
 					'user_set_name' => '个人标签',
 					'tags' => $tags,
+					'user_info' => $this->_get_current_user(),
 					);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}
@@ -338,12 +338,14 @@ class User extends Magazine {
 		$data = array(
 				'user_set' => 'set_auther',
 				'user_set_name' => '作者信息设置',
+				'user_info' => $this->_get_current_user(),
 				);
 		$this->smarty->view('user/set_main.tpl', $data);
 	}	//}}}
 
 	function set_user_info () {	//{{{
-		$session_id = $this->session->userdata('sid');
+		$this->_auth_check_api();
+		$session_id = $this->session->userdata('session_id');
 		$keys =	array('nickname', 'birthday', 'sex');
 		$user_info = $this->_get_json_values($keys);
 		$post = array('user_info' => $user_info);
@@ -374,12 +376,14 @@ class User extends Magazine {
 				'session_id' => $session_id,
 				'user_set' => 'set_share',
 				'user_set_name' => '分享管理',
+				'user_info' => $this->_get_current_user(),
 				);
 		$this->smarty->view('user/set_main.tpl', array_merge($data, $other));
 	}	//}}}
 	
 
 	public function unbind() {	//解除绑定第三方帐号{{{
+		$this->_auth_check_api();
 		$data = array(
 			'error'=>null,
 			'status'=>0,
@@ -422,7 +426,7 @@ class User extends Magazine {
 		}
 	}	//}}}
 
-	function verb_msg($row){
+	function verb_msg($row) { // {{{
 				if($row['status'] == 0){
 				$msg_css=' style=\'background:#ffff37;\'';
 				}
@@ -446,10 +450,10 @@ class User extends Magazine {
 		}
 
 		return $ret_verb;
-	}
+	} // }}}
 
 	//join msg  info from db and tpl
-	function print_msg($arr_db,$info){
+	function print_msg($arr_db,$info){ // {{{
 		if(count($arr_db) == 0){
 			//no msg ，show message to prompt
 			$ret= '<dl class="clearfix">  <dd> <div align="center"> <p> 目前暂无消息</p> <span></span> </div> </dd> </dl> ';
@@ -464,13 +468,12 @@ class User extends Magazine {
 		}
 	return $ret;	
 
-	}
+	} // }}}
 	
 	//show all messages
 	function messages($user_id, $p=1) {
-		$p = $p ? $p : 1;
-		//check login status
 		$user_info = $this->_auth_check_web();
+		$p = $p ? $p : 1;
 		if ($user_id != 'me' && $user_id != $user_info['id']) {
 			show_error('', 401);
 		}
@@ -498,6 +501,7 @@ class User extends Magazine {
 		$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
 		$data['is_me'] = TRUE;
 		$data['user_id'] = 'me';
+		$data['user_info'] = $this->_get_current_user();
 		$this->smarty->view('user/user_center_main.tpl',$data);
 
 	}
@@ -508,8 +512,8 @@ class User extends Magazine {
 
 	//api proxy
 	function del_msg($msgid) {
-		$user_info = $this->_auth_check_api();
-		$res = request($this->api_host."/activity/".$msgid,'session_id='.$user_info['session_id'],"DELETE");
+		$this->_auth_check_api();
+		$res = request($this->api_host."/activity/".$msgid, 'session_id=' . $this->session->get_session_id(), "DELETE");
 	}
 
 	function reset_pwd($key){

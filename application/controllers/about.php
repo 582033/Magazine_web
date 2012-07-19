@@ -4,8 +4,6 @@ class About extends MY_Controller {
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('auth');
-		$this->auth->auth_user();
 	}
 	
 	function foot_link($link){		//网站底部链接及跳转{{{

@@ -2,7 +2,7 @@ g1001 = null
 $ ->
   window.g1001 =
     url:
-      userInfo: 'http://api.in1001.com/v1/user/{0}?projection=fuller'
+      userInfo: 'http://ping.api.in1001.com/v1/user/{0}?projection=fuller'
     pageId: $('body').attr('id') or ''
     userId: $.cookie 'uid'
     user: null
@@ -10,7 +10,7 @@ $ ->
   $(document).ajaxError (e, jqxhr, settings, exception) ->
     if jqxhr.status == 401 then showSigninBox()
   initHeader()
-  loadUserInfo initFav
+  loadUserInfo initUserInfo
   switch g1001.pageId
     when 'change-password' then initChangePassword()
     when 'mag_detail' then initDetail()
@@ -24,12 +24,26 @@ initHeader = ->
     $('#loginTip').hide()
 
   nickname = $.cookie 'nickname'
-  avatar = $.cookie 'avatar'
   if nickname
+    initUserInfo
+        nickname: nickname
+        image: $.cookie 'avatar'
+
+initUserInfo = (user) ->
+    avatar = user.image + '!50'
     $('div.self_info').show()
     $('div.log_reg').hide()
-    $('div.self_info .user_info span.nickname').text nickname
-    $('div.self_info .user_info img').attr 'src', avatar
+    $ui = $('div.self_info .user_info')
+    if user.unreads
+      $('div.self_info a.msg_tip').show().find('span').text(user.unreads)
+    else
+      $('div.self_info a.msg_tip').hide()
+    $('span.nickname', $ui).text user.nickname
+    $('img', $ui).attr 'src', avatar
+    $('form#comment img.avatar').attr # form detail and comment page
+        src: avatar
+        alt: user.nickname
+    if user.fav then initFav user
 initDetail = ->
   page_height = $(".main").height()
   if $(".left_main").height() < page_height
@@ -64,7 +78,7 @@ changePassword = (form) ->
   return false
 
 loadUserInfo = (callback) ->
-  callback or= initFav
+  callback or= initUserInfo
   if not g1001.userId then return
   $.ajax
     url: $.format g1001.url.userInfo, g1001.userId

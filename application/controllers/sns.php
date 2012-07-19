@@ -238,7 +238,10 @@ class Sns extends MY_Controller {
 		} // }}}
 	} // }}}
 	
-	private function __finish($apptype,$status,array &$data) { // {{{
+	private function __finish($apptype, $status, $signdata) { // {{{
+		/*
+		 * $signdata - same with output of signin/signup api
+		 */
 		$this->load->model('login_model');
 		switch ($apptype) {
 			case 'web':
@@ -247,12 +250,7 @@ class Sns extends MY_Controller {
 				if(isset($status['state'])) {
 					$status['state'] = @json_decode(base64_decode($status['state']),true);
 				}
-				$sessionData = array(
-						'id'=>$data['id'],
-						'session_id'=>$data['session_id']
-						);
-				$this->session->set_userdata($sessionData);
-				$this->login_model->set_signin_cookie($data['id'], $data['nickname']);
+				$this->login_model->set_signin_cookie($signdata);
 				$u = '/';
 				if(isset($status['state']['refer']) && $status['state']['refer']) {
 					$filters = array('sns/callback','sns/bind','signin','signup');

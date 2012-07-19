@@ -11,7 +11,7 @@ class Image_cropping extends MY_Controller {
 		//网站地址
 		$this->web['sitehttp']= $this->config->item('web_host').'/';
 		//上传路径
-		$this->web['img_up_dir']=$this->config->item('upload_img_dir').'/'.$this->session->userdata('id');;
+		$this->web['img_up_dir']=$this->config->item('upload_img_dir').'/'.$this->session->userdata('user_id');;
 		//截图类型（限jpg、gif、png）
 		$this->web['img_up_format']='jpg';
 		//截图质量（限jpg、70-100，100为最好质量）
@@ -56,7 +56,7 @@ class Image_cropping extends MY_Controller {
         }else{
           $file_format=strtolower($matches[1]);
           if(@move_uploaded_file($_FILES['purl1']['tmp_name'],$this->web['img_up_dir'].'/'.$this->web['socure_img_name'].'.'.$file_format)){
-            $image_path='/'.$this->session->userdata('id').'/'.$this->web['socure_img_name'].'.'.$file_format;
+            $image_path='/'.$this->session->userdata('user_id').'/'.$this->web['socure_img_name'].'.'.$file_format;
             $this->_fsetcookie($this->config->item('upload_img_host').$image_path);
 			echo '<script>location.href="/image_cropping/show_cut_ui"</script>';
 	      }else{
@@ -87,7 +87,7 @@ class Image_cropping extends MY_Controller {
 		  $format=$this->web['img_up_format'];
 		  $this->_write_network_img($this->web['img_up_dir'].'/'.$this->web['socure_img_name'].'.'.$format,$im);
 		  //$this->_fsetcookie($this->web['img_up_dir'].'/'.$this->web['socure_img_name'].'.'.$format);
-		  $this->_fsetcookie($this->config->item('upload_img_host').'/'.$this->session->userdata('id').'/'.$this->web['socure_img_name'].'.'.$format);
+		  $this->_fsetcookie($this->config->item('upload_img_host').'/'.$this->session->userdata('user_id').'/'.$this->web['socure_img_name'].'.'.$format);
 		  echo '图像上传成功';
 		  echo '<script>location.href="/image_cropping/show_cut_ui"</script>';
 	}

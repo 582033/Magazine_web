@@ -301,7 +301,7 @@ $config['sess_url_name'] = 'session_id';
 |
 */
 $config['cookie_prefix']	= "";
-$config['cookie_domain']	= "www.in1001.com";
+$config['cookie_domain']	= ".www.in1001.com";
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= FALSE;
 

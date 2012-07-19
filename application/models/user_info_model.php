@@ -19,7 +19,7 @@
 	}
 
 	function apply_author($code) {
-		$user_id = $this->session->userdata('id');
+		$user_id = $this->session->userdata('user_id');
 		$params = array('code' => $code, 'session_id' => $this->session->userdata('session_id'));
 		return request($this->api_host . "/user/$user_id/applyAuthor?" .  http_build_query($params));
 	}

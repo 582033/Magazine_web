@@ -41,7 +41,7 @@ class user_loved_model extends CI_Model {
 
 	function _get_my_magazines_total () {	//获取自己已发布及未发布杂志的总数{{{
 		$session_id = $this->session->userdata('session_id');
-		$user_id = $this->session->userdata('id');
+		$user_id = $this->session->userdata('user_id');
 		$published_data = request($this->api_host."/user/$user_id/magazines/published?start=0&limit=0");
 		$unpublished_data = request($this->api_host."/user/$user_id/magazines/unpublished?start=0&limit=0&session_id=$session_id");
 		$total = array(

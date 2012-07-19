@@ -12,17 +12,15 @@ class Magazine extends MY_Controller {
 	function Magazine (){
 		parent::__construct();
 		$this->load->helper('api');
+		$this->load->helper('cookie');
 		$this->api_host = $this->config->item('api_host');
 		$this->load->model('api_model');
 		$this->load->model('mag_model');
 		$this->load->model('comment_model');
 		$this->load->model('page_model');
-		$this->load->library('session');
 		$this->load->helper('url');
 		$this->_get_title();
 		$this->limit = '20';
-		$this->load->model('auth');
-		$this->auth->auth_user();
 		$this->smarty->assign('pub_host', $this->config->item('pub_host'));
 	}
 	function _get_title(){
@@ -306,7 +304,6 @@ class Magazine extends MY_Controller {
 		$reverse_cate_mag = array_flip($this->cate_map);
 		$magazine['url'] = '/magazine/detail/' . $magazine['id'];
 
-		$user_info = $this->_get_current_user();
 		$data = array(
 				'navs' => array(
 					array(
@@ -329,7 +326,6 @@ class Magazine extends MY_Controller {
 					'magazine' => $magazine,
 					'comments' => $comment['items'],
 					'page_list' => $page_list,
-					'user_info' => $user_info,
 					);
 		$this->smarty->view('magazine/comment_list.tpl', $data);
 	}//}}}
@@ -384,14 +380,14 @@ class Magazine extends MY_Controller {
 	}	//}}}
 	
 	public function pub_like() { //喜欢杂志, 元素, 关注作者 {{{
-
 		$return = array(
 				'status' => 'nologin'
 				);
 		$type = 'magazine';
 		$type_id = $this->input->get('id');
 		$action = 'like';
-		if ($this->auth->is_logged_in()) {
+		$this->load->model('auth');
+		if ($this->auth->get_sess_userdata()) {
 			$resp = $this->mag_model->_like($type, $type_id, $action);
 			if ($resp['httpcode'] != 200) {
 				$return['status'] = 'error';
@@ -438,50 +434,46 @@ class Magazine extends MY_Controller {
 	}
 
 	function _delete_signin_cookies() {
+		delete_cookie('ci_session');
+		delete_cookie('session_id');
 		delete_cookie('uid');
-		delete_cookie('username');
 		delete_cookie('nickname');
+		delete_cookie('avatar');
 		delete_cookie('rmsalt');
 	}
 	function _to_signin_page() {
+		exit('signin please');
 		$this->load->library('session');
 		$this->session->sess_destroy();
 		$this->_delete_signin_cookies();
 		redirect('/user/signin?return=' . current_url());
 		exit;
 	}
-	function _auth_check_web () {
+	function _auth_check_web () { // {{{
 		$this->load->model('auth');
-		if (!$this->auth->is_logged_in()) {
+		$sessdata = $this->auth->get_sess_userdata();
+		if (!$sessdata) {
 			$this->_to_signin_page();
 		}
-		$session_id = $this->session->userdata('session_id');
-		$user_id = $this->session->userdata('id');
-		return array(
-				'id' => $user_id,
-				'session_id' => $session_id,
-				);
-	}
-	function _auth_check_api() {
+		return $sessdata;
+	} // }}}
+	function _auth_check_api() { // {{{
 		$this->load->model('auth');
-		if (!$this->auth->is_logged_in()) {
-			show_error_text(401, 'signin please');
+		$sessdata = $this->auth->get_sess_userdata();
+		if (!$sessdata) {
+			$this->_delete_signin_cookies();
+			show_error_text(401);
 		}
-		$session_id = $this->session->userdata('session_id');
-		$user_id = $this->session->userdata('id');
-		return array(
-				'id' => $user_id,
-				'session_id' => $session_id,
-				);
-	}
-	function _get_current_user() {
+		return $sessdata;
+	} // }}}
+	function _get_current_user() { // {{{
 		$user_info = NULL;
 		$this->load->library('session');
-		$user_id = $this->session->userdata('id');
+		$user_id = $this->session->userdata('user_id');
 		if ($user_id) {
 			$this->load->model('user_info_model');
 			$user_info = $this->user_info_model->get_user($user_id);
 		}
 		return $user_info;
-	}
+	} // }}}
 }
