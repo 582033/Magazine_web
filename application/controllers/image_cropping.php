@@ -1,12 +1,14 @@
 <?php
+include 'magazine.php';
 /*处理上传图像并剪切*/
-class Image_cropping extends MY_Controller {
+class Image_cropping extends Magazine {
 	private $web=array();
 	function __construct(){
 		parent::MY_Controller();
 		$this->load->helper('api');
 		$this->load->helper('thumb');
 		$this->load->library('session');
+		$this->_auth_check_web();
 		$username=$this->session->userdata('nickname');
 		//网站地址
 		$this->web['sitehttp']= $this->config->item('web_host').'/';
@@ -162,6 +164,7 @@ class Image_cropping extends MY_Controller {
 	private function _exec_dropping_img($uploaded_path, $convert_source, $cimg_m, $cimg_s){
 			$session_id = $this->session->userdata("session_id");
 			$data = json_encode(array('avatar' => $this->web['socure_img_name']));
+			$this->_auth_check_web();
 			$request = request($this->config->item('api_host') . "/user/me?session_id=$session_id", $data, 'PUT',false);
 			if ($request['httpcode'] == '202'){
 				$msg = "修改成功";

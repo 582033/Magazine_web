@@ -285,7 +285,7 @@
 	}
 }
 
-.dialog { /* {{{ */
+div.dialog { /* {{{ */
 	&.reg, &.login {
 		width:736px;
 		height:404px;
@@ -533,7 +533,7 @@
 		}
 	} /* }}} */
 } /* }}} */
-.dialog.apply_author { /* {{{ */
+div.dialog.apply_author { /* {{{ */
 	width: 400px;
 	height: 265px;
 	background: white;
