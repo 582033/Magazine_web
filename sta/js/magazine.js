@@ -111,17 +111,21 @@ function init_goto_page() { // {{{
 
 function align_height() { //{{{
 	var pageh = $(".main_left_line").height();
-	pageh = Math.max(800, pageh);
-	if ($(".sidebar_left").height() < pageh){
-		$(".sidebar_left").height(pageh - 1);
-	}
-	if ($(".right_main").height() < pageh){
-		$(".mag_list").height(pageh);
+	if (pageh) {
+		pageh = Math.max(800, pageh);
+		if ($(".sidebar_left").height() < pageh){
+			$(".sidebar_left").height(pageh - 1);
+		}
+		if ($(".right_main").height() < pageh){
+			$(".mag_list").height(pageh);
+		}
 	}
 
 	page_height = $(".set_main").innerHeight(true);
-	if ($(".set_menu").height() < page_height) {
-		$(".set_menu").css("height", page_height+"px");
+	if (page_height) {
+		if ($(".set_menu").height() < page_height) {
+			$(".set_menu").css("height", page_height+"px");
+		}
 	}
 
 } //}}}
