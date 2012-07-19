@@ -17,7 +17,7 @@
 		font-size:14px;
 		color:#2BB3D5;
 		}
-	span{
+	.title_container ul li span{
 		color: red;
 		font-size: 60px;
 		font-weight: bold;
