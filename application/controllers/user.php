@@ -512,28 +512,45 @@ class User extends Magazine {
 	}
 
 	function reset_pwd($key){
-		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-			$account_name = $this->get_redis()->get($key);
-			$new_pwd = trim($this->input->post('reset_pwd'));
-		//	$this->_json_output($data);
-			$result = $this->send_email_model->_update_account_name($account_name, $new_pwd);
-			if ($result == 'true'){
-				$msg = "true";
-				$this->get_redis()->delete($key);
-				$this->_json_output($msg);
+		if ($this->get_redis()->get($key) !== false){
+			if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+				$account_name = $this->get_redis()->get($key);
+				$new_pwd = trim($this->input->post('reset_pwd'));
+			//	$this->_json_output($data);
+				$result = $this->send_email_model->_update_account_pwd($account_name, $new_pwd);
+				if ($result == 'true'){
+					$msg = "true";
+					$redis = $this->get_redis();
+					$redis->delete($key);
+					$this->_json_output($msg);
+				}else{
+					$msg = "fail";
+					$this->_json_output($msg);
+				}
 			}else{
-				$msg = "fail";
+				$msg = "error!";
 				$this->_json_output($msg);
 			}
 		}else{
-			$msg = "error!";
-			$this->_json_output($msg);
+			$data = array(
+						'error_code' => 200,
+						'error_msg' => "抱歉，您的验证链接已失效，请重新获取邮件<a href='" . $this->config->item('web_host') . "/user/forget_password' >找回密码</a>",
+						);
+			$this->smarty->view('about/error_us.tpl', $data);
 		}
 	}
 
 	function reset_password_show($key){
-		$data = array('key' => $key);
-		$this->smarty->view('user/reset_password.tpl', $data);
+		if ($this->get_redis()->get($key) !== false){
+			$data = array('key' => $key);
+			$this->smarty->view('user/reset_password.tpl', $data);
+		}else{
+			$data = array(
+						'error_code' => 200,
+						'error_msg' => "抱歉，您的验证链接已失效，请重新获取邮件<a href='" . $this->config->item('web_host') . "/user/forget_password' >找回密码</a>",
+		);
+			$this->smarty->view('about/error_us.tpl', $data);
+		}
 	}
 
 	function get_redis () { //{{{

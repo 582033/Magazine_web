@@ -26,8 +26,8 @@
 <div class="error_container">
 	<div class="title_container">
 		<ul>
-			<li><span>404</span></li>
-			<li style="margin-top:15px;color:red;">抱歉，您查看都页面可能已经被删除或暂时不可用</li>
+			<li><span>{$error_code}</span></li>
+			<li style="margin-top:15px;color:red;">{$error_msg}</li>
 			<li style="margin-top:15px;">您可以点击一下链接继续浏览1001夜</li>
 			<li style="margin-top:10px;">1) <a href="/">返回首页</a></li>
 			<li style="margin-top:10px;">2) 去其他地方逛逛：<a href="/mag">阅读</a> | <a href="/find">发现</a> | <a href="/soft">下载</a></li>
