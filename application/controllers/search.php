@@ -9,6 +9,7 @@ class search extends Magazine{
 
 	function index ($type, $keyword, $page='1') {	//{{{
 		$keyword = urldecode($keyword);
+		$keyword = str_replace(array('!','#','<','>','%','=','*','\'','"'),'',$keyword);
 		if ($type && !in_array($type, array('all', 'magazine', 'author'))) {
 			show_error("Bad type $type", 400);
 		}
