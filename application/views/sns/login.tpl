@@ -4,7 +4,6 @@
 		<div class="title">绑定已有帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
 <form class="bind" name="form" action="/index.php/sns/bind" method="POST">
-{if $avatar}<p class="p"><label>&nbsp;</label><img src="{$avatar}" style="width:50px;height:50px"/></p>{/if}
 <p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span></p>
 <p class="p"><label>密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span></p>
 <input type="hidden" name="new" value="0">
