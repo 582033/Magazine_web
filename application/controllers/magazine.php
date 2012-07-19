@@ -442,7 +442,6 @@ class Magazine extends MY_Controller {
 		delete_cookie('rmsalt');
 	}
 	function _to_signin_page() {
-		exit('signin please');
 		$this->load->library('session');
 		$this->session->sess_destroy();
 		$this->_delete_signin_cookies();
