@@ -5,7 +5,7 @@
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
 <form class="bind" name="form" action="/index.php/sns/bind" method="POST">
 {if $avatar}<p class="p"><label>&nbsp;</label><img src="{$avatar}" style="width:50px;height:50px"/></p>{/if}
-<p class="p"><label>用户昵称:</label><input class="bnickname" type="text" name="nickname" value="{$snsnickname}"><span class="perror"></span><br><span class="description"></span></p>
+<p class="p"><label>用户昵称:</label><input class="bnickname" type="text" name="nickname" value="{$snsnickname}"><span class="perror"></span><br><span class="description">&nbsp;</span></p>
 <p class="p"><label>用户邮箱:</label><input class="busername" type="text" name="username"><span class="perror"></span><br><span class="description">请输入常用邮箱</span></p>
 <p class="p"><label>设定密码:</label><input class="bpasswd" type="password" name="passwd"><span class="perror"></span><br><span class="description">密码长度6-16位</span></p>
 <p class="p"><label>确认密码:</label><input class="cpasswd" type="password" name="confirm_passwd"><span class="perror"></span></p>
