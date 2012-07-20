@@ -1,4 +1,4 @@
-{include file='header.tpl' pageid="magazine_home"}
+{include file='header.tpl' }
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.cycle.all.js"></script>
 <script type="text/javascript" src="/sta/js/gallery.js"></script>
 <div class="main">

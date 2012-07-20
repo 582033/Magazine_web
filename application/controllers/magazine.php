@@ -19,33 +19,13 @@ class Magazine extends MY_Controller {
 		$this->load->model('comment_model');
 		$this->load->model('page_model');
 		$this->load->helper('url');
-		$this->_get_title();
 		$this->limit = '20';
 		$this->smarty->assign('pub_host', $this->config->item('pub_host'));
 	}
-	function _get_title(){
-		$url = $this->uri->segment(1);
-		$title= "";
-		switch($url){
-			case 'mag':
-				$title = "免费杂志、数字杂志、旅游攻略、游记攻略、旅行攻略、蜜月旅行";	
-				break;
-			case 'find':	
-				$title = "数字杂志、旅游攻略、游记";
-				break;
-			case 'soft':                             
-                $title = "数字杂志、移动阅读、安卓阅读、IOS阅读、杂志制作、杂志工具";
-                break;
-            case '':                             
-                $title = "1001夜互动阅读平台、电子杂志、数字杂志、云阅读、在线阅读、免费阅读、旅游攻略、游记";
-                break;
-		}	
-		if($title)$this->smarty->assign('title', $title);
-	}
-
 	function index(){		//首页显示{{{
+		$pageid = 'magazines_index';
+		$common_data  = $this->_get_common_data($pageid);
 		$index_info = $this->mag_model->_get_index_info();
-
 		$index_infotpl['mag_list']=$index_info['mag_list'];
 		foreach ($index_info['elem_gallery'] as $i => $elem) {
 			/*
@@ -100,10 +80,13 @@ class Magazine extends MY_Controller {
 		foreach($index_infotpl['ad_slot_indextop']['items'] as $k => $v){
 			$index_infotpl['ad_slot_indextop']['items'][$k]['image'] = $v['image']['url'];
 		}
+		$index_infotpl = array_merge($index_infotpl,$common_data);
 		$this->smarty->view('magazine/index.tpl', $index_infotpl);
 	}//}}}
 
 	function find_elements($page = '1'){		//元素列表页面{{{
+		$pageid = 'magazine_find';
+		$common_data = $this->_get_common_data($pageid);
 		if (!$page) $page = 1;
 		$this->load->model('display_model');
 		$limit = 30;
@@ -125,6 +108,7 @@ class Magazine extends MY_Controller {
 		if ($total > $start + $limit) {
 			$data['nextpage'] = '/find/p/' . ($page + 1);
 		}
+		$data = array_merge($data, $common_data); 
 		$this->smarty->view('magazine/element.tpl', $data);
 	}//}}}
 
@@ -157,7 +141,74 @@ class Magazine extends MY_Controller {
 				);
 		$this->smarty->view('magazine/magazines.tpl', $data);
 	}//}}}
+	function _get_common_data($pageid, $pagename='', $pageclass='') {		//获取title {{{
+		$title = '';
+		switch ($pageid) {
+			case 'magazines_index':
+				$title = '1001夜互动阅读平台、电子杂志、数字杂志、云阅读、在线阅读、免费阅读、旅游攻略、游记';
+				break;
+			case 'magazine_home':
+				$title = '免费杂志、数字杂志、旅游攻略、游记攻略、旅行攻略、蜜月旅行';
+				break;	
+			case 'magazine_find':
+				$title = '数字杂志、旅游攻略、游记';
+				break;
+			case 'down':
+				$title = '数字杂志、移动阅读、安卓阅读、IOS阅读、杂志制作、杂志工具';
+				break;
+			case 'mag_detail':
+				$title = '1001夜、数字杂志-《'.$pagename.'》';
+				break;
+			case 'search':
+				$title = $pagename.'-1001夜互动阅读平台';
+				break;
+			case 'setting':
+				$title = '账号设置-1001夜互动阅读平台';
+				break;
+			case 'set_pwd':
+				$title = '账号设置-1001夜互动阅读平台'; 
+				break;
+			case 'set_headpic':
+			    $title = '账号设置-1001夜互动阅读平台';
+			    break;	
+			case 'set_tag':
+	            $title = '账号设置-1001夜互动阅读平台';
+                break;  
+			case 'set_share':
+	            $title = '账号设置-1001夜互动阅读平台';
+                break;  
+			case 'magazines_love':
+				$title = $pagename.'喜欢的阅读-1001夜互动阅读平台';
+				break;
+			case 'elements':
+				$title = $pagename.'喜欢的发现-1001夜互动阅读平台';
+				break;
+			case 'followees':
+				$title = $pagename.'的关注-1001夜互动阅读平台';
+				break;
+			case 'followers':
+				$title = $pagename.'的粉丝-1001夜互动阅读平台';
+				break;
+			case 'messages':
+				$title = '消息中心-1001夜互动阅读平台';
+				break;
+			case 'comment_list':
+				$title = '留言板-1001夜互动阅读平台';
+				break;
+			case 'forget_password':
+				$title = '找回密码-1001夜互动阅读平台';
+				break;
+		}
+		$data = array(
+					'title' => $title,
+					'pageid' => $pageid
+					);
+		return $data;
+	}//}}}
 	function magazines_tag($tag, $page = '1'){		//杂志列表页面 {{{
+		$pageid = 'mag_tag';
+		$common_data = $this->_get_common_data($pageid);
+
 		$tag = urldecode($tag);
 		$page = $page ? $page : 1;
 		$limit = 20;
@@ -174,15 +225,16 @@ class Magazine extends MY_Controller {
 				'page_list' => $page_list,
 				'curnav' => 'mag',
 				'tag' => $tag,
-				'pageid' => 'mag_tag',
 				);
+		$data = array_merge($data, $common_data);
 		$this->smarty->view('magazine/magazines.tpl', $data);
 	}//}}}
 	function magazine_home(){		//杂志二级列表页面{{{
+		$pageid = "magazine_home";
+		$common_data  = $this->_get_common_data($pageid);
 		$limit_gallery = 4;
 		$start_gallery = 0;
 		$id = '';
-
 		$mag_middle=$this->mag_model->_get_mag_middle();
 
 		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery, $id);
@@ -248,12 +300,15 @@ class Magazine extends MY_Controller {
 			'text' => $mag_text,
 			);
 		$data['mag_mid']=$mag_middle;
+		$data = array_merge($data,$common_data);
 		$this->smarty->view('magazine/magazine_home.tpl', $data);
 	}//}}}
 	function magazine_detail($id){		//杂志详情页面{{{
+		$pageid = 'mag_detail';
 		$magazine_id = $id;
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
 		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
+		$common_data = $this->_get_common_data($pageid, $magazine['name']);
 		$limit_recom = 6;
 		$start_recom = 0;
 		$limit_maylike = 6;
@@ -287,12 +342,13 @@ class Magazine extends MY_Controller {
 					'comments' => $comment['items'],
 					'hasMoreComments' => $comment['totalResults'] > 5,
 					'curnav' => 'mag',
-					'pageid' => 'mag_detail',
 					);
-		$this->smarty->assign('title', "1001夜、数字杂志-《".$magazine['name']."》");
+		$data = array_merge($data, $common_data);
 		$this->smarty->view('magazine/magazine_detail.tpl', $data);
 	}//}}}
 	function comment_list($id, $page="1"){		//杂志评论页面{{{
+		$pageid = 'comment_list';
+		$commondata = $this->_get_common_data($pageid);
 		$page = $page ? $page : 1;
 		$limit = 10;
 		$start = ($page-1)*$limit;
@@ -327,6 +383,7 @@ class Magazine extends MY_Controller {
 					'comments' => $comment['items'],
 					'page_list' => $page_list,
 					);
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('magazine/comment_list.tpl', $data);
 	}//}}}
 
@@ -350,14 +407,16 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function soft ($type='android') {	//{{{
+		$pageid = 'down';
+		$common_data = $this->_get_common_data($pageid);	
 		$data = array(
 				'type' => $type,
 				'curnav' => 'soft',
-				'pageid' => 'down',
 				);
 		if ($type == 'pc') {
 			$data['user_info'] = $this->_get_current_user();
 		}
+		$data = array_merge($data, $common_data);
 		$this->smarty->view('magazine/down.tpl', $data);
 	}	//}}}
 	

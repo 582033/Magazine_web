@@ -8,6 +8,7 @@ class search extends Magazine{
 	}
 
 	function index ($type, $keyword, $page='1') {	//{{{
+		$pageid = 'search';
 		$keyword = urldecode($keyword);
 		$keyword = str_replace(array('!','#','<','>','%','=','*','\'','"'),'',$keyword);
 		if ($type && !in_array($type, array('all', 'magazine', 'author'))) {
@@ -66,7 +67,8 @@ class search extends Magazine{
 			$extra['page_list'] = $this->page_model->page_list("/search/$type/" . urlencode($keyword),
 					$limit, $results[$type."s"]['totalResults'], $page);
 		}
-		$this->smarty->assign('title', $keyword."-1001夜互动阅读平台");
+		$common_data = $this->_get_common_data($pageid, $keyword); 
+		$results = array_merge($results, $common_data);	
 		$this->smarty->view('search.tpl', array_merge($results, $extra));
-	}	//}}}
+	}	//}}-1001夜互动阅读平台}
 }

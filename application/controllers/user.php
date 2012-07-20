@@ -22,7 +22,6 @@ class User extends Magazine {
 		}
 		return json_encode($return, true);
 	}	//}}}
-
 	function signupbox() {	//{{{
 		$this->smarty->view('user/signupbox.tpl');
 	}	//}}}
@@ -150,6 +149,23 @@ class User extends Magazine {
 		else {
 			$data['page_list'] = $this->page_model->page_list($page_url, $this->limit, $loved_ob['totalResults'], $page, $page_style);
 		}
+		$pageid = '';
+		switch($type){
+			case 'magazine':
+				$pageid = 'magazines_love';
+				break;
+			case 'element':
+				$pageid = 'elements';
+				break;
+			case 'followees':
+				$pageid = 'followees';
+				break;
+			case 'followers':
+				$pageid = 'followers';
+				break;
+		}
+		if($pageid) $commondata = $this->_get_common_data($pageid,$user_info['nickname']);
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 
@@ -260,12 +276,15 @@ class User extends Magazine {
 			echo json_encode($return);
 		}
 		else {
+			$pageid = 'setting';
+			$commondata = $this->_get_common_data($pageid);
 			$this->_auth_check_web();
 			$data = array(
 					'user_set' => 'set_base',
 					'user_set_name' => '基本资料',
 					'user_info' => $this->_get_current_user(),
 					);
+			$data = array_merge($data, $commondata);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}
 	}	//}}}
@@ -274,7 +293,9 @@ class User extends Magazine {
 		$this->_auth_check_web();
 		$this->smarty->view('image_cropping/frame.tpl');
 	}
-	function set_headpic () {	//头像设置{{{
+	function set_headpic () {	//头像设置{{{			
+		$pageid = 'set_headpic';
+		$commondata = $this->_get_common_data($pageid);
 		$this->_auth_check_web();
 		$get_user_info = $this->user_info_model->get_user($this->session->userdata('user_id'));
 		$data = array(
@@ -283,6 +304,7 @@ class User extends Magazine {
 				'user_set_name' => '头像设置',
 				'user_info' => $this->_get_current_user(),
 				);
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/set_main.tpl', $data);
 	} // }}}
 	function set_pwd(){	// {{{
@@ -300,13 +322,15 @@ class User extends Magazine {
 				$this->_json_output($msg);
 			}
 		}else{
+			$pageid = 'set_pwd';
 			$this->_auth_check_web();
 			$data = array(
 					'user_set' => 'set_pwd',
 					'user_set_name' => '修改密码',
 					'user_info' => $this->_get_current_user(),
-					'pageid' => 'change-password',
 					);
+			$commondata = $this->_get_common_data($pageid);
+			$data = array_merge($data, $commondata);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}
 	} // }}}
@@ -321,6 +345,7 @@ class User extends Magazine {
 			echo json_encode($return);
 		}
 		else {
+			$pageid = 'set_tag';
 			$this->_auth_check_web();
 			$tags = $this->user_info_model->get_user_tags($this->session->userdata('user_id'));
 			$data = array(
@@ -329,9 +354,11 @@ class User extends Magazine {
 					'tags' => $tags,
 					'user_info' => $this->_get_current_user(),
 					);
+			$commondata = $this->_get_common_data($pageid);
+			$data = array_merge($data, $commondata);
 			$this->smarty->view('user/set_main.tpl', $data);
 		}
-	} // }}}
+	} //}}}
 
 	function set_auther () {	//作者信息设置{{{
 		$this->_auth_check_web();
@@ -342,7 +369,6 @@ class User extends Magazine {
 				);
 		$this->smarty->view('user/set_main.tpl', $data);
 	}	//}}}
-
 	function set_user_info () {	//{{{
 		$this->_auth_check_api();
 		$session_id = $this->session->userdata('session_id');
@@ -354,12 +380,13 @@ class User extends Magazine {
 	}	//}}}
 	
 	public function set_share() {	//绑定第三方帐号{{{
+		$pageid = 'set_share';
+		$commondata = $this->_get_common_data($pageid);
 		$this->_auth_check_web();
 		$data = array();
 		$session_id = $this->session->userdata('session_id');
 		$this->load->model('Sns_Model');
 		$unbind = Sns_Model::getAllSns();
-
 		$result = request($this->api_host.'/sns/bindinfo',array('session_id'=>$session_id),'GET');
 		if ($result['httpcode'] >= 500) {
 			show_error($result['data'], $result['httpcode']);
@@ -378,6 +405,7 @@ class User extends Magazine {
 				'user_set_name' => '分享管理',
 				'user_info' => $this->_get_current_user(),
 				);
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/set_main.tpl', array_merge($data, $other));
 	}	//}}}
 	
@@ -479,6 +507,8 @@ class User extends Magazine {
 	
 	//show all messages
 	function messages($user_id, $p=1) {
+		$pageid = 'messages';
+		$commondata = $this->_get_common_data($pageid);
 		$user_info = $this->_auth_check_web();
 		$p = $p ? $p : 1;
 		if ($user_id != 'me' && $user_id != $user_info['id']) {
@@ -519,7 +549,7 @@ class User extends Magazine {
 						'current' => TRUE,
 						),
 					);
-
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/user_center_main.tpl',$data);
 
 	}
@@ -603,7 +633,11 @@ class User extends Magazine {
 				}
 			}
 		}else{
-			$this->smarty->view('user/forget_password.tpl');
+			$pageid = 'forget_password';
+			$data = array();
+			$commondata = $this->_get_common_data($pageid);
+			$data = array_merge($data, $commondata);	
+			$this->smarty->view('user/forget_password.tpl', $data);
 		}
 	}
 }
