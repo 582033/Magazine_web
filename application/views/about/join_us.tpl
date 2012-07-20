@@ -160,7 +160,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="summary">如果以上职位打动了你，请将您的简历发送至 hr@letouinfo.com，并在邮件标题注明 “应聘职位”。</div>
+		<div class="summary">如果以上职位打动了你，请将您的简历发送至 hr@eee168.com，并在邮件标题注明 “应聘职位”。</div>
 	</div>
 </div>
 {include file="footer.tpl"}
