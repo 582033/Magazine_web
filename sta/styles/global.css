@@ -15,9 +15,9 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 /*index*/
 .main,.down{ width:1000px; margin:0 auto; font-size:12px;}
 .mag_list,.element_list{ position:relative; width:1000px; margin:10px auto; background:#FFF url(/sta/images/line.gif) repeat-y left top;}
-.mag_list dt,.element_list dt, .element_list h3{ position:relative; clear:both; height:43px; border:1px solid #e8e8e8;}
-.mag_list dt strong,.element_list dt strong, .element_list h3 span{ position:absolute; left:-18px; top:3px; display:block; width:174px; height:45px; padding-left:30px; background:url(/sta/images/bg_bar_title.gif) no-repeat left top; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; font-size:24px; line-height:35px; color:#FFF;}
-.element_list dt strong, .element_list h3 span { background-position:left bottom;}
+.mag_list dt,.element_list dt, .element_list h3.dt{ position:relative; clear:both; height:43px; border:1px solid #e8e8e8;}
+.mag_list dt strong,.element_list dt strong, .element_list h3.dt span{ position:absolute; left:-18px; top:3px; display:block; width:174px; height:45px; padding-left:30px; background:url(/sta/images/bg_bar_title.gif) no-repeat left top; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; font-size:24px; line-height:35px; color:#FFF;}
+.element_list dt strong, .element_list h3.dt span { background-position:left bottom;}
 .mag_list dt .more,.element_list dt .more{ float:right; display:block; width:59px; height:43px; background:url(/sta/images/more.jpg) no-repeat left bottom; text-indent:-100px; overflow:hidden;}
 
 .mag_list dd,.element_list dd{ float:left; padding:10px; background: url(/sta/images/bg_line.gif) repeat-y right bottom;padding-bottom:0;}
