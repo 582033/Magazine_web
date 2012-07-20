@@ -164,7 +164,7 @@ class Sns extends MY_Controller {
 				$result = request($this->apiHost.'/auth/signup',$params,'POST');
 				//@TODO 获取第三方账号信息更新user info
 				if($result['httpcode']==200 && $result['data']['status']=='USER_EXISTS') {
-					$renderData['errormessage']='用户名已存在';
+					$renderData['errormessage']='此邮箱已经注册过，请更换其他邮箱';
 					return $this->_show_signup($renderData);
 				}
 				elseif($result['httpcode']!=200 || $result['data']['status']!='OK') {

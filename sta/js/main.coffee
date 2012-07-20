@@ -219,6 +219,10 @@ signup = (form) ->
   email = $('input.username', $form).val()
   passwd = $('input.passwd', $form).val()
   re_passwd = $('input.re_passwd', $form).val()
+  if passwd.length < 6
+    return error('密码长度不能小于6位')
+  if passwd.length > 16
+    return error('密码长度不能大于16位')
   if not email
     return error('Email不能为空')
   if not checkEmail(email)
@@ -231,7 +235,7 @@ signup = (form) ->
     return error('您必须同意1001夜法律声明')
 
   messages =
-    'USER_EXISTS': '用户名已存在'
+    'USER_EXISTS': '此邮箱已经注册过，请更换其他邮箱'
   options =
     dataType : 'json'
     success: (result) ->
