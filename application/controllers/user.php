@@ -427,12 +427,13 @@ class User extends Magazine {
 	}	//}}}
 
 	function verb_msg($row) { // {{{
-				if($row['status'] == 0){
-				$msg_css=' style=\'background:#ffff37;\'';
-				}
-				else{
-				$msg_css='';
-				}
+		if($row['status'] == 0){
+			$msg_css=' style=\'background:#ffff37;\'';
+		}
+		else{
+			$msg_css='';
+		}
+		$row['occur_time'] = date_format(date_create($row['occur_time']),"Y-m-d H:i");
 		switch($row['verb']){
 			case 'signup':
 		//$ret_verb = '<dl class="clearfix">  <dd> <div align="center"> <p> '.$row['occur_time'].$row['msg_content'].'</p> <span></span> </div> </dd> </dl> ';
