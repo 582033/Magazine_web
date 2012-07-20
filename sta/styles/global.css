@@ -255,7 +255,7 @@ div.current .menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8
 .mag_list.search{ margin:0 auto; position:relative; z-index:1; font-size:12px;}
 .mag_list.search dd h3{ text-align:center;}
 
-.user_list,.mag_list_title{ padding:9px; border:1px solid #e8e8e8; background:#FFF; margin:0 auto; width:980px; margin-top:-1px; padding-top:30px; position:relative; z-index:2; margin-bottom:30px;}
+.user_list,.mag_list_title{ padding:9px; border:1px solid #e8e8e8; background:#FFF; margin:0 auto; width:980px; margin-top:-1px; padding-top:30px; position:relative; z-index:2;}
 .user_list dd{ float:left; text-align:center; width:90px; padding:8px 4px; font-size:14px;}
 
 .user_list dt,.mag_list_title dt{ border-bottom:1px solid #000; background:#dbdbdb; position:relative; height:25px; padding:5px; padding-bottom:0; width:970px; margin:0 auto;}
