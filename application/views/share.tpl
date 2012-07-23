@@ -17,8 +17,8 @@
 		'bdText':'',
 		'bdPopTitle':'',
 		'bdPic':'',
-		'searchPic':0 //'0为抓取，1为不抓取，默认为0，目前只针对新浪微博'
-		//'snsKey':{'tsina':'appkey'}		//'请参考自定义分享到平台的appkey'
+		'searchPic':0, //'0为抓取，1为不抓取，默认为0，目前只针对新浪微博',
+		'review':'normal'
 	}
 	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
 </script>

@@ -162,15 +162,14 @@ $(function(){
 		$(this).find(".mouseover").toggle(show);
 	});
 	$(document).on('mouseenter mouseleave', '.mouseover .share', function(e) {
+		$share = $(this).parent().parent().find('.shareto');
 		if (e.type == 'mouseenter') {
 			$bdshare = $('#bdshare').show();
-			$share = $(this).parent().parent().find('.shareto');
 			$bdshare.appendTo($share);
 			getShareConfig($(this));
 			$share.show();
 		}
 		else {
-			$share = $(this).parent().parent().find('.shareto');
 			$share.hide();
 		}
 	});

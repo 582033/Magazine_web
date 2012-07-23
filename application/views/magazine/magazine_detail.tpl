@@ -47,7 +47,8 @@
 							'bdText':'{$magazine.name} {$magazine.intro|truncate:30|escape}......',
 							'bdPopTitle':'',
 							'bdPic':'{$magazine.cover}',
-							'searchPic':0,//'0为抓取，1为不抓取，默认为0，目前只针对新浪微博'
+							'searchPic':0,
+							'review':'normal'
 						}
 						document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
 					</script>
@@ -55,7 +56,7 @@
 			</div>
 			<div style="clear:both;"></div>
 			<p class="readonline">
-				<a onclick="_gaq.push(['_trackEvent', '杂志', '阅读', '在线阅读', 5]);" href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
+				<a onclick="_gaq.push(['_trackEvent', '杂志', '阅读', '{$magazine.name}', 5]);" href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
 			</p>
 			<p class="info" id="magazine_{$magazine.id}">
 				<span class="view"><a href="javascript:void(0)" title="阅读">阅读</a>{$magazine.views}</span>

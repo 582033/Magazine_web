@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 <div class="main">
 	<div class="element_list e_index clearfix">
-		<h3><span>爱发现</span></h3>
+		<h3 class="dt"><span>爱发现</span></h3>
 		<dl id="container">
 			{if isset($element_ad)}
 			{foreach from=$element_ad item=item key=key}
