@@ -440,7 +440,6 @@ class User extends Magazine {
 		$ret_verb = ' <dl class="clearfix" id="'.$row['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="System" /></a></dt> <dd'.$msg_css.'> <div> <p> <strong><a href="#">System：</a></strong>恭喜您！已经成功注册1001夜的账号！</p> <span> '.$row['occur_time'].'<a href="javascript:delmsg('.$row['msg_id'].')" class="del_msg" onclick="delmsg('.$row['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
 			break;
 			case 'follow':
-			$row['object'] =json_decode($row['object'],TRUE);
 		$ret_verb = ' <dl class="clearfix" id="'.$row['msg_id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="System" /></a></dt> <dd'.$msg_css.'> <div> <p> <strong><a href="#">System：</a></strong><a href="'.$this->config->item('web_host').'/user/'.$row['object']['data']['id'].'" target="_blank">'.$row['object']['data']['nickname'].'</a>关注了你！</p> <span> '.$row['occur_time'].'<a href="javascript:delmsg('.$row['msg_id'].')" class="del_msg" onclick="delmsg('.$row['msg_id'].')">删除</a> </span> </div> </dd> </dl> ';
 			break;
 			default:
