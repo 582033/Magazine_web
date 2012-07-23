@@ -1,16 +1,13 @@
 <?php class user_info_model extends CI_Model {
 
-	var $default_tag_list = array(
-			'0' => array('爱刷机', '爱加班', '苦逼程序员', '爱玩神仙道', '爱旅游', '爱吃田老师', '爱蹲坑', '机械键盘控'),
-			'1' => array('萌正太', '美容滴', '老房子', '忧郁多', '斯蒂芬', '宝石钻戒', '半夜看电影'),
-			'2' => array('蓉嬷嬷', '腊肉炒饭', '我爱DOTA', '任诗钊', '申妹妹', '要了我老命了', '爱旅游', 'Good Idea'),
-			'3' => array('AIR控', '手尖上的键盘', '我恨瀑布流', '爱阅读', '爱分享', '自助游', '天生黑眼圈', '旅游'),
-			);
+	var $default_tag_list;
 
 	function user_info_model () {	//{{{
 		parent::__construct();		
 		$this->load->helper('api');
 		$this->api_host = $this->config->item('api_host');
+		$this->config->load('tag_list');
+		$this->default_tag_list = $this->config->item('tag_list');
 	}	//}}}
 
 	function get_user($user_id) {
