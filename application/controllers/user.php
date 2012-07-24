@@ -406,10 +406,10 @@ class User extends Magazine {
 		$this->_json_output($data);
 	}	//}}}
 
-	function pub_mag (){	//发布杂志{{{
+	function appc_mag (){	//申请审核杂志{{{
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$this->_auth_check_web();
-			$request = $this->user_loved_model->pub_mag();
+			$request = $this->user_loved_model->appc_mag();
 			echo $request;
 		}
 		else {
@@ -424,6 +424,11 @@ class User extends Magazine {
 				);
 			$this->smarty->view('user/pub_mag.tpl', $data);
 		}
+	}	//}}}
+
+	function pub_mag () {	//发布杂志{{{
+		$this->_auth_check_web();
+		$this->user_loved_model->pub_mag();
 	}	//}}}
 
 	function verb_msg($row) { // {{{

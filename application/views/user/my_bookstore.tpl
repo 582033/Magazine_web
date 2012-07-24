@@ -11,9 +11,22 @@
 </div>
 {literal}
 <script>
-	$(".edit_btn a").click(function(){
+	$(".new_upload").click(function(){
 		val = $(this).next().val();
-		$(this).colorbox({href:"/user/pub_mag?mag_id="+val});
+		$(this).colorbox({href:"/user/appc_mag?mag_id="+val});
 	});
+	$(".passed").click(function(){
+		val = $(this).next().val();
+		$html = "<div style='width:200px;height:100px;margin:20px'><center>确认发布杂志？</center><br / ><center><button onclick='pub_mag("+val+")'>确定</button></center></div>";
+		$(this).colorbox({html:$html});
+	});
+	function pub_mag (val) {
+		var options = {
+			type : 'GET',
+			url : "/user/pub_mag?mag_id="+val,
+			success : function(result){showMsgbox(result, 'current')},
+			}
+		$.ajax(options);
+	}
 </script>
 {/literal}

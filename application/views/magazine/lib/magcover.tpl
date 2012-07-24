@@ -30,13 +30,16 @@
 	{if $cover_show_intro}<p>{$item.intro|truncate:30}</p>{/if}
 	{if $cover_show_status}
 	<div class="edit_btn">
-		{if $item.status == '0'}<span>新上传</span>{/if}
-		{if $item.status == '1'}<span>审核中</span>{/if}
-		{if $item.status == '3'}<span>审核未通过</span>{/if}
-		{if $item.status == '2'}
-			<a href="javascript:void(0)" class="{$item.id}">审核通过</a>
+		{if $item.status == '0'}
+			<a href="javascript:void(0)" class="new_upload"><span>新上传</span></a>
 			<input type="hidden" value="{$item.id}">
 		{/if}
+		{if $item.status == '1'}<span>审核中</span>{/if}
+		{if $item.status == '2'}
+			<a href="javascript:void(0)" class="passed"><span>审核通过</span></a>
+			<input type="hidden" value="{$item.id}">
+		{/if}
+		{if $item.status == '3'}<span>审核未通过</span>{/if}
 	</div>
 	{/if}
 </dd>

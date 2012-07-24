@@ -50,8 +50,21 @@ class user_loved_model extends CI_Model {
 				);
 		return $total;	
 	}	//}}}
-	
+
 	function pub_mag () {	//发布杂志{{{
+		$mag_id = $this->input->get('mag_id');
+		$session_id = $this->session->userdata('session_id');
+		$pub_mag = request($this->api_host . "/magazine/". $mag_id . "/pub?session_id=" . $session_id, json_encode(''), 'PUT', false);
+		if ($pub_mag['httpcode'] == '202'){
+			$msg = '发布成功';
+		}
+		else {
+			$msg = '发布失败';
+		}
+		return $msg;
+	}
+	
+	function appc_mag () {	//申请审核杂志{{{
 		$magazine_id = $this->input->post('mag_id');
 		$session_id = $this->session->userdata('session_id');
 		$mag_info = array(
@@ -60,8 +73,8 @@ class user_loved_model extends CI_Model {
 				'description' => $this->input->post('description'),
 				'tag' => $this->input->post('tag'),
 				);
-		$pub_mag = request($this->api_host."/magazine/$magazine_id?session_id=$session_id", json_encode($mag_info), 'PUT', false);
-		if ($pub_mag['httpcode'] == '202'){
+		$appc_mag = request($this->api_host."/magazine/$magazine_id?session_id=$session_id", json_encode($mag_info), 'PUT', false);
+		if ($appc_mag['httpcode'] == '202'){
 			$msg = 'ok';
 		}
 		else {
