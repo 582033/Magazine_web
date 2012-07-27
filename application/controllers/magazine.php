@@ -113,6 +113,8 @@ class Magazine extends MY_Controller {
 	}//}}}
 
 	function magazines($cate0 = 'tour_recommendation', $page = '1'){		//杂志列表页面 {{{
+		$pageid = $cate0;
+		$common_data = $this->_get_common_data($pageid);
 		$cate = element($cate0, $this->cate_map, $cate0);
 		$page = $page ? $page : 1;
 		$limit = 20;
@@ -139,25 +141,26 @@ class Magazine extends MY_Controller {
 				'curnav' => 'mag',
 				'cates' => $cates,
 				);
+		$data = array_merge($data, $common_data);
 		$this->smarty->view('magazine/magazines.tpl', $data);
 	}//}}}
 	function _get_common_data($pageid, $pagename='', $pageclass='') {		//获取title {{{
 		$title = '';
 		switch ($pageid) {
-			case 'magazines_index':
-				$title = '1001夜互动阅读平台、电子杂志、数字杂志、云阅读、在线阅读、免费阅读、旅游攻略、游记';
+			case 'magazines_index': // 首页
+				$title = '1001夜互动阅读平台-灵动阅读、轻松制作、随心分享';
 				break;
-			case 'magazine_home':
-				$title = '免费杂志、数字杂志、旅游攻略、游记攻略、旅行攻略、蜜月旅行';
+			case 'magazine_home': // 阅读发现
+				$title = '最实用的移动旅游攻略、高品质游记-1001夜互动阅读平台';
 				break;	
-			case 'magazine_find':
-				$title = '数字杂志、旅游攻略、游记';
+			case 'magazine_find': // 发现
+				$title = '精品碎片化阅读、旅行风景图片-1001夜互动阅读平台';
 				break;
 			case 'down':
-				$title = '数字杂志、移动阅读、安卓阅读、IOS阅读、杂志制作、杂志工具';
+				$title = '1001+数字多媒体制作工具下载-1001夜互动阅读平台';
 				break;
 			case 'mag_detail':
-				$title = '1001夜、数字杂志-《'.$pagename.'》';
+				$title = '1001夜阅读-'.$pagename['cate'].'、《'.$pagename['name'].'》';
 				break;
 			case 'search':
 				$title = $pagename.'-1001夜互动阅读平台';
@@ -198,6 +201,36 @@ class Magazine extends MY_Controller {
 			case 'forget_password':
 				$title = '找回密码-1001夜互动阅读平台';
 				break;
+			case 'tour_recommendation':
+				$title = '旅游目的地推荐、旅游攻略、旅游指南、游记-1001夜互动阅读平台';
+				break;
+			case 'tour_foreign':
+				$title = '异域风情、国外旅游攻略、出境游-1001夜互动阅读平台';
+				break;
+			case 'tour_domestic':
+				$title = '狂野中国、国内旅游攻略、境内游-1001夜互动阅读平台';
+				break;
+			case 'topic_on_line':
+				$title = '1001夜互动阅读平台-灵动阅读、轻松制作、随心分享';
+				break;
+			case 'topic_self_tour':
+				$title = '1001夜自游书、每个人都可以用全新的方式去讲述自己的故事';
+				break;
+			case 'about_us':
+				$title = '关于1001夜-1001夜互动阅读平台';
+				break;
+			case 'contact_us':
+				$title = '联系我们-1001夜互动阅读平台';
+				break;
+			case 'join_us':
+				$title = '加入我们-1001夜招聘';
+				break;
+			case 'legal_statement':
+				$title = '法律声明-1001夜互动阅读平台';
+				break;
+			case 'mag_tag':
+				$title = '1001夜阅读、'.$pagename;
+				break;
 		}
 		$data = array(
 					'title' => $title,
@@ -207,8 +240,6 @@ class Magazine extends MY_Controller {
 	}//}}}
 	function magazines_tag($tag, $page = '1'){		//杂志列表页面 {{{
 		$pageid = 'mag_tag';
-		$common_data = $this->_get_common_data($pageid);
-
 		$tag = urldecode($tag);
 		$page = $page ? $page : 1;
 		$limit = 20;
@@ -226,6 +257,7 @@ class Magazine extends MY_Controller {
 				'curnav' => 'mag',
 				'tag' => $tag,
 				);
+		$common_data = $this->_get_common_data($pageid, $tag);
 		$data = array_merge($data, $common_data);
 		$this->smarty->view('magazine/magazines.tpl', $data);
 	}//}}}
@@ -308,7 +340,7 @@ class Magazine extends MY_Controller {
 		$magazine_id = $id;
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
 		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
-		$common_data = $this->_get_common_data($pageid, $magazine['name']);
+		$common_data = $this->_get_common_data($pageid, $magazine);
 		$limit_recom = 6;
 		$start_recom = 0;
 		$limit_maylike = 6;
