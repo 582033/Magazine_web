@@ -475,6 +475,7 @@ class User extends Magazine {
 			break;
 			case 'follow':
 		$ret_verb = ' <dl class="clearfix" id="'.$row['id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="System" /></a></dt> <dd'.$msg_css.'> <div> <p> <strong><a href="#">System：</a></strong><a href="'.$this->config->item('web_host').'/user/'.$row['object']['data']['id'].'" target="_blank">'.$row['object']['data']['nickname'].'</a>关注了你！</p> <span> '.$row['occurredAt'].'<a href="javascript:delmsg('.$row['id'].')" class="del_msg" onclick="delmsg('.$row['id'].')">删除</a> </span> </div> </dd> </dl> ';
+		    break;
 			case 'comment':
 		$ret_verb = ' <dl class="clearfix" id="'.$row['id'].'"> <dt><a href="#"><img src="/sta/images/userhead/50.jpg" alt="System" /></a></dt> <dd'.$msg_css.'> <div> <p> <strong><a href="#">System：</a></strong><a href="'.$this->config->item('web_host').'/user/'.$row['actor']['id'].'" target="_blank">'.$row['actor']['nickname'].'</a>对您的杂志 <a href="'.$this->config->item('web_host').'/magazine/'.$row['object']['data']['on']['id'].'/comments">'.$row['object']['data']['on']['name'].'</a>进行了评论</p> <span> '.$row['occurredAt'].'<a href="javascript:delmsg('.$row['id'].')" class="del_msg" onclick="delmsg('.$row['id'].')">删除</a> </span> </div> </dd> </dl> ';
 			break;
