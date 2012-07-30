@@ -17,6 +17,6 @@
 			<p><label>类型:</label><select>{html_options values=$mag_category output=$mag_category selected=$mag_info['cate']}</select></p>
 			<p><label>tag:</label><input type="text" name="tag" value="{$mag_info.tag}"></p>
 			<p><label>内容:</label><textarea row="3" cols="20" name="description">{$mag_info.intro}</textarea></p>
-			<button class="btn_set submit" type="submit"><span>申请审核</span></button>
+			<button class="btn_set submit" type="submit"><span>发布杂志</span></button>
 	</form>
 	<div class="pub_request"></div>

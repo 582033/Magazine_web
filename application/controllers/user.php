@@ -223,7 +223,7 @@ class User extends Magazine {
 		}
 		else {
 			if ($is_me){
-				$page_list = $this->page_model->page_list("/user/me/published", $this->limit, $books['data']['totalResults'], $page);
+				$page_list = $this->page_model->page_list("/user/me/bookstore", $this->limit, $books['data']['totalResults'], $page);
 			}
 			else {
 				$page_list = $this->page_model->page_list("/user/$user_id/bookstore", $this->limit, $books['data']['totalResults'], $page);

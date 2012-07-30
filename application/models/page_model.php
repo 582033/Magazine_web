@@ -1,5 +1,5 @@
 <?php class page_model {
-
+	
 	function page_list ($uri, $limit, $total, $page, $style=null) {	//{{{
 		$total_page = $total % $limit == '0' ? floor($total / $limit) : floor($total / $limit) +1;
 		if ($total_page <= 1) return "";

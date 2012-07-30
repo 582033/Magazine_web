@@ -68,7 +68,7 @@
 							 <li><a href="/user/me/setting">账号设置</a></li>
 							 <li><a href="/user/me/magazines">喜欢的阅读</a></li>
 							 <li><a href="/user/me/elements">喜欢的发现</a></li>
-							 <li><a href="/user/me/messages">站内消息</a></li>
+							 <li><a href="/user/me/messages">消息中心</a></li>
 							 <li><a href="/user/signout">退出账号</a></li>
 						 </ul>
 					 </div>
