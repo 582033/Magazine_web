@@ -73,7 +73,6 @@ class user_loved_model extends CI_Model {
 				'description' => $this->input->post('description'),
 				'tag' => $this->input->post('tag'),
 				);
-print_r($mag_info);exit;
 		$appc_mag = request($this->api_host."/magazine/$magazine_id?session_id=$session_id", json_encode($mag_info), 'PUT', false);
 		if ($appc_mag['httpcode'] == '202'){
 			$msg = 'ok';
