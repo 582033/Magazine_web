@@ -606,10 +606,10 @@ class User extends Magazine {
 	}
 
 	function get_redis () { //{{{
-        $redis = new Redis();
-        $redis->connect($this->config->item('redis_server'));
-        return $redis;
-    }   //}}}
+		$redis = new Redis();
+		$redis->connect($this->config->item('redis_server'));
+		return $redis;
+    	}   //}}}
 	
 	function forget_password(){
 		$this->load->model('msgbroker');
