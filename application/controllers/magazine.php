@@ -399,21 +399,11 @@ class Magazine extends MY_Controller {
 		$totalResults = $comment['totalResults'];
 		$page_list = $this->page_model->page_list("/magazine/$id/comments", $limit, $totalResults, $page, 'pagenav');
 		$reverse_cate_mag = array_flip($this->cate_map);
-		$magazine['url'] = '/magazine/detail/' . $magazine['id'];
-
 		$data = array(
 				'navs' => array(
 					array(
 						'name' => '阅读',
 						'url' => '/mag',
-						),
-					array(
-						'name' => $magazine['cate'],
-						'url' => '/mag_list/' . element($magazine['cate'], $reverse_cate_mag, $magazine['cate']),
-						),
-					array(
-						'name' => $magazine['name'],
-						'url' => '/magazine/detail/' . $magazine['id'],
 						),
 					array(
 						'name' => '留言板',
@@ -424,6 +414,20 @@ class Magazine extends MY_Controller {
 					'comments' => $comment['items'],
 					'page_list' => $page_list,
 					);
+		if (is_array($magazine)) {
+			$magazine['url'] = '/magazine/detail/' . $magazine['id'];
+			$magazine_date = array(
+						array(
+							'name' => $magazine['cate'],
+							'url' => '/mag_list/' . element($magazine['cate'], $reverse_cate_mag, $magazine['cate']),
+							),
+						array(
+							'name' => $magazine['name'],
+							'url' => '/magazine/detail/' . $magazine['id'],
+							),
+						);
+			$data = array_merge($data, $magazine_date);
+		}
 		$data = array_merge($data, $commondata);
 		$this->smarty->view('magazine/comment_list.tpl', $data);
 	}//}}}
