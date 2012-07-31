@@ -30,6 +30,7 @@
 	}
 
 	function get_user_info () {
+		$this->load->library('session');
 		$info = request($this->api_host . "/user/me?session_id=" . $this->session->userdata('session_id'));
 		if	($info['httpcode'] == '200') {
 			$info['data']['birthday'] = $info['data']['birthday'] ? explode("-", $info['data']['birthday']) : null;
