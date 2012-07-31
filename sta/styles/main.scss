@@ -1132,6 +1132,11 @@ div.main.comment { /* {{{ */
 	dd {
 		float:left;
 		width:580px;
+		p.content {
+			word-wrap:break-word;
+			-ms-word-break: break-all;
+			word-break: break-all;
+		}
 	}
 	dd .info {
 		font-size:14px;
