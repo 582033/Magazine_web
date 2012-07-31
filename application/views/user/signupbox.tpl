@@ -6,7 +6,7 @@
  			<legend>注册1001夜账号</legend>
 			<p class="err_msg" style="display:none"></p>
 			<p class="input">
-				<label for="dialog_reg_Email">Email地址</label><input type="text" name="username" class="username" id="dialog_reg_Email" />
+				<label for="dialog_reg_Email">Email地址</label><input type="text" name="username" class="username" id="dialog_reg_Email" value=""/>
 				<span><!--class正确为right，错误为error-->请输入您的常用Email地址</span>
 			</p>
 			<p class="input"><label for="dialog_reg_Pass">设置密码</label><input type="password" name="passwd" class="passwd" id="dialog_reg_Pass" />
@@ -35,3 +35,25 @@
 {else}
 <!--登录后显示的内容`-->
 {/if}
+<script type="text/javascript">
+$(function(){
+		$(".username").focusout(function(){
+			var value = $("#dialog_reg_Email").val();
+			options = {
+						type:"get",
+						async:false,
+					  	url:"http://api.in1001.com/v1/user/checkexists?username=" + value + "&callback=?",
+						dataType : "jsonp",
+					  	success:function(result){
+								if(result.status == 'OK'){
+									$('p.err_msg', $(form)).text('').show();	
+								}
+								if(result.status == 'USER_EXISTS'){
+									$('p.err_msg', $(form)).text('用户名已存在').show();	
+								}
+							},
+				 };
+			$.ajax(options);
+		});
+});
+</script>
