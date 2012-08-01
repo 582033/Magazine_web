@@ -4,7 +4,7 @@
 		<div class="mouseover">
 			<div class="bg"></div>
 			<div class="content">
-				<a href="{$item.mag_read_url}" class="read">阅读</a>
+				<a href="{$item.mag_read_url}" class="read" target="_blank">阅读</a>
 				{if $cover_show_del}<a href="javascript:void(0)" class="del_mag" onclick="cancelLike('element', '{$item.id}')">删除</a>{/if}
 				<div class="more">
 					<a href="#" class="share" data-type="2" data-title="{$item.magName}" data-id="{$item.mag_read_url}" data-img="{$item.image.180.url}">分享</a>
