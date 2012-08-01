@@ -37,7 +37,7 @@
 
 		</script>
 	</head>
-	<body{if isset($pageid)} id="{$pageid}"{/if}>
+	<body{if isset($pageid)} id="{if $pageid != 'set_pwd'}{$pageid}{else}change-password{/if}"{/if}>
 		 <div class="header">
 			 <div class="container clearfix">
 				 <a href="/" class="logo"><img src="/sta/images/logo.gif" alt="1001夜" /></a>
