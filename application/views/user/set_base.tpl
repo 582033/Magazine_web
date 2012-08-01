@@ -25,7 +25,11 @@
 				<select name="day">
 					{$i=1}
 					{section name="a" loop=31}
-					<option selected="selected" value="{$i}">{$i++}</option>
+						{if $i <= 9}
+							<option selected="selected" value="0{$i}">{$i++}</option>
+						{else}
+							<option selected="selected" value="{$i}">{$i++}</option>
+						{/if}
 					{/section}
 				</select>日
 			</p>
