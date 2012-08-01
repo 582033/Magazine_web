@@ -1106,6 +1106,8 @@ div.main.comment { /* {{{ */
 			padding:3px;
 			border:1px solid #EFEFEF;
 			text-align:left;
+			resize:vertical;
+			overflow:hidden;
 		}
 		button {
 			height:36px;
