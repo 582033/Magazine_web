@@ -5,6 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
 		<meta property="wb:webmaster" content="1c5a1d0fe7c84888" />
 		<meta name="msapplication-window" content="width=1550;height=768" />
+		<meta name="keywords" content="1001夜,旅游,杂志,阅读,旅游攻略,游记,自助游,电子杂志,国内旅游,国外旅游,旅游图片,做杂志,精品内容,目的地,期刊" />
+		<meta name="description" content="'1001夜'是一款集高质阅读、多媒体杂志制作工具、发行平台、数据统计于一身的互动阅读平台。享受全新阅读体验，尽享实用的移动旅游攻略。" />
 		<link rel="stylesheet" type="text/css" href="/sta/styles/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/global.css"/>
 		<link rel="stylesheet" type="text/css" href="/sta/styles/main.css"/>
