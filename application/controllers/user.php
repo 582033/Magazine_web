@@ -322,7 +322,7 @@ class User extends Magazine {
 				$this->_json_output($msg);
 			}
 		}else{
-			$pageid = 'set_pwd';
+			$pageid = 'change-password';
 			$this->_auth_check_web();
 			$data = array(
 					'user_set' => 'set_pwd',
