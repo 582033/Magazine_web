@@ -24,9 +24,12 @@ $(function(){
 					<p>
 						“1001+”是一款令人惊奇的数字多媒体制作工具，无需编程、无使用门槛，快速制作数字杂志、书籍、图册、宣传物等个性化数字读物，并自动生成iOS、Android等移动设备应用，广泛适用于企业、机构、个人。
 					</p>
+<!--
 					<p>
 						你需要拥有<font style="color:#000;font-weight:bold;">邀请码</font>，且完成<font style="color:#000;font-weight:bold;">登陆</font>后，才可以下载试用。
 					</p>
+-->
+				<br /><center><b>即将推出,敬请期待。</b></center>
 				</div>
 				{if isset($user_info) && $user_info.role == 1}
 				<a class="downbtn" href="http://58.30.78.70:84/LetouMagazine_20120709.rar" style="display:none;">下载</a>
@@ -60,6 +63,7 @@ $(function(){
  			<div class="intro">
 				<div class="intro_text">
 					<p>云中漫步，云同步手机、平板、PC电脑的阅读记录、个人信息，移动随心，支持在线浏览和下载阅读。</p>
+				<br /><br /><center><b>即将推出,敬请期待。</b></center>
 				</div>
 
 <!--
