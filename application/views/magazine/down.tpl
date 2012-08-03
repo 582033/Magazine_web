@@ -29,7 +29,7 @@ $(function(){
 						你需要拥有<font style="color:#000;font-weight:bold;">邀请码</font>，且完成<font style="color:#000;font-weight:bold;">登陆</font>后，才可以下载试用。
 					</p>
 -->
-				<br /><center><b>即将推出,敬请期待。</b></center>
+				<br /><center><b><font size="5">即将上线,敬请期待!</font></b></center>
 				</div>
 				{if isset($user_info) && $user_info.role == 1}
 				<a class="downbtn" href="http://58.30.78.70:84/LetouMagazine_20120709.rar" style="display:none;">下载</a>
@@ -63,7 +63,7 @@ $(function(){
  			<div class="intro">
 				<div class="intro_text">
 					<p>云中漫步，云同步手机、平板、PC电脑的阅读记录、个人信息，移动随心，支持在线浏览和下载阅读。</p>
-				<br /><br /><center><b>即将推出,敬请期待。</b></center>
+				<br /><br /><center><b><font size="5">即将上线,敬请期待!</font></b></center>
 				</div>
 
 <!--
