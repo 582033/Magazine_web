@@ -13,7 +13,7 @@
 <script>
 	$(".new_upload").click(function(){
 		val = $(this).next().val();
-		$(this).colorbox({href:"/user/appc_mag?mag_id="+val});
+		$(this).colorbox({href:"/user/appc_mag?mag_id="+val, width:"400px", height:"300px"});
 	});
 	$(".passed").click(function(){
 		val = $(this).next().val();
