@@ -290,7 +290,6 @@ class Sns extends Magazine {
 		}
 	} // }}}
 	function _show_signup($data) {
-		echo "asdfasd";
 		$pageid = 'sns-signup';
 		$commondata = $this->_get_common_data($pageid);
 		$data = array_merge($data, $commondata);
