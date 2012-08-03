@@ -204,6 +204,7 @@ class User extends Magazine {
 		$this->_get_loved($user_id, $page, 'followers', $page_url);
 	}	//}}}
 	function bookstore($user_id, $page = '1', $type = 'published'){	//{{{
+		$pageid = "bookstore";
 		$page = $page ? $page : 1;
 		$type = $type ? $type : 'published';
 		if ($user_id == 'me') {
@@ -250,6 +251,8 @@ class User extends Magazine {
 				'user_info' => $user_info,
 				'type' => $type,
 			);
+		$commondata = $this->_get_common_data($pageid, $user_info['nickname']);
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/user_center_main.tpl', $data);
 	}	//}}}
 

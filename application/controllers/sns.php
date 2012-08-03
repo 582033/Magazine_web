@@ -4,7 +4,8 @@
  * @author zshen
  *
  */
-class Sns extends MY_Controller {
+require_once APPPATH . "/controllers/magazine.php";
+class Sns extends Magazine {
 
 	protected $apiHost = null;
 	
@@ -289,11 +290,16 @@ class Sns extends MY_Controller {
 		}
 	} // }}}
 	function _show_signup($data) {
-		$data['pageid'] = 'sns-signup';
+		echo "asdfasd";
+		$pageid = 'sns-signup';
+		$commondata = $this->_get_common_data($pageid);
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('sns/register.tpl', $data);
 	}
 	function _show_bind($data) {
-		$data['pageid'] = 'sns-bind';
+		$pageid = 'sns-bind';
+		$commondata = $this->_get_common_data($pageid);
+		$data = array_merge($data, $commondata);
 		$this->smarty->view('sns/login.tpl', $data);
 	}
 }

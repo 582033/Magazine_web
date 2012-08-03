@@ -231,6 +231,15 @@ class Magazine extends MY_Controller {
 			case 'mag_tag':
 				$title = '1001夜阅读、'.$pagename;
 				break;
+			case 'bookstore':
+				$title = $pagename."的作品";
+				break;
+			case 'sns-signup':
+				$title = "创建绑定账号_1001夜";
+				break;
+			case 'sns-bind':
+				$title = "绑定成功_1001夜";
+				break;
 		}
 		$data = array(
 					'title' => $title,
