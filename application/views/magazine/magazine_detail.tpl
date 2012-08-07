@@ -70,7 +70,7 @@
 			<dd class="scrollbar">
 					<ul>
 						{foreach from=$magazine.pageThumbs item=item key=key}
-						<li><a href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web/#p{$key+1}"><img src="{$item}" alt="page 16" width="104px" height="160px" style="overflow:hidden;" /></a></li>
+						<li tabindex="0"><a href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web/#p{$key+1}"><img src="{$item}" alt="page 16" width="104px" height="160px" style="overflow:hidden;" /></a></li>
 						{/foreach}
 					</ul>
 			</dd>
