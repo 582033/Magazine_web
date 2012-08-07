@@ -1,5 +1,5 @@
 {include file='header.tpl'}
-<div class="main" style="min-height:800px">
+<div class="main" style="min-height:800px;width:1000px;background-color:white">
 	<div class="commonform">
 		<div class="title">创建绑定帐号</div>
 <p class="error">{if $errormessage} {$errormessage} {/if}</p>
