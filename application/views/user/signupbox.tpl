@@ -46,10 +46,10 @@ $(function(){
 						dataType : "jsonp",
 					  	success:function(result){
 								if(result.status == 'OK'){
-									$('p.err_msg', $(form)).text('').show();	
+									$(".main").find(".err_msg").text('用户名可以使用').show();
 								}
 								if(result.status == 'USER_EXISTS'){
-									$('p.err_msg', $(form)).text('用户名已存在').show();	
+									$(".main").find(".err_msg").text('用户名已存在').show();
 								}
 							},
 				 };
