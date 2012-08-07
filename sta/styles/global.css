@@ -442,7 +442,7 @@ div.set_main.headpic,div.set_main.base,div.set_main.share,div.set_main.tag{ heig
 .reset_password .container .main div.return_msg{font-size:16px;margin-left:100px;width:350px;padding:0px;}
 
 /**zshen**/
-.main .commonform {width:100%;background:#FFFFFF;padding:30px 30px 30px 30px;}
+.main .commonform {/*width:100%;background:#FFFFFF;*/padding:30px 30px 30px 30px;}
 .main .commonform .title{font-size:20px;font-weight:bold;margin:0 0 30px 0;}
 .main .commonform form {padding:0;margin:0;}
 .main .commonform .p {margin:10px auto 10px;}

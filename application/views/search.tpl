@@ -16,7 +16,7 @@
 	{/foreach}
 	</p>
 </div>
-<div style="min-height:800px;width:1000px;margin:auto;background-color:white;margin-bottom:30px;">
+<div style="min-height:672px;width:1000px;margin:auto;background-color:white;margin-bottom:30px;">
 	{if $type != 'author'} 
 	{include file='share.tpl'}
 	<dl class="mag_list_title clearfix">
