@@ -39,21 +39,29 @@
 $(function(){
 		$(".username").focusout(function(){
 			var value = $("#dialog_reg_Email").val();
-			options = {
-						type:"get",
-						async:false,
-					  	url:"http://api.in1001.com/v1/user/checkexists?username=" + value + "&callback=?",
-						dataType : "jsonp",
-					  	success:function(result){
-								if(result.status == 'OK'){
-									$(".main").find(".err_msg").text('用户名可以使用').show();
-								}
-								if(result.status == 'USER_EXISTS'){
-									$(".main").find(".err_msg").text('用户名已存在').show();
-								}
-							},
-				 };
-			$.ajax(options);
+			var err_msg = function(content){
+					$(".main").find(".err_msg").text(content).show();
+			}
+			if (!checkEmail(value)) {
+				err_msg("Email格式错误");
+			}
+			else {
+				options = {
+							type:"get",
+							async:false,
+							url:"http://api.in1001.com/v1/user/checkexists?username=" + value + "&callback=?",
+							dataType : "jsonp",
+							success:function(result){
+									if(result.status == 'OK'){
+										err_msg("用户名可以使用");
+									}
+									if(result.status == 'USER_EXISTS'){
+										err_msg("用户名已存在");
+									}
+								},
+					 };
+				$.ajax(options);
+			}
 		});
 });
 </script>
