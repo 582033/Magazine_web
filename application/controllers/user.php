@@ -315,8 +315,8 @@ class User extends Magazine {
 			$this->_auth_check_api();
 			if ($this->input->post('old_pwd') && $this->input->post('reset_pwd')){
 				$post = array(
-							'old_pwd' => trim($this->input->post('old_pwd')),
-							'new_pwd' => trim($this->input->post('reset_pwd')),
+							'passwd' => trim($this->input->post('old_pwd')),
+							'newpasswd' => trim($this->input->post('reset_pwd')),
 							);
 				$item = $this->user_info_model->_modify_user_pwd($post);
 				$this->_json_output($item);
