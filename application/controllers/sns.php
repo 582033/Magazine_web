@@ -109,10 +109,16 @@ class Sns extends Magazine {
 		}
 		else { //登陆
 			if(is_array($data) && isset($data['session_id']) && $data['session_id']) {
-				$this->__finish($apptype, Sns_Model::encodeAuthString($data['oauthstring']), $data);
+				if ($apptype == 'web') {
+					$this->load->model('login_model');
+					$this->login_model->set_signin_cookie($data);
+					return $this->__close($this->__getUrl($apptype,Sns_Model::encodeAuthString($data['oauthstring'])));
+				}
+				else {
+					return $this->__finish($apptype, Sns_Model::encodeAuthString($data['oauthstring']), $data);
+				}
 			}
 			elseif (isset($data['unbind']) && $data['unbind']) {
-				//＠todo 输入账号页面
 				$renderData = array(
 						'snsid'=>$data['snsid'],
 						'apptype'=>$apptype,
@@ -272,12 +278,13 @@ class Sns extends Magazine {
 		$this->load->model('login_model');
 		switch ($apptype) {
 			case 'web':
-				$status = Sns_Model::decodeAuthString($status);
+				$this->login_model->set_signin_cookie($signdata);
+				
+				/* $status = Sns_Model::decodeAuthString($status);
 				$status = json_decode(base64_decode($status),true);
 				if(isset($status['state'])) {
 					$status['state'] = @json_decode(base64_decode($status['state']),true);
 				}
-				$this->login_model->set_signin_cookie($signdata);
 				$u = '/';
 				if(isset($status['state']['refer']) && $status['state']['refer']) {
 					$filters = array('sns/callback','sns/bind','signin','signup');
@@ -287,7 +294,8 @@ class Sns extends Magazine {
 							$u = '/';break;
 						}
 					}
-				}
+				} */
+				$u = $this->__getUrl($apptype,$status);
 				redirect($u);
 				break;
 			case 'android':
@@ -308,6 +316,24 @@ class Sns extends Magazine {
 				'close'=>$close
 				);
 		return $this->smarty->view('sns/close.tpl',$data);
+	}
+	private function __getUrl($apptype='web',&$status) {
+		$status = Sns_Model::decodeAuthString($status);
+		$status = json_decode(base64_decode($status),true);
+		if(isset($status['state'])) {
+			$status['state'] = @json_decode(base64_decode($status['state']),true);
+		}
+		$u = '/';
+		if(isset($status['state']['refer']) && $status['state']['refer']) {
+			$filters = array('sns/callback','sns/bind','signin','signup');
+			$u = $status['state']['refer'];
+			foreach ($filters AS $v) {
+				if (false !== strpos($status['state']['refer'],$v)) {
+					$u = '/';break;
+				}
+			}
+		}
+		return $u;
 	}
 	function _show_signup($data) {
 		$pageid = 'sns-signup';
