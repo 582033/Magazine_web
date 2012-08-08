@@ -22,5 +22,6 @@
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.masonry.js"></script>
 <script type="text/javascript" src="http://sta.in1001.com/lib/jquery/jquery.infinitescroll.js"></script>
 <script type="text/javascript" src="/sta/js/element.js"></script>
+<p id="back-to-top"><a href="#top"><span></span>返回顶部</a></p>
 {include file="footer.tpl"}
 {include file='share.tpl'}
