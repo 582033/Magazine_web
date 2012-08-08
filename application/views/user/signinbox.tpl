@@ -21,9 +21,16 @@
 			{/if}
 			</dd>
 			<dt>您还可以使用以下帐号登录</dt>
-			<dd><a href="/sns/redirect?snsid=qq&apptype=web&op=1"><img src="/sta/images/login_qq.jpg" alt="用QQ帐号登录" /></a></dd>
-			<dd><a href="/sns/redirect?snsid=sina&apptype=web&op=1"><img src="/sta/images/login_weibo.jpg" alt="用微博帐号登录" /></a></dd>
+			<dd><a class="box-snslogin" href="/sns/redirect?snsid=qq&apptype=web&op=1"><img src="/sta/images/login_qq.jpg" alt="用QQ帐号登录" /></a></dd>
+			<dd><a class="box-snslogin" href="/sns/redirect?snsid=sina&apptype=web&op=1"><img src="/sta/images/login_weibo.jpg" alt="用微博帐号登录" /></a></dd>
 			<dd></dd>
 		</dl>
 	</div>
 </div>
+<script type="text/javascript">
+$(function(){
+	if(typeof magSns != 'undefined') {
+		magSns.init($('a.box-snslogin'));
+	}
+})
+</script>

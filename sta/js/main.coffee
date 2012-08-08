@@ -269,3 +269,14 @@ applyAuthor = (form) -> # 申请成为作者
   $form.ajaxSubmit(options)
   return false
 
+magSns = {
+  init:($links)->
+    if typeof $links is 'undefined' then return
+    $links.each(->
+      this.onclick=->
+        window.open(this.href,"_blank","width=615,height=505,left=#{$(window).width()/4}px")
+        return false
+    )
+}
+$ -> magSns.init($("a.header-snslogin"))
+

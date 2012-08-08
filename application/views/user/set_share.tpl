@@ -10,7 +10,7 @@
 			<dl class="clearfix">
 				<dt>未绑定帐号：</dt>
 				{foreach from=$unbind item=item key=key}
-				<dd><a href="/sns/redirect?snsid={$item}&apptype=web&op=2&session_id={$session_id}"><img src="/sta/images/share/{$item}.gif" alt="新浪微博" /></a></dd>				
+				<dd><a class="bind-snslogin" href="/sns/redirect?snsid={$item}&apptype=web&op=2&session_id={$session_id}"><img src="/sta/images/share/{$item}.gif" alt="新浪微博" /></a></dd>				
 				{/foreach}
 			</dl>
 	</div>
@@ -18,6 +18,9 @@
 {literal}
 <script type="text/javascript" >
 $("document").ready(function(){
+	if(typeof magSns != 'undefined') {
+		magSns.init($('a.bind-snslogin'));
+	}
     $(".share dl dd a").click(function(){
 		if ( $(this).next().css("display") != "block"){
 			$(this).next().css("display","block");

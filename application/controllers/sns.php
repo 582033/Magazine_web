@@ -72,7 +72,7 @@ class Sns extends Magazine {
 	public function callback() { // {{{
 		//sina返回错误码，qq直接关闭
 		if($this->input->get('error_code') == '21330') {
-			redirect('/');
+			return $this->__close('/',true,true);
 		}
 		$query = $_SERVER['QUERY_STRING'];
 		$state = @json_decode(base64_decode(urldecode((string)$this->input->get('state'))),true);
@@ -95,7 +95,12 @@ class Sns extends Magazine {
 		if($state['op']==2) { //绑定
 			if($data) {
 				$u = isset($state['refer']) && $state['refer'] ? $state['refer']:'/user/me/set_share';
-				redirect($u);
+				if ($apptype == 'web') {
+					$this->__close($u,true,false);
+				}
+				else {
+					redirect($u);
+				}
 				//return  show_error('绑定成功',200,'恭喜');
 			}
 			else {
@@ -112,10 +117,17 @@ class Sns extends Magazine {
 						'snsid'=>$data['snsid'],
 						'apptype'=>$apptype,
 						'status'=>Sns_Model::encodeAuthString($data['oauthstring']),
-						'snsnickname'=>isset($data['nickname'])?$data['nickname']:'',
+						'snsnickname'=>isset($data['nickname'])?urlencode($data['nickname']):'',
 						'avatar'=>isset($data['avatar']) && $data['avatar']?$data['avatar']:'http://img.in1001.com/avatar/0/default.jpg!50'
 						);
-				$this->_show_signup($renderData);
+				//$this->_show_signup($renderData);
+				if ($apptype == 'web') {
+					$u = "/index.php/sns/bind?new=1&snsid={$data['snsid']}&apptype={$apptype}&status={$renderData['status']}&snsnickname={$renderData['snsnickname']}&avatar={$renderData['avatar']}";
+					return $this->__close($u,true,false);
+				}
+				else {
+					$this->_show_signup($renderData);
+				}
 			}
 		}
 	} //}}}
@@ -289,6 +301,14 @@ class Sns extends Magazine {
 				exit(0);
 		}
 	} // }}}
+	private function __close($url='/',$window=true,$close=false) {
+		$data = array(
+				'url'=>$url,
+				'window'=>$window,
+				'close'=>$close
+				);
+		return $this->smarty->view('sns/close.tpl',$data);
+	}
 	function _show_signup($data) {
 		$pageid = 'sns-signup';
 		$commondata = $this->_get_common_data($pageid);
