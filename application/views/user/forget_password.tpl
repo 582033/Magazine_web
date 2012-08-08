@@ -19,7 +19,8 @@
 			</form>
 		</div>
 		<div class="main" id="resend">
-				<div class="access_msg" style="font-size:15px"></div>
+				<div class="access_msg" style="font-size:15px;margin-bottom:10px"></div>
+				<div style="font-size:15px">没有收到?请<b><a href="/user/forget_password">重新发送</a></b></div>
 			</form>
 		</div>
 	</div>
