@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="title">忘记密码</div>
 		<div class="occupying_by_30"></div>
-		<div class="main">
+		<div class="main" id="send">
 			<form action="/user/forget_password" name="forget_pwd" method="post">
 				<p class="email_address">邮箱地址：</p>
 				<div class="main_body">
@@ -18,6 +18,10 @@
 				<div class="error_msg"></div>
 			</form>
 		</div>
+		<div class="main" id="resend">
+				<div class="access_msg" style="font-size:15px"></div>
+			</form>
+		</div>
 	</div>
 </div>
 <div class="occupying_by_30"></div>
@@ -25,7 +29,8 @@
 {literal}
 <script>
 function send_email($type){
-		if ($("form[name='forget_pwd']").find("input").val().length == 0){
+		var email = $("form[name='forget_pwd']").find("input").val();
+		if (email.length == 0){
 			$("form[name='forget_pwd'] div.error_msg").text('邮箱不能为空');
 		}
 		else {
@@ -38,7 +43,9 @@ function send_email($type){
 					dataType : 'json',
 					success: function(result) {
 						if (result == 'true'){
-							showMsgbox('已经向您填写的邮箱中发送确认邮件，请登录邮箱，点击确认链接，完成密码修改', '/');
+							$("#resend").show();
+							$("#send").hide();
+							$(".access_msg").html("已经成功将'找回密码'邮件发送至您的邮箱<b>"+ email +"</b>。请查看邮件，重新设置密码！");
 						}else if (result == 'false'){
 							$("form[name='forget_pwd'] div.return_msg").text("邮箱错误，请检查您填写的邮箱");
 						}else if (result == 'error'){
@@ -51,6 +58,8 @@ function send_email($type){
 		}
 }
 $(function(){
+	$("#resend").hide();
+	$("#send").show();
 	$("form[name='forget_pwd']").find(":input").focusout(function(){
 		send_email("focusout");
 	});
