@@ -168,17 +168,17 @@ class Magazine extends MY_Controller {
 			case 'setting':
 				$title = '账号设置-1001夜互动阅读平台';
 				break;
-			case 'set_pwd':
-				$title = '账号设置-1001夜互动阅读平台'; 
+			case 'change-password':
+				$title = '修改密码-1001夜互动阅读平台'; 
 				break;
 			case 'set_headpic':
-			    $title = '账号设置-1001夜互动阅读平台';
+			    $title = '头像设置-1001夜互动阅读平台';
 			    break;	
 			case 'set_tag':
-	            $title = '账号设置-1001夜互动阅读平台';
+	            $title = '个人标签-1001夜互动阅读平台';
                 break;  
 			case 'set_share':
-	            $title = '账号设置-1001夜互动阅读平台';
+	            $title = '分享管理-1001夜互动阅读平台';
                 break;  
 			case 'magazines_love':
 				$title = $pagename.'喜欢的阅读-1001夜互动阅读平台';
@@ -235,10 +235,10 @@ class Magazine extends MY_Controller {
 				$title = $pagename."的作品";
 				break;
 			case 'sns-signup':
-				$title = "创建绑定账号_1001夜";
+				$title = "创建绑定账号-1001夜";
 				break;
 			case 'sns-bind':
-				$title = "绑定成功_1001夜";
+				$title = "绑定成功-1001夜";
 				break;
 		}
 		$data = array(
