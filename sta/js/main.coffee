@@ -80,6 +80,8 @@ changePassword = (form) ->
     return error '密码不能为空'
   else if $("input[name='reset_pwd']").val() != $("input[name='pwd_sure']").val()
     return error '两次输入的密码不一致'
+  else if $("input[name='old_pwd']").val() == $("input[name='pwd_sure']").val()
+    return error '原密码与新密码不能相同'
 
   options =
     dataType : 'json',
