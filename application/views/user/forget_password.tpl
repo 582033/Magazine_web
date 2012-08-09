@@ -20,7 +20,7 @@
 		</div>
 		<div class="main" id="resend">
 				<div class="access_msg" style="font-size:15px;margin-bottom:10px"></div>
-				<div style="font-size:15px;">没有收到?请<input type="submit" id="general_button" value="v重新发送"></div>
+				<div style="font-size:15px;">没有收到?请<input type="submit" id="general_button" value="重新发送"></div>
 		</div>
 	</div>
 </div>
