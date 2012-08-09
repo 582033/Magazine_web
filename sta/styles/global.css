@@ -458,7 +458,7 @@ div.set_main.headpic,div.set_main.base,div.set_main.share,div.set_main.tag{ heig
 p.err_msg {
 	color: red;
 }
-/**back-to-top**/
+/**yjiang**/
 p#back-to-top{
       position:fixed;
       bottom:100px;
@@ -505,4 +505,32 @@ p#back-to-top a span{
 	line-height:28px;
 	cursor: pointer;
 }
-/**end back-to-top**/
+p#float-weibo{
+      position:fixed;
+      top:100px;
+      right:0px;
+}
+p#float-weibo a{
+      text-align:center;
+      text-decoration:none;
+      color:#d1d1d1;
+      display:block;
+      width:50px;
+      font-size:10px;
+}
+p#float-weibo a:hover{
+      color:#979797;
+}
+p#float-weibo a span{
+      background:#d1d1d1 url(/sta/images/float-weibo.gif) no-repeat center center;
+      display:block;
+      height:125px;
+      width:44px;
+      margin-bottom:5px;
+      margin:auto;
+}
+#float-weibo a:hover span{
+      background:#979797 url(/sta/images/float-weibo.gif) no-repeat center center;
+      margin:auto;
+}
+/**end yjiang**/
