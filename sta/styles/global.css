@@ -494,4 +494,15 @@ p#back-to-top a span{
       background:#979797 url(/sta/images/UPicon.gif) no-repeat center center;
       margin:auto;
 }
+#general_button {
+	background: url(/sta/images/btn_logintip_sub.gif) no-repeat left top;
+	margin:5px;
+	width:82px;
+	height:30px;
+	border:none;
+	color:white;
+	font-size:14px;
+	line-height:28px;
+	cursor: pointer;
+}
 /**end back-to-top**/

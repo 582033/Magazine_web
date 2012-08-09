@@ -20,8 +20,7 @@
 		</div>
 		<div class="main" id="resend">
 				<div class="access_msg" style="font-size:15px;margin-bottom:10px"></div>
-				<div style="font-size:15px">没有收到?请<b><a href="/user/forget_password">重新发送</a></b></div>
-			</form>
+				<div style="font-size:15px;">没有收到?请<input type="submit" id="general_button" value="v重新发送"></div>
 		</div>
 	</div>
 </div>
@@ -29,48 +28,65 @@
 {include file="footer.tpl"}
 {literal}
 <script>
-function send_email($type){
-		var email = $("form[name='forget_pwd']").find("input").val();
-		if (email.length == 0){
-			$("form[name='forget_pwd'] div.error_msg").text('邮箱不能为空');
-		}
+	var secs = 10;
+	function jishi () {
+		setInterval("update()", 1000);
+	}
+	function update() {
+		if (secs > 0) {
+			$("#general_button").attr("disabled","disabled");
+			$("#general_button").val("重新发送(" + secs-- + ")");
+		} 
 		else {
-			if ($type == "focusout"){
-				$("form[name='forget_pwd'] div.error_msg").text('');
-				$("form[name='forget_pwd'] button.submit").attr("disabled", false);
-			}
-			else {
-				var options = {
-					dataType : 'json',
-					success: function(result) {
-						if (result == 'true'){
-							$("#resend").show();
-							$("#send").hide();
-							$(".access_msg").html("已经成功将'找回密码'邮件发送至您的邮箱<b>"+ email +"</b>。请查看邮件，重新设置密码！");
-						}else if (result == 'false'){
-							$("form[name='forget_pwd'] div.return_msg").text("邮箱错误，请检查您填写的邮箱");
-						}else if (result == 'error'){
-							$("form[name='forget_pwd'] div.return_msg").text("发送失败，请稍后重试");
-						}
-					}
-				};
-				$("[name='forget_pwd']").ajaxSubmit(options);
-			}
+			$("#general_button").removeAttr("disabled");
+			$("#general_button").val("重新发送");
 		}
-}
-$(function(){
-	$("#resend").hide();
-	$("#send").show();
-	$("form[name='forget_pwd']").find(":input").focusout(function(){
-		send_email("focusout");
+	}
+	function send_email($type){
+			var email = $("form[name='forget_pwd']").find("input").val();
+			if (email.length == 0){
+				$("form[name='forget_pwd'] div.error_msg").text('邮箱不能为空'); } else {
+				if ($type == "focusout"){
+					$("form[name='forget_pwd'] div.error_msg").text('');
+					$("form[name='forget_pwd'] button.submit").attr("disabled", false);
+				}
+				else {
+					var options = {
+						dataType : 'json',
+						success: function(result) {
+							if (result == 'true'){
+								$("#resend").show();
+								$("#send").hide();
+								$(".access_msg").html("已经成功将'找回密码'邮件发送至您的邮箱<b>"+ email +"</b>。请查看邮件，重新设置密码！");
+								jishi();
+							}else if (result == 'false'){
+								$("form[name='forget_pwd'] div.return_msg").text("邮箱错误，请检查您填写的邮箱");
+							}else if (result == 'error'){
+								$("form[name='forget_pwd'] div.return_msg").text("发送失败，请稍后重试");
+							}
+						}
+					};
+					$("[name='forget_pwd']").ajaxSubmit(options);
+				}
+			}
+	}
+	$(function(){
+		$("#resend").hide();
+		$("#send").show();
+		$("form[name='forget_pwd']").find(":input").focusout(function(){
+			send_email("focusout");
+		});
+		$("form[name='forget_pwd']").find(":input").focus(function(){
+			$("form[name='forget_pwd'] div.return_msg p").text('');
+		});
+		$("button.find").click(function(){
+			send_email("click");
+			return false;
+		});
+		$("#general_button").click(function(){
+			window.location.reload();
+			return false;
+		});
 	});
-	$("form[name='forget_pwd']").find(":input").focus(function(){
-		$("form[name='forget_pwd'] div.return_msg p").text('');
-	});
-	$("button.find").click(function(){
-		send_email("click");
-		return false;
-	});
-});
 </script>
 {/literal}
