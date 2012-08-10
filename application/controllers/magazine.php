@@ -348,6 +348,18 @@ class Magazine extends MY_Controller {
 		$pageid = 'mag_detail';
 		$magazine_id = $id;
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
+		
+		if ($magazine) {
+			$temp = array();
+			foreach ($magazine['pageThumbs'] AS $key=>$value) {
+				$a = explode('/',$value);	
+				array_pop($a);
+				$temp[$key]['pageId'] = array_pop($a);
+				$temp[$key]['thumbUrl'] = $value;
+			}
+			$magazine['pageThumbs'] = $temp;
+		}
+
 		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
 		$common_data = $this->_get_common_data($pageid, $magazine);
 		$limit_recom = 6;
