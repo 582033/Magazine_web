@@ -124,7 +124,7 @@ img {
 		<div class="may-like">
 			<ul>
 			{foreach from=$recommend item=item key=key}
-				<li><a href="/magazine/detail/{$item.id}" target="_parent"><img src="{$item.cover}" /><div title="{$item.name}">{$item.name|truncate:28}</div></a></li>
+				<li><a href="{$pub_host}/{$item.id|truncate:3:''}/{$item.id}/web/" target="_parent"><img src="{$item.cover}" /><div title="{$item.name}">{$item.name|truncate:28}</div></a></li>
 			{/foreach}
 			</ul>
 			<div class="clear:both"></div>
