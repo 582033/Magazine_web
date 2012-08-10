@@ -584,17 +584,21 @@ class User extends Magazine {
 		if (!$this->check_redis_key($key)) return false;
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$account_name = $this->get_redis()->get($key);
-			$new_pwd = trim($this->input->post('reset_pwd'));
-			$redis = $this->get_redis();
-			$redis->delete($key);
-			$result = $this->send_email_model->_update_account_pwd($account_name, $new_pwd);
-			if ($result == 'true'){
-				$msg = "true";
-				$this->_json_output($msg);
-			}else{
-				$msg = "fail";
-				$this->_json_output($msg);
+			if (!empty($account_name)){
+				$new_pwd = trim($this->input->post('reset_pwd'));
+				$redis = $this->get_redis();
+				$redis->delete($key);
+				$result = $this->send_email_model->_update_account_pwd($account_name, $new_pwd);
+				if ($result == 'true'){
+					$msg = "true";
+				}else{
+					$msg = "fail";
+				}
 			}
+			else {
+				$msg = "email error";	
+			}
+			$this->_json_output($msg);
 		}
 	}
 

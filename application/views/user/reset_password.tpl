@@ -39,7 +39,9 @@ function judge($type){
 					success: function(result) {
 						if (result == 'true'){
 							showMsgbox('重置成功', '/');
-						}else{
+						}else if (result == 'email error'){
+							showMsgbox('邮箱错误,请重新找回密码', 'current');
+						}else {
 							showMsgbox('重置失败，请稍后重试', 'current');
 						}
 					}
