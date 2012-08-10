@@ -585,7 +585,8 @@ class User extends Magazine {
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$account_name = $this->get_redis()->get($key);
 			$new_pwd = trim($this->input->post('reset_pwd'));
-		//	$this->_json_output($data);
+			$redis = $this->get_redis();
+			$redis->delete($key);
 			$result = $this->send_email_model->_update_account_pwd($account_name, $new_pwd);
 			if ($result == 'true'){
 				$msg = "true";
@@ -594,17 +595,12 @@ class User extends Magazine {
 				$msg = "fail";
 				$this->_json_output($msg);
 			}
-		}else{
-			$msg = "error!";
-			$this->_json_output($msg);
 		}
 	}
 
 	function reset_password_show($key){
 		if (!$this->check_redis_key($key)) return false;
 		$data = array('key' => $key);
-		$redis = $this->get_redis();
-		$redis->delete($key);
 		$this->smarty->view('user/reset_password.tpl', $data);
 	}
 
