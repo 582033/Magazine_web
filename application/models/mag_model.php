@@ -17,6 +17,12 @@ class Mag_Model extends CI_Model {
 		$mag_item = $mag_result['data']['items'];
 		return $mag_item;
 	}
+	//mag page ,15 ads for each category 
+ 	function _get_mag_catead($categ)	{
+		$mag_result = request($this->api_host . "/ltapp/ads/magazine/".$categ."?limit=15");
+		$mag_item = $mag_result['data']['items'];
+		return $mag_item;
+	}
 	
 	function _get_index_info(){		//首页杂志信息{{{
 		//右上及中部的9本杂志

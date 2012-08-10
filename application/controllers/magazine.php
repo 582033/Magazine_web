@@ -277,6 +277,15 @@ class Magazine extends MY_Controller {
 		$start_gallery = 0;
 		$id = '';
 		$mag_middle=$this->mag_model->_get_mag_middle();
+		$mag_mddtj = $this->mag_model->_get_mag_catead('magepagemdd');
+		$mag_kyzg = $this->mag_model->_get_mag_catead('magepagekyzg');
+		$mag_yyfq = $this->mag_model->_get_mag_catead('magpageyyfq');
+		$cat_map = array(
+			'tour_recommendation' => $mag_mddtj,
+			'tour_foreign' => $mag_yyfq,
+			'tour_domestic' => $mag_kyzg,
+			);
+
 
 		$mag_recommend = $this->mag_model->_get_recommendation_mag($limit_gallery, $start_gallery, $id);
 		foreach($mag_recommend['data']['items'] as $k =>$v){
@@ -285,15 +294,12 @@ class Magazine extends MY_Controller {
 
 		$cate_magazines = array();
 		foreach ($this->cate_map as $cid => $cname) {
-			$result = $this->mag_model->get_magazines(array('cate' => $cname, 'start' => 0, 'limit' => 15));
-			if ($result['httpcode'] == 200) {
 				$cate_magazines[] = array(
 						'cid' => $cid,
 						'cname' => $cname,
-						'items' => $result['data']['items'],
+						'items' => $cat_map[$cid],
 						'more_url' => "/mag_list/$cid",
 						);
-			}
 		}
 
 		$limit_list = 15;
@@ -301,6 +307,7 @@ class Magazine extends MY_Controller {
 		//$mag_list = $this->mag_model->_get_magazines_by_tag($limit_list, $start_list);
 		$mag_limit = 3;
 		$mag_text = $this->mag_model->_get_mag_text($mag_limit);
+		//echo "<pre>";var_dump($cate_magazines);exit;
 
 		$data = array(
 					'mag_gallery' => $mag_recommend['data']['items'],
