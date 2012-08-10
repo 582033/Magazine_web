@@ -184,6 +184,7 @@ function close_comment_reply() {
 	var $replyc = $('#comment div.reply-comment').hide();
 	$replyc.hide();
 	$('input', $replyc).val('');
+	$("#tips").text("还可输入140字");
 }
 function init_comment() { //{{{
 	$("#add").click(function (){
