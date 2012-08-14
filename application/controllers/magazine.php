@@ -101,7 +101,7 @@ class Magazine extends MY_Controller {
 					'curnav' => 'find',
 					);
 		if($page == '1'){
-		$elem_ad = request($this->config->item('api_host').'/ltapp/ads/element/findpage?limit=8');
+		$elem_ad = request($this->config->item('api_host').'/ltapp/ads/element/findpage?limit=999');
 		$arr_elem_ad = $elem_ad['data']['items'];
 		$data['element_ad'] = $arr_elem_ad;
 		}
