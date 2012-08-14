@@ -91,7 +91,7 @@
 			var options = {
 				dataType : 'json',
 				success:    function(result) {
-					showMsgbox(result);
+					showTipsbox(result, "access");
 					get_user_info();
 				},
 			};

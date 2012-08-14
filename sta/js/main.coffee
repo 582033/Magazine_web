@@ -89,7 +89,7 @@ changePassword = (form) ->
     dataType : 'json',
     success: (result) ->
       if result == '修改成功'
-        showMsgbox '密码修改成功'
+        showTipsbox '密码修改成功','access'
         $form.clearForm()
         $errmsg.hide()
       else
@@ -135,11 +135,12 @@ cancelLike = (type, type_id, where) ->
     {dataType: 'json'},
     (data) ->
       if $.inArray(type, ['magazine', 'element']) >= 0
-        window.location.reload()
+        showTipsbox('删除成功','access','reload')
       else if type == 'user'
         if where  == 'user_center_followee'
-          window.location.reload()
+          showTipsbox('删除成功','access','reload')
         else # detail, user center left
+          showTipsbox('取消关注成功','access')
           $e.removeClass('favorited')
   )
 like = (type, type_id, where) ->
@@ -280,3 +281,12 @@ magSns = {
 }
 $ -> magSns.init($("a.header-snslogin"))
 
+showTipsbox = (msg, type, reload) ->
+ html = "<p id='global-tips-"+type+"'>"+msg+"</p>"
+ $(document.body).append(html)
+ $("#global-tips-"+type).hide()
+ $("#global-tips-"+type).fadeIn()
+ if typeof reload != 'undefined'
+   setTimeout((->window.location.reload()),2000)
+ setTimeout((->$("#global-tips-"+type).fadeOut()),2000)
+ setTimeout((->$("#global-tips-"+type).remove()),2500)

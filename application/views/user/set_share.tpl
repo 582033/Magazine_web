@@ -35,7 +35,7 @@ $("document").ready(function(){
 				{snsid:$(this).attr('id')},
 				function(data){
 					if(data.status=='OK') {
-						window.location='/user/me/set_share';
+						showTipsbox("设置成功,1秒后将自动刷新", "access", "reload");
 					}
 				},
 				'json'

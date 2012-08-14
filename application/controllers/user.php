@@ -292,10 +292,11 @@ class User extends Magazine {
 		}
 	}	//}}}
 
-	function cut () {
+	function cut () {	//{{{
 		$this->_auth_check_web();
 		$this->smarty->view('image_cropping/frame.tpl');
-	}
+	}	//}}}
+
 	function set_headpic () {	//头像设置{{{			
 		$pageid = 'set_headpic';
 		$commondata = $this->_get_common_data($pageid);
@@ -310,6 +311,7 @@ class User extends Magazine {
 		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/set_main.tpl', $data);
 	} // }}}
+
 	function set_pwd(){	// {{{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$this->_auth_check_api();
@@ -372,6 +374,7 @@ class User extends Magazine {
 				);
 		$this->smarty->view('user/set_main.tpl', $data);
 	}	//}}}
+
 	function set_user_info () {	//{{{
 		$this->_auth_check_api();
 		$session_id = $this->session->userdata('session_id');
@@ -411,7 +414,6 @@ class User extends Magazine {
 		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/set_main.tpl', array_merge($data, $other));
 	}	//}}}
-	
 
 	public function unbind() {	//解除绑定第三方帐号{{{
 		$this->_auth_check_api();
@@ -490,7 +492,6 @@ class User extends Magazine {
 
 		return $ret_verb;
 	} // }}}
-
 	//join msg  info from db and tpl
 	function print_msg($arr_db,$info){ // {{{
 		if(count($arr_db) == 0){
@@ -508,9 +509,8 @@ class User extends Magazine {
 	return $ret;	
 
 	} // }}}
-	
 	//show all messages
-	function messages($user_id, $p=1) {
+	function messages($user_id, $p=1) {	//{{{
 		$pageid = 'messages';
 		$commondata = $this->_get_common_data($pageid);
 		$user_info = $this->_auth_check_web();
@@ -539,7 +539,7 @@ class User extends Magazine {
 		$data['love_msg']="true";
 		$data['page_list']=$page_list;
 		$data['msg_page']='msg_page';
-		$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/message/del/"+msgid, {}, function(response){window.location.reload(); });';
+		$data['web_host']='$.getJSON("'.$this->config->item('web_host').'/message/del/"+msgid, {}, function(response){showTipsbox("删除成功","access","reload")});';
 		$data['is_me'] = TRUE;
 		$data['user_id'] = 'me';
 		$data['user_info'] = $this->_get_current_user();
@@ -556,19 +556,18 @@ class User extends Magazine {
 		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/user_center_main.tpl',$data);
 
-	}
+	}	//}}}
 	//show all messages
-	function msglist($page){
+	function msglist($page){	//{{{
 		$this->index($page);
-	}
-
+	}	//}}}
 	//api proxy
-	function del_msg($msgid) {
+	function del_msg($msgid) {	//删除消息{{{
 		$this->_auth_check_api();
 		$res = request($this->api_host."/activity/".$msgid, 'session_id=' . $this->session->get_session_id(), "DELETE");
-	}
+	}	//}}}
 	
-	function check_redis_key($key){
+	function check_redis_key($key){	//找回密码页检查redis有效性{{{
 		if ($this->get_redis()->get($key) !== false){
 			return true;
 		}
@@ -578,9 +577,9 @@ class User extends Magazine {
 					);
 		$this->smarty->view('about/error_us.tpl', $data);
 		return false;
-	}
+	}	//}}}
 	
-	function reset_pwd($key){
+	function reset_pwd($key){	//找回密码{{{
 		if (!$this->check_redis_key($key)) return false;
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$account_name = $this->get_redis()->get($key);
@@ -600,13 +599,13 @@ class User extends Magazine {
 			}
 			$this->_json_output($msg);
 		}
-	}
+	}	//}}}
 
-	function reset_password_show($key){
+	function reset_password_show($key){	//重置密码页面{{{
 		if (!$this->check_redis_key($key)) return false;
 		$data = array('key' => $key);
 		$this->smarty->view('user/reset_password.tpl', $data);
-	}
+	}	//}}}
 
 	function get_redis () { //{{{
 		$redis = new Redis();
@@ -614,7 +613,7 @@ class User extends Magazine {
 		return $redis;
     	}   //}}}
 	
-	function forget_password(){
+	function forget_password(){ //{{{
 		$this->load->model('msgbroker');
 		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			$email = trim($this->input->post('email'));
@@ -643,5 +642,5 @@ class User extends Magazine {
 			$data = array_merge($data, $commondata);	
 			$this->smarty->view('user/forget_password.tpl', $data);
 		}
-	}
+	}	//}}}
 }

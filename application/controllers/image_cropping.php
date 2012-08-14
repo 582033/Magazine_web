@@ -172,8 +172,13 @@ class Image_cropping extends Magazine {
 			else {
 				$msg = "修改失败";
 			}
-			echo "<script>parent.$.fn.colorbox.close();</script>";
-			echo "<script>parent.window.location.reload();</script>";
+			$tips =  <<<EOF
+				<script>
+					parent.$.fn.colorbox.close();
+					parent.showTipsbox("设置头像成功", "access", "reload");
+				</script>
+EOF;
+			echo $tips;
 	}
 	//处理缩略图
 	private function _run_img_resize($img,$resize_img_name,$dx,$dy,$resize_width,$resize_height,$w,$h,$quality){

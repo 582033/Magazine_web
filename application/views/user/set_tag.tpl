@@ -28,7 +28,7 @@ $(function(){
 		var options = {
 			dataType : 'json',
 			success : function(result){
-				showMsgbox(result);	
+				showTipsbox(result, "access");	
 			}
 		}
 		$("[name='tags_form']").ajaxSubmit(options);
@@ -56,7 +56,7 @@ function change_tag(){
 						tag = val +","+$(this).text();
 					}
 					else {
-						showMsgbox("您的标签太多了");	
+						showTipsbox("您的标签太多了", "error");	
 						tag = val;
 					}
 				}
