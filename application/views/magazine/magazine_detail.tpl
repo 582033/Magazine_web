@@ -24,7 +24,7 @@
 			</p>
 			<p>上传：{$magazine.publishedAt}</p>
 			<p class="tag">TAG：{foreach from=$magazine['tag'] item=item}<a href="/mag_list/tag/{$item}">{$item}</a>&nbsp;&nbsp;{/foreach}</p>
-			<p class="intro_txt" style="height:77px;"><strong>简介：</strong>
+			<p class="intro_txt" style="height:auto;min-height:77px"><strong>简介：</strong>
 				{$magazine.intro}
 			</p>
 			<div class="shareto">
