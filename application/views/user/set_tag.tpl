@@ -53,7 +53,13 @@ function change_tag(){
 				}
 				else {
 					if (val.length <= 80) { 
-						tag = val +","+$(this).text();
+						if (val.indexOf($(this).text()) > -1) {
+							showTipsbox("您已添加过此标签", "error");	
+							tag = val;
+						}
+						else {
+							tag = val +","+$(this).text();
+						}
 					}
 					else {
 						showTipsbox("您的标签太多了", "error");	
