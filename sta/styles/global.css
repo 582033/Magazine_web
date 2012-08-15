@@ -18,7 +18,9 @@ html{ width:100%; background:url(/sta/images/bg.gif) repeat;}
 .mag_list dt,.element_list dt, .element_list h3.dt{ position:relative; clear:both; height:43px; border:1px solid #e8e8e8;}
 .mag_list dt strong,.element_list dt strong, .element_list h3.dt span{ position:absolute; left:-18px; top:3px; display:block; width:174px; height:45px; padding-left:30px; background:url(/sta/images/bg_bar_title.gif) no-repeat left top; font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; font-size:24px; line-height:35px; color:#FFF;}
 .element_list dt strong, .element_list h3.dt span { background-position:left bottom;}
-.mag_list dt .more,.element_list dt .more{ float:right; display:block; width:59px; height:43px; background:url(/sta/images/more.jpg) no-repeat left bottom; text-indent:-100px; overflow:hidden;}
+
+.mag_list dt .more,.element_list dt .more { float:right; width:40px; height:20px; margin:10px 10px 0 0;background:url(/sta/images/more.gif) no-repeat 0px 0px; text-indent:-100px; overflow:hidden;}
+.mag_list dt .more:hover,.element_list dt .more:hover {background-position:0px -19px}
 
 .mag_list dd,.element_list dd{ float:left; padding:10px; background: url(/sta/images/bg_line.gif) repeat-y right bottom;padding-bottom:0;}
 .element_list dd{ height:auto; }
@@ -145,7 +147,7 @@ div.menu.my{ border:none; padding:0;}
 .mag_list.m_index dd.menu ul li a{ display:block; font-size:16px; padding:10px 15px; height:18px; overflow:hidden; font-weight:bold; background:#000; border:1px solid #000; border-bottom:none; color:#FFF; width:85px;}
 .mag_list.m_index dd.menu ul li a.sel{ background:#FFF; color:#000; border:1px solid #e8e8e8; border-bottom:1px solid #FFF;}
 .mag_list.m_index dt { height:30px; border-top:none;}
-.mag_list.m_index dt .more{ height:30px;}
+.mag_list.m_index dt .more{ height:20px;margin:5px}
 .item{float:left;}
 
 .mag_list.m_topic dt strong{ width:980px;}
