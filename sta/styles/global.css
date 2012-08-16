@@ -538,8 +538,8 @@ p#float-weibo a span{
 #global-tips-access {
 	display:block;
 	position:absolute;
-	left:34%;
-	top:80px;
+	left:46%;
+	top:56px;
 	background:#fee6c1 url(/sta/images/tip-access.gif) no-repeat 5px center;
 	height:30px;
 	width:auto;
@@ -552,8 +552,8 @@ p#float-weibo a span{
 #global-tips-error {
 	display:block;
 	position:absolute;
-	left:34%;
-	top:80px;
+	left:46%;
+	top:56px;
 	background:#fee6c1 url(/sta/images/tip-error.gif) no-repeat 5px center;
 	height:30px;
 	width:auto;
