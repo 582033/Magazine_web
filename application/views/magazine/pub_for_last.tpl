@@ -68,13 +68,16 @@ img {
 	padding:0 0 0 0;
 }
 .like-header .more {
-	float: right;
-	display: block;
-	width: 59px;
-	height: 100%;
-	background: url(/sta/images/more.jpg) no-repeat left bottom;
-	text-indent: -100px;
-	overflow: hidden;
+	float:right; 
+	width:40px; 
+	height:20px; 
+	margin:10px 10px 0 0;
+	background:url(/sta/images/more.gif) no-repeat 0px 0px; 
+	text-indent:-100px; 
+	overflow:hidden;
+}
+.like-header .more:hover{
+	background-position:0px -19px;
 }
 .may-like {
 	width:100%;
