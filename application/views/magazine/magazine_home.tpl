@@ -10,11 +10,11 @@
 				<li class="text_list">
 {foreach from=$mag_text key=k item=i}
 					<dl class="last">
-						<dt>
+						<dt class="last sect">
 							<a href="{$i.url}">{$i.title}</a>
 						</dt>
 						<dd>
-							<a href="{$i.url}">{$i.text}</a>
+							<span>{$i.text}</span>
 							<a href="{$i.url}" class="readmore">阅读+</a>
 						</dd>
 					</dl>

@@ -170,6 +170,7 @@ div.menu.my{ border:none; padding:0;}
 .mag_list.m_topic dd.info .text_list dd{ position:static; padding:0; margin:0; border:none; background:none; float:none; width:auto; height:auto;}
 .mag_list.m_topic dd.info .text_list dl{ height:84px; padding:10px; padding-left:60px; border-bottom:1px dotted #787878; overflow:hidden;  background:url(/sta/images/ico_mag_index.gif) no-repeat left -50px; }
 .mag_list.m_topic dd.info .text_list dl.last{ border:none;}
+.mag_list.m_topic dd.info .text_list dl.last dt.sect a:hover{ color:#0590B3;}
 .mag_list.m_topic dd.info .text_list dt{ padding-left:10px; height:25px; background:url(/sta/images/ico_mag_index.gif) no-repeat left 10px;font-family:'Microsoft YaHei',SimHei,'LiHei Pro Medium'; font-size:18px;}
 .mag_list.m_topic dd.info .text_list dd { color:#4e4e4e; height:54px; text-indent:26px; line-height:18px; overflow:hidden;}
 .mag_list.m_topic dd.info .text_list dd a{ color:#4e4e4e; line-height:18px;}
