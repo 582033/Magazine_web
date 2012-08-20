@@ -535,6 +535,34 @@ p#float-weibo a span{
       background:#979797 url(/sta/images/float-weibo.gif) no-repeat center center;
       margin:auto;
 }
+p#float-investigation{
+      position:fixed;
+      top:245px;
+      right:0px;
+}
+p#float-investigation a{
+      text-align:center;
+      text-decoration:none;
+      color:#d1d1d1;
+      display:block;
+      width:50px;
+      font-size:10px;
+}
+p#float-investigation a:hover{
+      color:#979797;
+}
+p#float-investigation a span{
+      background:#d1d1d1 url(/sta/images/float-investigation.gif) no-repeat center center;
+      display:block;
+      height:125px;
+      width:44px;
+      margin-bottom:5px;
+      margin:auto;
+}
+#float-investigation a:hover span{
+      background:#979797 url(/sta/images/float-investigation.gif) no-repeat center center;
+      margin:auto;
+}
 #global-tips-access {
 	display:block;
 	position:absolute;

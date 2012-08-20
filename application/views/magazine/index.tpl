@@ -19,5 +19,6 @@
 	</dl>
 </div>
 <p id="float-weibo"><a href="http://e.weibo.com/qianyeyuedu"><span></span></a></p>
+<!--<p id="float-investigation"><a href="#"><span></span></a></p>-->
 {include file='share.tpl'}
 {include file='footer.tpl'}
