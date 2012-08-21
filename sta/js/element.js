@@ -17,7 +17,9 @@ $(function(){
 		},
       // trigger Masonry as a callback
       function(newElements) {
-          $container.masonry('appended', $(newElements)); 
+		  var $newElems = $(newElements).css({opacity:0});
+		  $newElems.animate({opacity:1});
+          $container.masonry('appended', $newElems, true); 
       }
 	);
 });
