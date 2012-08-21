@@ -111,6 +111,9 @@ class User extends Magazine {
 				);
 		$loved_author = $this->user_loved_model->get_loved($user_id, $url_data, 'followees');
 		if ($type != 'followees') {
+			if ($type == 'message'){
+				return $loved_author;
+			}
 			$loved_ob = $this->user_loved_model->get_loved($user_id, $url_data, $type);
 			if ($type == 'element') {
 				$loved_ob['items'] = $this->display_model->process_elements($loved_ob['items']);
@@ -553,6 +556,8 @@ class User extends Magazine {
 						'current' => TRUE,
 						),
 					);
+		$page_url = "/user/$user_id/message"; 
+		$data['loved_author'] = $this->_get_loved($user_id, $p, 'message', $page_url);
 		$data = array_merge($data, $commondata);
 		$this->smarty->view('user/user_center_main.tpl',$data);
 
