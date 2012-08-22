@@ -1,4 +1,5 @@
 g1001 = null
+document.domain = 'in1001.com'
 $ ->
   window.g1001 =
     url:
@@ -189,14 +190,15 @@ showMsgbox = (msg, toUrl) ->
       else
         window.location.href = toUrl
 
-handleSigninOk = ($form) ->
+handleSigninOk = ($form,callback) ->
+  if typeof callback is 'function' then return callback()
   if $form.data('return') # single signin page
     window.location.href = $form.data('return')
   else if g1001.pageId.match /^sns-|^sign(in|up)$/ # redirect to home for sns login related page and single signin/signup page
     window.location.href = '/'
   else
     window.location.reload()
-signin = (form) ->
+signin = (form,callback) ->
   $form = $(form)
   error = (msg) ->
     $('.err_msg', $form).text(msg).show()
@@ -210,13 +212,14 @@ signin = (form) ->
     dataType : 'json'
     success: (result) ->
       if result.status == 'OK'
-        handleSigninOk($form)
+        if typeof callback is 'function' then handleSigninOk($form,callback)
+        else handleSigninOk($form)
       else
         error(messages[result.status] or result.status)
     error: -> error('未知错误')
   $form.ajaxSubmit options
   return false
-signup = (form) ->
+signup = (form,callback) ->
   $form = $(form)
   error = (msg) ->
     $('p.err_msg', $form).text(msg).show()
@@ -245,7 +248,8 @@ signup = (form) ->
     dataType : 'json'
     success: (result) ->
       if result.status == 'OK'
-        handleSigninOk $form
+        if typeof callback is 'function' then handleSigninOk($form,callback)
+        else handleSigninOk($form)
       else
         error(messages[result.status] || result.status)
 

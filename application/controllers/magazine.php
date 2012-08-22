@@ -541,6 +541,12 @@ class Magazine extends MY_Controller {
 				);
 		$this->smarty->view('magazine/pub_for_last.tpl', $data);
 	}
+	public function pub_for_sign() {
+		$data = array();
+		$data['do'] = $this->input->get('do')?$this->input->get('do'):'in';
+		$data['close'] = $this->input->get('close');
+		$this->smarty->view('pub/pub_for_sign.tpl',$data);
+	}
 
 	function _validate_api_result($result) {
 		if ($return['httpcode'] >= 300) {

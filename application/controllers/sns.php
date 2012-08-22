@@ -44,7 +44,8 @@ class Sns extends Magazine {
 		if($op==2 && !$sessionid) {
 			return  show_error('参数错误',500);
 		}
-		$params = array('snsid'=>$snsid,'apptype'=>$apptype,'op'=>$op,'refer'=>$this->input->server('HTTP_REFERER'));
+		$refer = $this->input->get('return')?$this->input->get('return'):$this->input->server('HTTP_REFERER');
+		$params = array('snsid'=>$snsid,'apptype'=>$apptype,'op'=>$op,'refer'=>$refer);
 		if($sessionid && $op==2) {
 			$params['session_id'] = $sessionid;
 		}
