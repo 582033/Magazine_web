@@ -40,12 +40,64 @@
 		if(typeof magSns != 'undefined') {
 			magSns.init($('a.box-snslogin'));
 		}
+		var err_msg = function(content){
+				$(".main").find(".err_msg").text(content).show();
+		}
+		$("input.passwd").keyup(function(){
+			var passwd = $("#dialog_reg_Pass").val();
+			var re_passwd = $("#dialog_reg_RePass").val();
+			if (passwd.length < 6) {
+				err_msg("密码长度不能小于6位");
+				return false;
+			}
+			else if (passwd.length > 16) {
+				err_msg("密码长度不能大于16位");
+				return false;
+			}
+			else if (passwd !== re_passwd) {
+				err_msg("密码不一致");
+			}
+			else {
+				err_msg("");
+				return true;
+			}
+
+		});
+		$("input.re_passwd").keyup(function(){
+			var passwd = $("#dialog_reg_Pass").val();
+			var re_passwd = $("#dialog_reg_RePass").val();
+			if (passwd !== re_passwd) {
+				err_msg("密码不一致");
+			}
+			else {
+				err_msg("");
+				return true;
+			}
+		});
 		$("#signup_form").find(":input").focusout(function(){
 			var email = $("#dialog_reg_Email").val();
 			var passwd = $("#dialog_reg_Pass").val();
 			var re_passwd = $("#dialog_reg_RePass").val();
-			var err_msg = function(content){
-					$(".main").find(".err_msg").text(content).show();
+			var check_result = function(result){
+				if(result.status == 'USER_EXISTS'){
+					err_msg("用户名已存在");
+				}
+				else if (!email) {
+					err_msg("Email不能为空");
+					return false;
+				}
+				else if (!passwd) {
+					err_msg("密码不能为空");
+					return false;
+				}
+				else if (re_passwd.length < 6) {
+					err_msg("密码长度不能小于6位");
+					return false;
+				}
+				else if (re_passwd.length > 16) {
+					err_msg("密码长度不能大于16位");
+					return false;
+				}
 			}
 			if (!checkEmail(email)) {
 				err_msg("Email格式不正确");
@@ -57,34 +109,7 @@
 							async:false,
 							url:"http://api.in1001.com/v1/user/checkexists?username=" + email + "&callback=?",
 							dataType : "jsonp",
-							success:function(result){
-									if(result.status == 'OK'){
-										err_msg("用户名可以使用");
-									}
-									if(result.status == 'USER_EXISTS'){
-										err_msg("用户名已存在");
-									}
-									if (passwd.length < 6) {
-										err_msg("密码长度不能小于6位");
-										return false;
-									}
-									else if (passwd.length > 16) {
-										err_msg("密码长度不能大于16位");
-										return false;
-									}
-									else if (!email) {
-										err_msg("Email不能为空");
-										return false;
-									}
-									else if (!passwd) {
-										err_msg("密码不能为空");
-										return false;
-									}
-									else if (passwd !== re_passwd) {
-										err_msg("密码不一致");
-										return false;
-									}
-								},
+							success:check_result,
 					 };
 				$.ajax(options);
 			}
