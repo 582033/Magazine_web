@@ -29,7 +29,7 @@ class Mag_Model extends CI_Model {
 		//$mag_result = request($this->api_host . "/magazines?limit=9&start=0");
 		$mag_result = request($this->api_host . "/ltapp/ads/magazine/indextop?limit=9");
 		//顶部幻灯片，最多5张
-		$mag_resultad = request($this->api_host."/ltapp/ads/image/indextop?limit=5");
+		$mag_resultad = request($this->api_host."/ltapp/ads/image/indextop?limit=10");
 		$mag_itemad = $mag_resultad['data']['items'];
 		$mag_gallery = $mag_list = array();
 		for($i=0; $i <count($mag_itemad); $i++){
@@ -39,7 +39,7 @@ class Mag_Model extends CI_Model {
 		$elem_gallery = $elem_list4 = array();
 		$elem_list3 = $elem_list1 = array();
 		//elem gallery
-		$elem_gallery_result= request($this->api_host."/ltapp/ads/image/indexlovefind?limit=5");
+		$elem_gallery_result= request($this->api_host."/ltapp/ads/image/indexlovefind?limit=10");
 		$elem_item = $elem_gallery_result['data']['items'];
 		for ($j = 0; $j < count($elem_item); $j++){
 				array_push($elem_gallery, $elem_item[$j]);
@@ -86,7 +86,7 @@ class Mag_Model extends CI_Model {
 		return $mag_rec;
 	} // }}}
 	function _get_recommendation_mag($limit, $start, $id){		//获得推荐杂志列表{{{
-		$mag_resultad = request($this->api_host."/ltapp/ads/image/magtop");
+		$mag_resultad = request($this->api_host."/ltapp/ads/image/magtop?limit=10");
 		return $mag_resultad;
 		//$recommendation = request($this->api_host . "/recommendation/maylike?limit=$limit&start=$start&id=$id");
 		//return $recommendation['data']['items'];
