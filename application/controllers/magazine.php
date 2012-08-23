@@ -414,6 +414,7 @@ class Magazine extends MY_Controller {
 		$start = ($page-1)*$limit;
 		$page = $page ? $page : 1;
 		$magazine = $this->mag_model->_get_magazine_by_id($id);
+		$magazine['url'] = '/magazine/detail/' . $magazine['id'];
 		$comment = $this->comment_model->comment_list('magazine', $id, $start, $limit);
 		$totalResults = $comment['totalResults'];
 		$page_list = $this->page_model->page_list("/magazine/$id/comments", $limit, $totalResults, $page, 'pagenav');
@@ -434,7 +435,6 @@ class Magazine extends MY_Controller {
 					'page_list' => $page_list,
 					);
 		if (is_array($magazine)) {
-			$magazine['url'] = '/magazine/detail/' . $magazine['id'];
 			$magazine_date = array(
 						array(
 							'name' => $magazine['cate'],
