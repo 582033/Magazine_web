@@ -119,7 +119,7 @@ class Magazine extends MY_Controller {
 		$page = $page ? $page : 1;
 		$limit = 20;
 		$start = ($page-1) * $limit;
-		$result = $this->mag_model->get_magazines(array('cate' => $cate, 'start' => $start, 'limit' => $limit));
+		$result = $this->mag_model->get_magazines(array('cate' => $cate, 'start' => $start, 'limit' => $limit, 'orderby' => 'newest'));
 		if ($result['httpcode'] != 200) {
 			show_error('', $result['httpcode']);
 		}
