@@ -25,7 +25,7 @@
 				var i = els.length;
 				searchClass = searchClass.replace(/\-/g, "\\-");
 				var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
-				while(--i >= 0){
+				while(0 <= --i){
 					if (pattern.test(els[i].className) ) {
 						returnElements.push(els[i]);
 					}
