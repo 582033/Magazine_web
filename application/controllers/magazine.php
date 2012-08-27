@@ -352,11 +352,11 @@ class Magazine extends MY_Controller {
 		$this->smarty->view('magazine/magazine_home.tpl', $data);
 	}//}}}
 	function magazine_detail($id){		//杂志详情页面{{{
-		$pageid = 'mag_detail';
 		$magazine_id = $id;
 		$magazine = $this->mag_model->_get_magazine_by_id($magazine_id);
 		
 		if ($magazine) {
+			$pageid = 'mag_detail';
 			$temp = array();
 			foreach ($magazine['pageThumbs'] AS $key=>$value) {
 				$a = explode('/',$value);	
@@ -365,46 +365,51 @@ class Magazine extends MY_Controller {
 				$temp[$key]['thumbUrl'] = $value;
 			}
 			$magazine['pageThumbs'] = $temp;
-		}
 
-		$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
-		$common_data = $this->_get_common_data($pageid, $magazine);
-		$limit_recom = 6;
-		$start_recom = 0;
-		$limit_maylike = 6;
-		$start_maylike = 6;
-		//catid 目前不使用，因所有杂志页推荐相同，取广告位api
-		$catid=0;
-		$all_recommendation = $this->mag_model->_get_recommend_bycat($catid);
-		$recommendation=$all_recommendation['data']['items'];
-		$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike, $id);
-		$comment = $this->comment_model->comment_list('magazine', $magazine_id, $start=0, $limit=5);
-		$reverse_cate_mag = array_flip($this->cate_map);
-		$data = array(
-				'navs' => array(
-					array(
-						'name' => '阅读',
-						'url' => '/mag',
+			$magazine['publishedAt'] = substr($magazine['publishedAt'], 0, 10);
+			$common_data = $this->_get_common_data($pageid, $magazine);
+			$limit_recom = 6;
+			$start_recom = 0;
+			$limit_maylike = 6;
+			$start_maylike = 6;
+			//catid 目前不使用，因所有杂志页推荐相同，取广告位api
+			$catid=0;
+			$all_recommendation = $this->mag_model->_get_recommend_bycat($catid);
+			$recommendation=$all_recommendation['data']['items'];
+			$maylike = $this->mag_model->_get_maylike_mag($limit_maylike, $start_maylike, $id);
+			$comment = $this->comment_model->comment_list('magazine', $magazine_id, $start=0, $limit=5);
+			$reverse_cate_mag = array_flip($this->cate_map);
+			$data = array(
+					'navs' => array(
+						array(
+							'name' => '阅读',
+							'url' => '/mag',
+							),
+						array(
+							'name' => $magazine['cate'],
+							'url' => '/mag_list/' . element($magazine['cate'], $reverse_cate_mag, $magazine['cate']),
+							),
+						array(
+							'name' => $magazine['name'],
+							'current' => TRUE,
+							),
 						),
-					array(
-						'name' => $magazine['cate'],
-						'url' => '/mag_list/' . element($magazine['cate'], $reverse_cate_mag, $magazine['cate']),
-						),
-					array(
-						'name' => $magazine['name'],
-						'current' => TRUE,
-						),
-					),
-					'api_host' => $this->config->item('api_host'),
-					'magazine' => $magazine,
-					'recommendation' => $recommendation,
-					'maylike' => $maylike,
-					'comments' => $comment['items'],
-					'hasMoreComments' => $comment['totalResults'] > 5,
-					'curnav' => 'mag',
-					);
-		$data = array_merge($data, $common_data);
-		$this->smarty->view('magazine/magazine_detail.tpl', $data);
+						'api_host' => $this->config->item('api_host'),
+						'magazine' => $magazine,
+						'recommendation' => $recommendation,
+						'maylike' => $maylike,
+						'comments' => $comment['items'],
+						'hasMoreComments' => $comment['totalResults'] > 5,
+						'curnav' => 'mag',
+						);
+			$data = array_merge($data, $common_data);
+			$this->smarty->view('magazine/magazine_detail.tpl', $data);
+		}
+		else {
+			require_once APPPATH . "controllers/notfound.php";
+			$error_404 = new Notfound();
+			$error_404->index();
+		}
 	}//}}}
 	function comment_list($id, $page="1"){		//杂志评论页面{{{
 		$pageid = 'comment_list';
