@@ -1,8 +1,8 @@
 {include file="header.tpl"}
 <link rel="stylesheet" type="text/css" href="/sta/styles/foot.css"/>
 <div class="foot_container">
-	<div class="about_us_container">
-		<div class="about_1001"><!-- 关于1001夜 -->
+	<div class="about_us_container" style="min-height:800px">
+		<div class="about_1001" style="display:none"><!-- 关于1001夜 -->
 			<div class="title_b">关于&nbsp;"1001夜"</div>
 			<div class="content"><!-- 内容 -->
 				<div class="about_1001_first">

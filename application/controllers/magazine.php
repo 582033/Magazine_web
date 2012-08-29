@@ -157,7 +157,7 @@ class Magazine extends MY_Controller {
 				$title = '精品碎片化阅读、旅行风景图片-1001夜互动阅读平台';
 				break;
 			case 'down':
-				$title = '1001+数字多媒体制作工具下载-1001夜互动阅读平台';
+				$title = '最实用的旅游攻略、高品质游记、移动阅读-1001夜互动阅读平台';
 				break;
 			case 'mag_detail':
 				$title = '1001夜阅读-'.$pagename['cate'].'、《'.$pagename['name'].'》';

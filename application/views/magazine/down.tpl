@@ -16,7 +16,9 @@ $(function(){
 </script>
  <div class="down">
  	<dl class="client_down">
+<!--
  		<dt {if $type == 'pc'}class="sel"{else} onclick="location.href='/soft/pc'" onmouseover="this.style.cursor='hand'"{/if}>1001+制作工具下载</dt>
+-->
 		{if $type == 'pc'}
  		<dd class="pc">
  			<div class="intro">
@@ -57,7 +59,9 @@ $(function(){
  			</ul>
  		</dd>
 		{/if}
+<!--
  		<dt {if $type == 'android'}class="sel"{else}onclick="location.href='/soft/android'" onmouseover="this.style.cursor='hand'"{/if}>Android客户端下载</dt>
+-->
 		{if $type == 'android'}
  		<dd class="android" style="display:block">
  			<div class="intro">
