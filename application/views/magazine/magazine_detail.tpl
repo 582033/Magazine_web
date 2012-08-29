@@ -91,13 +91,13 @@
 		</div>
 		<dl class="mag_topic">
 			<dt>推荐的杂志</dt>
-			{foreach from=$recommendation item=item}
+			{foreach from=$maylike item=item}
 			<dd><a href="/magazine/detail/{$item.id}" title="{$item.name}"><img src="{$item.cover}" alt="{$item.name}" width="106px" height="162px" /></a></dd>
 			{/foreach}
 		</dl>
 		<dl class="mag_topic">
 			<dt>猜你喜欢</dt>
-			{foreach from=$maylike item=item}
+			{foreach from=$recommendation item=item}
 			<dd><a href="/magazine/detail/{$item.id}" title="{$item.name}"><img src="{$item.cover}" alt="{$item.name}" width="106px" height="162px" /></a></dd>
 			{/foreach}
 		</dl>
