@@ -1260,7 +1260,9 @@ div.main.comment { /* {{{ */
 					}
 				}
 				p.readonline {
-					padding-left:40px;
+					width:450px;
+					float:left;
+					padding-left:10px;
 				}
 				p.info {
 					position:absolute;
@@ -1317,6 +1319,17 @@ div.main.comment { /* {{{ */
 			font-size:14px;
 			color:#0590b3;
 		}
+	}
+	.mag_dl {
+		float:right;
+		width:200px;
+		height:42px;
+		background:url(/sta/images/dl_button.png) no-repeat 0px 0px;
+		text-indent:-100px;
+		overflow:hidden;
+	}
+	.mag_dl:hover {
+		background-position:0px -43px;
 	}
 } /* }}} */
 

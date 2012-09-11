@@ -67,12 +67,12 @@ $(function(){
  			<div class="intro">
 				<div class="intro_text">
 					<p>云中漫步，云同步手机、平板、PC电脑的阅读记录、个人信息，移动随心，支持在线浏览和下载阅读。</p>
+<!--
 				<br /><br /><center><b><font size="5">即将上线,敬请期待!</font></b></center>
+-->
 				</div>
 
-<!--
-				<a href="http://d.in1001.com/apk/magazine_bookshelf.apk" class="downbtn">下载Android客户端</a>
--->
+				<a href="{$bookshelf_download_url}" class="downbtn">下载Android客户端</a>
  				<div class="slidescreen">
  					<img src="/sta/images/appscreen/1.jpg" alt="截图1" />
  					<img src="/sta/images/appscreen/2.jpg" alt="截图2" />

@@ -415,6 +415,8 @@ $config['last_time'] = 86400;
 $config['upload_img_dir'] = '/mnt/mag/img/avatar';
 $config['upload_img_host'] = 'http://img.in1001.com/avatar';
 
+$config['bookshelf_download_url'] = 'http://apkd.wowpad.cn/ltapp/phone-com.letou.magazine.bookshelf-newest.apk';
+
 $config['page_msg_num']=10;
 if (file_exists(APPPATH. 'config/local.config.php')){
 	include(APPPATH. 'config/local.config.php');

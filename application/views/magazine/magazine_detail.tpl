@@ -57,6 +57,7 @@
 			<div style="clear:both;"></div>
 			<p class="readonline">
 				<a onclick="_gaq.push(['_trackEvent', '杂志', '阅读', '{$magazine.name}', 5]);" href="{$pub_host}/{$magazine.id|truncate:3:''}/{$magazine.id}/web" target="_blank"><img src="/sta/images/btn_readonline.jpg" alt="在线阅读" /></a>
+				<a class="mag_dl" href="{$bookshelf_download_url}" target="_bank"></a>
 			</p>
 			<p class="info" id="magazine_{$magazine.id}">
 				<span class="view"><a href="javascript:void(0)" title="阅读">阅读</a>{$magazine.views}</span>

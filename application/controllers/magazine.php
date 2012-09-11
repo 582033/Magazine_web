@@ -401,6 +401,7 @@ class Magazine extends MY_Controller {
 						'comments' => $comment['items'],
 						'hasMoreComments' => $comment['totalResults'] > 5,
 						'curnav' => 'mag',
+						'bookshelf_download_url' => $this->config->item('bookshelf_download_url'),
 						);
 			$data = array_merge($data, $common_data);
 			$this->smarty->view('magazine/magazine_detail.tpl', $data);
@@ -481,6 +482,7 @@ class Magazine extends MY_Controller {
 		$data = array(
 				'type' => $type,
 				'curnav' => 'soft',
+				'bookshelf_download_url' => $this->config->item('bookshelf_download_url'),
 				);
 		if ($type == 'pc') {
 			$data['user_info'] = $this->_get_current_user();
