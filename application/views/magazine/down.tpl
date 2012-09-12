@@ -66,7 +66,7 @@ $(function(){
  		<dd class="android" style="display:block">
  			<div class="intro">
 				<div class="intro_text">
-					<p>云中漫步，云同步手机、平板、PC电脑的阅读记录、个人信息，移动随心，支持在线浏览和下载阅读。</p>
+					<p>百余个旅行目的地多媒体杂志供您免费下载，随时随地离线观赏。安装客户端，开启您的梦想之旅吧！</p>
 <!--
 				<br /><br /><center><b><font size="5">即将上线,敬请期待!</font></b></center>
 -->
