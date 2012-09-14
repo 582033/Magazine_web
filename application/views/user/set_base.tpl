@@ -87,7 +87,7 @@
 	});
 
 	$(function(){
-		$(".btn_set").click(function(){
+		$('[name="set_base"]').submit(function(){
 			var options = {
 				dataType : 'json',
 				success:    function(result) {
