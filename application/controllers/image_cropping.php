@@ -172,12 +172,7 @@ class Image_cropping extends Magazine {
 			else {
 				$msg = "修改失败";
 			}
-			$tips =  <<<EOF
-				<script>
-					parent.$.fn.colorbox.close();
-					parent.showTipsbox("设置头像成功", "access", "reload");
-				</script>
-EOF;
+			$tips =  "<script>document.domain = 'in1001.com';parent.$.fn.colorbox.close();parent.showTipsbox('设置头像成功', 'access', 'reload');</script>";
 			echo $tips;
 	}
 	//处理缩略图
