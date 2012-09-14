@@ -41,20 +41,24 @@ class Image_cropping extends Magazine {
 	public function show_cut_ui(){
 		$this->smarty->view('image_cropping/cut.tpl');
 	}
+	function exit_error($contents){
+		echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />";
+		exit($contents);
+	}
 	/*上传本地图片*/
 	private function _upload_local_file(){
   if(is_array($_FILES['purl1']) && $_FILES['purl1']['size']){
     if(!file_exists($this->web['img_up_dir']) && !@mkdir($this->web['img_up_dir'])){
-      exit('图片无法上传，上传目录'.$this->web['img_up_dir'].'不存在！');
+      $this->exit_error('图片无法上传，上传目录'.$this->web['img_up_dir'].'不存在！');
     }else{
       @chmod($this->web['img_up_dir'],0777);
       $inis = ini_get('upload_max_filesize');
       $uploadmax=$inis;
       if($_FILES['purl1']['size']>$this->web['max_file_size']*1024){
-        exit('图片上传不成功！上传的文件请小于'.$this->web['max_file_size'].'KB！');
+        $this->exit_error('图片上传不成功！上传的文件请小于'.$this->web['max_file_size'].'KB！');
       }else{
         if(!preg_match('/\.('.$this->web['permit_upload_format'].')$/i',$_FILES['purl1']['name'],$matches)){
-          exit('图片上传不成功！请选择一个有效的文件：允许的格式有（jpg|gif|png）！');
+          $this->exit_error('图片上传不成功！请选择一个有效的文件：允许的格式有（jpg|gif|png）！');
         }else{
           $file_format=strtolower($matches[1]);
           if(@move_uploaded_file($_FILES['purl1']['tmp_name'],$this->web['img_up_dir'].'/'.$this->web['socure_img_name'].'.'.$file_format)){
@@ -62,13 +66,13 @@ class Image_cropping extends Magazine {
             $this->_fsetcookie($this->config->item('upload_img_host').$image_path);
 			echo '<script>location.href="/image_cropping/show_cut_ui"</script>';
 	      }else{
-            exit('图片上传不成功！');
+            $this->exit_error('图片上传不成功！');
 	      }
 		}
 	  }
 	}
   }else{
-    exit('图片不存在！请选择正确的路径！');
+    $this->exit_error('图片不存在！请选择正确的路径！');
   }
 
 }
@@ -77,13 +81,13 @@ class Image_cropping extends Magazine {
 		$filename=$_POST['purl2'];
 		  //if($filename=='' || !preg_match('/^https?:\/\/.+\.(jpg|gif|png)$/i',$filename,$matches)){
 		if($filename=='' || !preg_match('/^https?:\/\/.+/i',$filename)){
-			exit('图片URL输入不合法！网址以http[s]://开头！');
+			$this->exit_error('图片URL输入不合法！网址以http[s]://开头！');
 		  }
 		  if(!$im=@file_get_contents($filename)){
-			exit('无法获取此图片！请确定图片URL正确。');
+			$this->exit_error('无法获取此图片！请确定图片URL正确。');
 		  }
 		  if(strlen($im)>$this->web['max_file_size']*1024){
-			exit('图片上传不成功！链接的文件请小于'.$this->web['max_file_size'].'KB！');
+			$this->exit_error('图片上传不成功！链接的文件请小于'.$this->web['max_file_size'].'KB！');
 		  }
 		  //$t=strtolower($matches[1]);
 		  $format=$this->web['img_up_format'];
@@ -97,7 +101,7 @@ class Image_cropping extends Magazine {
 	private function _write_network_img($file,$text){
 		if(!file_exists($file)){
 			if(!@touch($file)){
-			  exit('操作失败！原因分析：文件'.$file.'不存在或不可创建或读写，可能是当前运行环境权限不足');
+			  $this->exit_error('操作失败！原因分析：文件'.$file.'不存在或不可创建或读写，可能是当前运行环境权限不足');
 			}
 		}
 	  $arr_dir=@explode('/',$file);
@@ -113,12 +117,12 @@ class Image_cropping extends Magazine {
 		$this->_lock_file($fp);
 		@ftruncate($fp,0);
 		if(strlen($text)>0 && !@fwrite($fp,$text)){
-		  exit('操作失败！原因分析：文件'.$file.'不存在或不可创建或读写，可能是权限不足！');
+		  $this->exit_error('操作失败！原因分析：文件'.$file.'不存在或不可创建或读写，可能是权限不足！');
 		}
 		@flock($fp,LOCK_UN);
 		fclose($fp);
 	  }else{
-		exit('操作失败！原因分析：文件'.$file.'不存在或不可读写');
+		$this->exit_error('操作失败！原因分析：文件'.$file.'不存在或不可读写');
 	  }
 	}
 	//锁定文件
@@ -138,10 +142,10 @@ class Image_cropping extends Magazine {
 	private function _exec_check(){
 		if(extension_loaded('gd')){
 			if(!function_exists('gd_info')){
-				exit('重要提示：你的gd版本很低，图片处理功能可能受到约束！');
+				$this->exit_error('重要提示：你的gd版本很低，图片处理功能可能受到约束！');
 			}
 		  }else{
-			exit('重要提示：你尚未加载gd库，不能使用图片处理功能！');
+			$this->exit_error('重要提示：你尚未加载gd库，不能使用图片处理功能！');
 		  }
 		$uploaded_path=$_COOKIE['letoupath'];//上传图片的路径
 		$convert_source=$this->_convert_img_format($uploaded_path);//转换格式后的资源
@@ -156,7 +160,7 @@ class Image_cropping extends Magazine {
 			image_thumb($return_path, $img_50, 50, 50, false);
 			$this->_exec_dropping_img($uploaded_path, $convert_source, $cimg_m, $cimg_s);
 		}else{
-		      exit('截图失败！');
+		      $this->exit_error('截图失败！');
 		}
 	}
 
